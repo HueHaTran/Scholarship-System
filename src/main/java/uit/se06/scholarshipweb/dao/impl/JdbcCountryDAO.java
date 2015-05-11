@@ -4,26 +4,25 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-import uit.se06.scholarshipweb.dao.IAcademicLevelDetailDAO;
-import uit.se06.scholarshipweb.model.AcademicLevelDetail;
+import uit.se06.scholarshipweb.dao.ICountryDAO;
+import uit.se06.scholarshipweb.model.AcademicLevel;
+import uit.se06.scholarshipweb.model.Country;
 
-public class JdbcAcademicLevelDetailDAO extends
-		JdbcBaseDAO<AcademicLevelDetail> implements IAcademicLevelDetailDAO {
+public class JdbcCountryDAO extends JdbcBaseDAO<Country> implements ICountryDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "academic_level_detail_id";
-	private final String COL_NAME = "academic_level_detail_name";
-	private final String COL_ACADEMIC_LEVEL_ID = "academic_level_id";
+	private final String COL_ID = "country_id";
+	private final String COL_NAME = "country_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcAcademicLevelDetailDAO(SessionFactory sessionFactory) {
-		super(AcademicLevelDetail.class, sessionFactory);
+	public JdbcCountryDAO(SessionFactory sessionFactory) {
+		super(AcademicLevel.class, sessionFactory);
 	}
 
 	// ============================================================
@@ -31,23 +30,18 @@ public class JdbcAcademicLevelDetailDAO extends
 	// ============================================================
 
 	@Override
-	public AcademicLevelDetail findById(int id) {
+	public Country findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public AcademicLevelDetail findByName(String name) {
+	public Country findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<AcademicLevelDetail> list() {
+	public List<Country> list() {
 		return getAll();
-	}
-
-	@Override
-	public List<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId) {
-		return listBy(COL_ACADEMIC_LEVEL_ID, String.valueOf(academicLevelId));
 	}
 
 	// ============================================================

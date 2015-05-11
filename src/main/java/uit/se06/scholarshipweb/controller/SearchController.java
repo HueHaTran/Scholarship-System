@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import uit.se06.scholarshipweb.bus.AcademicLevelBUS;
-import uit.se06.scholarshipweb.dao.impl.JdbcDisabilityDAO;
 import uit.se06.scholarshipweb.dao.impl.util.HibernateUtil;
 import uit.se06.scholarshipweb.model.AcademicLevel;
-import uit.se06.scholarshipweb.model.Disability;
 
 /**
  * Handles requests for the application home page.
