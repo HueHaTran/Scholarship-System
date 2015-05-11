@@ -2,10 +2,14 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,6 +28,9 @@ public class Talent {
 
 	@Column(name = "talent_name", unique = true, nullable = false)
 	private String talentName;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentTalents")
+	private List<Scholarship> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -55,5 +62,13 @@ public class Talent {
 
 	public void setTalentName(String talentName) {
 		this.talentName = talentName;
+	}
+
+	public List<Scholarship> getScholarships() {
+		return scholarships;
+	}
+
+	public void setScholarships(List<Scholarship> scholarships) {
+		this.scholarships = scholarships;
 	}
 }

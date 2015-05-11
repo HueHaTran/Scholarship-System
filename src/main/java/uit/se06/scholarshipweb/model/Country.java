@@ -33,6 +33,14 @@ public class Country {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
 	private List<Province> provinces;
 
+	// "mappedBy"'s value is property'name, not column'name
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentCitizenship")
+	private List<Scholarship> scholarshipsWithStudentCitizenship;
+
+	// "mappedBy"'s value is property'name, not column'name
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentResidence")
+	private List<Scholarship> scholarshipsWithStudentResidence;
+
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
@@ -63,5 +71,23 @@ public class Country {
 
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+	}
+
+	public List<Scholarship> getScholarshipsWithStudentCitizenship() {
+		return scholarshipsWithStudentCitizenship;
+	}
+
+	public void setScholarshipsWithStudentCitizenship(
+			List<Scholarship> scholarshipsWithStudentCitizenship) {
+		this.scholarshipsWithStudentCitizenship = scholarshipsWithStudentCitizenship;
+	}
+
+	public List<Scholarship> getScholarshipsWithStudentResidence() {
+		return scholarshipsWithStudentResidence;
+	}
+
+	public void setScholarshipsWithStudentResidence(
+			List<Scholarship> scholarshipsWithStudentResidence) {
+		this.scholarshipsWithStudentResidence = scholarshipsWithStudentResidence;
 	}
 }

@@ -2,10 +2,14 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,6 +28,9 @@ public class FormOfParticipation {
 
 	@Column(name = "form_of_participation_name", unique = true, nullable = false)
 	private String formOfParticipationName;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "formOfParticipation")
+	private List<Scholarship> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -56,5 +63,13 @@ public class FormOfParticipation {
 
 	public void setFormOfParticipationName(String formOfParticipationName) {
 		this.formOfParticipationName = formOfParticipationName;
+	}
+
+	public List<Scholarship> getScholarships() {
+		return scholarships;
+	}
+
+	public void setScholarships(List<Scholarship> scholarships) {
+		this.scholarships = scholarships;
 	}
 }

@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -28,6 +28,9 @@ public class TerminalIll {
 
 	@Column(name = "terminal_ill_name", unique = true, nullable = false)
 	private String terminalIllName;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentTerminalIllnesses")
+	private List<Scholarship> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -59,5 +62,13 @@ public class TerminalIll {
 
 	public void setTerminalIllName(String terminalIllName) {
 		this.terminalIllName = terminalIllName;
+	}
+
+	public List<Scholarship> getScholarships() {
+		return scholarships;
+	}
+
+	public void setScholarships(List<Scholarship> scholarships) {
+		this.scholarships = scholarships;
 	}
 }
