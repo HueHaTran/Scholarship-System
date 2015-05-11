@@ -29,12 +29,16 @@ public class AcademicLevel {
 	@Column(name = "academic_level_name", unique = true, nullable = false)
 	private String academicLevelName;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "academic_level")
+	// "mappedBy"'s value is property'name, not column'name
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "academicLevel")
 	private List<AcademicLevelDetail> academicLevelDetails;
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
+
+	public AcademicLevel() {
+	}
 
 	public AcademicLevel(int academicLevelId, String academicLevelName) {
 		setAcademicLevelId(academicLevelId);
@@ -59,5 +63,14 @@ public class AcademicLevel {
 
 	public void setAcademicLevelName(String academicLevelName) {
 		this.academicLevelName = academicLevelName;
+	}
+
+	public List<AcademicLevelDetail> getAcademicLevelDetails() {
+		return academicLevelDetails;
+	}
+
+	public void setAcademicLevelDetails(
+			List<AcademicLevelDetail> academicLevelDetails) {
+		this.academicLevelDetails = academicLevelDetails;
 	}
 }

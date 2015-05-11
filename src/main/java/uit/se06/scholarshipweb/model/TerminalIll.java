@@ -2,10 +2,14 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -28,6 +32,9 @@ public class TerminalIll {
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
+
+	public TerminalIll() {
+	}
 
 	public TerminalIll(int terminalIllId, String terminalIllName) {
 		setTerminalIllId(terminalIllId);

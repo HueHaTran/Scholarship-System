@@ -48,6 +48,9 @@ public class Sponsor {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public Sponsor() {
+	}
+
 	public Sponsor(int sponsorId, String sponsorName, Province province) {
 		setSponsorId(sponsorId);
 		setSponsorName(sponsorName);

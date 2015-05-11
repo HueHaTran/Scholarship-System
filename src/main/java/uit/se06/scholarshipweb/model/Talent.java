@@ -29,6 +29,9 @@ public class Talent {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public Talent() {
+	}
+
 	public Talent(int talentId, String talentName) {
 		setTalentId(talentId);
 		setTalentName(talentName);

@@ -29,6 +29,9 @@ public class Gender {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public Gender() {
+	}
+
 	public Gender(int genderId, String genderName) {
 		setGenderId(genderId);
 		setGenderName(genderName);

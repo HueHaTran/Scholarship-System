@@ -11,7 +11,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "disability", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "disability_name"), })
-public class Disability	 {
+public class Disability {
 
 	// ============================================================
 	// PROPERTIES
@@ -28,6 +28,9 @@ public class Disability	 {
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
+
+	public Disability() {
+	}
 
 	public Disability(int disabilityId, String disabilityName) {
 		setDisabilityId(disabilityId);

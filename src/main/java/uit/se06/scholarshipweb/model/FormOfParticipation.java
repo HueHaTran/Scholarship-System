@@ -29,6 +29,9 @@ public class FormOfParticipation {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public FormOfParticipation() {
+	}
+
 	public FormOfParticipation(int formOfParticipationId,
 			String formOfParticipationName) {
 		setFormOfParticipationId(formOfParticipationId);

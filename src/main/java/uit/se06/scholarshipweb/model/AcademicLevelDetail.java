@@ -36,6 +36,9 @@ public class AcademicLevelDetail {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public AcademicLevelDetail() {
+	}
+
 	public AcademicLevelDetail(int academicLevelDetailId,
 			String academicLevelDetailName) {
 		setAcademicLevelDetailId(academicLevelDetailId);
@@ -60,5 +63,13 @@ public class AcademicLevelDetail {
 
 	public void setAcademicLevelDetailName(String academicLevelDetailName) {
 		this.academicLevelDetailName = academicLevelDetailName;
+	}
+
+	public AcademicLevel getAcademicLevel() {
+		return academicLevel;
+	}
+
+	public void setAcademicLevel(AcademicLevel academicLevel) {
+		this.academicLevel = academicLevel;
 	}
 }

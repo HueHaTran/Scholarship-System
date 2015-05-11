@@ -48,6 +48,9 @@ public class School {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public School() {
+	}
+
 	public School(int schoolId, String schoolName, Province province) {
 		setSchoolId(schoolId);
 		setSchoolName(schoolName);

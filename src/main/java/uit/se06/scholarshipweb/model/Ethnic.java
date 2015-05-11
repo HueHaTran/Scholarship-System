@@ -29,6 +29,9 @@ public class Ethnic {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public Ethnic() {
+	}
+
 	public Ethnic(int ethnicId, String ethnicName) {
 		setEthnicId(ethnicId);
 		setEthnicName(ethnicName);

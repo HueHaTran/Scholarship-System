@@ -29,6 +29,9 @@ public class ScholarshipType {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public ScholarshipType() {
+	}
+
 	public ScholarshipType(int scholarshipTypeId, String scholarshipTypeName) {
 		setScholarshipTypeId(scholarshipTypeId);
 		setScholarshipTypeName(scholarshipTypeName);

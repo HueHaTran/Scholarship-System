@@ -29,6 +29,9 @@ public class Religion {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public Religion() {
+	}
+
 	public Religion(int religionId, String religionName) {
 		setReligionId(religionId);
 		setReligionName(religionName);

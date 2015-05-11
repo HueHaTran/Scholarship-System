@@ -29,6 +29,9 @@ public class Major {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public Major() {
+	}
+
 	public Major(int majorId, String majorName) {
 		setMajorId(majorId);
 		setMajorName(majorName);

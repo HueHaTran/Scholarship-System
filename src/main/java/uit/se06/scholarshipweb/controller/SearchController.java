@@ -1,15 +1,22 @@
-package uit.se06.scholarshipweb.controller ;
+package uit.se06.scholarshipweb.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import uit.se06.scholarshipweb.bus.AcademicLevelBUS;
+import uit.se06.scholarshipweb.dao.impl.JdbcDisabilityDAO;
+import uit.se06.scholarshipweb.dao.impl.util.HibernateUtil;
+import uit.se06.scholarshipweb.model.AcademicLevel;
+import uit.se06.scholarshipweb.model.Disability;
 
 /**
  * Handles requests for the application home page.
@@ -27,6 +34,22 @@ public class SearchController {
 	public String home(Locale locale, Model model) {
 		// logger.info("Welcome home! The client locale is {}.", locale);
 		//
+		SessionFactory sessionFactory = HibernateUtil
+				.getSessionAnnotationFactory();
+		sessionFactory.openSession();
+
+		AcademicLevelBUS dao = new AcademicLevelBUS(sessionFactory);
+		AcademicLevel l1 = dao.findById(1);
+
+		// AcademicLevel l1 = l.get(1);
+		String name = l1.getAcademicLevelName();
+		int id = l1.getAcademicLevelId();
+
+		String child = l1.getAcademicLevelDetails().get(0).getAcademicLevel()
+				.getAcademicLevelName();
+
+		logger.info("Something " + name + " " + id + " " + child, id + "");
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
 				DateFormat.LONG, locale);

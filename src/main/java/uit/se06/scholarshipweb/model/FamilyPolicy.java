@@ -29,6 +29,9 @@ public class FamilyPolicy {
 	// CONSTRUCTORS
 	// ============================================================
 
+	public FamilyPolicy() {
+	}
+
 	public FamilyPolicy(int policyFamilyId, String policyFamilyName) {
 		setPolicyFamilyId(policyFamilyId);
 		setPolicyFamilyName(policyFamilyName);

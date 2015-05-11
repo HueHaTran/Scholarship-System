@@ -40,27 +40,62 @@ public class Scholarship {
 	private int count;
 
 	@Column(name = "date_end_register", unique = false, nullable = true)
-	private Date date_end_register;
+	private Date dateEndRegister;
 
 	@Column(name = "value_min", unique = false, nullable = false)
-	private int value_min;
+	private int valueMin;
 
 	@Column(name = "value_max", unique = false, nullable = false)
-	private int value_max;
+	private int valueMax;
 
 	@Column(name = "application_description", unique = false, nullable = true)
-	private String application_description;
+	private String applicationDescription;
 
 	@Column(name = "support_description", unique = false, nullable = true)
-	private String support_description;
+	private String supportDescription;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_gender_id", referencedColumnName = "gender_id")
 	private Gender studentGender;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_citizenship_id", referencedColumnName = "country_id")
+	private Country studentCitizenship;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_ethnic_id", referencedColumnName = "ethnic_id")
+	private Ethnic studentEthnic;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_residence_id", referencedColumnName = "country_id")
+	private Country studentResidence;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_religion_id", referencedColumnName = "religion_id")
+	private Religion studentReligion;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_academic_level_detail_id", referencedColumnName = "academic_level_detail_id")
+	private AcademicLevelDetail studentAcademicLevelDetail;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "scholarship_type_id", referencedColumnName = "scholarship_type_id")
+	private ScholarshipType scholarshipType;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "school_id", referencedColumnName = "school_id")
+	private School school;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "form_of_participation_id", referencedColumnName = "form_of_participation_id")
+	private FormOfParticipation formOfParticipation;
+
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
+
+	public Scholarship() {
+	}
 
 	public Scholarship(int scholarshipId, String scholarshipName) {
 		setScholarshipId(scholarshipId);
@@ -85,5 +120,142 @@ public class Scholarship {
 
 	public void setScholarshipName(String scholarshipName) {
 		this.scholarshipName = scholarshipName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getOriginal_link() {
+		return original_link;
+	}
+
+	public void setOriginal_link(String original_link) {
+		this.original_link = original_link;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public Date getDateEndRegister() {
+		return dateEndRegister;
+	}
+
+	public void setDateEndRegister(Date dateEndRegister) {
+		this.dateEndRegister = dateEndRegister;
+	}
+
+	public int getValueMin() {
+		return valueMin;
+	}
+
+	public void setValueMin(int valueMin) {
+		this.valueMin = valueMin;
+	}
+
+	public int getValueMax() {
+		return valueMax;
+	}
+
+	public void setValueMax(int valueMax) {
+		this.valueMax = valueMax;
+	}
+
+	public String getApplicationDescription() {
+		return applicationDescription;
+	}
+
+	public void setApplicationDescription(String applicationDescription) {
+		this.applicationDescription = applicationDescription;
+	}
+
+	public String getSupportDescription() {
+		return supportDescription;
+	}
+
+	public void setSupportDescription(String supportDescription) {
+		this.supportDescription = supportDescription;
+	}
+
+	public Gender getStudentGender() {
+		return studentGender;
+	}
+
+	public void setStudentGender(Gender studentGender) {
+		this.studentGender = studentGender;
+	}
+
+	public Country getStudentCitizenship() {
+		return studentCitizenship;
+	}
+
+	public void setStudentCitizenship(Country studentCitizenship) {
+		this.studentCitizenship = studentCitizenship;
+	}
+
+	public Ethnic getStudentEthnic() {
+		return studentEthnic;
+	}
+
+	public void setStudentEthnic(Ethnic studentEthnic) {
+		this.studentEthnic = studentEthnic;
+	}
+
+	public Country getStudentResidence() {
+		return studentResidence;
+	}
+
+	public void setStudentResidence(Country studentResidence) {
+		this.studentResidence = studentResidence;
+	}
+
+	public Religion getStudentReligion() {
+		return studentReligion;
+	}
+
+	public void setStudentReligion(Religion studentReligion) {
+		this.studentReligion = studentReligion;
+	}
+
+	public AcademicLevelDetail getStudentAcademicLevelDetail() {
+		return studentAcademicLevelDetail;
+	}
+
+	public void setStudentAcademicLevelDetail(
+			AcademicLevelDetail studentAcademicLevelDetail) {
+		this.studentAcademicLevelDetail = studentAcademicLevelDetail;
+	}
+
+	public ScholarshipType getScholarshipType() {
+		return scholarshipType;
+	}
+
+	public void setScholarshipType(ScholarshipType scholarshipType) {
+		this.scholarshipType = scholarshipType;
+	}
+
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
+	public FormOfParticipation getFormOfParticipation() {
+		return formOfParticipation;
+	}
+
+	public void setFormOfParticipation(FormOfParticipation formOfParticipation) {
+		this.formOfParticipation = formOfParticipation;
 	}
 }

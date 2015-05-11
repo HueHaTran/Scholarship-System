@@ -2,10 +2,14 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -25,9 +29,16 @@ public class Country {
 	@Column(name = "country_name", unique = true, nullable = false)
 	private String countryName;
 
+	// "mappedBy"'s value is property'name, not column'name
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
+	private List<Province> provinces;
+
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
+
+	public Country() {
+	}
 
 	public Country(int countryId, String countryName) {
 		setCountryId(countryId);

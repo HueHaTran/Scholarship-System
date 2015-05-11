@@ -2,30 +2,50 @@ package uit.se06.scholarshipweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import uit.se06.scholarshipweb.dao.IDisabilityDAO;
 import uit.se06.scholarshipweb.model.Disability;
+ 
+public class JdbcDisabilityDAO extends JdbcBaseDAO<Disability> implements
+		IDisabilityDAO {
 
-public class JdbcDisabilityDAO implements IDisabilityDAO {
+	// ============================================================
+	// VARIABLES
+	// ============================================================
 
-	private String COL_ID = "disability_id";
-	private String COL_Name = "disability_name";
+	private final String COL_ID = "disability_id";
+	private final String COL_NAME = "disability_name";
+
+	// ============================================================
+	// CONSTRUCTORS
+	// ============================================================
+
+	public JdbcDisabilityDAO(SessionFactory sessionFactory) {
+		super(Disability.class, sessionFactory);
+	}
+
+	// ============================================================
+	// OVERRIDE METHODS
+	// ============================================================
 
 	@Override
 	public Disability findById(int id) {
-		// TODO Auto-generated method stub
-
-		return null;
-	}
-
-	@Override
-	public List<Disability> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
 	public Disability findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return findBy(COL_NAME, name);
 	}
+
+	@Override
+	public List<Disability> list() {
+		return getAll();
+	}
+
+	// ============================================================
+	// OTHER METHODS
+	// ============================================================
+
 }
