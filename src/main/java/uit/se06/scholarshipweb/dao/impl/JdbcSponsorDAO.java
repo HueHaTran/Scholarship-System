@@ -3,6 +3,8 @@ package uit.se06.scholarshipweb.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ISponsorDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
@@ -13,6 +15,9 @@ public class JdbcSponsorDAO extends JdbcBaseDAO<Sponsor> implements ISponsorDAO 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(JdbcSponsorDAO.class);
 
 	public final String COL_ID = "sponsor_id";
 	public final String COL_NAME = "sponsor_name";
@@ -33,6 +38,11 @@ public class JdbcSponsorDAO extends JdbcBaseDAO<Sponsor> implements ISponsorDAO 
 	// ============================================================
 	// OVERRIDE METHODS
 	// ============================================================
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
+	}
 
 	@Override
 	public Sponsor findById(int id) {

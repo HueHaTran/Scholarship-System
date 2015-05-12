@@ -40,11 +40,11 @@ public class SearchController {
 		AcademicLevel l1 = dao.findById(1);
 
 		// AcademicLevel l1 = l.get(1);
-		String name = l1.getAcademicLevelName();
-		int id = l1.getAcademicLevelId();
+		String name = l1.getName();
+		int id = l1.getId();
 
 		String child = l1.getAcademicLevelDetails().get(0).getAcademicLevel()
-				.getAcademicLevelName();
+				.getName();
 
 		logger.info("Something " + name + " " + id + " " + child, id + "");
 

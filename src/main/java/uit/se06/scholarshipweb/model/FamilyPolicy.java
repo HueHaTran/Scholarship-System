@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "family_policy", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "family_policy_name"), })
-public class FamilyPolicy {
+public class FamilyPolicy implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -40,27 +40,27 @@ public class FamilyPolicy {
 	}
 
 	public FamilyPolicy(int familyPolicyId, String familyPolicyName) {
-		setFamilyPolicyId(familyPolicyId);
-		setFamilyPolicyName(familyPolicyName);
+		setId(familyPolicyId);
+		setName(familyPolicyName);
 	}
 
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public int getFamilyPolicyId() {
+	public int getId() {
 		return familyPolicyId;
 	}
 
-	public void setFamilyPolicyId(int familyPolicyId) {
+	public void setId(int familyPolicyId) {
 		this.familyPolicyId = familyPolicyId;
 	}
 
-	public String getFamilyPolicyName() {
+	public String getName() {
 		return familyPolicyName;
 	}
 
-	public void setFamilyPolicyName(String familyPolicyName) {
+	public void setName(String familyPolicyName) {
 		this.familyPolicyName = familyPolicyName;
 	}
 

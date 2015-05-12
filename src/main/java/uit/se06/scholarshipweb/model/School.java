@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "school", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "school_name"), })
-public class School {
+public class School implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -58,8 +58,8 @@ public class School {
 	}
 
 	public School(int schoolId, String schoolName, Province province) {
-		setSchoolId(schoolId);
-		setSchoolName(schoolName);
+		setId(schoolId);
+		setName(schoolName);
 		setProvince(province);
 	}
 
@@ -67,19 +67,19 @@ public class School {
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public int getSchoolId() {
+	public int getId() {
 		return schoolId;
 	}
 
-	public void setSchoolId(int schoolId) {
+	public void setId(int schoolId) {
 		this.schoolId = schoolId;
 	}
 
-	public String getSchoolName() {
+	public String getName() {
 		return schoolName;
 	}
 
-	public void setSchoolName(String schoolName) {
+	public void setName(String schoolName) {
 		this.schoolName = schoolName;
 	}
 

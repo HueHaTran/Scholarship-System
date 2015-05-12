@@ -3,6 +3,8 @@ package uit.se06.scholarshipweb.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ISchoolDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
@@ -13,6 +15,9 @@ public class JdbcSchoolDAO extends JdbcBaseDAO<School> implements ISchoolDAO {
 	// ============================================================
 	// VARIABLES
 	// ============================================================
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(JdbcSchoolDAO.class);
 
 	public final String COL_ID = "school_id";
 	public final String COL_NAME = "school_name";
@@ -33,6 +38,11 @@ public class JdbcSchoolDAO extends JdbcBaseDAO<School> implements ISchoolDAO {
 	// ============================================================
 	// OVERRIDE METHODS
 	// ============================================================
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
+	}
 
 	@Override
 	public School findById(int id) {

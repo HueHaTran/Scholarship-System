@@ -6,11 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class JdbcBaseDAO<T> {
-
-	protected Logger logger;
+public abstract class JdbcBaseDAO<T> {
 
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -24,7 +21,6 @@ public class JdbcBaseDAO<T> {
 	public JdbcBaseDAO(Class<?> modelClass, SessionFactory sessionFactory) {
 		this.modelClass = modelClass;
 		this.sessionFactory = sessionFactory;
-		logger = LoggerFactory.getLogger(modelClass);
 	}
 
 	// ============================================================
@@ -60,7 +56,7 @@ public class JdbcBaseDAO<T> {
 			resultList = query.list();
 
 		} catch (Exception ex) {
-			logger.error("Exception in " + this.getClass().getCanonicalName()
+			getLogger().error("Exception in " + this.getClass().getCanonicalName()
 					+ ": Query '" + builder.toString() + "' in listBy()");
 		} finally {
 			closeSession();
@@ -87,11 +83,13 @@ public class JdbcBaseDAO<T> {
 			result = (List<T>) getSession().createQuery(
 					"from " + modelClass.getCanonicalName()).list();
 		} catch (Exception ex) {
-			logger.error("Exception in " + this.getClass().getCanonicalName()
+			getLogger().error("Exception in " + this.getClass().getCanonicalName()
 					+ ": Query '" + builder.toString() + "' in getAll()");
 		} finally {
 			closeSession();
 		}
 		return result;
 	}
+	
+	protected abstract Logger getLogger();
 }

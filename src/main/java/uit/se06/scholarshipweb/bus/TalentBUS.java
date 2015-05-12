@@ -6,78 +6,53 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ICountryDAO;
-import uit.se06.scholarshipweb.dao.IProvinceDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcCountryDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcProvinceDAO;
-import uit.se06.scholarshipweb.model.Country;
+import uit.se06.scholarshipweb.dao.ITalentDAO;
+import uit.se06.scholarshipweb.dao.impl.JdbcTalentDAO;
+import uit.se06.scholarshipweb.model.Talent;
 
-public class CountryBUS {
+public class TalentBUS {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(CountryBUS.class);
+			.getLogger(TalentBUS.class);
 
-	private ICountryDAO dao;
-	private IProvinceDAO daoProvince;
+	private ITalentDAO dao;
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public CountryBUS(SessionFactory sessionFactory) {
-		dao = new JdbcCountryDAO(sessionFactory);
-		daoProvince = new JdbcProvinceDAO(sessionFactory);
+	public TalentBUS(SessionFactory sessionFactory) {
+		dao = new JdbcTalentDAO(sessionFactory);
 	}
 
 	// ============================================================
 	// METHODS
 	// ============================================================
 
-	/**
-	 * with detail
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Country findById(int id) {
-		Country entity = dao.findById(id);
+	public Talent findById(int id) {
+		Talent entity = dao.findById(id);
 		if (entity == null) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "findById(" + id + ")" + " return null.");
-		} else {
-			entity.setProvinces(daoProvince.listByCountry(entity.getId()));
 		}
 		return entity;
 	}
 
-	/**
-	 * with detail
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public Country findByName(String name) {
-		Country entity = dao.findByName(name);
+	public Talent findByName(String name) {
+		Talent entity = dao.findByName(name);
 		if (entity == null) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "findByName(" + name + ")" + " return null.");
-		} else {
-			entity.setProvinces(daoProvince.listByCountry(entity.getId()));
 		}
 		return entity;
 	}
 
-	/**
-	 * general info only, no detail
-	 * 
-	 * @return
-	 */
-	public List<Country> list() {
-		List<Country> result = dao.list();
+	public List<Talent> list() {
+		List<Talent> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "list()" + " return null or empty.");

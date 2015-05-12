@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "gender", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "gender_name"), })
-public class Gender {
+public class Gender implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -40,27 +40,27 @@ public class Gender {
 	}
 
 	public Gender(int genderId, String genderName) {
-		setGenderId(genderId);
-		setGenderName(genderName);
+		setId(genderId);
+		setName(genderName);
 	}
 
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public int getGenderId() {
+	public int getId() {
 		return genderId;
 	}
 
-	public void setGenderId(int genderId) {
+	public void setId(int genderId) {
 		this.genderId = genderId;
 	}
 
-	public String getGenderName() {
+	public String getName() {
 		return genderName;
 	}
 
-	public void setGenderName(String genderName) {
+	public void setName(String genderName) {
 		this.genderName = genderName;
 	}
 

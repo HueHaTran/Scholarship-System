@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "form_of_participation", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "form_of_participation_name"), })
-public class FormOfParticipation {
+public class FormOfParticipation  implements ISimpleModel{
 
 	// ============================================================
 	// PROPERTIES
@@ -41,27 +41,27 @@ public class FormOfParticipation {
 
 	public FormOfParticipation(int formOfParticipationId,
 			String formOfParticipationName) {
-		setFormOfParticipationId(formOfParticipationId);
-		setFormOfParticipationName(formOfParticipationName);
+		setId(formOfParticipationId);
+		setName(formOfParticipationName);
 	}
 
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public int getFormOfParticipationId() {
+	public int getId() {
 		return formOfParticipationId;
 	}
 
-	public void setFormOfParticipationId(int formOfParticipationId) {
+	public void setId(int formOfParticipationId) {
 		this.formOfParticipationId = formOfParticipationId;
 	}
 
-	public String getFormOfParticipationName() {
+	public String getName() {
 		return formOfParticipationName;
 	}
 
-	public void setFormOfParticipationName(String formOfParticipationName) {
+	public void setName(String formOfParticipationName) {
 		this.formOfParticipationName = formOfParticipationName;
 	}
 

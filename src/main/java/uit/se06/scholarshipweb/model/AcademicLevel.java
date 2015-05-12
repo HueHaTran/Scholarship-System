@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "academic_level", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "academic_level_name"), })
-public class AcademicLevel {
+public class AcademicLevel implements ISimpleModel{
 
 	// ============================================================
 	// PROPERTIES
@@ -41,27 +41,27 @@ public class AcademicLevel {
 	}
 
 	public AcademicLevel(int academicLevelId, String academicLevelName) {
-		setAcademicLevelId(academicLevelId);
-		setAcademicLevelName(academicLevelName);
+		setId(academicLevelId);
+		setName(academicLevelName);
 	}
 
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public int getAcademicLevelId() {
+	public int getId() {
 		return academicLevelId;
 	}
 
-	public void setAcademicLevelId(int academicLevelId) {
+	public void setId(int academicLevelId) {
 		this.academicLevelId = academicLevelId;
 	}
 
-	public String getAcademicLevelName() {
+	public String getName() {
 		return academicLevelName;
 	}
 
-	public void setAcademicLevelName(String academicLevelName) {
+	public void setName(String academicLevelName) {
 		this.academicLevelName = academicLevelName;
 	}
 

@@ -51,7 +51,7 @@ public class AcademicLevelBUS {
 					+ ": " + "findById(" + id + ")" + " return null.");
 		} else {
 			entity.setAcademicLevelDetails(daoDetail
-					.findByAcademicLevelId(entity.getAcademicLevelId()));
+					.findByAcademicLevelId(entity.getId()));
 		}
 
 		return entity;
@@ -71,7 +71,7 @@ public class AcademicLevelBUS {
 					+ ": " + "findByName(" + name + ")" + " return null.");
 		} else {
 			entity.setAcademicLevelDetails(daoDetail
-					.findByAcademicLevelId(entity.getAcademicLevelId()));
+					.findByAcademicLevelId(entity.getId()));
 		}
 
 		return entity;

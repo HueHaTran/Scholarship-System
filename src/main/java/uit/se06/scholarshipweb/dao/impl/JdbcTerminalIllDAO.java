@@ -3,16 +3,22 @@ package uit.se06.scholarshipweb.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ITerminalIllDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.TerminalIll;
 
-public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements ITerminalIllDAO {
+public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements
+		ITerminalIllDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(JdbcTerminalIllDAO.class);
 
 	public final String COL_ID = "terminal_ill_id";
 	public final String COL_NAME = "terminal_ill_name";
@@ -28,6 +34,11 @@ public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements ITer
 	// ============================================================
 	// OVERRIDE METHODS
 	// ============================================================
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
+	}
 
 	@Override
 	public TerminalIll findById(int id) {

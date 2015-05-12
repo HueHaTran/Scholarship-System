@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "scholarship", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "scholarship_name"), })
-public class Scholarship {
+public class Scholarship implements ISimpleModel{
 
 	// ============================================================
 	// PROPERTIES
@@ -38,7 +38,7 @@ public class Scholarship {
 	private String description;
 
 	@Column(name = "original_link", unique = false, nullable = true)
-	private String original_link;
+	private String originalLink;
 
 	@Column(name = "count", unique = false, nullable = false)
 	private int count;
@@ -100,7 +100,7 @@ public class Scholarship {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_family_policy", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "family_policy_id", nullable = false, updatable = false) })
-	private List<AcademicLevelDetail> studentFamilyPolicies;
+	private List<FamilyPolicy> studentFamilyPolicies;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_disability", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "disability_id", nullable = false, updatable = false) })
@@ -108,7 +108,7 @@ public class Scholarship {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_terminal_ill", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "terminal_ill_id", nullable = false, updatable = false) })
-	private List<Disability> studentTerminalIllnesses;
+	private List<TerminalIll> studentTerminalIllnesses;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_sponsor", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "sponsor_id", nullable = false, updatable = false) })
@@ -116,11 +116,11 @@ public class Scholarship {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_major", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "major_id", nullable = false, updatable = false) })
-	private List<Sponsor> scholarshipMajors;
+	private List<Major> scholarshipMajors;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_talent", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "talent_id", nullable = false, updatable = false) })
-	private List<Sponsor> studentTalents;
+	private List<Talent> studentTalents;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -130,27 +130,27 @@ public class Scholarship {
 	}
 
 	public Scholarship(int scholarshipId, String scholarshipName) {
-		setScholarshipId(scholarshipId);
-		setScholarshipName(scholarshipName);
+		setId(scholarshipId);
+		setName(scholarshipName);
 	}
 
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public int getScholarshipId() {
+	public int getId() {
 		return scholarshipId;
 	}
 
-	public void setScholarshipId(int scholarshipId) {
+	public void setId(int scholarshipId) {
 		this.scholarshipId = scholarshipId;
 	}
 
-	public String getScholarshipName() {
+	public String getName() {
 		return scholarshipName;
 	}
 
-	public void setScholarshipName(String scholarshipName) {
+	public void setName(String scholarshipName) {
 		this.scholarshipName = scholarshipName;
 	}
 
@@ -163,11 +163,11 @@ public class Scholarship {
 	}
 
 	public String getOriginal_link() {
-		return original_link;
+		return originalLink;
 	}
 
 	public void setOriginal_link(String original_link) {
-		this.original_link = original_link;
+		this.originalLink = original_link;
 	}
 
 	public int getCount() {
@@ -300,11 +300,12 @@ public class Scholarship {
 		this.scholarshipAcademicLevelDetail = scholarshipAcademicLevelDetail;
 	}
 
-	public List<AcademicLevelDetail> getStudentFamilyPolicies() {
+	public List<FamilyPolicy> getStudentFamilyPolicies() {
 		return studentFamilyPolicies;
 	}
 
-	public void setStudentFamilyPolicies(List<AcademicLevelDetail> studentFamilyPolicies) {
+	public void setStudentFamilyPolicies(
+			List<FamilyPolicy> studentFamilyPolicies) {
 		this.studentFamilyPolicies = studentFamilyPolicies;
 	}
 
@@ -316,11 +317,12 @@ public class Scholarship {
 		this.studentDisabilities = studentDisabilities;
 	}
 
-	public List<Disability> getStudentTerminalIllnesses() {
+	public List<TerminalIll> getStudentTerminalIllnesses() {
 		return studentTerminalIllnesses;
 	}
 
-	public void setStudentTerminalIllnesses(List<Disability> studentTerminalIllnesses) {
+	public void setStudentTerminalIllnesses(
+			List<TerminalIll> studentTerminalIllnesses) {
 		this.studentTerminalIllnesses = studentTerminalIllnesses;
 	}
 
@@ -332,19 +334,19 @@ public class Scholarship {
 		this.sponsors = sponsors;
 	}
 
-	public List<Sponsor> getScholarshipMajors() {
+	public List<Major> getScholarshipMajors() {
 		return scholarshipMajors;
 	}
 
-	public void setScholarshipMajors(List<Sponsor> scholarshipMajors) {
+	public void setScholarshipMajors(List<Major> scholarshipMajors) {
 		this.scholarshipMajors = scholarshipMajors;
 	}
 
-	public List<Sponsor> getStudentTalents() {
+	public List<Talent> getStudentTalents() {
 		return studentTalents;
 	}
 
-	public void setStudentTalents(List<Sponsor> studentTalents) {
+	public void setStudentTalents(List<Talent> studentTalents) {
 		this.studentTalents = studentTalents;
 	}
 }
