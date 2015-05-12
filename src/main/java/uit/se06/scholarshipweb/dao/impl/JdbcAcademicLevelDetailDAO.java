@@ -14,9 +14,9 @@ public class JdbcAcademicLevelDetailDAO extends
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "academic_level_detail_id";
-	private final String COL_NAME = "academic_level_detail_name";
-	private final String COL_ACADEMIC_LEVEL_ID = "academic_level_id";
+	public final String COL_ID = "academic_level_detail_id";
+	public final String COL_NAME = "academic_level_detail_name";
+	public final String COL_ACADEMIC_LEVEL_ID = "academic_level_id";
 
 	// ============================================================
 	// CONSTRUCTORS

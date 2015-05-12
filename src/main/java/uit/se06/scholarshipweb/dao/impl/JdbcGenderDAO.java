@@ -14,8 +14,8 @@ public class JdbcGenderDAO extends JdbcBaseDAO<Gender> implements IGenderDAO {
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "gender_id";
-	private final String COL_NAME = "gender_name";
+	public final String COL_ID = "gender_id";
+	public final String COL_NAME = "gender_name";
 
 	// ============================================================
 	// CONSTRUCTORS

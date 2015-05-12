@@ -14,8 +14,8 @@ public class JdbcDisabilityDAO extends JdbcBaseDAO<Disability> implements
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "disability_id";
-	private final String COL_NAME = "disability_name";
+	public final String COL_ID = "disability_id";
+	public final String COL_NAME = "disability_name";
 
 	// ============================================================
 	// CONSTRUCTORS

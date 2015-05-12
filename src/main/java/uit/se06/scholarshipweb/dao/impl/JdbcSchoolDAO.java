@@ -14,8 +14,13 @@ public class JdbcSchoolDAO extends JdbcBaseDAO<School> implements ISchoolDAO {
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "school_id";
-	private final String COL_NAME = "school_name";
+	public final String COL_ID = "school_id";
+	public final String COL_NAME = "school_name";
+	public final String COL_PROVICE_ID = "province_id";
+	public final String COL_ADDRESS = "address";
+	public final String COL_PHONE = "phone";
+	public final String COL_WEBSITE = "website";
+	public final String COL_FAX = "fax";
 
 	// ============================================================
 	// CONSTRUCTORS

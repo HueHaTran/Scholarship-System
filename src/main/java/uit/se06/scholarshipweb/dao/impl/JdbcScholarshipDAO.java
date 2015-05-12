@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 
 import uit.se06.scholarshipweb.dao.IScholarshipDAO;
@@ -16,8 +16,16 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "scholarship_id";
-	private final String COL_NAME = "scholarship_name";
+	public final String COL_ID = "scholarship_id";
+	public final String COL_NAME = "scholarship_name";
+	public final String COL_STUDENT_GENDER = "student_gender_id";
+	public final String COL_STUDENT_CITIZENSHIP = "student_citizenship_id";
+	public final String COL_STUDENT_RESIDENCE = "student_residence_id";
+	public final String COL_STUDENT_RELIGION = "student_religion_id";
+	public final String COL_STUDENT_ACADEMIC_LEVEL_DETAIL = "student_academic_level_detail_id";
+	public final String COL_SCHOLARSHIP_TYPE = "scholarship_type_id";
+	public final String COL_SCHOOL = "school_id";
+	public final String COL_FORM_OF_PARTICIPATION = "form_of_participation_id";
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -56,21 +64,23 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 		StringBuilder builder = new StringBuilder();
 		try {
 			// query
-			builder.append("from ")
+			builder.append("SELECT ").append(COL_NAME);
+			builder.append(", ").append(COL_SCHOOL);
+
+			builder.append("FROM ")
 					.append(Scholarship.class.getCanonicalName());
 			builder.append("  where ").append(COL_ID).append(" = :paramId");
 
-			Query query = getSession().createQuery(builder.toString())
-					.setParameter("paramId", id);
+			SQLQuery query = getSession().createSQLQuery(builder.toString());
+			query.setParameter("paramId", id);
+
 			resultList = query.list();
 		} catch (Exception ex) {
 			logger.error("Exception in " + this.getClass().getCanonicalName()
 					+ ": Query '" + builder.toString()
 					+ "' in findShortInfoById()");
 		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
+			closeSession();
 		}
 
 		if (resultList != null && !resultList.isEmpty()) {

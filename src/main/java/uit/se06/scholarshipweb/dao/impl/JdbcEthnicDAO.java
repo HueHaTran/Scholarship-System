@@ -14,8 +14,8 @@ public class JdbcEthnicDAO extends JdbcBaseDAO<Ethnic> implements IEthnicDAO {
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "ethnic_id";
-	private final String COL_NAME = "ethnic_name";
+	public final String COL_ID = "ethnic_id";
+	public final String COL_NAME = "ethnic_name";
 
 	// ============================================================
 	// CONSTRUCTORS

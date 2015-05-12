@@ -13,8 +13,7 @@ public class JdbcBaseDAO<T> {
 	protected Logger logger;
 
 	private SessionFactory sessionFactory;
-
-	protected Session session;
+	private Session session;
 
 	private Class<?> modelClass;
 
@@ -39,6 +38,12 @@ public class JdbcBaseDAO<T> {
 		return session;
 	}
 
+	protected void closeSession() {
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	protected List<T> listBy(String name, String value) {
 		List<T> resultList = null;
@@ -58,9 +63,7 @@ public class JdbcBaseDAO<T> {
 			logger.error("Exception in " + this.getClass().getCanonicalName()
 					+ ": Query '" + builder.toString() + "' in listBy()");
 		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
+			closeSession();
 		}
 
 		return resultList;
@@ -87,9 +90,7 @@ public class JdbcBaseDAO<T> {
 			logger.error("Exception in " + this.getClass().getCanonicalName()
 					+ ": Query '" + builder.toString() + "' in getAll()");
 		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
+			closeSession();
 		}
 		return result;
 	}

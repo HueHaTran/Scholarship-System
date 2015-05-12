@@ -14,8 +14,8 @@ public class JdbcCountryDAO extends JdbcBaseDAO<Country> implements ICountryDAO 
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "country_id";
-	private final String COL_NAME = "country_name";
+	public final String COL_ID = "country_id";
+	public final String COL_NAME = "country_name";
 
 	// ============================================================
 	// CONSTRUCTORS

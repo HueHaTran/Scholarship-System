@@ -14,8 +14,8 @@ public class JdbcScholarshipTypeDAO extends JdbcBaseDAO<ScholarshipType> impleme
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "scholarship_type_id";
-	private final String COL_NAME = "scholarship_type_name";
+	public final String COL_ID = "scholarship_type_id";
+	public final String COL_NAME = "scholarship_type_name";
 
 	// ============================================================
 	// CONSTRUCTORS

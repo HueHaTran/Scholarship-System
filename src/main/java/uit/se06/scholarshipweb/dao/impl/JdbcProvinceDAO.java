@@ -15,9 +15,9 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "province_id";
-	private final String COL_NAME = "province_name";
-	private final String COL_COUNTRY_ID = "country_id";
+	public final String COL_ID = "province_id";
+	public final String COL_NAME = "province_name";
+	public final String COL_COUNTRY_ID = "country_id";
 
 	// ============================================================
 	// CONSTRUCTORS

@@ -14,8 +14,8 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "academic_level_id";
-	private final String COL_NAME = "academic_level_name";
+	public final String COL_ID = "academic_level_id";
+	public final String COL_NAME = "academic_level_name";
 
 	// ============================================================
 	// CONSTRUCTORS

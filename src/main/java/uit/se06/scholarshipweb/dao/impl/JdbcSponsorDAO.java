@@ -14,8 +14,13 @@ public class JdbcSponsorDAO extends JdbcBaseDAO<Sponsor> implements ISponsorDAO 
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "sponsor_id";
-	private final String COL_NAME = "sponsor_name";
+	public final String COL_ID = "sponsor_id";
+	public final String COL_NAME = "sponsor_name";
+	public final String COL_PROVICE_ID = "province_id";
+	public final String COL_ADDRESS = "address";
+	public final String COL_PHONE = "phone";
+	public final String COL_WEBSITE = "website";
+	public final String COL_FAX = "fax";
 
 	// ============================================================
 	// CONSTRUCTORS

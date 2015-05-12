@@ -14,8 +14,8 @@ public class JdbcTalentDAO extends JdbcBaseDAO<Talent> implements ITalentDAO {
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "talent_id";
-	private final String COL_NAME = "talent_name";
+	public final String COL_ID = "talent_id";
+	public final String COL_NAME = "talent_name";
 
 	// ============================================================
 	// CONSTRUCTORS

@@ -14,8 +14,8 @@ public class JdbcReligionDAO extends JdbcBaseDAO<Religion> implements IReligionD
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "religion_id";
-	private final String COL_NAME = "religion_name";
+	public final String COL_ID = "religion_id";
+	public final String COL_NAME = "religion_name";
 
 	// ============================================================
 	// CONSTRUCTORS

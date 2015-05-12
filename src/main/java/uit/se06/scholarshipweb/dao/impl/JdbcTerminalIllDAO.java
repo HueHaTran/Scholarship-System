@@ -14,8 +14,8 @@ public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements ITer
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "terminal_ill_id";
-	private final String COL_NAME = "terminal_ill_name";
+	public final String COL_ID = "terminal_ill_id";
+	public final String COL_NAME = "terminal_ill_name";
 
 	// ============================================================
 	// CONSTRUCTORS

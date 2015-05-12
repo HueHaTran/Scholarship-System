@@ -14,8 +14,8 @@ public class JdbcMajorDAO extends JdbcBaseDAO<Major> implements IMajorDAO {
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "major_id";
-	private final String COL_NAME = "major_name";
+	public final String COL_ID = "major_id";
+	public final String COL_NAME = "major_name";
 
 	// ============================================================
 	// CONSTRUCTORS

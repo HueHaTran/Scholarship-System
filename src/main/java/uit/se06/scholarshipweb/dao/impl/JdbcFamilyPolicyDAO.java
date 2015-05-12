@@ -14,8 +14,8 @@ public class JdbcFamilyPolicyDAO extends JdbcBaseDAO<FamilyPolicy> implements IF
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "family_policy_id";
-	private final String COL_NAME = "family_policy_name";
+	public final String COL_ID = "family_policy_id";
+	public final String COL_NAME = "family_policy_name";
 
 	// ============================================================
 	// CONSTRUCTORS

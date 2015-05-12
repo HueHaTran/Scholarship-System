@@ -14,8 +14,8 @@ public class JdbcFormOfParticipationDAO extends JdbcBaseDAO<FormOfParticipation>
 	// VARIABLES
 	// ============================================================
 
-	private final String COL_ID = "form_of_participation_id";
-	private final String COL_NAME = "form_of_participation_name";
+	public final String COL_ID = "form_of_participation_id";
+	public final String COL_NAME = "form_of_participation_name";
 
 	// ============================================================
 	// CONSTRUCTORS
