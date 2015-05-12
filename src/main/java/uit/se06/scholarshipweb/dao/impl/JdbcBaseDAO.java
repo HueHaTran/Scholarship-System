@@ -5,10 +5,16 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JdbcBaseDAO<T> {
 
+	protected Logger logger;
+
 	private SessionFactory sessionFactory;
+
+	protected Session session;
 
 	private Class<?> modelClass;
 
@@ -19,6 +25,7 @@ public class JdbcBaseDAO<T> {
 	public JdbcBaseDAO(Class<?> modelClass, SessionFactory sessionFactory) {
 		this.modelClass = modelClass;
 		this.sessionFactory = sessionFactory;
+		logger = LoggerFactory.getLogger(modelClass);
 	}
 
 	// ============================================================
@@ -26,21 +33,35 @@ public class JdbcBaseDAO<T> {
 	// ============================================================
 
 	protected Session getSession() {
-		return sessionFactory.openSession();
+		if (session == null || (session != null && !session.isOpen())) {
+			session = sessionFactory.openSession();
+		}
+		return session;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected List<T> listBy(String name, String value) {
-		// query
+		List<T> resultList = null;
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("from ").append(modelClass.getCanonicalName());
-		builder.append("  where ").append(name).append(" = :param1");
+		try {
+			// query
+			builder.append("from ").append(modelClass.getCanonicalName());
+			builder.append("  where ").append(name).append(" = :param1");
 
-		Query query = getSession().createQuery(builder.toString())
-				.setParameter("param1", value);
+			Query query = getSession().createQuery(builder.toString())
+					.setParameter("param1", value);
 
-		@SuppressWarnings("unchecked")
-		List<T> resultList = query.list();
+			resultList = query.list();
+
+		} catch (Exception ex) {
+			logger.error("Exception in " + this.getClass().getCanonicalName()
+					+ ": Query '" + builder.toString() + "' in listBy()");
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 
 		return resultList;
 	}
@@ -54,10 +75,22 @@ public class JdbcBaseDAO<T> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	protected List<T> getAll() {
-		@SuppressWarnings("unchecked")
-		List<T> result = (List<T>) getSession().createQuery(
-				"from " + modelClass.getCanonicalName()).list();
+		List<T> result = null;
+		StringBuilder builder = new StringBuilder();
+
+		try {
+			result = (List<T>) getSession().createQuery(
+					"from " + modelClass.getCanonicalName()).list();
+		} catch (Exception ex) {
+			logger.error("Exception in " + this.getClass().getCanonicalName()
+					+ ": Query '" + builder.toString() + "' in getAll()");
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 		return result;
 	}
 }

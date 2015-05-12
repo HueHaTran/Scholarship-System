@@ -46,22 +46,32 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 		return getAll();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	/**
 	 * not done
 	 */
 	public Scholarship findShortInfoById(int id) {
-		// query
+		List<Scholarship> resultList = null;
 		StringBuilder builder = new StringBuilder();
+		try {
+			// query
+			builder.append("from ")
+					.append(Scholarship.class.getCanonicalName());
+			builder.append("  where ").append(COL_ID).append(" = :paramId");
 
-		builder.append("from ").append(Scholarship.class.getCanonicalName());
-		builder.append("  where ").append(COL_ID).append(" = :paramId");
-
-		Query query = getSession().createQuery(builder.toString())
-				.setParameter("paramId", id);
-
-		@SuppressWarnings("unchecked")
-		List<Scholarship> resultList = query.list();
+			Query query = getSession().createQuery(builder.toString())
+					.setParameter("paramId", id);
+			resultList = query.list();
+		} catch (Exception ex) {
+			logger.error("Exception in " + this.getClass().getCanonicalName()
+					+ ": Query '" + builder.toString()
+					+ "' in findShortInfoById()");
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 
 		if (resultList != null && !resultList.isEmpty()) {
 			return resultList.get(0);

@@ -8,7 +8,8 @@ import uit.se06.scholarshipweb.dao.IProvinceDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Province;
 
-public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements IProvinceDAO {
+public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
+		IProvinceDAO {
 
 	// ============================================================
 	// VARIABLES
@@ -16,6 +17,7 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements IProvinceD
 
 	private final String COL_ID = "province_id";
 	private final String COL_NAME = "province_name";
+	private final String COL_COUNTRY_ID = "country_id";
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -42,6 +44,11 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements IProvinceD
 	@Override
 	public List<Province> list() {
 		return getAll();
+	}
+
+	@Override
+	public List<Province> listByCountry(int countryId) {
+		return listBy(COL_COUNTRY_ID, String.valueOf(countryId));
 	}
 
 	// ============================================================

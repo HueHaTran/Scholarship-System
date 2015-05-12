@@ -6,78 +6,53 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ICountryDAO;
-import uit.se06.scholarshipweb.dao.IProvinceDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcCountryDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcProvinceDAO;
-import uit.se06.scholarshipweb.model.Country;
+import uit.se06.scholarshipweb.dao.IEthnicDAO;
+import uit.se06.scholarshipweb.dao.impl.JdbcEthnicDAO;
+import uit.se06.scholarshipweb.model.Ethnic;
 
-public class CountryBUS {
+public class EthnicBUS {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(CountryBUS.class);
+			.getLogger(EthnicBUS.class);
 
-	private ICountryDAO dao;
-	private IProvinceDAO daoProvince;
+	private IEthnicDAO dao;
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public CountryBUS(SessionFactory sessionFactory) {
-		dao = new JdbcCountryDAO(sessionFactory);
-		daoProvince = new JdbcProvinceDAO(sessionFactory);
+	public EthnicBUS(SessionFactory sessionFactory) {
+		dao = new JdbcEthnicDAO(sessionFactory);
 	}
 
 	// ============================================================
 	// METHODS
 	// ============================================================
 
-	/**
-	 * with detail
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Country findById(int id) {
-		Country entity = dao.findById(id);
+	public Ethnic findById(int id) {
+		Ethnic entity = dao.findById(id);
 		if (entity == null) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "findById(" + id + ")" + " return null.");
-		} else {
-			entity.setProvinces(daoProvince.listByCountry(entity.getCountryId()));
 		}
 		return entity;
 	}
 
-	/**
-	 * with detail
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public Country findByName(String name) {
-		Country entity = dao.findByName(name);
+	public Ethnic findByName(String name) {
+		Ethnic entity = dao.findByName(name);
 		if (entity == null) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "findByName(" + name + ")" + " return null.");
-		} else {
-			entity.setProvinces(daoProvince.listByCountry(entity.getCountryId()));
 		}
 		return entity;
 	}
 
-	/**
-	 * general info only, no detail
-	 * 
-	 * @return
-	 */
-	public List<Country> list() {
-		List<Country> result = dao.list();
+	public List<Ethnic> list() {
+		List<Ethnic> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "list()" + " return null or empty.");

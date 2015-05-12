@@ -73,6 +73,14 @@ public class Country {
 		this.countryName = countryName;
 	}
 
+	public List<Province> getProvinces() {
+		return provinces;
+	}
+
+	public void setProvinces(List<Province> provinces) {
+		this.provinces = provinces;
+	}
+
 	public List<Scholarship> getScholarshipsWithStudentCitizenship() {
 		return scholarshipsWithStudentCitizenship;
 	}
@@ -90,4 +98,5 @@ public class Country {
 			List<Scholarship> scholarshipsWithStudentResidence) {
 		this.scholarshipsWithStudentResidence = scholarshipsWithStudentResidence;
 	}
+
 }
