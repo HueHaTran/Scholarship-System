@@ -72,12 +72,21 @@ public class ScholarshipBUS {
 	}
 
 	public OverviewScholarshipViewModel findOverviewById(int id) {
-		OverviewScholarshipViewModel entity = new OverviewScholarshipViewModel();
 		Scholarship scholarship = dao.findShortInfoById(id);
+		return convertToOverviewViewModel(scholarship);
+	}
 
+	// ============================================================
+	// UTILITIES
+	// ============================================================
+
+	public OverviewScholarshipViewModel convertToOverviewViewModel(
+			Scholarship scholarship) {
 		if (scholarship == null) {
 			return null;
 		}
+
+		OverviewScholarshipViewModel entity = new OverviewScholarshipViewModel();
 
 		// get
 		List<Sponsor> sponsors = scholarship.getSponsors();
@@ -97,10 +106,6 @@ public class ScholarshipBUS {
 
 		return entity;
 	}
-
-	// ============================================================
-	// UTILITIES
-	// ============================================================
 
 	private ScholarshipViewModel convertToViewModel(Scholarship scholarship) {
 		if (scholarship == null) {
