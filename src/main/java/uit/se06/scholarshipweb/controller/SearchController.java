@@ -56,7 +56,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "searchPersonalInfo";
+		return "filter";
 	}
 
 }

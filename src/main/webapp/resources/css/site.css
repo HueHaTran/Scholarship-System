@@ -2,8 +2,16 @@
 	url(http://fonts.googleapis.com/css?family=Open+Sans:700&subset=latin,vietnamese)
 	;
 
+html {
+	background: linear-gradient(rgba(0, 100, 200, 0.1),
+		rgba(0, 100, 200, 0.1)) repeat scroll 0% 0%, url("../img/gs.png")
+		repeat scroll 0% 0% transparent;
+	height: 100%;
+}
+
 body {
-	background-color: #f5f8ff;
+	margin: 0;
+	padding: 0;
 }
 
 #nav-menu {

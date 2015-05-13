@@ -9,7 +9,7 @@
 	<div id='nav-wrap'>
 		<ul>
 			<li class='search'>
-				<form role="search" action="http://scholarship/all">
+				<form action="http://scholarship/all">
 					<div class="input-group">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="submit">
