@@ -4,8 +4,7 @@
 <html>
 <head>
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
-<link href="<c:url value="/resources/css/nav-wrap.css" />"
-	rel="stylesheet">
+
 <link href="<c:url value="/resources/css/homepage.css" />"
 	rel="stylesheet">
 <!--  
@@ -14,7 +13,7 @@
 <script src="<c:url value="/resources/js/modernizr-2.6.2.js" />"></script> 
 <script src="<c:url value="/resources/js/respond.js" />"></script>
  -->
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bright future</title>
 </head>
 <body>

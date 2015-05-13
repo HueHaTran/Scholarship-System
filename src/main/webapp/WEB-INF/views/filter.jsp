@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,14 +9,12 @@
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/nav-wrap.css" />"
 	rel="stylesheet">
-<link href="<c:url value="/resources/css/column.css" />"
-	rel="stylesheet">
 
 <script src="<c:url value="/resources/js/filter.js" />"></script>
 <script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/jquery.easing.1.3.js" />"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bright future</title>
 </head>
 <body>
@@ -39,40 +38,8 @@
 				<li>Kết quả</li>
 			</ul>
 			<!-- fieldsets -->
-			<fieldset id="filter-fieldset">
-				<h2 class="fs-title">Đối tượng tham gia</h2>
-				<h3 class="fs-subtitle">Thông tin cá nhân và gia đình của đối
-					tượng tham gia</h3>
+			<%@include file="filter1.jsp"%>
 
-				<div class="filter-info">
-					<div class="heading">Thông tin cá nhân</div> 
-
-					<div class="content left">
-
-						<div class="question">Câu hỏi 1</div>
-
-						<div class="answer">Trả lời</div>
-
-
-					</div>
-
-					<div class="content right">
-
-						<div class="question">Câu hỏi 2</div>
-
-						<div class="answer">Trả lời</div>
-
-
-					</div>
-
-
-
-				</div>
-
-
-				<input type="button" name="next" class="filter-next action-button"
-					value="Next" onclick="clickNextFilter()" />
-			</fieldset>
 			<fieldset id="filter-fieldset">
 				<h2 class="fs-title">Trình độ học vấn</h2>
 				<h3 class="fs-subtitle">Trình độ học vấn của đối tượng tham gia
