@@ -4,7 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<link href="<c:url value="/resources/css/filter.css" />"
+<link href="<c:url value="/resources/css/filter-form.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/nav-wrap.css" />"
@@ -44,7 +44,6 @@
 				<h2 class="fs-title">Trình độ học vấn</h2>
 				<h3 class="fs-subtitle">Trình độ học vấn của đối tượng tham gia
 					và lĩnh vực ứng tuyển học bổng</h3>
-
 
 				<input type="button" name="previous"
 					class="filter-previous action-button" value="Previous" /> <input

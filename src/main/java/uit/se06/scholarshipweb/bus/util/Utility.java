@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -84,7 +85,7 @@ public class Utility {
 		return Contants.NO_ANSWER;
 	}
 
-	public String getName(ISimpleModel model) {
+	public String getNameString(ISimpleModel model) {
 		if (model != null) {
 			return model.getName().trim();
 		} else {
@@ -92,7 +93,7 @@ public class Utility {
 		}
 	}
 
-	public String getNames(List<? extends ISimpleModel> models) {
+	public String getNamesString(List<? extends ISimpleModel> models) {
 		if (models != null && !models.isEmpty()) {
 			StringBuilder builder = new StringBuilder();
 			String prefix = "";
@@ -104,6 +105,16 @@ public class Utility {
 			return builder.toString();
 		}
 		return Contants.NO_ANSWER;
+	}
+
+	public List<String> getNameList(List<? extends ISimpleModel> models) {
+		List<String> result = new ArrayList<String>();
+		if (models != null && !models.isEmpty()) {
+			for (ISimpleModel s : models) {
+				result.add(s.getName().trim());
+			}
+		}
+		return result;
 	}
 
 	public String getFormatNumberString(int value) {

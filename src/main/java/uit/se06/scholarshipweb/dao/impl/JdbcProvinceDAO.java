@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IProvinceDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Province;
 
 public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
@@ -29,7 +28,7 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
 	// ============================================================
 
 	public JdbcProvinceDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Province.class, sessionFactory);
 	}
 
 	// ============================================================

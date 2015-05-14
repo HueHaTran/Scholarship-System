@@ -11,6 +11,7 @@ import uit.se06.scholarshipweb.dao.IProvinceDAO;
 import uit.se06.scholarshipweb.dao.impl.JdbcCountryDAO;
 import uit.se06.scholarshipweb.dao.impl.JdbcProvinceDAO;
 import uit.se06.scholarshipweb.model.Country;
+import uit.se06.scholarshipweb.model.Province;
 
 public class CountryBUS {
 
@@ -81,6 +82,16 @@ public class CountryBUS {
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "list()" + " return null or empty.");
+		}
+		return result;
+	}
+
+	public List<Province> listProvinceByCountry(int countryId) {
+		List<Province> result = daoProvince.listByCountry(countryId);
+		if (result == null || (result != null && result.isEmpty())) {
+			logger.info("Warning in " + this.getClass().getCanonicalName()
+					+ ": " + "listProvinceByCountry(" + countryId + ")"
+					+ " return null or empty.");
 		}
 		return result;
 	}

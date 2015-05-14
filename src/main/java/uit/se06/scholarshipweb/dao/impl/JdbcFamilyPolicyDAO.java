@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IFamilyPolicyDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.FamilyPolicy;
 
 public class JdbcFamilyPolicyDAO extends JdbcBaseDAO<FamilyPolicy> implements
@@ -28,7 +27,7 @@ public class JdbcFamilyPolicyDAO extends JdbcBaseDAO<FamilyPolicy> implements
 	// ============================================================
 
 	public JdbcFamilyPolicyDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(FamilyPolicy.class, sessionFactory);
 	}
 
 	// ============================================================

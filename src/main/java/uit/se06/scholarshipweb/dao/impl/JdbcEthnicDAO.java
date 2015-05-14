@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IEthnicDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Ethnic;
 
 public class JdbcEthnicDAO extends JdbcBaseDAO<Ethnic> implements IEthnicDAO {
@@ -27,7 +26,7 @@ public class JdbcEthnicDAO extends JdbcBaseDAO<Ethnic> implements IEthnicDAO {
 	// ============================================================
 
 	public JdbcEthnicDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Ethnic.class, sessionFactory);
 	}
 
 	// ============================================================

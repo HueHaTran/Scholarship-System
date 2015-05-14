@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ITalentDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Talent;
 
 public class JdbcTalentDAO extends JdbcBaseDAO<Talent> implements ITalentDAO {
@@ -27,7 +26,7 @@ public class JdbcTalentDAO extends JdbcBaseDAO<Talent> implements ITalentDAO {
 	// ============================================================
 
 	public JdbcTalentDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Talent.class, sessionFactory);
 	}
 
 	// ============================================================

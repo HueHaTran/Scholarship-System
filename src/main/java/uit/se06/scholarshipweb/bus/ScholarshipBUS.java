@@ -97,11 +97,11 @@ public class ScholarshipBUS {
 
 		// set
 		entity.setId(scholarship.getId());
-		entity.setName(Utility.getIns().getName(scholarship));
+		entity.setName(Utility.getIns().getNameString(scholarship));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
 				scholarship.getDateEndRegister()));
-		entity.setSponsorNames(Utility.getIns().getNames(sponsors));
-		entity.setSchoolName(Utility.getIns().getName(school));
+		entity.setSponsorNames(Utility.getIns().getNamesString(sponsors));
+		entity.setSchoolName(Utility.getIns().getNameString(school));
 		entity.setValue(Utility.getIns().getMoneyString(min, max));
 
 		return entity;
@@ -114,7 +114,7 @@ public class ScholarshipBUS {
 
 		ScholarshipViewModel entity = new ScholarshipViewModel();
 		entity.setId(scholarship.getId());
-		entity.setName(Utility.getIns().getName(scholarship));
+		entity.setName(Utility.getIns().getNameString(scholarship));
 		entity.setDescription(Utility.getIns().getFormatString(
 				scholarship.getDescription()));
 		entity.setOriginalLink(Utility.getIns().getFormatString(
@@ -125,36 +125,36 @@ public class ScholarshipBUS {
 				scholarship.getCount()));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
 				scholarship.getDateEndRegister()));
-		entity.setFormOfParticipation(Utility.getIns().getName(
+		entity.setFormOfParticipation(Utility.getIns().getNameString(
 				scholarship.getFormOfParticipation()));
-		entity.setScholarshipAcademicLevelDetail(Utility.getIns().getNames(
+		entity.setScholarshipAcademicLevelDetail(Utility.getIns().getNamesString(
 				scholarship.getScholarshipAcademicLevelDetail()));
-		entity.setScholarshipMajors(Utility.getIns().getNames(
+		entity.setScholarshipMajors(Utility.getIns().getNamesString(
 				scholarship.getScholarshipMajors()));
-		entity.setScholarshipType(Utility.getIns().getName(
+		entity.setScholarshipType(Utility.getIns().getNameString(
 				scholarship.getScholarshipType()));
-		entity.setSchoolName(Utility.getIns().getName(scholarship.getSchool()));
-		entity.setSponsorNames(Utility.getIns().getNames(
+		entity.setSchoolName(Utility.getIns().getNameString(scholarship.getSchool()));
+		entity.setSponsorNames(Utility.getIns().getNamesString(
 				scholarship.getSponsors()));
-		entity.setStudentAcademicLevelDetail(Utility.getIns().getName(
+		entity.setStudentAcademicLevelDetail(Utility.getIns().getNameString(
 				scholarship.getStudentAcademicLevelDetail()));
-		entity.setStudentCitizenship(Utility.getIns().getName(
+		entity.setStudentCitizenship(Utility.getIns().getNameString(
 				scholarship.getStudentCitizenship()));
-		entity.setStudentDisabilities(Utility.getIns().getNames(
+		entity.setStudentDisabilities(Utility.getIns().getNamesString(
 				scholarship.getStudentDisabilities()));
-		entity.setStudentEthnic(Utility.getIns().getName(
+		entity.setStudentEthnic(Utility.getIns().getNameString(
 				scholarship.getStudentEthnic()));
-		entity.setStudentFamilyPolicies(Utility.getIns().getNames(
+		entity.setStudentFamilyPolicies(Utility.getIns().getNamesString(
 				scholarship.getStudentFamilyPolicies()));
-		entity.setStudentGender(Utility.getIns().getName(
+		entity.setStudentGender(Utility.getIns().getNameString(
 				scholarship.getStudentGender()));
-		entity.setStudentReligion(Utility.getIns().getName(
+		entity.setStudentReligion(Utility.getIns().getNameString(
 				scholarship.getStudentReligion()));
-		entity.setStudentResidence(Utility.getIns().getName(
-				scholarship.getStudentResidence()));
-		entity.setStudentTalents(Utility.getIns().getNames(
+		entity.setStudentResidences(Utility.getIns().getNamesString(
+				scholarship.getStudentResidences()));
+		entity.setStudentTalents(Utility.getIns().getNamesString(
 				scholarship.getStudentTalents()));
-		entity.setStudentTerminalIllnesses(Utility.getIns().getNames(
+		entity.setStudentTerminalIllnesses(Utility.getIns().getNamesString(
 				scholarship.getStudentTerminalIllnesses()));
 		entity.setSupportDescription(Utility.getIns().getFormatString(
 				scholarship.getSupportDescription()));

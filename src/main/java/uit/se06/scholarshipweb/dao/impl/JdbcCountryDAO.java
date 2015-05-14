@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ICountryDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Country;
 
 public class JdbcCountryDAO extends JdbcBaseDAO<Country> implements ICountryDAO {
@@ -27,7 +26,7 @@ public class JdbcCountryDAO extends JdbcBaseDAO<Country> implements ICountryDAO 
 	// ============================================================
 
 	public JdbcCountryDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Country.class, sessionFactory);
 	}
 
 	// ============================================================

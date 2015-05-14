@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IScholarshipTypeDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.ScholarshipType;
 
 public class JdbcScholarshipTypeDAO extends JdbcBaseDAO<ScholarshipType>
@@ -28,7 +27,7 @@ public class JdbcScholarshipTypeDAO extends JdbcBaseDAO<ScholarshipType>
 	// ============================================================
 
 	public JdbcScholarshipTypeDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(ScholarshipType.class, sessionFactory);
 	}
 
 	// ============================================================

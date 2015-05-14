@@ -58,7 +58,7 @@
 }
 /*headings*/
 .fs-title {
-	font-size: 20px;
+	font-size: 22px;
 	text-transform: uppercase;
 	color: #2C3E50;
 	margin-bottom: 5px;
@@ -67,9 +67,9 @@
 
 .fs-subtitle {
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 18px;
 	color: #666;
-	margin-bottom: 15px;
+	margin-bottom: 18px;
 }
 
 /*progressbar*/

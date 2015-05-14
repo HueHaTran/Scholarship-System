@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ISchoolDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.School;
 
 public class JdbcSchoolDAO extends JdbcBaseDAO<School> implements ISchoolDAO {
@@ -32,7 +31,7 @@ public class JdbcSchoolDAO extends JdbcBaseDAO<School> implements ISchoolDAO {
 	// ============================================================
 
 	public JdbcSchoolDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(School.class, sessionFactory);
 	}
 
 	// ============================================================

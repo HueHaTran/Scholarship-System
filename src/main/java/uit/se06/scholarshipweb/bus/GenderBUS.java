@@ -56,7 +56,7 @@ public class GenderBUS {
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning in " + this.getClass().getCanonicalName()
 					+ ": " + "list()" + " return null or empty.");
-		}
+		} 
 		return result;
 	}
 }

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IFormOfParticipationDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.FormOfParticipation;
 
 public class JdbcFormOfParticipationDAO extends
@@ -28,7 +27,7 @@ public class JdbcFormOfParticipationDAO extends
 	// ============================================================
 
 	public JdbcFormOfParticipationDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(FormOfParticipation.class, sessionFactory);
 	}
 
 	// ============================================================

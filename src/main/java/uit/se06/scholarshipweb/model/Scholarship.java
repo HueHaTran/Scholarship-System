@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "scholarship", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "scholarship_name"), })
-public class Scholarship implements ISimpleModel{
+public class Scholarship implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -71,10 +71,6 @@ public class Scholarship implements ISimpleModel{
 	private Ethnic studentEthnic;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "student_residence_id", referencedColumnName = "country_id")
-	private Country studentResidence;
-
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_religion_id", referencedColumnName = "religion_id")
 	private Religion studentReligion;
 
@@ -121,6 +117,10 @@ public class Scholarship implements ISimpleModel{
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_talent", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "talent_id", nullable = false, updatable = false) })
 	private List<Talent> studentTalents;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "scholarship_student_residence", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "province_id", nullable = false, updatable = false) })
+	private List<Province> studentResidences;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -242,14 +242,6 @@ public class Scholarship implements ISimpleModel{
 		this.studentEthnic = studentEthnic;
 	}
 
-	public Country getStudentResidence() {
-		return studentResidence;
-	}
-
-	public void setStudentResidence(Country studentResidence) {
-		this.studentResidence = studentResidence;
-	}
-
 	public Religion getStudentReligion() {
 		return studentReligion;
 	}
@@ -348,5 +340,13 @@ public class Scholarship implements ISimpleModel{
 
 	public void setStudentTalents(List<Talent> studentTalents) {
 		this.studentTalents = studentTalents;
+	}
+
+	public List<Province> getStudentResidences() {
+		return studentResidences;
+	}
+
+	public void setStudentResidences(List<Province> studentResidences) {
+		this.studentResidences = studentResidences;
 	}
 }

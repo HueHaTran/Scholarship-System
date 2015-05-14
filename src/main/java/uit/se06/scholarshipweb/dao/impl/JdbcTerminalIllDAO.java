@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ITerminalIllDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.TerminalIll;
 
 public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements
@@ -28,7 +27,7 @@ public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements
 	// ============================================================
 
 	public JdbcTerminalIllDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(TerminalIll.class, sessionFactory);
 	}
 
 	// ============================================================

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IReligionDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Religion;
 
 public class JdbcReligionDAO extends JdbcBaseDAO<Religion> implements
@@ -28,7 +27,7 @@ public class JdbcReligionDAO extends JdbcBaseDAO<Religion> implements
 	// ============================================================
 
 	public JdbcReligionDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Religion.class, sessionFactory);
 	}
 
 	// ============================================================

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.ISponsorDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Sponsor;
 
 public class JdbcSponsorDAO extends JdbcBaseDAO<Sponsor> implements ISponsorDAO {
@@ -32,7 +31,7 @@ public class JdbcSponsorDAO extends JdbcBaseDAO<Sponsor> implements ISponsorDAO 
 	// ============================================================
 
 	public JdbcSponsorDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Sponsor.class, sessionFactory);
 	}
 
 	// ============================================================

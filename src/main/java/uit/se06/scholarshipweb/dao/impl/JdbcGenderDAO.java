@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IGenderDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Gender;
 
 public class JdbcGenderDAO extends JdbcBaseDAO<Gender> implements IGenderDAO {
@@ -27,7 +26,7 @@ public class JdbcGenderDAO extends JdbcBaseDAO<Gender> implements IGenderDAO {
 	// ============================================================
 
 	public JdbcGenderDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Gender.class, sessionFactory);
 	}
 
 	// ============================================================

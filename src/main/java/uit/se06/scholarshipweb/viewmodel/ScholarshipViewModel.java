@@ -20,7 +20,7 @@ public class ScholarshipViewModel {
 	private String studentGender;
 	private String studentCitizenship;
 	private String studentEthnic;
-	private String studentResidence;
+	private String studentResidences;
 	private String studentReligion;
 	private String studentAcademicLevelDetail;
 	private String scholarshipType;
@@ -149,11 +149,11 @@ public class ScholarshipViewModel {
 	}
 
 	public String getStudentResidence() {
-		return studentResidence;
+		return studentResidences;
 	}
 
-	public void setStudentResidence(String studentResidence) {
-		this.studentResidence = studentResidence;
+	public void setStudentResidences(String studentResidences) {
+		this.studentResidences = studentResidences;
 	}
 
 	public String getStudentReligion() {

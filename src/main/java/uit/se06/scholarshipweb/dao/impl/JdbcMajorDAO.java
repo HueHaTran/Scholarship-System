@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.IMajorDAO;
-import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Major;
 
 public class JdbcMajorDAO extends JdbcBaseDAO<Major> implements IMajorDAO {
@@ -27,7 +26,7 @@ public class JdbcMajorDAO extends JdbcBaseDAO<Major> implements IMajorDAO {
 	// ============================================================
 
 	public JdbcMajorDAO(SessionFactory sessionFactory) {
-		super(AcademicLevel.class, sessionFactory);
+		super(Major.class, sessionFactory);
 	}
 
 	// ============================================================
