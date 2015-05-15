@@ -47,8 +47,8 @@ public abstract class JdbcBaseDAO<T> {
 
 		try {
 			// query
-			builder.append("from ").append(modelClass.getCanonicalName());
-			builder.append("  where ").append(name).append(" = :param1");
+			builder.append("FROM ").append(modelClass.getSimpleName());
+			builder.append("  WHERE ").append(name).append(" = :param1");
 
 			Query query = getSession().createQuery(builder.toString())
 					.setParameter("param1", value);
@@ -56,10 +56,7 @@ public abstract class JdbcBaseDAO<T> {
 			resultList = query.list();
 
 		} catch (Exception ex) {
-			getLogger().error(
-					"Exception in " + this.getClass().getCanonicalName()
-							+ ": Query '" + builder.toString()
-							+ "' in listBy()");
+			getLogger().error("Query '" + builder.toString() + "' in listBy()");
 		} finally {
 			closeSession();
 		}
@@ -79,14 +76,12 @@ public abstract class JdbcBaseDAO<T> {
 	@SuppressWarnings("unchecked")
 	protected List<T> getAll() {
 		List<T> result = null;
-		String queryString = "from " + modelClass.getCanonicalName();
+		String queryString = "FROM " + modelClass.getSimpleName();
 
 		try {
 			result = (List<T>) getSession().createQuery(queryString).list();
 		} catch (Exception ex) {
-			getLogger().error(
-					"Exception in " + this.getClass().getCanonicalName()
-							+ ": Query '" + queryString + "' in getAll()");
+			getLogger().error("Query '" + queryString + "' in getAll()");
 		} finally {
 			closeSession();
 		}

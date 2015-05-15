@@ -2,6 +2,7 @@ package uit.se06.scholarshipweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +61,32 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
 		return listBy(COL_COUNTRY_ID, String.valueOf(countryId));
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Province> listBasicInfoByCountry(int countryId) {
+		List<Province> resultList = null;
+		StringBuilder builder = new StringBuilder();
+
+		try {
+			// query
+			builder.append("SELECT " + COL_ID + ", " + COL_NAME);
+			builder.append(" FROM ").append(Province.class.getSimpleName());
+			builder.append(" WHERE ").append(COL_COUNTRY_ID)
+					.append(" = :paramId");
+
+			SQLQuery query = getSession().createSQLQuery(builder.toString());
+			query.setParameter("paramId", countryId);
+
+			resultList = query.list();
+		} catch (Exception ex) {
+			getLogger().error("Query '" + builder.toString() + "' in listBy()");
+		} finally {
+			closeSession();
+		}
+
+		return resultList;
+
+	}
 	// ============================================================
 	// OTHER METHODS
 	// ============================================================

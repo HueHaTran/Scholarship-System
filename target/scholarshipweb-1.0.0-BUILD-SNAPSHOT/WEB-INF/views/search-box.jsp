@@ -3,13 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="<c:url value="/resources/css/nav-wrap.css" />"
+	rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 	<div id='nav-wrap'>
 		<ul>
 			<li class='search'>
-				<form role="search" action="http://scholarship/all">
+				<form action="http://scholarship/all">
 					<div class="input-group">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="submit">

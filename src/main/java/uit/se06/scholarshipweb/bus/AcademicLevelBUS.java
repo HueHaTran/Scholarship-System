@@ -47,8 +47,7 @@ public class AcademicLevelBUS {
 		AcademicLevel entity = dao.findById(id);
 
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findById(" + id + ")" + " return null.");
+			logger.info("Warning: " + "findById(" + id + ")" + " return null.");
 		} else {
 			entity.setAcademicLevelDetails(daoDetail
 					.findByAcademicLevelId(entity.getId()));
@@ -67,8 +66,8 @@ public class AcademicLevelBUS {
 		AcademicLevel entity = dao.findByName(name);
 
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findByName(" + name + ")" + " return null.");
+			logger.info("Warning: " + "findByName(" + name + ")"
+					+ " return null.");
 		} else {
 			entity.setAcademicLevelDetails(daoDetail
 					.findByAcademicLevelId(entity.getId()));
@@ -85,8 +84,7 @@ public class AcademicLevelBUS {
 	public List<AcademicLevel> list() {
 		List<AcademicLevel> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "list()" + " return null or empty.");
+			logger.info("Warning: " + "list()" + " return null or empty.");
 		}
 		return result;
 	}

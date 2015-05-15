@@ -87,8 +87,7 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 			builder.append(", ").append(COL_SCHOOL);
 			builder.append(", ").append(COL_DESCIPTION);
 
-			builder.append(" FROM ").append(
-					Scholarship.class.getCanonicalName());
+			builder.append(" FROM ").append(Scholarship.class.getSimpleName());
 			builder.append("  where ").append(COL_ID).append(" = :paramId");
 
 			SQLQuery query = getSession().createSQLQuery(builder.toString());
@@ -97,8 +96,7 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 			resultList = query.list();
 
 		} catch (Exception ex) {
-			logger.error("Exception in " + this.getClass().getCanonicalName()
-					+ ": Query '" + builder.toString()
+			logger.error("Query '" + builder.toString()
 					+ "' in findShortInfoById()");
 		} finally {
 			closeSession();
