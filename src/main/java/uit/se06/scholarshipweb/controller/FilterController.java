@@ -68,11 +68,9 @@ public class FilterController {
 		return data;
 	}
 
-	@RequestMapping(value = "/get_province", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/get_province", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
 	public @ResponseBody List<Province> getProvincesFromCountry(
 			HttpServletRequest request, @RequestBody String countryId) {
-		logger.info("super cool!!!!!!!!!!! " + countryId);
-
 		int id;
 		try {
 			id = Integer.parseInt(countryId);
@@ -82,10 +80,7 @@ public class FilterController {
 			return new ArrayList<Province>();
 		}
 
-		List<Province> s = busCountry.listProvinceByCountry(id);
-		logger.info("super cool!!!!!!!!!!!2 " + s.size());
-
-		return s;
-		// return s;
+		List<Province> result = busCountry.listProvinceByCountry(id);
+		return result;
 	}
 }

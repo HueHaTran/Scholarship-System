@@ -98,6 +98,20 @@ select {
 	cursor: pointer;
 }
 
+select.select_mutiple {
+	height: 200px;
+}
+
+label.label_listbox_mutiple:after {
+	right: 8px;
+	top: 3px;
+	padding: 0 0 2px;
+	border-bottom: 1px solid #ddd;
+	position: absolute;
+	pointer-events: none;
+}
+
+
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	select {

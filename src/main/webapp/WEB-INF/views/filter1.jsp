@@ -112,7 +112,6 @@
 						</div>
 						<label class="label_listbox"> <select
 							name="combobox_citizenship" id="combobox_residence_province">
-
 						</select>
 						</label>
 					</div>
@@ -122,9 +121,21 @@
 
 			<div class="right">
 				<div class="content">
-					<div class="question">Câu hỏi 2</div>
-
-					<div class="answer">Trả lời</div>
+					<!-- Content -->
+					<div class="content">
+						<div class="question"><%=Contants.PROP_DISABILITY%>:
+						</div>
+						<div class="answer">
+							<label class="label_listbox_mutiple"> <select
+								class="select_mutiple" name="combobox_disability"
+								multiple="multiple">
+									<c:forEach items="${meta_data_disability}" var="disability">
+										<option value="${disability.getId()}">${disability.getName()}</option>
+									</c:forEach>
+							</select>
+							</label>
+						</div>
+					</div>
 				</div>
 
 			</div>
@@ -133,9 +144,10 @@
 
 		</div>
 
-
-		<input type="button" name="next" class="filter-next action-button"
-			value="Next" onclick="clickNextFilter()" />
+		<div style="display: block;">
+			<input type="button" name="next" class="filter-next action-button"
+				value="Next" onclick="clickNextFilter()" />
+		</div>
 	</fieldset>
 
 </body>
