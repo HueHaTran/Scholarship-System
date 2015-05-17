@@ -12,11 +12,16 @@ function onChangeCountry(s) {
 			if (msg != "false") {
 				var sel = document
 						.getElementById('combobox_residence_province');
-				for (var i = 0, len = data.length; i < len; ++i) {
-					var opt = document.createElement('option');
-					opt.innerHTML = data[i][1];
-					opt.value = data[i][0];
-					sel.appendChild(opt);
+
+				var len = data.length;
+				if (len == 0) {
+					sel.disabled = true;
+				} else {
+					sel.disabled = false;
+				}
+
+				for (var i = 0; i < len; ++i) {
+					createOption(sel, data[i][0], data[i][1]);
 				}
 			}
 		},
@@ -24,4 +29,11 @@ function onChangeCountry(s) {
 			alert("Error retrieving data!");
 		}
 	});
+}
+
+function createOption(selector, id, value) {
+	var opt = document.createElement('option');
+	opt.innerHTML = value;
+	opt.value = id;
+	selector.appendChild(opt);
 }

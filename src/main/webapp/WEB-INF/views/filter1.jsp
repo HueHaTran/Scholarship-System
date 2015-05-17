@@ -14,13 +14,12 @@
 <%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
 </head>
 <body>
-	<fieldset id="filter-fieldset">
-		<h2 class="fs-title">Đối tượng tham gia</h2>
-		<h3 class="fs-subtitle">Thông tin cá nhân và gia đình của đối
-			tượng tham gia</h3>
+	<fieldset class="filter-fieldset" id="filter1">
+		<h2 class="fs-title"><%=Contants.TITLE_FILTER1%></h2>
+		<h3 class="fs-subtitle"><%=Contants.SUBTITLE_FILTER1%></h3>
 
 		<div class="filter-info">
-			<div class="heading">Thông tin cá nhân</div>
+			<div class="heading"><%=Contants.HEAD_FILTER1_1%></div>
 
 			<div class="left">
 				<!-- Content -->
@@ -38,6 +37,47 @@
 								value="${gender.getId()}" type="radio" /> ${gender.getName()}
 							</label>
 						</c:forEach>
+					</div>
+				</div>
+
+				<!-- Content -->
+				<div class="content">
+					<div class="question"><%=Contants.PROP_CITIZENSHIP%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox"> <select
+							name="combobox_citizenship">
+								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+								<c:forEach items="${meta_data_country}" var="citizenship">
+									<option value="${citizenship.getId()}">${citizenship.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
+					</div>
+				</div>
+
+				<!-- Content -->
+				<div class="content">
+					<div class="question"><%=Contants.PROP_RESIDENCE%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox"> <select
+							name="combobox_citizenship" onchange="onChangeCountry(this)">
+								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+								<c:forEach items="${meta_data_country}" var="citizenship">
+									<option value="${citizenship.getId()}">${citizenship.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
+						<div class="subtext">
+							<i>Chọn <%=Contants.PROP_PROVINCE%>:
+							</i>
+						</div>
+						<label class="label_listbox"> <select disabled="disabled"
+							name="combobox_citizenship" id="combobox_residence_province">
+								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+						</select>
+						</label>
 					</div>
 				</div>
 
@@ -76,77 +116,73 @@
 					</div>
 				</div>
 
-				<!-- Content -->
-				<div class="content">
-					<div class="question"><%=Contants.PROP_CITIZENSHIP%>:
-					</div>
-					<div class="answer">
-						<label class="label_listbox"> <select
-							name="combobox_citizenship">
-								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
-								<c:forEach items="${meta_data_country}" var="citizenship">
-									<option value="${citizenship.getId()}">${citizenship.getName()}</option>
-								</c:forEach>
-						</select>
-						</label>
-					</div>
-				</div>
-
-
-				<!-- Content -->
-				<div class="content">
-					<div class="question"><%=Contants.PROP_RESIDENCE%>:
-					</div>
-					<div class="answer">
-						<label class="label_listbox"> <select
-							name="combobox_citizenship" onchange="onChangeCountry(this)">
-								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
-								<c:forEach items="${meta_data_country}" var="citizenship">
-									<option value="${citizenship.getId()}">${citizenship.getName()}</option>
-								</c:forEach>
-						</select>
-						</label>
-						<div class="subtext">
-							<i>Chọn <%=Contants.PROP_PROVINCE%>:
-							</i>
-						</div>
-						<label class="label_listbox"> <select
-							name="combobox_citizenship" id="combobox_residence_province">
-						</select>
-						</label>
-					</div>
-				</div>
-
 			</div>
 
 			<div class="right">
+				<!-- Content -->
 				<div class="content">
-					<!-- Content -->
-					<div class="content">
-						<div class="question"><%=Contants.PROP_DISABILITY%>:
-						</div>
-						<div class="answer">
-							<label class="label_listbox_mutiple"> <select
-								class="select_mutiple" name="combobox_disability"
-								multiple="multiple">
-									<c:forEach items="${meta_data_disability}" var="disability">
-										<option value="${disability.getId()}">${disability.getName()}</option>
-									</c:forEach>
-							</select>
-							</label>
-						</div>
+					<div class="question"><%=Contants.PROP_DISABILITY%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox_mutiple"> <select
+							class="select_mutiple" name="combobox_disability"
+							multiple="multiple">
+								<c:forEach items="${meta_data_disability}" var="disability">
+									<option value="${disability.getId()}">${disability.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
+					</div>
+				</div>
+
+				<!-- Content -->
+				<div class="content">
+					<div class="question"><%=Contants.PROP_TERMINAL_ILL%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox_mutiple"> <select
+							class="select_mutiple" name="combobox_terminal_ill"
+							multiple="multiple">
+								<c:forEach items="${meta_data_terminal_ill}" var="terminal_ill">
+									<option value="${terminal_ill.getId()}">${terminal_ill.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="div-space"></div>
+
+		<div class="filter-info">
+			<div class="heading"><%=Contants.HEAD_FILTER1_2%></div>
+
+			<div class="left">
+				<div class="content">
+					<div class="question"><%=Contants.PROP_FAMILY_POLICY%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox_mutiple"> <select
+							class="select_mutiple" name="combobox_family_policy"
+							multiple="multiple">
+								<c:forEach items="${meta_data_family_policy}"
+									var="family_policy">
+									<option value="${family_policy.getId()}">${family_policy.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
 					</div>
 				</div>
 
 			</div>
-
-
-
 		</div>
 
-		<div style="display: block;">
+		<div class="div-space"></div>
+
+		<div style="clear: both;">
 			<input type="button" name="next" class="filter-next action-button"
-				value="Next" onclick="clickNextFilter()" />
+				value="Next" onclick="clickNextFilter('filter1', 'filter2', 2)" />
 		</div>
 	</fieldset>
 

@@ -9,6 +9,36 @@ public class Contants {
 	public static final String CONF_DATE_FORMAT = "MM-dd-yyyy";
 
 	// ============================================================
+	// TITLES
+	// ============================================================
+
+	public static final String TITLE_FILTER1 = "Đối tượng tham gia";
+	public static final String SUBTITLE_FILTER1 = "Thông tin cá nhân và gia đình của đối tượng tham gia";
+
+	public static final String TITLE_FILTER2 = "Trình độ học vấn";
+	public static final String SUBTITLE_FILTER2 = "Trình độ học vấn của đối tượng tham gia và lĩnh vực ứng tuyển học bổng";
+
+	public static final String TITLE_FILTER3 = "Loại học bổng";
+	public static final String SUBTITLE_FILTER3 = "Thông tin chi tiết khác của học bổng";
+
+	public static final String TITLE_FILTER4 = "Kết quả";
+
+	// ============================================================
+	// HEADLINES
+	// ============================================================
+
+	public static final String HEAD_FILTER1_1 = "Thông tin cá nhân";
+	public static final String HEAD_FILTER1_2 = "Gia đình";
+
+	public static final String HEAD_FILTER2_1 = "Đối tượng tham gia";
+	public static final String HEAD_FILTER2_2 = "Học bổng";
+
+	public static final String HEAD_FILTER3_1 = "Thông tin học bổng";
+	public static final String HEAD_FILTER3_2 = "Ưu tiên";
+
+	public static final String HEAD_FILTER4_1 = "Danh sách kết quả";
+
+	// ============================================================
 	// PROPERTIES
 	// ============================================================
 
@@ -19,6 +49,8 @@ public class Contants {
 	public static final String PROP_DISABILITY = "Khuyết tật";
 	public static final String PROP_RELIGION = "Tôn giáo";
 	public static final String PROP_PROVINCE = "Tỉnh/Thành phố/Bang";
+
+	public static final String PROP_FAMILY_POLICY = "Gia đình thuộc chính sách";
 
 	// ============================================================
 	// TAGS

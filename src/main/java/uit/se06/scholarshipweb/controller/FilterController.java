@@ -64,6 +64,7 @@ public class FilterController {
 		data.addObject("meta_data_religion", entity.getReligion());
 		data.addObject("meta_data_disability", entity.getDisabilities());
 		data.addObject("meta_data_terminal_ill", entity.getTerminalIllnesses());
+		data.addObject("meta_data_family_policy", entity.getFamilyPolicies());
 
 		return data;
 	}

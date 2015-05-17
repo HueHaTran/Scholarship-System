@@ -6,7 +6,12 @@ body {
 	text-align: left;
 }
 
-#filter-fieldset .content {
+.div-space {
+	clear: both;
+	height: 40px;
+}
+
+.filter-fieldset .content {
 	padding: 10px;
 }
 
@@ -14,6 +19,7 @@ body {
 	color: #44749d;
 	font-weight: bold;
 	font-size: 22px;
+	clear: both;
 	text-transform: uppercase;
 	border-bottom: 4px solid #44749d;
 }
@@ -52,6 +58,7 @@ body {
 /*radio fieldset*/
 .label_check, .label_radio {
 	padding-left: 25px;
+	cursor: pointer;
 }
 
 .label_radio {
@@ -99,7 +106,7 @@ select {
 }
 
 select.select_mutiple {
-	height: 200px;
+	height: 130px;
 }
 
 label.label_listbox_mutiple:after {
@@ -111,8 +118,7 @@ label.label_listbox_mutiple:after {
 	pointer-events: none;
 }
 
-
-/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+/* Targeting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	select {
 		padding-right: 18px
