@@ -9,6 +9,14 @@ public class Contants {
 	public static final String CONF_DATE_FORMAT = "MM-dd-yyyy";
 
 	// ============================================================
+	// MENUS
+	// ============================================================
+
+	public static final String MENU_HOME = "Trang chủ";
+	public static final String MENU_FILTER = "Tra cứu";
+	public static final String MENU_CONTACT = "Liên hệ";
+
+	// ============================================================
 	// TITLES
 	// ============================================================
 

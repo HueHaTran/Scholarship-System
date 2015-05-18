@@ -36,8 +36,8 @@ public class ScholarshipTypeBUS {
 	public ScholarshipType findById(int id) {
 		ScholarshipType entity = dao.findById(id);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findById(" + id + ")" + " return null.");
+			logger.info("Warning in: " + "findById(" + id + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -45,8 +45,8 @@ public class ScholarshipTypeBUS {
 	public ScholarshipType findByName(String name) {
 		ScholarshipType entity = dao.findByName(name);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findByName(" + name + ")" + " return null.");
+			logger.info("Warning in: " + "findByName(" + name + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -54,8 +54,7 @@ public class ScholarshipTypeBUS {
 	public List<ScholarshipType> list() {
 		List<ScholarshipType> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "list()" + " return null or empty.");
+			logger.info("Warning in: " + "list()" + " return null or empty.");
 		}
 		return result;
 	}

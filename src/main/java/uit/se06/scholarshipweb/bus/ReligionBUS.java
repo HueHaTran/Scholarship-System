@@ -36,8 +36,8 @@ public class ReligionBUS {
 	public Religion findById(int id) {
 		Religion entity = dao.findById(id);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findById(" + id + ")" + " return null.");
+			logger.info("Warning in: " + "findById(" + id + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -45,8 +45,8 @@ public class ReligionBUS {
 	public Religion findByName(String name) {
 		Religion entity = dao.findByName(name);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findByName(" + name + ")" + " return null.");
+			logger.info("Warning in: " + "findByName(" + name + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -54,8 +54,7 @@ public class ReligionBUS {
 	public List<Religion> list() {
 		List<Religion> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "list()" + " return null or empty.");
+			logger.info("Warning in: " + "list()" + " return null or empty.");
 		}
 		return result;
 	}

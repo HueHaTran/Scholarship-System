@@ -7,12 +7,8 @@
 
 <link href="<c:url value="/resources/css/homepage.css" />"
 	rel="stylesheet">
-<!--  
-<script src="<c:url value="/resources/js/bootstrap.js" />"></script> 
-<script src="<c:url value="/resources/js/jquery-1.10.2.js" />"></script> 
-<script src="<c:url value="/resources/js/modernizr-2.6.2.js" />"></script> 
-<script src="<c:url value="/resources/js/respond.js" />"></script>
- -->
+
+<%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bright future</title>
 </head>
@@ -20,13 +16,10 @@
 	<div id='nav-menu'>
 		<%@include file="search-box.jsp"%>
 		<ul class="nav-menu-ul">
-			<li class='active'><a href="<c:url value="/" />"><span>Trang
-						chủ</span></a></li>
-			<li><a href="<c:url value="/search" />"><span>Tìm
-						kiếm học bổng</span></a></li>
-			<li><a href='#'><span>Liên hệ</span></a></li>
+			<li class='active'><a href="<c:url value="/" />"><span><%=Contants.MENU_HOME%></span></a></li>
+			<li><a href="<c:url value="/search" />"><span><%=Contants.MENU_FILTER%></span></a></li>
+			<li><a href='#'><span><%=Contants.MENU_CONTACT%></span></a></li>
 		</ul>
-
 	</div>
 
 	<div class="homepage-main">

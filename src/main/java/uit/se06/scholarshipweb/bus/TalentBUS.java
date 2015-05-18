@@ -36,8 +36,8 @@ public class TalentBUS {
 	public Talent findById(int id) {
 		Talent entity = dao.findById(id);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findById(" + id + ")" + " return null.");
+			logger.info("Warning in: " + "findById(" + id + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -45,8 +45,8 @@ public class TalentBUS {
 	public Talent findByName(String name) {
 		Talent entity = dao.findByName(name);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findByName(" + name + ")" + " return null.");
+			logger.info("Warning in: " + "findByName(" + name + ")"
+					+ " return null.");
 		}
 		return entity;
 	}

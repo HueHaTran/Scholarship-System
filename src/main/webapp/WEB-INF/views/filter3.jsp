@@ -21,7 +21,45 @@
 		<div class="filter-info">
 			<div class="heading"><%=Contants.HEAD_FILTER3_1%></div>
 
+			<div class="left">
+				<div class="content">
+					<div class="question"><%=Contants.PROP_SCHOLARSHIP_TYPE%>:
+					</div>
+					<div class="answer">
+						<div class="label_listbox">
+							<select name="combobox_scholarship_type">
+								<option value="0" selected><%=Contants.TAG_ALL%></option>
+								<c:forEach items="${meta_data_scholarship_type}"
+									var="scholarship_type">
+									<option value="${scholarship_type.getId()}">${scholarship_type.getName()}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="right">
+				<div class="content">
+					<div class="question"><%=Contants.PROP_TALENT%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox_mutiple"> <select
+							class="select_mutiple" name="combobox_talent" multiple="multiple">
+								<c:forEach items="${meta_data_talent}" var="talent">
+									<option value="${talent.getId()}">${talent.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
+
+					</div>
+				</div>
+			</div>
+
+
 		</div>
+
+
 
 		<div class="div-space"></div>
 

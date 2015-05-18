@@ -25,7 +25,7 @@
 					<div class="question"><%=Contants.PROP_STUDENT_ACADEMIC_LEVEL_DETAIL%>:
 					</div>
 					<div class="answer">
-						<label class="label_radio" for="0"> <input
+						<label class="label_radio"> <input
 							name="meta_data_student_aca" checked="checked" id="0" value="0"
 							type="radio" /><%=Contants.TAG_ALL%>
 						</label>
@@ -35,8 +35,7 @@
 							<c:set var="aca_id_count" value="${aca_id_count+1}" scope="page" />
 							<div class="full">
 								<div class="left">
-									<label class="label_radio"
-										for="${student_academic_level.getId()}"> <input
+									<label class="label_radio"> <input
 										name="meta_data_student_aca"
 										id="${student_academic_level.getId()}"
 										value="${student_academic_level.getId()}" type="radio" />
@@ -68,10 +67,72 @@
 			</div>
 		</div>
 
-		<div class="full">
-			<div class="left"></div>
-		</div>
+		<div class="div-space"></div>
+		<div class="filter-info">
+			<div class="heading"><%=Contants.HEAD_FILTER2_2%></div>
 
+			<div class="full">
+				<div class="content">
+					<div class="question"><%=Contants.PROP_SCHOLARSHIP_ACADEMIC_LEVEL_DETAIL%>:
+					</div>
+					<div class="answer">
+						<label class="label_radio"> <input
+							name="meta_data_scholarship_aca" checked="checked" id="0"
+							value="0" type="radio" /><%=Contants.TAG_ALL%>
+						</label>
+						<c:set var="aca_id_count2" value="${0}" scope="page" />
+						<c:forEach items="${meta_data_academic_level}"
+							var="scholarship_academic_level">
+							<c:set var="aca_id_count2" value="${aca_id_count2+1}"
+								scope="page" />
+							<div class="full">
+								<div class="left">
+									<label class="label_radio"> <input
+										name="meta_data_scholarship_aca"
+										id="${scholarship_academic_level.getId()}"
+										value="${scholarship_academic_level.getId()}" type="radio" />
+										${scholarship_academic_level.getName()}
+									</label>
+								</div>
+								<div class="right">
+									<c:choose>
+										<c:when
+											test="${fn:length(scholarship_academic_level.getAcademicLevelDetails()) > 0}">
+											<div class="label_listbox">
+												<select name="combo_scholarship_aca_${aca_id_count2}">
+													<option value="0" selected><%=Contants.TAG_ALL%></option>
+													<c:forEach
+														items="${scholarship_academic_level.getAcademicLevelDetails()}"
+														var="scholarship_academic_detail">
+														<option value="${scholarship_academic_detail.getId()}">${scholarship_academic_detail.getName()}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</c:when>
+									</c:choose>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+
+			<div class="left">
+				<div class="content">
+					<div class="question"><%=Contants.PROP_SCHOLARSHIP_MAJOR%>:
+					</div>
+					<div class="answer">
+						<label class="label_listbox_mutiple"> <select
+							class="select_mutiple" name="combobox_major" multiple="multiple">
+								<c:forEach items="${meta_data_major}" var="major">
+									<option value="${major.getId()}">${major.getName()}</option>
+								</c:forEach>
+						</select>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="div-space"></div>
 
 		<div style="clear: both;">

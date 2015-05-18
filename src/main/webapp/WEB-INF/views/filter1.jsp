@@ -27,12 +27,11 @@
 					<div class="question"><%=Contants.PROP_GENDER%>:
 					</div>
 					<div class="answer">
-						<label class="label_radio" for="0"> <input
-							name="meta_data_gender" checked="checked" id="0" value="0"
-							type="radio" /><%=Contants.TAG_ALL%>
+						<label class="label_radio"> <input name="meta_data_gender"
+							checked="checked" id="0" value="0" type="radio" /><%=Contants.TAG_ALL%>
 						</label>
 						<c:forEach items="${meta_data_gender}" var="gender">
-							<label class="label_radio" for="${gender.getId()}"> <input
+							<label class="label_radio"> <input
 								name="meta_data_gender" id="${gender.getId()}"
 								value="${gender.getId()}" type="radio" /> ${gender.getName()}
 							</label>
@@ -62,10 +61,10 @@
 					</div>
 					<div class="answer">
 						<label class="label_listbox"> <select
-							name="combobox_citizenship" onchange="onChangeCountry(this)">
+							name="combobox_residence_city" onchange="onChangeCountry(this)">
 								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
-								<c:forEach items="${meta_data_country}" var="citizenship">
-									<option value="${citizenship.getId()}">${citizenship.getName()}</option>
+								<c:forEach items="${meta_data_country}" var="residence_city">
+									<option value="${residence_city.getId()}">${residence_city.getName()}</option>
 								</c:forEach>
 						</select>
 						</label>
@@ -74,7 +73,8 @@
 							</i>
 						</div>
 						<label class="label_listbox"> <select disabled="disabled"
-							name="combobox_citizenship" id="combobox_residence_province">
+							name="combobox_residence_province"
+							id="combobox_residence_province">
 								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
 						</select>
 						</label>
@@ -89,12 +89,12 @@
 						<c:choose>
 							<c:when test="${fn:length(meta_data_religion) < 4}">
 								<!-- size < 4 -->
-								<label class="label_radio" for="0"> <input
+								<label class="label_radio"> <input
 									name="meta_data_religion" checked="checked" id="0" value="0"
 									type="radio" /><%=Contants.TAG_ALL%>
 								</label>
 								<c:forEach items="${meta_data_religion}" var="religion">
-									<label class="label_radio" for="${religion.getId()}"> <input
+									<label class="label_radio"> <input
 										name="meta_data_religion" id="${religion.getId()}"
 										value="${religion.getId()}" type="radio" />
 										${religion.getName()}
@@ -174,7 +174,6 @@
 						</label>
 					</div>
 				</div>
-
 			</div>
 		</div>
 

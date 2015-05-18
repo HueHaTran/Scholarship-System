@@ -5,9 +5,11 @@ function onChangeCountry(s) {
 		type : "POST",
 		contentType : "application/json",
 		url : "./get_province",
+		async : false,
 		data : countryId = dataString,
 		dataType : "text",
 		success : function(msg) {
+			alert("enter");
 			data = JSON.parse(msg);
 			if (msg != "false") {
 				var sel = document

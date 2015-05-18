@@ -19,14 +19,14 @@ public class SchoolBUS {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SchoolBUS.class);
 
-	private ISchoolDAO dao; 
+	private ISchoolDAO dao;
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
 	public SchoolBUS(SessionFactory sessionFactory) {
-		dao = new JdbcSchoolDAO(sessionFactory); 
+		dao = new JdbcSchoolDAO(sessionFactory);
 	}
 
 	// ============================================================
@@ -36,8 +36,8 @@ public class SchoolBUS {
 	public School findById(int id) {
 		School entity = dao.findById(id);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findById(" + id + ")" + " return null.");
+			logger.info("Warning in: " + "findById(" + id + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -45,8 +45,8 @@ public class SchoolBUS {
 	public School findByName(String name) {
 		School entity = dao.findByName(name);
 		if (entity == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findByName(" + name + ")" + " return null.");
+			logger.info("Warning in: " + "findByName(" + name + ")"
+					+ " return null.");
 		}
 		return entity;
 	}
@@ -54,8 +54,7 @@ public class SchoolBUS {
 	public List<School> list() {
 		List<School> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "list()" + " return null or empty.");
+			logger.info("Warning in: " + "list()" + " return null or empty.");
 		}
 		return result;
 	}

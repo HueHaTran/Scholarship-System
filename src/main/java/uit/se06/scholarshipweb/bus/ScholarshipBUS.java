@@ -41,8 +41,8 @@ public class ScholarshipBUS {
 	public ScholarshipViewModel findById(int id) {
 		Scholarship scholarship = dao.findById(id);
 		if (scholarship == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findById(" + id + ")" + " return null.");
+			logger.info("Warning in: " + "findById(" + id + ")"
+					+ " return null.");
 			return null;
 		}
 
@@ -53,8 +53,8 @@ public class ScholarshipBUS {
 	public ScholarshipViewModel findByName(String name) {
 		Scholarship scholarship = dao.findByName(name);
 		if (scholarship == null) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "findByName(" + name + ")" + " return null.");
+			logger.info("Warning in: " + "findByName(" + name + ")"
+					+ " return null.");
 			return null;
 		}
 
@@ -65,8 +65,7 @@ public class ScholarshipBUS {
 	public List<Scholarship> list() {
 		List<Scholarship> result = dao.list();
 		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning in " + this.getClass().getCanonicalName()
-					+ ": " + "list()" + " return null or empty.");
+			logger.info("Warning in: " + "list()" + " return null or empty.");
 		}
 		return result;
 	}
@@ -127,13 +126,15 @@ public class ScholarshipBUS {
 				scholarship.getDateEndRegister()));
 		entity.setFormOfParticipation(Utility.getIns().getNameString(
 				scholarship.getFormOfParticipation()));
-		entity.setScholarshipAcademicLevelDetail(Utility.getIns().getNamesString(
-				scholarship.getScholarshipAcademicLevelDetail()));
+		entity.setScholarshipAcademicLevelDetail(Utility
+				.getIns()
+				.getNamesString(scholarship.getScholarshipAcademicLevelDetail()));
 		entity.setScholarshipMajors(Utility.getIns().getNamesString(
 				scholarship.getScholarshipMajors()));
 		entity.setScholarshipType(Utility.getIns().getNameString(
 				scholarship.getScholarshipType()));
-		entity.setSchoolName(Utility.getIns().getNameString(scholarship.getSchool()));
+		entity.setSchoolName(Utility.getIns().getNameString(
+				scholarship.getSchool()));
 		entity.setSponsorNames(Utility.getIns().getNamesString(
 				scholarship.getSponsors()));
 		entity.setStudentAcademicLevelDetail(Utility.getIns().getNameString(
