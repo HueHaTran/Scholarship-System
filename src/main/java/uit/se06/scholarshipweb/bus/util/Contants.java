@@ -52,6 +52,13 @@ public class Contants {
 
 	public static final String PROP_FAMILY_POLICY = "Gia đình thuộc chính sách";
 
+	public static final String PROP_STUDENT_ACADEMIC_LEVEL_DETAIL = "Trình độ hiện tại";
+	public static final String PROP_SCHOLARSHIP_ACADEMIC_LEVEL_DETAIL = "Trình độ của học bổng";
+	public static final String PROP_SCHOLARSHIP_MAJOR = "Chuyên ngành";
+
+	public static final String PROP_SCHOLARSHIP_TYPE = "Loại học bổng";
+	public static final String PROP_TALENT = "Năng khiếu";
+
 	// ============================================================
 	// TAGS
 	// ============================================================

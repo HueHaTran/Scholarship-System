@@ -20,7 +20,9 @@ import uit.se06.scholarshipweb.bus.CountryBUS;
 import uit.se06.scholarshipweb.bus.FilterBUS;
 import uit.se06.scholarshipweb.dao.impl.util.HibernateUtil;
 import uit.se06.scholarshipweb.model.Province;
+import uit.se06.scholarshipweb.viewmodel.FilterAcademicLevel;
 import uit.se06.scholarshipweb.viewmodel.FilterPersonalInfo;
+import uit.se06.scholarshipweb.viewmodel.FilterScholarshipType;
 
 /**
  * Handles requests for the application home page.
@@ -57,14 +59,23 @@ public class FilterController {
 
 		ModelAndView data = new ModelAndView("filter");
 		FilterPersonalInfo entity = bus.getPersonalInfo();
+		FilterAcademicLevel entity2 = bus.getAcademicLevelInfo();
+		FilterScholarshipType entity3 = bus.getScholarshipTypeInfo();
 
 		data.addObject("meta_data_gender", entity.getGenders());
 		data.addObject("meta_data_country", entity.getCountries());
-		// data.addObject("meta_data_province", entity.getProvinces());
+		// Provinces: no need to add province
 		data.addObject("meta_data_religion", entity.getReligion());
 		data.addObject("meta_data_disability", entity.getDisabilities());
 		data.addObject("meta_data_terminal_ill", entity.getTerminalIllnesses());
 		data.addObject("meta_data_family_policy", entity.getFamilyPolicies());
+
+		data.addObject("meta_data_academic_level", entity2.getAcademicLevels());
+		data.addObject("meta_data_major", entity2.getMajors());
+
+		data.addObject("meta_data_scholarship_type",
+				entity3.getScholarshipTypes());
+		data.addObject("meta_data_talent", entity3.getTalents());
 
 		return data;
 	}

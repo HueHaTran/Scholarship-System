@@ -2,6 +2,7 @@ package uit.se06.scholarshipweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,27 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 	@Override
 	public List<AcademicLevel> list() {
 		return getAll();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AcademicLevel> listWithDetails() {
+		List<AcademicLevel> result = null;
+		String queryString = "FROM " + AcademicLevel.class.getSimpleName();
+
+		try {
+			result = (List<AcademicLevel>) getSession()
+					.createQuery(queryString).list();
+			for (AcademicLevel entity : result) {
+				Hibernate.initialize(entity.getAcademicLevelDetails());
+			}
+		} catch (Exception ex) {
+			getLogger().error("Query '" + queryString + "' in getAll()");
+		} finally {
+			closeSession();
+		}
+
+		return result;
 	}
 
 	// ============================================================

@@ -88,4 +88,17 @@ public class AcademicLevelBUS {
 		}
 		return result;
 	}
+
+	/**
+	 * with detail
+	 * 
+	 * @return
+	 */
+	public List<AcademicLevel> listWithDetails() {
+		List<AcademicLevel> result = dao.listWithDetails();
+		if (result == null || (result != null && result.isEmpty())) {
+			logger.info("Warning: " + "list()" + " return null or empty.");
+		}
+		return result;
+	}
 }

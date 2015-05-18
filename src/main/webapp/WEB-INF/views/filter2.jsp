@@ -20,7 +20,56 @@
 
 		<div class="filter-info">
 			<div class="heading"><%=Contants.HEAD_FILTER2_1%></div>
+			<div class="full">
+				<div class="content">
+					<div class="question"><%=Contants.PROP_STUDENT_ACADEMIC_LEVEL_DETAIL%>:
+					</div>
+					<div class="answer">
+						<label class="label_radio" for="0"> <input
+							name="meta_data_student_aca" checked="checked" id="0" value="0"
+							type="radio" /><%=Contants.TAG_ALL%>
+						</label>
+						<c:set var="aca_id_count" value="${0}" scope="page" />
+						<c:forEach items="${meta_data_academic_level}"
+							var="student_academic_level">
+							<c:set var="aca_id_count" value="${aca_id_count+1}" scope="page" />
+							<div class="full">
+								<div class="left">
+									<label class="label_radio"
+										for="${student_academic_level.getId()}"> <input
+										name="meta_data_student_aca"
+										id="${student_academic_level.getId()}"
+										value="${student_academic_level.getId()}" type="radio" />
+										${student_academic_level.getName()}
+									</label>
+								</div>
+								<div class="right">
+									<c:choose>
+										<c:when
+											test="${fn:length(student_academic_level.getAcademicLevelDetails()) > 0}">
 
+											<div class="label_listbox">
+												<select name="combo_student_aca_${aca_id_count}">
+													<option value="0" selected><%=Contants.TAG_ALL%></option>
+													<c:forEach
+														items="${student_academic_level.getAcademicLevelDetails()}"
+														var="student_academic_detail">
+														<option value="${student_academic_detail.getId()}">${student_academic_detail.getName()}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</c:when>
+									</c:choose>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="full">
+			<div class="left"></div>
 		</div>
 
 		<div class="div-space"></div>
