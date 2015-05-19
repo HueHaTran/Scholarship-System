@@ -23,16 +23,16 @@ onload = function() {
 					: 'label_check c_off';
 			l.onclick = check_it;
 		}
-		;
+
 		if (l.className == 'label_radio') {
 			l.className = (safari && inp.checked == true || inp.checked) ? 'label_radio r_on'
 					: 'label_radio r_off';
 			l.onclick = turn_radio;
 		}
-		;
+
 	}
-	;
 };
+
 var check_it = function() {
 	var inp = gebtn(this, 'input')[0];
 	if (this.className == 'label_check c_off' || (!safari && inp.checked)) {

@@ -1,7 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:700&subset=latin,vietnamese);
-	
+@import
+	url(http://fonts.googleapis.com/css?family=Open+Sans:700&subset=latin,vietnamese)
+	;
+
 /*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
+#msform fieldset:not(:first-of-type ) {
 	/*no space bar between 'field....type)'*/
 	display: none;
 }
@@ -11,7 +13,7 @@
 	width: auto;
 	margin: 10px auto;
 	text-align: center;
-	position: relative;
+	position: relative; 
 }
 
 #msform fieldset {
@@ -25,7 +27,7 @@
 	margin: 0 10%;
 	/*stacking fieldsets above each other*/
 	position: absolute;
-	min-width: 700px;
+	min-width: 700px; 
 }
 
 /*inputs*/
@@ -36,7 +38,7 @@
 	margin-bottom: 10px;
 	width: 100%;
 	box-sizing: border-box;
-	font-family:  'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	color: #2C3E50;
 	font-size: 13px;
 }
@@ -104,6 +106,7 @@
 	background: white;
 	border-radius: 3px;
 	margin: 0 auto 5px auto;
+	cursor: pointer;
 }
 /*progressbar connectors*/
 #progressbar li:after {

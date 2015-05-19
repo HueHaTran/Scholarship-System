@@ -8,6 +8,7 @@ function onChangeCountry(s) {
 		async : false,
 		data : countryId = dataString,
 		dataType : "text",
+		async : false,
 		success : function(msg) {
 			alert("enter");
 			data = JSON.parse(msg);

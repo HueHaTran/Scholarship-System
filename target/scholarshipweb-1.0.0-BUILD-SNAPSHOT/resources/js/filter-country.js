@@ -1,30 +1,42 @@
 function onChangeCountry(s) {
-	var countryId = s[s.selectedIndex].value;
-	alert(countryId);// ok
+	var dataString = s[s.selectedIndex].value;
+
 	$.ajax({
-		type : "GET",
+		type : "POST",
 		contentType : "application/json",
 		url : "./get_province",
-		data : countryId,
-		dataType : "json",
+		async : false,
+		data : countryId = dataString,
+		dataType : "text",
+		async : false,
 		success : function(msg) {
-			alert("start proccessing");
+			alert("enter");
 			data = JSON.parse(msg);
-			alert("data mess: " + data.length);
-			alert("here mess: " + msg);
+			if (msg != "false") {
+				var sel = document
+						.getElementById('combobox_residence_province');
 
-			alert("start proccessing");
-			var provinces = msg;
-			var sel = document.getElementById('combobox_residence_province');
-			for (var i = 0; i < provinces.length; i++) {
-				var opt = document.createElement('option');
-				opt.innerHTML = provinces[i].getName();
-				opt.value = provinces[i].getId();
-				sel.appendChild(opt);
+				var len = data.length;
+				if (len == 0) {
+					sel.disabled = true;
+				} else {
+					sel.disabled = false;
+				}
+
+				for (var i = 0; i < len; ++i) {
+					createOption(sel, data[i][0], data[i][1]);
+				}
 			}
 		},
-		  error : function () { alert("Error retrieving employee data!"); }
-	}); 
-
+		error : function() {
+			alert("Error retrieving data!");
+		}
+	});
 }
- 
+
+function createOption(selector, id, value) {
+	var opt = document.createElement('option');
+	opt.innerHTML = value;
+	opt.value = id;
+	selector.appendChild(opt);
+}
