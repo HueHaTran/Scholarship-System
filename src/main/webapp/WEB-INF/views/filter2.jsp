@@ -7,7 +7,7 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
-
+<script src="<c:url value="/resources/js/onValueChanged.js" />"></script>
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -58,7 +58,6 @@
 									</div>
 								</c:when>
 							</c:choose>
-
 						</c:forEach>
 					</div>
 				</div>

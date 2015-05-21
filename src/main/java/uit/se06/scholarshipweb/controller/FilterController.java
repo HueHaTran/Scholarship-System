@@ -80,14 +80,15 @@ public class FilterController {
 		return data;
 	}
 
-	@RequestMapping(value = "/get_province", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
+	@RequestMapping(value = "/getProvincesFromCountry", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
 	public @ResponseBody List<Province> getProvincesFromCountry(
 			HttpServletRequest request, @RequestBody String countryId) {
 		int id;
+		logger.info("Enter yeah");
 		try {
 			id = Integer.parseInt(countryId);
 		} catch (NumberFormatException e) {
-			logger.info("Exception in " + this.getClass().getCanonicalName()
+			logger.error("Exception in " + this.getClass().getCanonicalName()
 					+ ": " + e.toString());
 			return new ArrayList<Province>();
 		}

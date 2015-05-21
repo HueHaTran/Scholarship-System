@@ -8,7 +8,7 @@
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/nav-wrap.css" />"
 	rel="stylesheet">
-
+<script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/filter.js" />"></script>
 
 <%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>

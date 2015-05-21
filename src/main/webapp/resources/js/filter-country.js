@@ -4,11 +4,9 @@ function onChangeCountry(s) {
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
-		url : "./get_province",
-		async : false,
+		url : "./getProvincesFromCountry",
 		data : countryId = dataString,
 		dataType : "text",
-		async : false,
 		success : function(msg) {
 			alert("enter");
 			data = JSON.parse(msg);

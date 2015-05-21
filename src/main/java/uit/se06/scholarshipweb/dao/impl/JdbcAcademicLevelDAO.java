@@ -1,5 +1,7 @@
 package uit.se06.scholarshipweb.dao.impl;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -52,7 +54,9 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 
 	@Override
 	public List<AcademicLevel> list() {
-		return getAll();
+		List<AcademicLevel> result = getAll();
+		Collections.sort(result, COMPARATOR);
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -73,6 +77,7 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 			closeSession();
 		}
 
+		Collections.sort(result, COMPARATOR);
 		return result;
 	}
 
@@ -80,4 +85,10 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 	// OTHER METHODS
 	// ============================================================
 
+	public static final Comparator<AcademicLevel> COMPARATOR = new Comparator<AcademicLevel>() {
+		// Overriding the compare method to sort the age
+		public int compare(AcademicLevel entity1, AcademicLevel entity2) {
+			return entity1.getId() - entity2.getId();
+		}
+	};
 }
