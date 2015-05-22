@@ -1,4 +1,4 @@
-function onChangeCountry(s) {
+function onChangeCountry(s, provinceElementId) {
 	var dataString = s[s.selectedIndex].value;
 
 	$.ajax({
@@ -12,7 +12,7 @@ function onChangeCountry(s) {
 			data = JSON.parse(msg);
 			if (msg != "false") {
 				var sel = document
-						.getElementById('combobox_residence_province');
+						.getElementById(provinceElementId);
 
 				var len = data.length;
 				if (len == 0) {

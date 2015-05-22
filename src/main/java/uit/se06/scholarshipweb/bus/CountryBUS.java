@@ -2,14 +2,12 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ICountryDAO;
-import uit.se06.scholarshipweb.dao.IProvinceDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcCountryDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcProvinceDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.ICountryDAO;
+import uit.se06.scholarshipweb.dao.factory.IProvinceDAO;
 import uit.se06.scholarshipweb.model.Country;
 import uit.se06.scholarshipweb.model.Province;
 
@@ -29,9 +27,9 @@ public class CountryBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public CountryBUS(SessionFactory sessionFactory) {
-		dao = new JdbcCountryDAO(sessionFactory);
-		daoProvince = new JdbcProvinceDAO(sessionFactory);
+	public CountryBUS() {
+		dao = DAOAbstractFactory.INS.getCountryDAO();
+		daoProvince = DAOAbstractFactory.INS.getProvinceDAO();
 	}
 
 	// ============================================================

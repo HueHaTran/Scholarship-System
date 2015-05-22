@@ -1,11 +1,8 @@
-function onAcademicLevelChanged(academicLevelRadioName, detailElementId) {
-	var radio = $('input[name=' + academicLevelRadioName + ']');
+function onAcademicLevelChanged(radioName, childNamePrefix) {
+	var childId = document.querySelector('input[name = ' + radioName
+			+ ']:checked').id;
 
-	var checkedValue = radio.filter(':checked').val();
-
-	if (checkedValue) {
-		alert("true");
-	} else {
-		alert("false");
-	}
+	var sel2 = document.getElementById(childNamePrefix + childId);
+	
+	sel2.disabled = false;
 }

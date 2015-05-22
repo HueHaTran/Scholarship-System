@@ -26,12 +26,12 @@ body {
 
 .right {
 	float: right;
-	width: 50%;
+	width: 45%;
 }
 
 .left {
 	float: left;
-	width: 50%;
+	width: 45%;
 }
 
 .full {
@@ -92,7 +92,7 @@ label.r_on {
 
 /* selector */
 select {
-	width: 80%;
+	width: 100%;
 	padding: 5px;
 	margin: 0;
 	-webkit-border-radius: 4px;
@@ -165,5 +165,3 @@ label.label_listbox:before {
 }
 
 /* end selector */
-
- 

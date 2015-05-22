@@ -30,7 +30,7 @@ public class Gender implements ISimpleModel {
 	private String genderName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentGender")
-	private List<Scholarship> scholarships;
+	private List<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -64,11 +64,11 @@ public class Gender implements ISimpleModel {
 		this.genderName = genderName;
 	}
 
-	public List<Scholarship> getScholarships() {
+	public List<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<Scholarship> scholarships) {
+	public void setScholarships(List<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

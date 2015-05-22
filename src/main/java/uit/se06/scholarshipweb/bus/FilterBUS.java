@@ -2,8 +2,7 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.ArrayList;
 
-import org.hibernate.SessionFactory;
-
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.viewmodel.FilterAcademicLevel;
 import uit.se06.scholarshipweb.viewmodel.FilterPersonalInfo;
@@ -24,19 +23,23 @@ public class FilterBUS {
 	private ScholarshipTypeBUS busScholarshipType;
 	private TalentBUS busTalent;
 
-	public FilterBUS(SessionFactory sessionFactory) {
-		busGender = new GenderBUS(sessionFactory);
-		busDisability = new DisabilityBUS(sessionFactory);
-		busTerminalIll = new TerminalIllBUS(sessionFactory);
-		busFamilyPolicy = new FamilyPolicyBUS(sessionFactory);
-		busCountry = new CountryBUS(sessionFactory);
-		busReligion = new ReligionBUS(sessionFactory);
+	public FilterBUS() {
+		if (DAOAbstractFactory.INS == null) {
+			System.err.print("NULL!!!!!!!!!!!!!!!!!!!!!");
+		}
 
-		busAcademicLevel = new AcademicLevelBUS(sessionFactory);
-		busMajor = new MajorBUS(sessionFactory);
+		busGender = new GenderBUS();
+		busDisability = new DisabilityBUS();
+		busTerminalIll = new TerminalIllBUS();
+		busFamilyPolicy = new FamilyPolicyBUS();
+		busCountry = new CountryBUS();
+		busReligion = new ReligionBUS();
 
-		busScholarshipType = new ScholarshipTypeBUS(sessionFactory);
-		busTalent = new TalentBUS(sessionFactory);
+		busAcademicLevel = new AcademicLevelBUS();
+		busMajor = new MajorBUS();
+
+		busScholarshipType = new ScholarshipTypeBUS();
+		busTalent = new TalentBUS();
 	}
 
 	/**

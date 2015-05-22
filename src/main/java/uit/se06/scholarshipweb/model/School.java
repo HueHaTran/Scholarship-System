@@ -48,7 +48,7 @@ public class School implements ISimpleModel {
 	private Province province;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "school")
-	private List<Scholarship> scholarships;
+	private List<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -123,11 +123,11 @@ public class School implements ISimpleModel {
 		this.province = province;
 	}
 
-	public List<Scholarship> getScholarships() {
+	public List<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<Scholarship> scholarships) {
+	public void setScholarships(List<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

@@ -7,7 +7,6 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
-
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,15 +25,15 @@
 					<div class="question"><%=Contants.PROP_SCHOLARSHIP_TYPE%>:
 					</div>
 					<div class="answer">
-						<div class="label_listbox">
-							<select name="combobox_scholarship_type">
-								<option value="0" selected><%=Contants.TAG_ALL%></option>
+						<label class="label_listbox"> <select
+							name="combobox_scholarship_type">
+								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
 								<c:forEach items="${meta_data_scholarship_type}"
 									var="scholarship_type">
 									<option value="${scholarship_type.getId()}">${scholarship_type.getName()}</option>
 								</c:forEach>
-							</select>
-						</div>
+						</select>
+						</label>
 					</div>
 				</div>
 			</div>

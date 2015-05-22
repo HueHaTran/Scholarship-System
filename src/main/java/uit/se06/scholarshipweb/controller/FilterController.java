@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import uit.se06.scholarshipweb.bus.CountryBUS;
 import uit.se06.scholarshipweb.bus.FilterBUS;
-import uit.se06.scholarshipweb.dao.impl.util.HibernateUtil;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.viewmodel.FilterAcademicLevel;
 import uit.se06.scholarshipweb.viewmodel.FilterPersonalInfo;
@@ -28,7 +26,7 @@ import uit.se06.scholarshipweb.viewmodel.FilterScholarshipType;
  * Handles requests for the application home page.
  */
 @Controller
-public class FilterController {
+public class FilterController extends BaseController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(FilterController.class);
@@ -41,11 +39,11 @@ public class FilterController {
 	// ============================================================
 
 	public FilterController() {
+		super();
 		logger.info("Enter Filter's controller");// test
-		SessionFactory sessionFactory = HibernateUtil
-				.getSessionAnnotationFactory();
-		bus = new FilterBUS(sessionFactory);
-		busCountry = new CountryBUS(sessionFactory);
+
+		bus = new FilterBUS();
+		busCountry = new CountryBUS();
 	}
 
 	// ============================================================
@@ -54,6 +52,7 @@ public class FilterController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale) {
+
 		logger.info("Welcome to " + this.getClass().getCanonicalName()
 				+ "! The client locale is {}.", locale);
 

@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IGenderDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcGenderDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IGenderDAO;
 import uit.se06.scholarshipweb.model.Gender;
 
 public class GenderBUS {
@@ -25,8 +24,8 @@ public class GenderBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public GenderBUS(SessionFactory sessionFactory) {
-		dao = new JdbcGenderDAO(sessionFactory);
+	public GenderBUS() {
+		dao = DAOAbstractFactory.INS.getGenderDAO();
 	}
 
 	// ============================================================

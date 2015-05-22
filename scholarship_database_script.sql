@@ -154,13 +154,20 @@ CREATE TABLE `scholarship`
 (
 	`scholarship_id` INT(11) NOT NULL AUTO_INCREMENT,
     `scholarship_name` NVARCHAR(64) NOT NULL,
+     `date_end_register` DATE,
+	`value_min` INT(11)default -1,
+    `value_max` INT(11)default -1,
+    
+    PRIMARY KEY (`scholarship_id`)
+);
+
+CREATE TABLE `scholarship_specification`
+(
+	`scholarship_id` INT(11) NOT NULL,
     `description` NVARCHAR(512) DEFAULT '',
     `original_link` VARCHAR(256) DEFAULT '',
     `count` INT(6) default -1,
-    `date_end_register` DATE,
-	`value_min` INT(11)default -1,
-    `value_max` INT(11)default -1,
-    `student_gender_id` INT(11) DEFAULT NULL,
+	`student_gender_id` INT(11) DEFAULT NULL,
     `student_citizenship_id` INT(11) DEFAULT NULL,
     `student_ethnic_id` INT(11) DEFAULT NULL, 
     `student_religion_id` INT(11) DEFAULT NULL,
@@ -178,6 +185,7 @@ CREATE TABLE `scholarship`
     INDEX (`student_religion_id`),
     INDEX (`student_academic_level_detail_id`),
     INDEX (`school_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
     FOREIGN KEY (`student_gender_id`) REFERENCES `gender`(`gender_id`),
     FOREIGN KEY (`student_citizenship_id`) REFERENCES `country`(`country_id`), 
     FOREIGN KEY (`student_ethnic_id`) REFERENCES `ethnic`(`ethnic_id`),
@@ -187,6 +195,8 @@ CREATE TABLE `scholarship`
     FOREIGN KEY (`school_id`) REFERENCES `school`(`school_id`), 
 	FOREIGN KEY (`form_of_participation_id`) REFERENCES `form_of_participation`(`form_of_participation_id`)
 );
+
+
 
 CREATE TABLE `scholarship_academic_level_detail`
 (

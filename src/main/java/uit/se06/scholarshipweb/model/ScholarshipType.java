@@ -30,7 +30,7 @@ public class ScholarshipType implements ISimpleModel {
 	private String scholarshipTypeName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "scholarshipType")
-	private List<Scholarship> scholarships;
+	private List<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -64,11 +64,11 @@ public class ScholarshipType implements ISimpleModel {
 		this.scholarshipTypeName = scholarshipTypeName;
 	}
 
-	public List<Scholarship> getScholarships() {
+	public List<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<Scholarship> scholarships) {
+	public void setScholarships(List<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

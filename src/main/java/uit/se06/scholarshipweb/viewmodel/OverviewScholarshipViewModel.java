@@ -8,7 +8,6 @@ public class OverviewScholarshipViewModel {
 
 	private int id;
 	private String name;
-	private String sponsorNames;
 	private String schoolName;
 	private String dateEndRegister;
 	private String value;
@@ -31,14 +30,6 @@ public class OverviewScholarshipViewModel {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSponsorNames() {
-		return sponsorNames;
-	}
-
-	public void setSponsorNames(String sponsorNames) {
-		this.sponsorNames = sponsorNames;
 	}
 
 	public String getSchoolName() {

@@ -40,7 +40,7 @@ public class AcademicLevelDetail implements ISimpleModel{
 	private List<Scholarship> scholarships;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentAcademicLevelDetail")
-	private List<Scholarship> scholarshipsWithStudentAcademicLevelDetail;
+	private List<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -91,12 +91,12 @@ public class AcademicLevelDetail implements ISimpleModel{
 		this.scholarships = scholarships;
 	}
 
-	public List<Scholarship> getScholarshipsWithStudentAcademicLevelDetail() {
+	public List<ScholarshipSpecification> getScholarshipsWithStudentAcademicLevelDetail() {
 		return scholarshipsWithStudentAcademicLevelDetail;
 	}
 
 	public void setScholarshipsWithStudentAcademicLevelDetail(
-			List<Scholarship> scholarshipsWithStudentAcademicLevelDetail) {
+			List<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail) {
 		this.scholarshipsWithStudentAcademicLevelDetail = scholarshipsWithStudentAcademicLevelDetail;
 	}
 }

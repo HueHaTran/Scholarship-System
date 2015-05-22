@@ -7,11 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.bus.util.Utility;
-import uit.se06.scholarshipweb.dao.IScholarshipDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcScholarshipDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
 import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 import uit.se06.scholarshipweb.model.School;
-import uit.se06.scholarshipweb.model.Sponsor;
 import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
 import uit.se06.scholarshipweb.viewmodel.ScholarshipViewModel;
 
@@ -31,7 +31,7 @@ public class ScholarshipBUS {
 	// ============================================================
 
 	public ScholarshipBUS(SessionFactory sessionFactory) {
-		dao = new JdbcScholarshipDAO(sessionFactory);
+		dao = DAOAbstractFactory.INS.getScholarshipDAO();
 	}
 
 	// ============================================================
@@ -85,11 +85,13 @@ public class ScholarshipBUS {
 			return null;
 		}
 
+		ScholarshipSpecification specification = scholarship
+				.getScholarshipSpecification();
+
 		OverviewScholarshipViewModel entity = new OverviewScholarshipViewModel();
 
 		// get
-		List<Sponsor> sponsors = scholarship.getSponsors();
-		School school = scholarship.getSchool();
+		School school = specification.getSchool();
 
 		int min = scholarship.getValueMin();
 		int max = scholarship.getValueMax();
@@ -99,7 +101,6 @@ public class ScholarshipBUS {
 		entity.setName(Utility.getIns().getNameString(scholarship));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
 				scholarship.getDateEndRegister()));
-		entity.setSponsorNames(Utility.getIns().getNamesString(sponsors));
 		entity.setSchoolName(Utility.getIns().getNameString(school));
 		entity.setValue(Utility.getIns().getMoneyString(min, max));
 
@@ -111,46 +112,49 @@ public class ScholarshipBUS {
 			return null;
 		}
 
+		ScholarshipSpecification specification = scholarship
+				.getScholarshipSpecification();
+
 		ScholarshipViewModel entity = new ScholarshipViewModel();
 		entity.setId(scholarship.getId());
 		entity.setName(Utility.getIns().getNameString(scholarship));
 		entity.setDescription(Utility.getIns().getFormatString(
-				scholarship.getDescription()));
+				specification.getDescription()));
 		entity.setOriginalLink(Utility.getIns().getFormatString(
-				scholarship.getOriginal_link()));
+				specification.getOriginal_link()));
 		entity.setApplicationDescription(Utility.getIns().getFormatString(
-				scholarship.getApplicationDescription()));
+				specification.getApplicationDescription()));
 		entity.setCount(Utility.getIns().getFormatNumberString(
-				scholarship.getCount()));
+				specification.getCount()));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
 				scholarship.getDateEndRegister()));
 		entity.setFormOfParticipation(Utility.getIns().getNameString(
-				scholarship.getFormOfParticipation()));
+				specification.getFormOfParticipation()));
 		entity.setScholarshipAcademicLevelDetail(Utility
 				.getIns()
 				.getNamesString(scholarship.getScholarshipAcademicLevelDetail()));
 		entity.setScholarshipMajors(Utility.getIns().getNamesString(
 				scholarship.getScholarshipMajors()));
 		entity.setScholarshipType(Utility.getIns().getNameString(
-				scholarship.getScholarshipType()));
+				specification.getScholarshipType()));
 		entity.setSchoolName(Utility.getIns().getNameString(
-				scholarship.getSchool()));
+				specification.getSchool()));
 		entity.setSponsorNames(Utility.getIns().getNamesString(
 				scholarship.getSponsors()));
 		entity.setStudentAcademicLevelDetail(Utility.getIns().getNameString(
-				scholarship.getStudentAcademicLevelDetail()));
+				specification.getStudentAcademicLevelDetail()));
 		entity.setStudentCitizenship(Utility.getIns().getNameString(
-				scholarship.getStudentCitizenship()));
+				specification.getStudentCitizenship()));
 		entity.setStudentDisabilities(Utility.getIns().getNamesString(
 				scholarship.getStudentDisabilities()));
 		entity.setStudentEthnic(Utility.getIns().getNameString(
-				scholarship.getStudentEthnic()));
+				specification.getStudentEthnic()));
 		entity.setStudentFamilyPolicies(Utility.getIns().getNamesString(
 				scholarship.getStudentFamilyPolicies()));
 		entity.setStudentGender(Utility.getIns().getNameString(
-				scholarship.getStudentGender()));
+				specification.getStudentGender()));
 		entity.setStudentReligion(Utility.getIns().getNameString(
-				scholarship.getStudentReligion()));
+				specification.getStudentReligion()));
 		entity.setStudentResidences(Utility.getIns().getNamesString(
 				scholarship.getStudentResidences()));
 		entity.setStudentTalents(Utility.getIns().getNamesString(
@@ -158,7 +162,7 @@ public class ScholarshipBUS {
 		entity.setStudentTerminalIllnesses(Utility.getIns().getNamesString(
 				scholarship.getStudentTerminalIllnesses()));
 		entity.setSupportDescription(Utility.getIns().getFormatString(
-				scholarship.getSupportDescription()));
+				specification.getSupportDescription()));
 		entity.setValue(Utility.getIns().getMoneyString(
 				scholarship.getValueMin(), scholarship.getValueMax()));
 

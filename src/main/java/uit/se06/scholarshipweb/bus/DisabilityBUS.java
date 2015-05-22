@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IDisabilityDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcDisabilityDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IDisabilityDAO;
 import uit.se06.scholarshipweb.model.Disability;
 
 public class DisabilityBUS {
@@ -25,8 +24,8 @@ public class DisabilityBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public DisabilityBUS(SessionFactory sessionFactory) {
-		dao = new JdbcDisabilityDAO(sessionFactory);
+	public DisabilityBUS() {
+		dao = DAOAbstractFactory.INS.getDisabilityDAO();
 	}
 
 	// ============================================================

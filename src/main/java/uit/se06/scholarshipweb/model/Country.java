@@ -35,7 +35,7 @@ public class Country implements ISimpleModel {
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentCitizenship")
-	private List<Scholarship> scholarshipsWithStudentCitizenship;
+	private List<ScholarshipSpecification> scholarshipsWithStudentCitizenship;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -77,12 +77,12 @@ public class Country implements ISimpleModel {
 		this.provinces = provinces;
 	}
 
-	public List<Scholarship> getScholarshipsWithStudentCitizenship() {
+	public List<ScholarshipSpecification> getScholarshipsWithStudentCitizenship() {
 		return scholarshipsWithStudentCitizenship;
 	}
 
 	public void setScholarshipsWithStudentCitizenship(
-			List<Scholarship> scholarshipsWithStudentCitizenship) {
+			List<ScholarshipSpecification> scholarshipsWithStudentCitizenship) {
 		this.scholarshipsWithStudentCitizenship = scholarshipsWithStudentCitizenship;
 	}
 }

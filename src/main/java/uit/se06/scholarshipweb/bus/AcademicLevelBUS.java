@@ -2,14 +2,12 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IAcademicLevelDAO;
-import uit.se06.scholarshipweb.dao.IAcademicLevelDetailDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcAcademicLevelDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcAcademicLevelDetailDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDAO;
+import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDetailDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 
 public class AcademicLevelBUS {
@@ -28,9 +26,9 @@ public class AcademicLevelBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public AcademicLevelBUS(SessionFactory sessionFactory) {
-		dao = new JdbcAcademicLevelDAO(sessionFactory);
-		daoDetail = new JdbcAcademicLevelDetailDAO(sessionFactory);
+	public AcademicLevelBUS() {
+		dao = DAOAbstractFactory.INS.getAcademicLevelDAO();
+		daoDetail = DAOAbstractFactory.INS.getAcademicLevelDetailDAO();
 	}
 
 	// ============================================================

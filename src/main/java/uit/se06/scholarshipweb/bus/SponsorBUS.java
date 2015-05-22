@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ISponsorDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcSponsorDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.ISponsorDAO;
 import uit.se06.scholarshipweb.model.Sponsor;
 
 public class SponsorBUS {
@@ -25,8 +24,8 @@ public class SponsorBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public SponsorBUS(SessionFactory sessionFactory) {
-		dao = new JdbcSponsorDAO(sessionFactory);
+	public SponsorBUS() {
+		dao = DAOAbstractFactory.INS.getSponsorDAO();
 	}
 
 	// ============================================================

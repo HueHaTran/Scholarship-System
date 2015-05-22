@@ -61,7 +61,7 @@
 					</div>
 					<div class="answer">
 						<label class="label_listbox"> <select
-							name="combobox_residence_city" onchange="onChangeCountry(this)">
+							name="combobox_residence_city" onchange="onChangeCountry(this,'combobox_residence_province')">
 								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
 								<c:forEach items="${meta_data_country}" var="residence_city">
 									<option value="${residence_city.getId()}">${residence_city.getName()}</option>

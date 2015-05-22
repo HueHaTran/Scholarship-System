@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ITalentDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcTalentDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.ITalentDAO;
 import uit.se06.scholarshipweb.model.Talent;
 
 public class TalentBUS {
@@ -25,8 +24,8 @@ public class TalentBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public TalentBUS(SessionFactory sessionFactory) {
-		dao = new JdbcTalentDAO(sessionFactory);
+	public TalentBUS() {
+		dao = DAOAbstractFactory.INS.getTalentDAO();
 	}
 
 	// ============================================================

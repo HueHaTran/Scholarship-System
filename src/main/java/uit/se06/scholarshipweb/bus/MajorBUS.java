@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IMajorDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcMajorDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IMajorDAO;
 import uit.se06.scholarshipweb.model.Major;
 
 public class MajorBUS {
@@ -25,8 +24,8 @@ public class MajorBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public MajorBUS(SessionFactory sessionFactory) {
-		dao = new JdbcMajorDAO(sessionFactory);
+	public MajorBUS() {
+		dao = DAOAbstractFactory.INS.getMajorDAO();
 	}
 
 	// ============================================================

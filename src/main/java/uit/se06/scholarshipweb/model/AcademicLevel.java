@@ -13,9 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.Sort;
-import org.hibernate.annotations.SortType;
-
 @Entity
 @Table(name = "academic_level", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "academic_level_name"), })
 public class AcademicLevel implements ISimpleModel{

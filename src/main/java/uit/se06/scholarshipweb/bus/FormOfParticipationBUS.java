@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IFormOfParticipationDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcFormOfParticipationDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IFormOfParticipationDAO;
 import uit.se06.scholarshipweb.model.FormOfParticipation;
 
 public class FormOfParticipationBUS {
@@ -25,8 +24,8 @@ public class FormOfParticipationBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public FormOfParticipationBUS(SessionFactory sessionFactory) {
-		dao = new JdbcFormOfParticipationDAO(sessionFactory);
+	public FormOfParticipationBUS() {
+		dao = DAOAbstractFactory.INS.getFormOfParticipationDAO();
 	}
 
 	// ============================================================

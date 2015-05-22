@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IScholarshipTypeDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcScholarshipTypeDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IScholarshipTypeDAO;
 import uit.se06.scholarshipweb.model.ScholarshipType;
 
 public class ScholarshipTypeBUS {
@@ -25,8 +24,8 @@ public class ScholarshipTypeBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public ScholarshipTypeBUS(SessionFactory sessionFactory) {
-		dao = new JdbcScholarshipTypeDAO(sessionFactory);
+	public ScholarshipTypeBUS() {
+		dao = DAOAbstractFactory.INS.getScholarshipTypeDAO();
 	}
 
 	// ============================================================

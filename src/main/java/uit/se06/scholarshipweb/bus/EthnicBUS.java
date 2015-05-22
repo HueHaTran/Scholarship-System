@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.IEthnicDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcEthnicDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IEthnicDAO;
 import uit.se06.scholarshipweb.model.Ethnic;
 
 public class EthnicBUS {
@@ -25,8 +24,8 @@ public class EthnicBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public EthnicBUS(SessionFactory sessionFactory) {
-		dao = new JdbcEthnicDAO(sessionFactory);
+	public EthnicBUS() {
+		dao = DAOAbstractFactory.INS.getEthnicDAO();
 	}
 
 	// ============================================================

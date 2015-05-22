@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ISchoolDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcSchoolDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.ISchoolDAO;
 import uit.se06.scholarshipweb.model.School;
 
 public class SchoolBUS {
@@ -25,8 +24,8 @@ public class SchoolBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public SchoolBUS(SessionFactory sessionFactory) {
-		dao = new JdbcSchoolDAO(sessionFactory);
+	public SchoolBUS() {
+		dao = DAOAbstractFactory.INS.getSchoolDAO();
 	}
 
 	// ============================================================

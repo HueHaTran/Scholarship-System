@@ -2,12 +2,11 @@ package uit.se06.scholarshipweb.bus;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.ITerminalIllDAO;
-import uit.se06.scholarshipweb.dao.impl.JdbcTerminalIllDAO;
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.ITerminalIllDAO;
 import uit.se06.scholarshipweb.model.TerminalIll;
 
 public class TerminalIllBUS {
@@ -25,8 +24,8 @@ public class TerminalIllBUS {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public TerminalIllBUS(SessionFactory sessionFactory) {
-		dao = new JdbcTerminalIllDAO(sessionFactory);
+	public TerminalIllBUS() {
+		dao = DAOAbstractFactory.INS.getTerminalIllDAO();
 	}
 
 	// ============================================================
