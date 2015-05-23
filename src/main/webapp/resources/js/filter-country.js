@@ -7,8 +7,7 @@ function onChangeCountry(s, provinceElementId) {
 		url : "./getProvincesFromCountry",
 		data : countryId = dataString,
 		dataType : "text",
-		success : function(msg) {
-			alert("enter");
+		success : function(msg) { 
 			data = JSON.parse(msg);
 			if (msg != "false") {
 				var sel = document

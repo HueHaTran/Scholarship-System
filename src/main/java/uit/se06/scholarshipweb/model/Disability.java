@@ -30,7 +30,7 @@ public class Disability implements ISimpleModel {
 	private String disabilityName;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentDisabilities")
-	private List<Scholarship> scholarships;
+	private List<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -64,11 +64,11 @@ public class Disability implements ISimpleModel {
 		this.disabilityName = disabilityName;
 	}
 
-	public List<Scholarship> getScholarships() {
+	public List<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<Scholarship> scholarships) {
+	public void setScholarships(List<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

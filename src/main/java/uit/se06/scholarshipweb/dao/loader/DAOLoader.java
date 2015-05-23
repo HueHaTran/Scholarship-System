@@ -9,23 +9,24 @@ public class DAOLoader {
 		Jdbc
 	}
 
-	public static void loadDAOConcreteFactory(
-			DatabaseConnectionProxyType databaseConnectionProxyType) {
-		switch (databaseConnectionProxyType) {
+	public static void loadConcreteFactory(
+			DatabaseConnectionProxyType databaseConnectionProxyType,
+			ProxyType proxyType) {
 
-		case Jdbc:
-			DAOAbstractFactory.INS = new JdbcDAOConnectionFactory();
-			break;
+		if (DAOAbstractFactory.INS != null) {
+			System.err
+					.println("DAOAbstractFactory.INS is already implemented!");
+			return;
 		}
-	}
 
-	public static void loadConcreteFactory(ProxyType proxyType) {
-		switch (proxyType) {
-		case WebService:
-			//throw new IllegalArgumentException("Not implemented!");
-			// break;
-		case DirectAccess:
-			// 
+		switch (databaseConnectionProxyType) {
+		case Jdbc:
+			if (proxyType.equals(ProxyType.WebService)) {
+				//
+
+			} else if (proxyType.equals(ProxyType.DirectAccess)) {
+				DAOAbstractFactory.INS = new JdbcDAOConnectionFactory();
+			}
 			break;
 		}
 	}

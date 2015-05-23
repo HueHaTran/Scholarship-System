@@ -206,7 +206,7 @@ CREATE TABLE `scholarship_academic_level_detail`
 	PRIMARY KEY (`scholarship_id`, `academic_level_detail_id`),
     INDEX (`scholarship_id`),
     INDEX (`academic_level_detail_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
     FOREIGN KEY (`academic_level_detail_id`) REFERENCES `academic_level_detail`(`academic_level_detail_id`)
 );
 
@@ -218,7 +218,7 @@ CREATE TABLE `scholarship_family_policy`
     PRIMARY KEY (`scholarship_id`, `family_policy_id`),
     INDEX(`scholarship_id`),
     INDEX (`family_policy_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`family_policy_id`) REFERENCES `family_policy`(`family_policy_id`)
 );
 
@@ -230,7 +230,7 @@ CREATE TABLE `scholarship_disability`
     PRIMARY KEY (`scholarship_id`, `disability_id`),
     INDEX(`scholarship_id`),
     INDEX (`disability_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`disability_id`) REFERENCES `disability`(`disability_id`)
 );
 
@@ -242,7 +242,7 @@ CREATE TABLE `scholarship_terminal_ill`
     PRIMARY KEY (`scholarship_id`, `terminal_ill_id`),
     INDEX(`scholarship_id`),
     INDEX (`terminal_ill_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`terminal_ill_id`) REFERENCES `terminal_ill`(`terminal_ill_id`)
 );
 
@@ -254,7 +254,7 @@ CREATE TABLE `scholarship_sponsor`
     PRIMARY KEY (`scholarship_id`, `sponsor_id`),
     INDEX(`scholarship_id`),
     INDEX (`sponsor_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`sponsor_id`) REFERENCES `sponsor`(`sponsor_id`)
 );
 
@@ -266,7 +266,7 @@ CREATE TABLE `scholarship_major`
     PRIMARY KEY (`scholarship_id`, `major_id`),
     INDEX(`scholarship_id`),
     INDEX (`major_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`major_id`) REFERENCES `major`(`major_id`)
 );
 
@@ -278,7 +278,7 @@ CREATE TABLE `scholarship_talent`
     PRIMARY KEY (`scholarship_id`, `talent_id`),
     INDEX(`scholarship_id`),
     INDEX (`talent_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`talent_id`) REFERENCES `talent`(`talent_id`)
 );
 
@@ -290,6 +290,6 @@ CREATE TABLE `scholarship_student_residence`
     PRIMARY KEY (`scholarship_id`, `province_id`),
     INDEX(`scholarship_id`),
     INDEX (`province_id`),
-    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship`(`scholarship_id`),
+    FOREIGN KEY (`scholarship_id`) REFERENCES `scholarship_specification`(`scholarship_id`),
 	FOREIGN KEY (`province_id`) REFERENCES `province`(`province_id`)
 )

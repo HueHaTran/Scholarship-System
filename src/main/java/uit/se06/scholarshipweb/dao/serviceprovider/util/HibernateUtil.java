@@ -17,6 +17,7 @@ import uit.se06.scholarshipweb.model.Major;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.model.Religion;
 import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 import uit.se06.scholarshipweb.model.ScholarshipType;
 import uit.se06.scholarshipweb.model.School;
 import uit.se06.scholarshipweb.model.Sponsor;
@@ -24,7 +25,7 @@ import uit.se06.scholarshipweb.model.Talent;
 import uit.se06.scholarshipweb.model.TerminalIll;
 
 public class HibernateUtil {
- 
+
 	// Annotation based configuration
 	private static SessionFactory sessionAnnotationFactory;
 
@@ -50,6 +51,7 @@ public class HibernateUtil {
 			configuration.addAnnotatedClass(Province.class);
 			configuration.addAnnotatedClass(Religion.class);
 			configuration.addAnnotatedClass(Scholarship.class);
+			configuration.addAnnotatedClass(ScholarshipSpecification.class);
 			configuration.addAnnotatedClass(ScholarshipType.class);
 			configuration.addAnnotatedClass(School.class);
 			configuration.addAnnotatedClass(Sponsor.class);

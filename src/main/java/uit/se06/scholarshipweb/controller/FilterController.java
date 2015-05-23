@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import uit.se06.scholarshipweb.bus.CountryBUS;
 import uit.se06.scholarshipweb.bus.FilterBUS;
+import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
+import uit.se06.scholarshipweb.bus.serviceprovider.da.DACountryBUS;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.viewmodel.FilterAcademicLevel;
 import uit.se06.scholarshipweb.viewmodel.FilterPersonalInfo;
@@ -32,7 +33,7 @@ public class FilterController extends BaseController {
 			.getLogger(FilterController.class);
 
 	private FilterBUS bus;
-	private CountryBUS busCountry;
+	private ICountryBUS busCountry;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -43,7 +44,7 @@ public class FilterController extends BaseController {
 		logger.info("Enter Filter's controller");// test
 
 		bus = new FilterBUS();
-		busCountry = new CountryBUS();
+		busCountry = new DACountryBUS();
 	}
 
 	// ============================================================

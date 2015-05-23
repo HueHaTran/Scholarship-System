@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "academic_level_detail", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "academic_level_detail_name"), })
-public class AcademicLevelDetail implements ISimpleModel{
+public class AcademicLevelDetail implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -36,11 +36,12 @@ public class AcademicLevelDetail implements ISimpleModel{
 	@JoinColumn(name = "academic_level_id", referencedColumnName = "academic_level_id")
 	private AcademicLevel academicLevel;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "scholarshipAcademicLevelDetail")
-	private List<Scholarship> scholarships;
-
+	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentAcademicLevelDetail")
 	private List<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "scholarshipAcademicLevelDetail")
+	private List<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -83,11 +84,11 @@ public class AcademicLevelDetail implements ISimpleModel{
 		this.academicLevel = academicLevel;
 	}
 
-	public List<Scholarship> getScholarships() {
+	public List<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<Scholarship> scholarships) {
+	public void setScholarships(List<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 

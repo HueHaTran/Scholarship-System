@@ -45,7 +45,7 @@ public class Province implements ISimpleModel{
 	private List<Sponsor> sponsors;
 	 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentResidences")
-	private List<Scholarship> scholarshipsWithResidence;
+	private List<ScholarshipSpecification> scholarshipsWithResidence;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -86,5 +86,14 @@ public class Province implements ISimpleModel{
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public List<ScholarshipSpecification> getScholarshipsWithResidence() {
+		return scholarshipsWithResidence;
+	}
+
+	public void setScholarshipsWithResidence(
+			List<ScholarshipSpecification> scholarshipsWithResidence) {
+		this.scholarshipsWithResidence = scholarshipsWithResidence;
 	}
 }

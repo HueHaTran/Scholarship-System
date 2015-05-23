@@ -30,7 +30,7 @@ public class Talent implements ISimpleModel {
 	private String talentName;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentTalents")
-	private List<Scholarship> scholarships;
+	private List<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -64,11 +64,11 @@ public class Talent implements ISimpleModel {
 		this.talentName = talentName;
 	}
 
-	public List<Scholarship> getScholarships() {
+	public List<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<Scholarship> scholarships) {
+	public void setScholarships(List<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }
