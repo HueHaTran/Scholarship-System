@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
 import uit.se06.scholarshipweb.model.Scholarship;
 
-public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
+public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		IScholarshipDAO {
 
 	// ============================================================
@@ -17,7 +17,7 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcScholarshipDAO.class);
+			.getLogger(DAJdbcScholarshipDAO.class);
 
 	public final String COL_ID = "scholarship_id";
 	public final String COL_NAME = "scholarship_name";
@@ -42,7 +42,7 @@ public class JdbcScholarshipDAO extends JdbcBaseDAO<Scholarship> implements
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcScholarshipDAO() {
+	public DAJdbcScholarshipDAO() {
 		super(Scholarship.class);
 	}
 

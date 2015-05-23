@@ -5,28 +5,27 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IFamilyPolicyDAO;
-import uit.se06.scholarshipweb.model.FamilyPolicy;
+import uit.se06.scholarshipweb.dao.factory.ITalentDAO;
+import uit.se06.scholarshipweb.model.Talent;
 
-public class JdbcFamilyPolicyDAO extends JdbcBaseDAO<FamilyPolicy> implements
-		IFamilyPolicyDAO {
+public class DAJdbcTalentDAO extends DAJdbcBaseDAO<Talent> implements ITalentDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcFamilyPolicyDAO.class);
+			.getLogger(DAJdbcTalentDAO.class);
 
-	public final String COL_ID = "family_policy_id";
-	public final String COL_NAME = "family_policy_name";
+	public final String COL_ID = "talent_id";
+	public final String COL_NAME = "talent_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcFamilyPolicyDAO() {
-		super(FamilyPolicy.class);
+	public DAJdbcTalentDAO() {
+		super(Talent.class);
 	}
 
 	// ============================================================
@@ -39,17 +38,17 @@ public class JdbcFamilyPolicyDAO extends JdbcBaseDAO<FamilyPolicy> implements
 	}
 
 	@Override
-	public FamilyPolicy findById(int id) {
+	public Talent findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public FamilyPolicy findByName(String name) {
+	public Talent findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<FamilyPolicy> list() {
+	public List<Talent> list() {
 		return getAll();
 	}
 

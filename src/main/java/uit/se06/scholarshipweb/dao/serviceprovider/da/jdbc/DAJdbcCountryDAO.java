@@ -5,28 +5,27 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IDisabilityDAO;
-import uit.se06.scholarshipweb.model.Disability;
+import uit.se06.scholarshipweb.dao.factory.ICountryDAO;
+import uit.se06.scholarshipweb.model.Country;
 
-public class JdbcDisabilityDAO extends JdbcBaseDAO<Disability> implements
-		IDisabilityDAO {
+public class DAJdbcCountryDAO extends DAJdbcBaseDAO<Country> implements ICountryDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcDisabilityDAO.class);
+			.getLogger(DAJdbcCountryDAO.class);
 
-	public final String COL_ID = "disability_id";
-	public final String COL_NAME = "disability_name";
+	public final String COL_ID = "country_id";
+	public final String COL_NAME = "country_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcDisabilityDAO() {
-		super(Disability.class);
+	public DAJdbcCountryDAO() {
+		super(Country.class);
 	}
 
 	// ============================================================
@@ -39,17 +38,17 @@ public class JdbcDisabilityDAO extends JdbcBaseDAO<Disability> implements
 	}
 
 	@Override
-	public Disability findById(int id) {
+	public Country findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public Disability findByName(String name) {
+	public Country findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<Disability> list() {
+	public List<Country> list() {
 		return getAll();
 	}
 

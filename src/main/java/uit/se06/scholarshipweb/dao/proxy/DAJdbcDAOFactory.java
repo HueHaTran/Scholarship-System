@@ -18,109 +18,109 @@ import uit.se06.scholarshipweb.dao.factory.ISchoolDAO;
 import uit.se06.scholarshipweb.dao.factory.ISponsorDAO;
 import uit.se06.scholarshipweb.dao.factory.ITalentDAO;
 import uit.se06.scholarshipweb.dao.factory.ITerminalIllDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcAcademicLevelDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcAcademicLevelDetailDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcCountryDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcDisabilityDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcEthnicDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcFamilyPolicyDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcFormOfParticipationDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcGenderDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcMajorDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcProvinceDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcReligionDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcScholarshipDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcScholarshipTypeDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcSchoolDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcSponsorDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcTalentDAO;
-import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.JdbcTerminalIllDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcAcademicLevelDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcAcademicLevelDetailDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcCountryDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcDisabilityDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcEthnicDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcFamilyPolicyDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcFormOfParticipationDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcGenderDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcMajorDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcProvinceDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcReligionDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcScholarshipDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcScholarshipTypeDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcSchoolDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcSponsorDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcTalentDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcTerminalIllDAO;
 
-public class JdbcDAOConnectionFactory extends DAOAbstractFactory {
+public class DAJdbcDAOFactory extends DAOAbstractFactory {
 
 	@Override
 	public IAcademicLevelDAO getAcademicLevelDAO() {
-		return new JdbcAcademicLevelDAO();
+		return new DAJdbcAcademicLevelDAO();
 	}
 
 	@Override
 	public IAcademicLevelDetailDAO getAcademicLevelDetailDAO() {
-		return new JdbcAcademicLevelDetailDAO();
+		return new DAJdbcAcademicLevelDetailDAO();
 	}
 
 	@Override
 	public ICountryDAO getCountryDAO() {
-		return new JdbcCountryDAO();
+		return new DAJdbcCountryDAO();
 	}
 
 	@Override
 	public IDisabilityDAO getDisabilityDAO() {
-		return new JdbcDisabilityDAO();
+		return new DAJdbcDisabilityDAO();
 	}
 
 	@Override
 	public IEthnicDAO getEthnicDAO() {
-		return new JdbcEthnicDAO();
+		return new DAJdbcEthnicDAO();
 	}
 
 	@Override
 	public IFamilyPolicyDAO getFamilyPolicyDAO() {
-		return new JdbcFamilyPolicyDAO();
+		return new DAJdbcFamilyPolicyDAO();
 	}
 
 	@Override
 	public IFormOfParticipationDAO getFormOfParticipationDAO() {
-		return new JdbcFormOfParticipationDAO();
+		return new DAJdbcFormOfParticipationDAO();
 	}
 
 	@Override
 	public IGenderDAO getGenderDAO() {
-		return new JdbcGenderDAO();
+		return new DAJdbcGenderDAO();
 	}
 
 	@Override
 	public IMajorDAO getMajorDAO() {
-		return new JdbcMajorDAO();
+		return new DAJdbcMajorDAO();
 	}
 
 	@Override
 	public IProvinceDAO getProvinceDAO() {
-		return new JdbcProvinceDAO();
+		return new DAJdbcProvinceDAO();
 	}
 
 	@Override
 	public IReligionDAO getReligionDAO() {
-		return new JdbcReligionDAO();
+		return new DAJdbcReligionDAO();
 	}
 
 	@Override
 	public IScholarshipDAO getScholarshipDAO() {
-		return new JdbcScholarshipDAO();
+		return new DAJdbcScholarshipDAO();
 	}
 
 	@Override
 	public IScholarshipTypeDAO getScholarshipTypeDAO() {
-		return new JdbcScholarshipTypeDAO();
+		return new DAJdbcScholarshipTypeDAO();
 	}
 
 	@Override
 	public ISchoolDAO getSchoolDAO() {
-		return new JdbcSchoolDAO();
+		return new DAJdbcSchoolDAO();
 	}
 
 	@Override
 	public ISponsorDAO getSponsorDAO() {
-		return new JdbcSponsorDAO();
+		return new DAJdbcSponsorDAO();
 	}
 
 	@Override
 	public ITalentDAO getTalentDAO() {
-		return new JdbcTalentDAO();
+		return new DAJdbcTalentDAO();
 	}
 
 	@Override
 	public ITerminalIllDAO getTerminalIllDAO() {
-		return new JdbcTerminalIllDAO();
+		return new DAJdbcTerminalIllDAO();
 	}
 
 }

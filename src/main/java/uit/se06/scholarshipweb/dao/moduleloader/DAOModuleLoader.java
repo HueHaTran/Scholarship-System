@@ -1,10 +1,10 @@
-package uit.se06.scholarshipweb.dao.loader;
+package uit.se06.scholarshipweb.dao.moduleloader;
 
 import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
-import uit.se06.scholarshipweb.dao.proxy.JdbcDAOConnectionFactory;
+import uit.se06.scholarshipweb.dao.proxy.DAJdbcDAOFactory;
 import uit.se06.scholarshipweb.util.ProxyType;
 
-public class DAOLoader {
+public class DAOModuleLoader {
 	public enum DatabaseConnectionProxyType {
 		Jdbc
 	}
@@ -25,7 +25,7 @@ public class DAOLoader {
 				//
 
 			} else if (proxyType.equals(ProxyType.DirectAccess)) {
-				DAOAbstractFactory.INS = new JdbcDAOConnectionFactory();
+				DAOAbstractFactory.INS = new DAJdbcDAOFactory();
 			}
 			break;
 		}

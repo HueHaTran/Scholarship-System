@@ -1,10 +1,10 @@
-package uit.se06.scholarshipweb.bus.serviceprovider.loader;
+package uit.se06.scholarshipweb.bus.moduleloader;
 
 import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
-import uit.se06.scholarshipweb.bus.serviceprovider.proxy.DirectAccessBUSFactory;
+import uit.se06.scholarshipweb.bus.proxy.DirectAccessBUSFactory;
 import uit.se06.scholarshipweb.util.ProxyType;
 
-public class BUSLoader {
+public class BUSModuleLoader {
 
 	public static void loadConcreteFactory(ProxyType proxyType) {
 

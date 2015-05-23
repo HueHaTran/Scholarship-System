@@ -5,29 +5,32 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDetailDAO;
-import uit.se06.scholarshipweb.model.AcademicLevelDetail;
+import uit.se06.scholarshipweb.dao.factory.ISchoolDAO;
+import uit.se06.scholarshipweb.model.School;
 
-public class JdbcAcademicLevelDetailDAO extends
-		JdbcBaseDAO<AcademicLevelDetail> implements IAcademicLevelDetailDAO {
+public class DAJdbcSchoolDAO extends DAJdbcBaseDAO<School> implements ISchoolDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcAcademicLevelDetailDAO.class);
+			.getLogger(DAJdbcSchoolDAO.class);
 
-	public final String COL_ID = "academic_level_detail_id";
-	public final String COL_NAME = "academic_level_detail_name";
-	public final String COL_ACADEMIC_LEVEL_ID = "academic_level_id";
+	public final String COL_ID = "school_id";
+	public final String COL_NAME = "school_name";
+	public final String COL_PROVICE_ID = "province_id";
+	public final String COL_ADDRESS = "address";
+	public final String COL_PHONE = "phone";
+	public final String COL_WEBSITE = "website";
+	public final String COL_FAX = "fax";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcAcademicLevelDetailDAO() {
-		super(AcademicLevelDetail.class);
+	public DAJdbcSchoolDAO() {
+		super(School.class);
 	}
 
 	// ============================================================
@@ -40,23 +43,18 @@ public class JdbcAcademicLevelDetailDAO extends
 	}
 
 	@Override
-	public AcademicLevelDetail findById(int id) {
+	public School findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public AcademicLevelDetail findByName(String name) {
+	public School findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<AcademicLevelDetail> list() {
+	public List<School> list() {
 		return getAll();
-	}
-
-	@Override
-	public List<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId) {
-		return listBy(COL_ACADEMIC_LEVEL_ID, String.valueOf(academicLevelId));
 	}
 
 	// ============================================================

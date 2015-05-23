@@ -5,28 +5,32 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IFormOfParticipationDAO;
-import uit.se06.scholarshipweb.model.FormOfParticipation;
+import uit.se06.scholarshipweb.dao.factory.ISponsorDAO;
+import uit.se06.scholarshipweb.model.Sponsor;
 
-public class JdbcFormOfParticipationDAO extends
-		JdbcBaseDAO<FormOfParticipation> implements IFormOfParticipationDAO {
+public class DAJdbcSponsorDAO extends DAJdbcBaseDAO<Sponsor> implements ISponsorDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcFormOfParticipationDAO.class);
+			.getLogger(DAJdbcSponsorDAO.class);
 
-	public final String COL_ID = "form_of_participation_id";
-	public final String COL_NAME = "form_of_participation_name";
+	public final String COL_ID = "sponsor_id";
+	public final String COL_NAME = "sponsor_name";
+	public final String COL_PROVICE_ID = "province_id";
+	public final String COL_ADDRESS = "address";
+	public final String COL_PHONE = "phone";
+	public final String COL_WEBSITE = "website";
+	public final String COL_FAX = "fax";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcFormOfParticipationDAO() {
-		super(FormOfParticipation.class );
+	public DAJdbcSponsorDAO() {
+		super(Sponsor.class);
 	}
 
 	// ============================================================
@@ -39,17 +43,17 @@ public class JdbcFormOfParticipationDAO extends
 	}
 
 	@Override
-	public FormOfParticipation findById(int id) {
+	public Sponsor findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public FormOfParticipation findByName(String name) {
+	public Sponsor findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<FormOfParticipation> list() {
+	public List<Sponsor> list() {
 		return getAll();
 	}
 

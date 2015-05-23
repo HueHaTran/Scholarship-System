@@ -5,28 +5,28 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IScholarshipTypeDAO;
-import uit.se06.scholarshipweb.model.ScholarshipType;
+import uit.se06.scholarshipweb.dao.factory.IFamilyPolicyDAO;
+import uit.se06.scholarshipweb.model.FamilyPolicy;
 
-public class JdbcScholarshipTypeDAO extends JdbcBaseDAO<ScholarshipType>
-		implements IScholarshipTypeDAO {
+public class DAJdbcFamilyPolicyDAO extends DAJdbcBaseDAO<FamilyPolicy> implements
+		IFamilyPolicyDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcScholarshipTypeDAO.class);
+			.getLogger(DAJdbcFamilyPolicyDAO.class);
 
-	public final String COL_ID = "scholarship_type_id";
-	public final String COL_NAME = "scholarship_type_name";
+	public final String COL_ID = "family_policy_id";
+	public final String COL_NAME = "family_policy_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcScholarshipTypeDAO() {
-		super(ScholarshipType.class);
+	public DAJdbcFamilyPolicyDAO() {
+		super(FamilyPolicy.class);
 	}
 
 	// ============================================================
@@ -39,17 +39,17 @@ public class JdbcScholarshipTypeDAO extends JdbcBaseDAO<ScholarshipType>
 	}
 
 	@Override
-	public ScholarshipType findById(int id) {
+	public FamilyPolicy findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public ScholarshipType findByName(String name) {
+	public FamilyPolicy findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<ScholarshipType> list() {
+	public List<FamilyPolicy> list() {
 		return getAll();
 	}
 

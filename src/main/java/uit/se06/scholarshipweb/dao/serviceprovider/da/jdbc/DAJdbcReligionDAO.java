@@ -5,28 +5,28 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.ITerminalIllDAO;
-import uit.se06.scholarshipweb.model.TerminalIll;
+import uit.se06.scholarshipweb.dao.factory.IReligionDAO;
+import uit.se06.scholarshipweb.model.Religion;
 
-public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements
-		ITerminalIllDAO {
+public class DAJdbcReligionDAO extends DAJdbcBaseDAO<Religion> implements
+		IReligionDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcTerminalIllDAO.class);
+			.getLogger(DAJdbcReligionDAO.class);
 
-	public final String COL_ID = "terminal_ill_id";
-	public final String COL_NAME = "terminal_ill_name";
+	public final String COL_ID = "religion_id";
+	public final String COL_NAME = "religion_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcTerminalIllDAO() {
-		super(TerminalIll.class);
+	public DAJdbcReligionDAO() {
+		super(Religion.class);
 	}
 
 	// ============================================================
@@ -39,17 +39,17 @@ public class JdbcTerminalIllDAO extends JdbcBaseDAO<TerminalIll> implements
 	}
 
 	@Override
-	public TerminalIll findById(int id) {
+	public Religion findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public TerminalIll findByName(String name) {
+	public Religion findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<TerminalIll> list() {
+	public List<Religion> list() {
 		return getAll();
 	}
 

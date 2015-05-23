@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 
 import uit.se06.scholarshipweb.dao.serviceprovider.util.HibernateUtil;
 
-public abstract class JdbcBaseDAO<T> {
+public abstract class DAJdbcBaseDAO<T> {
 
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -20,7 +20,7 @@ public abstract class JdbcBaseDAO<T> {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcBaseDAO(Class<?> modelClass) {
+	public DAJdbcBaseDAO(Class<?> modelClass) {
 		this.modelClass = modelClass;
 		this.sessionFactory = HibernateUtil.getSessionAnnotationFactory();
 	}

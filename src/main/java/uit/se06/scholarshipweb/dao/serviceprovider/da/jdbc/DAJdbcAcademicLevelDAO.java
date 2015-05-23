@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 
-public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
+public class DAJdbcAcademicLevelDAO extends DAJdbcBaseDAO<AcademicLevel> implements
 		IAcademicLevelDAO {
 
 	// ============================================================
@@ -19,7 +19,7 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcAcademicLevelDAO.class);
+			.getLogger(DAJdbcAcademicLevelDAO.class);
 
 	public final String COL_ID = "academic_level_id";
 	public final String COL_NAME = "academic_level_name";
@@ -28,7 +28,7 @@ public class JdbcAcademicLevelDAO extends JdbcBaseDAO<AcademicLevel> implements
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcAcademicLevelDAO() {
+	public DAJdbcAcademicLevelDAO() {
 		super(AcademicLevel.class);
 	}
 

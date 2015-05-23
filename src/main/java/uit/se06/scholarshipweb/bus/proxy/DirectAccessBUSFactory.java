@@ -1,4 +1,4 @@
-package uit.se06.scholarshipweb.bus.serviceprovider.proxy;
+package uit.se06.scholarshipweb.bus.proxy;
 
 import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
 import uit.se06.scholarshipweb.bus.factory.IAcademicLevelBUS;

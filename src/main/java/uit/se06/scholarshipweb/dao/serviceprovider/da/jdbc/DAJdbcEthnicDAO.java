@@ -5,27 +5,27 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.ICountryDAO;
-import uit.se06.scholarshipweb.model.Country;
+import uit.se06.scholarshipweb.dao.factory.IEthnicDAO;
+import uit.se06.scholarshipweb.model.Ethnic;
 
-public class JdbcCountryDAO extends JdbcBaseDAO<Country> implements ICountryDAO {
+public class DAJdbcEthnicDAO extends DAJdbcBaseDAO<Ethnic> implements IEthnicDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcCountryDAO.class);
+			.getLogger(DAJdbcEthnicDAO.class);
 
-	public final String COL_ID = "country_id";
-	public final String COL_NAME = "country_name";
+	public final String COL_ID = "ethnic_id";
+	public final String COL_NAME = "ethnic_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcCountryDAO() {
-		super(Country.class);
+	public DAJdbcEthnicDAO() {
+		super(Ethnic.class);
 	}
 
 	// ============================================================
@@ -38,17 +38,17 @@ public class JdbcCountryDAO extends JdbcBaseDAO<Country> implements ICountryDAO 
 	}
 
 	@Override
-	public Country findById(int id) {
+	public Ethnic findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public Country findByName(String name) {
+	public Ethnic findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<Country> list() {
+	public List<Ethnic> list() {
 		return getAll();
 	}
 

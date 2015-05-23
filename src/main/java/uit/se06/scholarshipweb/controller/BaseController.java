@@ -1,15 +1,15 @@
 package uit.se06.scholarshipweb.controller;
 
-import uit.se06.scholarshipweb.bus.serviceprovider.loader.BUSLoader;
-import uit.se06.scholarshipweb.dao.loader.DAOLoader;
-import uit.se06.scholarshipweb.dao.loader.DAOLoader.DatabaseConnectionProxyType;
+import uit.se06.scholarshipweb.bus.moduleloader.BUSModuleLoader;
+import uit.se06.scholarshipweb.dao.moduleloader.DAOModuleLoader;
+import uit.se06.scholarshipweb.dao.moduleloader.DAOModuleLoader.DatabaseConnectionProxyType;
 import uit.se06.scholarshipweb.util.ProxyType;
 
 public class BaseController {
 	public BaseController() {
 		// set up
-		BUSLoader.loadConcreteFactory(ProxyType.WebService);
-		DAOLoader.loadConcreteFactory(DatabaseConnectionProxyType.Jdbc,
+		BUSModuleLoader.loadConcreteFactory(ProxyType.WebService);
+		DAOModuleLoader.loadConcreteFactory(DatabaseConnectionProxyType.Jdbc,
 				ProxyType.DirectAccess);
 	}
 }

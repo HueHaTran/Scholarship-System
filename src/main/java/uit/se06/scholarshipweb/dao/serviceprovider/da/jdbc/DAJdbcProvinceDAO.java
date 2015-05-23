@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import uit.se06.scholarshipweb.dao.factory.IProvinceDAO;
 import uit.se06.scholarshipweb.model.Province;
 
-public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
+public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 		IProvinceDAO {
 
 	// ============================================================
@@ -17,7 +17,7 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcProvinceDAO.class);
+			.getLogger(DAJdbcProvinceDAO.class);
 
 	public final String COL_ID = "province_id";
 	public final String COL_NAME = "province_name";
@@ -27,7 +27,7 @@ public class JdbcProvinceDAO extends JdbcBaseDAO<Province> implements
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcProvinceDAO() {
+	public DAJdbcProvinceDAO() {
 		super(Province.class);
 	}
 

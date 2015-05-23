@@ -5,27 +5,27 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IEthnicDAO;
-import uit.se06.scholarshipweb.model.Ethnic;
+import uit.se06.scholarshipweb.dao.factory.IGenderDAO;
+import uit.se06.scholarshipweb.model.Gender;
 
-public class JdbcEthnicDAO extends JdbcBaseDAO<Ethnic> implements IEthnicDAO {
+public class DAJdbcGenderDAO extends DAJdbcBaseDAO<Gender> implements IGenderDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcEthnicDAO.class);
+			.getLogger(DAJdbcGenderDAO.class);
 
-	public final String COL_ID = "ethnic_id";
-	public final String COL_NAME = "ethnic_name";
+	public final String COL_ID = "gender_id";
+	public final String COL_NAME = "gender_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcEthnicDAO() {
-		super(Ethnic.class);
+	public DAJdbcGenderDAO() {
+		super(Gender.class);
 	}
 
 	// ============================================================
@@ -38,17 +38,17 @@ public class JdbcEthnicDAO extends JdbcBaseDAO<Ethnic> implements IEthnicDAO {
 	}
 
 	@Override
-	public Ethnic findById(int id) {
+	public Gender findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public Ethnic findByName(String name) {
+	public Gender findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<Ethnic> list() {
+	public List<Gender> list() {
 		return getAll();
 	}
 

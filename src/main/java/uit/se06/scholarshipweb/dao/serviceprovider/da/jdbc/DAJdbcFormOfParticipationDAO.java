@@ -5,28 +5,28 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uit.se06.scholarshipweb.dao.factory.IReligionDAO;
-import uit.se06.scholarshipweb.model.Religion;
+import uit.se06.scholarshipweb.dao.factory.IFormOfParticipationDAO;
+import uit.se06.scholarshipweb.model.FormOfParticipation;
 
-public class JdbcReligionDAO extends JdbcBaseDAO<Religion> implements
-		IReligionDAO {
+public class DAJdbcFormOfParticipationDAO extends
+		DAJdbcBaseDAO<FormOfParticipation> implements IFormOfParticipationDAO {
 
 	// ============================================================
 	// VARIABLES
 	// ============================================================
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JdbcReligionDAO.class);
+			.getLogger(DAJdbcFormOfParticipationDAO.class);
 
-	public final String COL_ID = "religion_id";
-	public final String COL_NAME = "religion_name";
+	public final String COL_ID = "form_of_participation_id";
+	public final String COL_NAME = "form_of_participation_name";
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
-	public JdbcReligionDAO() {
-		super(Religion.class);
+	public DAJdbcFormOfParticipationDAO() {
+		super(FormOfParticipation.class );
 	}
 
 	// ============================================================
@@ -39,17 +39,17 @@ public class JdbcReligionDAO extends JdbcBaseDAO<Religion> implements
 	}
 
 	@Override
-	public Religion findById(int id) {
+	public FormOfParticipation findById(int id) {
 		return findBy(COL_ID, String.valueOf(id));
 	}
 
 	@Override
-	public Religion findByName(String name) {
+	public FormOfParticipation findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
 
 	@Override
-	public List<Religion> list() {
+	public List<FormOfParticipation> list() {
 		return getAll();
 	}
 
