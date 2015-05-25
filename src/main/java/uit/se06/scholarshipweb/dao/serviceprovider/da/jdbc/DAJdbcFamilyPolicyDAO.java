@@ -1,15 +1,13 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.factory.IFamilyPolicyDAO;
 import uit.se06.scholarshipweb.model.FamilyPolicy;
 
-public class DAJdbcFamilyPolicyDAO extends DAJdbcBaseDAO<FamilyPolicy> implements
-		IFamilyPolicyDAO {
+public class DAJdbcFamilyPolicyDAO extends DAJdbcBaseDAO<FamilyPolicy>
+		implements IFamilyPolicyDAO {
 
 	// ============================================================
 	// VARIABLES
@@ -46,11 +44,6 @@ public class DAJdbcFamilyPolicyDAO extends DAJdbcBaseDAO<FamilyPolicy> implement
 	@Override
 	public FamilyPolicy findByName(String name) {
 		return findBy(COL_NAME, name);
-	}
-
-	@Override
-	public List<FamilyPolicy> list() {
-		return getAll();
 	}
 
 	// ============================================================

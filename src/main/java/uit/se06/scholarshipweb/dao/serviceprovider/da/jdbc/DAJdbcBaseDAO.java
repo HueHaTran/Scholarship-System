@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 
-import uit.se06.scholarshipweb.dao.serviceprovider.util.HibernateUtil;
+import uit.se06.scholarshipweb.dao.factory.IDAO;
+import uit.se06.scholarshipweb.dao.util.HibernateUtil;
 
-public abstract class DAJdbcBaseDAO<T> {
+public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 
 	private SessionFactory sessionFactory;
 	private Session session;
@@ -76,7 +78,7 @@ public abstract class DAJdbcBaseDAO<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<T> getAll() {
+	public List<T> list() {
 		List<T> result = null;
 		String queryString = "FROM " + modelClass.getSimpleName();
 
@@ -88,6 +90,28 @@ public abstract class DAJdbcBaseDAO<T> {
 			closeSession();
 		}
 		return result;
+	}
+
+	public void insert(T entity) {
+		SessionFactory sessionfactory = HibernateUtil
+				.getSessionAnnotationFactory();
+		Session session = sessionfactory.openSession();
+
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.save(entity);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.refresh(entity);
+			session.close();
+		}
 	}
 
 	protected abstract Logger getLogger();

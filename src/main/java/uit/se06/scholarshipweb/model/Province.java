@@ -16,9 +16,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "province", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "province_name"), })
-public class Province implements ISimpleModel{
+@Indexed
+public class Province implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -30,6 +37,7 @@ public class Province implements ISimpleModel{
 	private int provinceId;
 
 	@Column(name = "province_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	private String provinceName;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -43,7 +51,7 @@ public class Province implements ISimpleModel{
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "province")
 	private List<Sponsor> sponsors;
-	 
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentResidences")
 	private List<ScholarshipSpecification> scholarshipsWithResidence;
 

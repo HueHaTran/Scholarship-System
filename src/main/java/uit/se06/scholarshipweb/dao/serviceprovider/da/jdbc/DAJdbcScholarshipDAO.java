@@ -2,6 +2,7 @@ package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,11 +66,6 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		return findBy(COL_NAME, name);
 	}
 
-	@Override
-	public List<Scholarship> list() {
-		return getAll();
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	/**
@@ -83,8 +79,9 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		try {
 			// query
 			builder.append("SELECT ").append(COL_NAME);
-			builder.append(", ").append(COL_SCHOOL);
-			builder.append(", ").append(COL_DESCIPTION);
+			builder.append(", ").append(COL_VALUE_MIN);
+			builder.append(", ").append(COL_VALUE_MAX);
+			builder.append(", ").append(COL_DATE_END_REGISTER);
 
 			builder.append(" FROM ").append(Scholarship.class.getSimpleName());
 			builder.append("  where ").append(COL_ID).append(" = :paramId");
@@ -109,7 +106,6 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		}
 
 	}
-
 	// ============================================================
 	// OTHER METHODS
 	// ============================================================

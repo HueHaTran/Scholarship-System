@@ -8,11 +8,12 @@ import org.slf4j.LoggerFactory;
 import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
 import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
 import uit.se06.scholarshipweb.dao.factory.ICountryDAO;
+import uit.se06.scholarshipweb.dao.factory.IDAO;
 import uit.se06.scholarshipweb.dao.factory.IProvinceDAO;
 import uit.se06.scholarshipweb.model.Country;
 import uit.se06.scholarshipweb.model.Province;
 
-public class DACountryBUS implements ICountryBUS {
+public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 
 	// ============================================================
 	// VARIABLES
@@ -45,10 +46,8 @@ public class DACountryBUS implements ICountryBUS {
 	 */
 	@Override
 	public Country findById(int id) {
-		Country entity = dao.findById(id);
-		if (entity == null) {
-			logger.info("Warning: " + "findById(" + id + ")" + " return null.");
-		} else {
+		Country entity = super.findById(id);
+		if (entity != null) {
 			entity.setProvinces(daoProvince.listByCountry(entity.getId()));
 		}
 		return entity;
@@ -62,28 +61,11 @@ public class DACountryBUS implements ICountryBUS {
 	 */
 	@Override
 	public Country findByName(String name) {
-		Country entity = dao.findByName(name);
-		if (entity == null) {
-			logger.info("Warning: " + "findByName(" + name + ")"
-					+ " return null.");
-		} else {
+		Country entity = super.findByName(name);
+		if (entity != null) {
 			entity.setProvinces(daoProvince.listByCountry(entity.getId()));
 		}
 		return entity;
-	}
-
-	/**
-	 * general info only, no detail
-	 * 
-	 * @return
-	 */
-	@Override
-	public List<Country> list() {
-		List<Country> result = dao.list();
-		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning: " + "list()" + " return null or empty.");
-		}
-		return result;
 	}
 
 	@Override
@@ -95,5 +77,15 @@ public class DACountryBUS implements ICountryBUS {
 		}
 
 		return result;
+	}
+
+	@Override
+	protected IDAO<Country> getDAO() {
+		return dao;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
 	}
 }

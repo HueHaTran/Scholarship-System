@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 
-public class DAJdbcAcademicLevelDAO extends DAJdbcBaseDAO<AcademicLevel> implements
-		IAcademicLevelDAO {
+public class DAJdbcAcademicLevelDAO extends DAJdbcBaseDAO<AcademicLevel>
+		implements IAcademicLevelDAO {
 
 	// ============================================================
 	// VARIABLES
@@ -53,7 +53,7 @@ public class DAJdbcAcademicLevelDAO extends DAJdbcBaseDAO<AcademicLevel> impleme
 
 	@Override
 	public List<AcademicLevel> list() {
-		List<AcademicLevel> result = getAll();
+		List<AcademicLevel> result = super.list();
 		Collections.sort(result, COMPARATOR);
 		return result;
 	}

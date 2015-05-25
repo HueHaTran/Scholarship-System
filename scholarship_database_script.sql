@@ -154,9 +154,10 @@ CREATE TABLE `scholarship`
 (
 	`scholarship_id` INT(11) NOT NULL AUTO_INCREMENT,
     `scholarship_name` NVARCHAR(64) NOT NULL,
-     `date_end_register` DATE,
+	`date_end_register` DATE,
 	`value_min` INT(11)default -1,
     `value_max` INT(11)default -1,
+    `active` TINYINT(1) default 1,/*default true*/
     
     PRIMARY KEY (`scholarship_id`)
 );

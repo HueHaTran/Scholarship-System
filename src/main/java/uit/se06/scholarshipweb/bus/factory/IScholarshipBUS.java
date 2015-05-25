@@ -1,22 +1,18 @@
 package uit.se06.scholarshipweb.bus.factory;
 
-import java.util.List;
-
 import uit.se06.scholarshipweb.model.Scholarship;
 import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
 import uit.se06.scholarshipweb.viewmodel.ScholarshipViewModel;
 
-public interface IScholarshipBUS {
+public interface IScholarshipBUS extends IBUS<Scholarship> {
 
-	public abstract ScholarshipViewModel findById(int id);
+	ScholarshipViewModel findViewModelById(int id);
 
-	public abstract ScholarshipViewModel findByName(String name);
+	ScholarshipViewModel findViewModelByName(String name);
 
-	public abstract List<Scholarship> list();
+	OverviewScholarshipViewModel findOverviewById(int id);
 
-	public abstract OverviewScholarshipViewModel findOverviewById(int id);
-
-	public abstract OverviewScholarshipViewModel convertToOverviewViewModel(
+	OverviewScholarshipViewModel convertToOverviewViewModel(
 			Scholarship scholarship);
 
 }

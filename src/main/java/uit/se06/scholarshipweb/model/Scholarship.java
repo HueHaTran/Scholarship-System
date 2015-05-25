@@ -14,8 +14,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.DateBridge;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
+import org.hibernate.search.annotations.Store;
+
+import uit.se06.scholarshipweb.dao.util.IndexScholarshipInterceptor;
+
 @Entity
 @Table(name = "scholarship", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "scholarship_name"), })
+// index exception class
+@Indexed(interceptor = IndexScholarshipInterceptor.class)
 public class Scholarship implements ISimpleModel {
 
 	// ============================================================
@@ -28,9 +40,12 @@ public class Scholarship implements ISimpleModel {
 	private int scholarshipId;
 
 	@Column(name = "scholarship_name", unique = false, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String scholarshipName;
 
 	@Column(name = "date_end_register", unique = false, nullable = true)
+	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
+	@DateBridge(resolution = Resolution.DAY)
 	private Date dateEndRegister;
 
 	@Column(name = "value_min", unique = false, nullable = false)
@@ -38,6 +53,9 @@ public class Scholarship implements ISimpleModel {
 
 	@Column(name = "value_max", unique = false, nullable = false)
 	private int valueMax;
+
+	@Column(name = "active", unique = false, nullable = false)
+	private boolean isActive;
 
 	//
 
@@ -109,5 +127,13 @@ public class Scholarship implements ISimpleModel {
 	public void setScholarshipSpecification(
 			ScholarshipSpecification scholarshipSpecification) {
 		this.scholarshipSpecification = scholarshipSpecification;
+	}
+
+	public boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 }

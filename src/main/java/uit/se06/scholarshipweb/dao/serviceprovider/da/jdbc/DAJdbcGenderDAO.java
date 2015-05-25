@@ -1,14 +1,13 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.factory.IGenderDAO;
 import uit.se06.scholarshipweb.model.Gender;
 
-public class DAJdbcGenderDAO extends DAJdbcBaseDAO<Gender> implements IGenderDAO {
+public class DAJdbcGenderDAO extends DAJdbcBaseDAO<Gender> implements
+		IGenderDAO {
 
 	// ============================================================
 	// VARIABLES
@@ -45,11 +44,6 @@ public class DAJdbcGenderDAO extends DAJdbcBaseDAO<Gender> implements IGenderDAO
 	@Override
 	public Gender findByName(String name) {
 		return findBy(COL_NAME, name);
-	}
-
-	@Override
-	public List<Gender> list() {
-		return getAll();
 	}
 
 	// ============================================================

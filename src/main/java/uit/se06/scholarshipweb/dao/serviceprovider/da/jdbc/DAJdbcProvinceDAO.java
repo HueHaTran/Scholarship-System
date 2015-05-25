@@ -51,11 +51,6 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 	}
 
 	@Override
-	public List<Province> list() {
-		return getAll();
-	}
-
-	@Override
 	public List<Province> listByCountry(int countryId) {
 		return listBy(COL_COUNTRY_ID, String.valueOf(countryId));
 	}

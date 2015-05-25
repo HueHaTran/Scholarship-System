@@ -13,8 +13,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "country", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "country_name"), })
+@Indexed
 public class Country implements ISimpleModel {
 
 	// ============================================================
@@ -27,6 +34,7 @@ public class Country implements ISimpleModel {
 	private int countryId;
 
 	@Column(name = "country_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	private String countryName;
 
 	// "mappedBy"'s value is property'name, not column'name

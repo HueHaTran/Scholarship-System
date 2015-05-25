@@ -1,20 +1,17 @@
-function onChangeCountry(s) {
+function onChangeCountry(s, provinceElementId) {
 	var dataString = s[s.selectedIndex].value;
 
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
-		url : "./get_province",
-		async : false,
+		url : "./getProvincesFromCountry",
 		data : countryId = dataString,
 		dataType : "text",
-		async : false,
-		success : function(msg) {
-			alert("enter");
+		success : function(msg) { 
 			data = JSON.parse(msg);
 			if (msg != "false") {
 				var sel = document
-						.getElementById('combobox_residence_province');
+						.getElementById(provinceElementId);
 
 				var len = data.length;
 				if (len == 0) {

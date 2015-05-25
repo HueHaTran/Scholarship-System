@@ -9,9 +9,11 @@ import uit.se06.scholarshipweb.bus.factory.IAcademicLevelBUS;
 import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
 import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDAO;
 import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDetailDAO;
+import uit.se06.scholarshipweb.dao.factory.IDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 
-public class DAAcademicLevelBUS implements IAcademicLevelBUS {
+public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
+		IAcademicLevelBUS {
 
 	// ============================================================
 	// VARIABLES
@@ -44,11 +46,9 @@ public class DAAcademicLevelBUS implements IAcademicLevelBUS {
 	 */
 	@Override
 	public AcademicLevel findById(int id) {
-		AcademicLevel entity = dao.findById(id);
+		AcademicLevel entity = super.findById(id);
 
-		if (entity == null) {
-			logger.info("Warning: " + "findById(" + id + ")" + " return null.");
-		} else {
+		if (entity != null) {
 			entity.setAcademicLevelDetails(daoDetail
 					.findByAcademicLevelId(entity.getId()));
 		}
@@ -64,31 +64,14 @@ public class DAAcademicLevelBUS implements IAcademicLevelBUS {
 	 */
 	@Override
 	public AcademicLevel findByName(String name) {
-		AcademicLevel entity = dao.findByName(name);
+		AcademicLevel entity = super.findByName(name);
 
-		if (entity == null) {
-			logger.info("Warning: " + "findByName(" + name + ")"
-					+ " return null.");
-		} else {
+		if (entity != null) {
 			entity.setAcademicLevelDetails(daoDetail
 					.findByAcademicLevelId(entity.getId()));
 		}
 
 		return entity;
-	}
-
-	/**
-	 * general info only, no detail
-	 * 
-	 * @return
-	 */
-	@Override
-	public List<AcademicLevel> list() {
-		List<AcademicLevel> result = dao.list();
-		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning: " + "list()" + " return null or empty.");
-		}
-		return result;
 	}
 
 	/**
@@ -103,5 +86,15 @@ public class DAAcademicLevelBUS implements IAcademicLevelBUS {
 			logger.info("Warning: " + "list()" + " return null or empty.");
 		}
 		return result;
+	}
+
+	@Override
+	protected IDAO<AcademicLevel> getDAO() {
+		return dao;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
 	}
 }

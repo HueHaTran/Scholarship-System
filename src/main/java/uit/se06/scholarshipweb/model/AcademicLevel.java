@@ -13,9 +13,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "academic_level", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "academic_level_name"), })
-public class AcademicLevel implements ISimpleModel{
+@Indexed
+public class AcademicLevel implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -27,10 +35,12 @@ public class AcademicLevel implements ISimpleModel{
 	private int academicLevelId;
 
 	@Column(name = "academic_level_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String academicLevelName;
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "academicLevel")
+	@IndexedEmbedded
 	private List<AcademicLevelDetail> academicLevelDetails;
 
 	// ============================================================

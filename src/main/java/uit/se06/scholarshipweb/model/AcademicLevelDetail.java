@@ -16,8 +16,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "academic_level_detail", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "academic_level_detail_name"), })
+@Indexed
 public class AcademicLevelDetail implements ISimpleModel {
 
 	// ============================================================
@@ -30,6 +37,7 @@ public class AcademicLevelDetail implements ISimpleModel {
 	private int academicLevelDetailId;
 
 	@Column(name = "academic_level_detail_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String academicLevelDetailName;
 
 	@ManyToOne(fetch = FetchType.EAGER)

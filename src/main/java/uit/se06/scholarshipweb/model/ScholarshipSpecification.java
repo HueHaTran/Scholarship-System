@@ -15,8 +15,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "scholarship_specification", catalog = "scholarshipdatabase")
+@Indexed
 public class ScholarshipSpecification {
 
 	// ============================================================
@@ -31,15 +39,18 @@ public class ScholarshipSpecification {
 	private String description;
 
 	@Column(name = "original_link", unique = false, nullable = true)
+	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	private String originalLink;
 
 	@Column(name = "count", unique = false, nullable = false)
 	private int count;
 
 	@Column(name = "application_description", unique = false, nullable = true)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String applicationDescription;
 
 	@Column(name = "support_description", unique = false, nullable = true)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String supportDescription;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -48,67 +59,83 @@ public class ScholarshipSpecification {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_citizenship_id", referencedColumnName = "country_id")
+	@IndexedEmbedded
 	private Country studentCitizenship;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_ethnic_id", referencedColumnName = "ethnic_id")
+	@IndexedEmbedded
 	private Ethnic studentEthnic;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_religion_id", referencedColumnName = "religion_id")
+	@IndexedEmbedded
 	private Religion studentReligion;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_academic_level_detail_id", referencedColumnName = "academic_level_detail_id")
+	@IndexedEmbedded
 	private AcademicLevelDetail studentAcademicLevelDetail;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "scholarship_type_id", referencedColumnName = "scholarship_type_id")
+	@IndexedEmbedded
 	private ScholarshipType scholarshipType;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "school_id", referencedColumnName = "school_id")
+	@IndexedEmbedded
 	private School school;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "form_of_participation_id", referencedColumnName = "form_of_participation_id")
+	@IndexedEmbedded
 	private FormOfParticipation formOfParticipation;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
+	@IndexedEmbedded
 	private Scholarship scholarship;
 
 	// many to many
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_academic_level_detail", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "academic_level_detail_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<AcademicLevelDetail> scholarshipAcademicLevelDetail;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_family_policy", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "family_policy_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<FamilyPolicy> studentFamilyPolicies;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_disability", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "disability_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<Disability> studentDisabilities;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_terminal_ill", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "terminal_ill_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<TerminalIll> studentTerminalIllnesses;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_sponsor", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "sponsor_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<Sponsor> sponsors;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_major", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "major_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<Major> scholarshipMajors;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_talent", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "talent_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<Talent> studentTalents;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_student_residence", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "province_id", nullable = false, updatable = false) })
+	@IndexedEmbedded
 	private List<Province> studentResidences;
 
 	// ============================================================

@@ -1,7 +1,5 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,11 +43,6 @@ public class DAJdbcEthnicDAO extends DAJdbcBaseDAO<Ethnic> implements IEthnicDAO
 	@Override
 	public Ethnic findByName(String name) {
 		return findBy(COL_NAME, name);
-	}
-
-	@Override
-	public List<Ethnic> list() {
-		return getAll();
 	}
 
 	// ============================================================

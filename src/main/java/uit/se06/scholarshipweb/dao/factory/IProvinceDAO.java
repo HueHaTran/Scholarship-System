@@ -4,7 +4,7 @@ import java.util.List;
 
 import uit.se06.scholarshipweb.model.Province;
 
-public interface IProvinceDAO extends IBasicDAO<Province> {
+public interface IProvinceDAO extends IDAO<Province> {
 	List<Province> listByCountry(int countryId);
 	List<Province> listBasicInfoByCountry(int countryId);
 }

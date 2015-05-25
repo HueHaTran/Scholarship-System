@@ -15,6 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "sponsor", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "sponsor_name"), })
 public class Sponsor implements ISimpleModel {
@@ -29,9 +34,11 @@ public class Sponsor implements ISimpleModel {
 	private int sponsorId;
 
 	@Column(name = "sponsor_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String sponsorName;
 
 	@Column(name = "address", unique = false, nullable = true)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String address;
 
 	@Column(name = "phone", unique = false, nullable = true)

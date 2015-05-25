@@ -1,13 +1,12 @@
 package uit.se06.scholarshipweb.bus.serviceprovider.da;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.bus.factory.IScholarshipBUS;
 import uit.se06.scholarshipweb.bus.util.Utility;
 import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
+import uit.se06.scholarshipweb.dao.factory.IDAO;
 import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
 import uit.se06.scholarshipweb.model.Scholarship;
 import uit.se06.scholarshipweb.model.ScholarshipSpecification;
@@ -15,7 +14,8 @@ import uit.se06.scholarshipweb.model.School;
 import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
 import uit.se06.scholarshipweb.viewmodel.ScholarshipViewModel;
 
-public class DAScholarshipBUS implements IScholarshipBUS {
+public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
+		IScholarshipBUS {
 
 	// ============================================================
 	// VARIABLES
@@ -39,44 +39,34 @@ public class DAScholarshipBUS implements IScholarshipBUS {
 	// ============================================================
 
 	@Override
-	public ScholarshipViewModel findById(int id) {
-		Scholarship scholarship = dao.findById(id);
-		if (scholarship == null) {
-			logger.info("Warning in: " + "findById(" + id + ")"
-					+ " return null.");
-			return null;
-		}
-
+	public ScholarshipViewModel findViewModelById(int id) {
+		Scholarship scholarship = findById(id);
 		ScholarshipViewModel entity = convertToViewModel(scholarship);
 		return entity;
 	}
 
 	@Override
-	public ScholarshipViewModel findByName(String name) {
-		Scholarship scholarship = dao.findByName(name);
-		if (scholarship == null) {
-			logger.info("Warning in: " + "findByName(" + name + ")"
-					+ " return null.");
-			return null;
-		}
+	public ScholarshipViewModel findViewModelByName(String name) {
+		Scholarship scholarship = findByName(name);
 
 		ScholarshipViewModel entity = convertToViewModel(scholarship);
 		return entity;
-	}
-
-	@Override
-	public List<Scholarship> list() {
-		List<Scholarship> result = dao.list();
-		if (result == null || (result != null && result.isEmpty())) {
-			logger.info("Warning in: " + "list()" + " return null or empty.");
-		}
-		return result;
 	}
 
 	@Override
 	public OverviewScholarshipViewModel findOverviewById(int id) {
 		Scholarship scholarship = dao.findShortInfoById(id);
 		return convertToOverviewViewModel(scholarship);
+	}
+
+	@Override
+	protected IDAO<Scholarship> getDAO() {
+		return dao;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		return logger;
 	}
 
 	// ============================================================
@@ -173,4 +163,5 @@ public class DAScholarshipBUS implements IScholarshipBUS {
 
 		return entity;
 	}
+
 }

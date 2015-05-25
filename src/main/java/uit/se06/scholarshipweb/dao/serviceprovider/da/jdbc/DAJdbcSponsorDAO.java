@@ -1,14 +1,13 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.factory.ISponsorDAO;
 import uit.se06.scholarshipweb.model.Sponsor;
 
-public class DAJdbcSponsorDAO extends DAJdbcBaseDAO<Sponsor> implements ISponsorDAO {
+public class DAJdbcSponsorDAO extends DAJdbcBaseDAO<Sponsor> implements
+		ISponsorDAO {
 
 	// ============================================================
 	// VARIABLES
@@ -50,11 +49,6 @@ public class DAJdbcSponsorDAO extends DAJdbcBaseDAO<Sponsor> implements ISponsor
 	@Override
 	public Sponsor findByName(String name) {
 		return findBy(COL_NAME, name);
-	}
-
-	@Override
-	public List<Sponsor> list() {
-		return getAll();
 	}
 
 	// ============================================================

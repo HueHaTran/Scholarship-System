@@ -48,12 +48,7 @@ public class DAJdbcAcademicLevelDetailDAO extends
 	public AcademicLevelDetail findByName(String name) {
 		return findBy(COL_NAME, name);
 	}
-
-	@Override
-	public List<AcademicLevelDetail> list() {
-		return getAll();
-	}
-
+ 
 	@Override
 	public List<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId) {
 		return listBy(COL_ACADEMIC_LEVEL_ID, String.valueOf(academicLevelId));

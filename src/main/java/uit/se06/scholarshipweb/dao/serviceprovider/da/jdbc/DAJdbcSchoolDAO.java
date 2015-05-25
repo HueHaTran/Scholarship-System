@@ -1,14 +1,13 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.factory.ISchoolDAO;
 import uit.se06.scholarshipweb.model.School;
 
-public class DAJdbcSchoolDAO extends DAJdbcBaseDAO<School> implements ISchoolDAO {
+public class DAJdbcSchoolDAO extends DAJdbcBaseDAO<School> implements
+		ISchoolDAO {
 
 	// ============================================================
 	// VARIABLES
@@ -50,11 +49,6 @@ public class DAJdbcSchoolDAO extends DAJdbcBaseDAO<School> implements ISchoolDAO
 	@Override
 	public School findByName(String name) {
 		return findBy(COL_NAME, name);
-	}
-
-	@Override
-	public List<School> list() {
-		return getAll();
 	}
 
 	// ============================================================

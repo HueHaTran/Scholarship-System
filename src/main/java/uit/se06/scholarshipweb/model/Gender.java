@@ -13,8 +13,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "gender", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "gender_name"), })
+@Indexed
 public class Gender implements ISimpleModel {
 
 	// ============================================================
@@ -27,6 +34,7 @@ public class Gender implements ISimpleModel {
 	private int genderId;
 
 	@Column(name = "gender_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	private String genderName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentGender")

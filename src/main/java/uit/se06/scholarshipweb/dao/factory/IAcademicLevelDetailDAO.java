@@ -4,6 +4,6 @@ import java.util.List;
 
 import uit.se06.scholarshipweb.model.AcademicLevelDetail;
 
-public interface IAcademicLevelDetailDAO extends IBasicDAO<AcademicLevelDetail> {
+public interface IAcademicLevelDetailDAO extends IDAO<AcademicLevelDetail> {
 	List<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId);
 }

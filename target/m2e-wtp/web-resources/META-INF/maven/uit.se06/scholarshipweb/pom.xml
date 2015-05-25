@@ -18,16 +18,19 @@
 	<dependencies>
 		<!-- lucene -->
 		<dependency>
-			<artifactId>lucene-core</artifactId>
-			<groupId>org.apache.lucene</groupId>
-			<type>jar</type>
-			<version>3.6.1</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>5.2.0.Final</version>
 		</dependency>
+
+
 		<dependency>
-			<groupId>org.compass-project</groupId>
-			<artifactId>compass</artifactId>
-			<version>2.2.0</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.9.Final</version>
 		</dependency>
+
+
 
 		<!-- use json in ajax -->
 		<dependency>

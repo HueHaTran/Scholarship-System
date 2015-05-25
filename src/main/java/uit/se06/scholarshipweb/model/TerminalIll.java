@@ -13,8 +13,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 @Entity
 @Table(name = "terminal_ill", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "terminal_ill_name"), })
+@Indexed
 public class TerminalIll implements ISimpleModel {
 
 	// ============================================================
@@ -27,6 +34,7 @@ public class TerminalIll implements ISimpleModel {
 	private int terminalIllId;
 
 	@Column(name = "terminal_ill_name", unique = true, nullable = false)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String terminalIllName;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentTerminalIllnesses")

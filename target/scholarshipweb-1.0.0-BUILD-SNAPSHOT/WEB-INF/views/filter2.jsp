@@ -7,7 +7,7 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
-
+<script src="<c:url value="/resources/js/onValueChanged.js" />"></script>
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -46,19 +46,19 @@
 								<c:when
 									test="${fn:length(student_academic_level.getAcademicLevelDetails()) > 0}">
 
-									<div class="label_listbox right">
-										<select name="combo_student_aca_${aca_id_count}">
+									<label class="label_listbox right"> <select
+										name="combo_student_aca_${aca_id_count}"
+										id="combo_student_aca_${aca_id_count}">
 											<option value="0" selected><%=Contants.TAG_ALL%></option>
 											<c:forEach
 												items="${student_academic_level.getAcademicLevelDetails()}"
 												var="student_academic_detail">
 												<option value="${student_academic_detail.getId()}">${student_academic_detail.getName()}</option>
 											</c:forEach>
-										</select>
-									</div>
+									</select>
+									</label>
 								</c:when>
 							</c:choose>
-
 						</c:forEach>
 					</div>
 				</div>
@@ -86,24 +86,25 @@
 								scope="page" />
 							<label class="label_radio"
 								style="float: left; clear: both; height: 40px;"> <input
-								name="meta_data_scholarship_aca"
-								id="${scholarship_academic_level.getId()}"
-								value="${scholarship_academic_level.getId()}" type="radio" />
+								name="meta_data_scholarship_aca" id="${aca_id_count2}"
+								value="${scholarship_academic_level.getId()}" type="radio"
+								onchange="onAcademicLevelChanged('meta_data_scholarship_aca','combo_scholarship_aca_')" />
 								${scholarship_academic_level.getName()}
 							</label>
 							<c:choose>
 								<c:when
 									test="${fn:length(scholarship_academic_level.getAcademicLevelDetails()) > 0}">
-									<div class="label_listbox right">
-										<select name="combo_scholarship_aca_${aca_id_count2}">
+									<label class="label_listbox right"> <select
+										name="combo_scholarship_aca_${aca_id_count2}"
+										id="combo_scholarship_aca_${aca_id_count2}">
 											<option value="0" selected><%=Contants.TAG_ALL%></option>
 											<c:forEach
 												items="${scholarship_academic_level.getAcademicLevelDetails()}"
 												var="scholarship_academic_detail">
 												<option value="${scholarship_academic_detail.getId()}">${scholarship_academic_detail.getName()}</option>
 											</c:forEach>
-										</select>
-									</div>
+									</select>
+									</label>
 								</c:when>
 							</c:choose>
 						</c:forEach>
