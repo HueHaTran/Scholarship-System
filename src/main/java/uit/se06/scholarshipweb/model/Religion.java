@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class Religion implements ISimpleModel {
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentReligion")
-	private List<ScholarshipSpecification> scholarships;
+	private Set<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -73,11 +73,11 @@ public class Religion implements ISimpleModel {
 		this.religionName = religionName;
 	}
 
-	public List<ScholarshipSpecification> getScholarships() {
+	public Set<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<ScholarshipSpecification> scholarships) {
+	public void setScholarships(Set<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

@@ -1,5 +1,8 @@
 package uit.se06.scholarshipweb.bus.serviceprovider.da;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -81,10 +84,12 @@ public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
 	 */
 	@Override
 	public List<AcademicLevel> listWithDetails() {
-		List<AcademicLevel> result = dao.listWithDetails();
+		List<AcademicLevel> result = new ArrayList<AcademicLevel>(
+				dao.listWithDetails());
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning: " + "list()" + " return null or empty.");
 		}
+		Collections.sort(result, COMPARATOR);
 		return result;
 	}
 
@@ -97,4 +102,14 @@ public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
 	protected Logger getLogger() {
 		return logger;
 	}
+
+	// ============================================================
+	// OTHER METHODS
+	// ============================================================
+
+	public static final Comparator<AcademicLevel> COMPARATOR = new Comparator<AcademicLevel>() {
+		public int compare(AcademicLevel entity1, AcademicLevel entity2) {
+			return entity1.getId() - entity2.getId();
+		}
+	};
 }

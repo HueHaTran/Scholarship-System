@@ -6,7 +6,7 @@ import java.util.List;
 import uit.se06.scholarshipweb.model.ScholarshipType;
 import uit.se06.scholarshipweb.model.Talent;
 
-public class FilterScholarshipType {
+public class ListFilterScholarshipType {
 
 	// ============================================================
 	// VARIABLES
@@ -19,7 +19,7 @@ public class FilterScholarshipType {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public FilterScholarshipType() {
+	public ListFilterScholarshipType() {
 		scholarshipTypes = new ArrayList<ScholarshipType>();
 		talents = new ArrayList<Talent>();
 	}

@@ -1,10 +1,10 @@
 package uit.se06.scholarshipweb.dao.factory;
 
-import java.util.List;
+import java.util.Set;
 
 import uit.se06.scholarshipweb.model.Province;
 
 public interface IProvinceDAO extends IDAO<Province> {
-	List<Province> listByCountry(int countryId);
-	List<Province> listBasicInfoByCountry(int countryId);
+	Set<Province> listByCountry(int countryId);
+	Set<Province> listBasicInfoByCountry(int countryId);
 }

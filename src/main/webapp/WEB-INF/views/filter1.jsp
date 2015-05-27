@@ -125,7 +125,7 @@
 					</div>
 					<div class="answer">
 						<label class="label_listbox_mutiple"> <select
-							class="select_mutiple" name="combobox_disability"
+							class="select_mutiple" id="combobox_disability"
 							multiple="multiple">
 								<c:forEach items="${meta_data_disability}" var="disability">
 									<option value="${disability.getId()}">${disability.getName()}</option>

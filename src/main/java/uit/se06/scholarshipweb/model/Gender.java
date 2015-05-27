@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
@@ -38,7 +39,8 @@ public class Gender implements ISimpleModel {
 	private String genderName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentGender")
-	private List<ScholarshipSpecification> scholarships;
+	@ContainedIn
+	private Set<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -72,11 +74,11 @@ public class Gender implements ISimpleModel {
 		this.genderName = genderName;
 	}
 
-	public List<ScholarshipSpecification> getScholarships() {
+	public Set<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<ScholarshipSpecification> scholarships) {
+	public void setScholarships(Set<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

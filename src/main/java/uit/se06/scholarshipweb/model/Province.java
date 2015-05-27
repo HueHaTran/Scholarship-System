@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,14 +46,14 @@ public class Province implements ISimpleModel {
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "province")
-	private List<School> schools;
+	private Set<School> schools;
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "province")
-	private List<Sponsor> sponsors;
+	private Set<Sponsor> sponsors;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentResidences")
-	private List<ScholarshipSpecification> scholarshipsWithResidence;
+	private Set<ScholarshipSpecification> scholarshipsWithResidence;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -96,12 +96,12 @@ public class Province implements ISimpleModel {
 		this.country = country;
 	}
 
-	public List<ScholarshipSpecification> getScholarshipsWithResidence() {
+	public Set<ScholarshipSpecification> getScholarshipsWithResidence() {
 		return scholarshipsWithResidence;
 	}
 
 	public void setScholarshipsWithResidence(
-			List<ScholarshipSpecification> scholarshipsWithResidence) {
+			Set<ScholarshipSpecification> scholarshipsWithResidence) {
 		this.scholarshipsWithResidence = scholarshipsWithResidence;
 	}
 }

@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,9 +19,12 @@ import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
 
+import uit.se06.scholarshipweb.dao.util.IndexScholarshipSpecInterceptor;
+
 @Entity
 @Table(name = "scholarship_type", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "scholarship_type_name"), })
-@Indexed
+// index exception class
+@Indexed(interceptor = IndexScholarshipSpecInterceptor.class)
 public class ScholarshipType implements ISimpleModel {
 
 	// ============================================================
@@ -38,7 +41,7 @@ public class ScholarshipType implements ISimpleModel {
 	private String scholarshipTypeName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "scholarshipType")
-	private List<ScholarshipSpecification> scholarships;
+	private Set<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -72,11 +75,11 @@ public class ScholarshipType implements ISimpleModel {
 		this.scholarshipTypeName = scholarshipTypeName;
 	}
 
-	public List<ScholarshipSpecification> getScholarships() {
+	public Set<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<ScholarshipSpecification> scholarships) {
+	public void setScholarships(Set<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

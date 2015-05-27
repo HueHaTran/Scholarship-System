@@ -1,8 +1,7 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
@@ -52,21 +51,20 @@ public class DAJdbcAcademicLevelDAO extends DAJdbcBaseDAO<AcademicLevel>
 	}
 
 	@Override
-	public List<AcademicLevel> list() {
-		List<AcademicLevel> result = super.list();
-		Collections.sort(result, COMPARATOR);
+	public Set<AcademicLevel> list() {
+		Set<AcademicLevel> result = super.list();
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AcademicLevel> listWithDetails() {
-		List<AcademicLevel> result = null;
+	public Set<AcademicLevel> listWithDetails() {
+		Set<AcademicLevel> result = null;
 		String queryString = "FROM " + AcademicLevel.class.getSimpleName();
 
 		try {
-			result = (List<AcademicLevel>) getSession()
-					.createQuery(queryString).list();
+			result = new HashSet<AcademicLevel>(getSession().createQuery(
+					queryString).list());
 			for (AcademicLevel entity : result) {
 				Hibernate.initialize(entity.getAcademicLevelDetails());
 			}
@@ -76,18 +74,7 @@ public class DAJdbcAcademicLevelDAO extends DAJdbcBaseDAO<AcademicLevel>
 			closeSession();
 		}
 
-		Collections.sort(result, COMPARATOR);
 		return result;
 	}
 
-	// ============================================================
-	// OTHER METHODS
-	// ============================================================
-
-	public static final Comparator<AcademicLevel> COMPARATOR = new Comparator<AcademicLevel>() {
-		// Overriding the compare method to sort the age
-		public int compare(AcademicLevel entity1, AcademicLevel entity2) {
-			return entity1.getId() - entity2.getId();
-		}
-	};
 }

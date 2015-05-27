@@ -1,5 +1,7 @@
 package uit.se06.scholarshipweb.bus.serviceprovider.da;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -48,7 +50,8 @@ public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 	public Country findById(int id) {
 		Country entity = super.findById(id);
 		if (entity != null) {
-			entity.setProvinces(daoProvince.listByCountry(entity.getId()));
+			entity.setProvinces(new HashSet<Province>(daoProvince
+					.listByCountry(entity.getId())));
 		}
 		return entity;
 	}
@@ -63,14 +66,16 @@ public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 	public Country findByName(String name) {
 		Country entity = super.findByName(name);
 		if (entity != null) {
-			entity.setProvinces(daoProvince.listByCountry(entity.getId()));
+			entity.setProvinces(new HashSet<Province>(daoProvince
+					.listByCountry(entity.getId())));
 		}
 		return entity;
 	}
 
 	@Override
 	public List<Province> listProvinceByCountry(int countryId) {
-		List<Province> result = daoProvince.listBasicInfoByCountry(countryId);
+		List<Province> result = new ArrayList<Province>(
+				daoProvince.listBasicInfoByCountry(countryId));
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning: " + "listProvinceByCountry(" + countryId
 					+ ")" + " return null or empty.");

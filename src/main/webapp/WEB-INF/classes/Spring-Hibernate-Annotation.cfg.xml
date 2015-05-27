@@ -10,12 +10,13 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3305/scholarshipdatabase</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">123456</property>
+
 		<!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<!-- Hibernate Search -->
 		<property name="hibernate.search.default.directory_provider">filesystem</property>
-		<property name="hibernate.search.default.indexBase">D:/lucene-test-var</property>
+		<property name="hibernate.search.default.indexBase">D:/lucene-var3</property>
 
 	</session-factory>
 </hibernate-configuration>

@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import org.hibernate.search.annotations.Store;
 @Entity
 @Table(name = "form_of_participation", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "form_of_participation_name"), })
 @Indexed
-public class FormOfParticipation  implements ISimpleModel{
+public class FormOfParticipation implements ISimpleModel {
 
 	// ============================================================
 	// PROPERTIES
@@ -38,7 +38,7 @@ public class FormOfParticipation  implements ISimpleModel{
 	private String formOfParticipationName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "formOfParticipation")
-	private List<ScholarshipSpecification> scholarships;
+	private Set<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -73,11 +73,11 @@ public class FormOfParticipation  implements ISimpleModel{
 		this.formOfParticipationName = formOfParticipationName;
 	}
 
-	public List<ScholarshipSpecification> getScholarships() {
+	public Set<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<ScholarshipSpecification> scholarships) {
+	public void setScholarships(Set<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 }

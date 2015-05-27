@@ -14,9 +14,9 @@ import uit.se06.scholarshipweb.bus.factory.IScholarshipTypeBUS;
 import uit.se06.scholarshipweb.bus.factory.ITalentBUS;
 import uit.se06.scholarshipweb.bus.factory.ITerminalIllBUS;
 import uit.se06.scholarshipweb.model.Province;
-import uit.se06.scholarshipweb.viewmodel.FilterAcademicLevel;
-import uit.se06.scholarshipweb.viewmodel.FilterPersonalInfo;
-import uit.se06.scholarshipweb.viewmodel.FilterScholarshipType;
+import uit.se06.scholarshipweb.viewmodel.ListFilterAcademicLevel;
+import uit.se06.scholarshipweb.viewmodel.ListFilterPersonalInfo;
+import uit.se06.scholarshipweb.viewmodel.ListFilterScholarshipType;
 
 public class FilterBUS {
 
@@ -52,8 +52,8 @@ public class FilterBUS {
 	 * 
 	 * @return
 	 */
-	public FilterPersonalInfo getPersonalInfo() {
-		FilterPersonalInfo result = new FilterPersonalInfo();
+	public ListFilterPersonalInfo getPersonalInfo() {
+		ListFilterPersonalInfo result = new ListFilterPersonalInfo();
 
 		result.setCountries(busCountry.list());
 		result.setDisabilities(busDisability.list());
@@ -66,16 +66,16 @@ public class FilterBUS {
 		return result;
 	}
 
-	public FilterAcademicLevel getAcademicLevelInfo() {
-		FilterAcademicLevel result = new FilterAcademicLevel();
+	public ListFilterAcademicLevel getAcademicLevelInfo() {
+		ListFilterAcademicLevel result = new ListFilterAcademicLevel();
 		result.setAcademicLevels(busAcademicLevel.listWithDetails());
 		result.setMajors(busMajor.list());
 
 		return result;
 	}
 
-	public FilterScholarshipType getScholarshipTypeInfo() {
-		FilterScholarshipType result = new FilterScholarshipType();
+	public ListFilterScholarshipType getScholarshipTypeInfo() {
+		ListFilterScholarshipType result = new ListFilterScholarshipType();
 		result.setScholarshipTypes(busScholarshipType.list());
 		result.setTalents(busTalent.list());
 

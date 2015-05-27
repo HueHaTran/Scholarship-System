@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,10 +46,10 @@ public class AcademicLevelDetail implements ISimpleModel {
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentAcademicLevelDetail")
-	private List<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail;
+	private Set<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "scholarshipAcademicLevelDetail")
-	private List<ScholarshipSpecification> scholarships;
+	private Set<ScholarshipSpecification> scholarships;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -92,20 +92,20 @@ public class AcademicLevelDetail implements ISimpleModel {
 		this.academicLevel = academicLevel;
 	}
 
-	public List<ScholarshipSpecification> getScholarships() {
+	public Set<ScholarshipSpecification> getScholarships() {
 		return scholarships;
 	}
 
-	public void setScholarships(List<ScholarshipSpecification> scholarships) {
+	public void setScholarships(Set<ScholarshipSpecification> scholarships) {
 		this.scholarships = scholarships;
 	}
 
-	public List<ScholarshipSpecification> getScholarshipsWithStudentAcademicLevelDetail() {
+	public Set<ScholarshipSpecification> getScholarshipsWithStudentAcademicLevelDetail() {
 		return scholarshipsWithStudentAcademicLevelDetail;
 	}
 
 	public void setScholarshipsWithStudentAcademicLevelDetail(
-			List<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail) {
+			Set<ScholarshipSpecification> scholarshipsWithStudentAcademicLevelDetail) {
 		this.scholarshipsWithStudentAcademicLevelDetail = scholarshipsWithStudentAcademicLevelDetail;
 	}
 }

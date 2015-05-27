@@ -1,6 +1,6 @@
 package uit.se06.scholarshipweb.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.search.annotations.Analyze;
@@ -36,6 +35,7 @@ public class ScholarshipSpecification {
 	private int scholarshipId;
 
 	@Column(name = "description", unique = false, nullable = true)
+	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String description;
 
 	@Column(name = "original_link", unique = false, nullable = true)
@@ -53,8 +53,13 @@ public class ScholarshipSpecification {
 	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String supportDescription;
 
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "scholarship_id", referencedColumnName = "scholarship_id")
+	private Scholarship scholarship;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "student_gender_id", referencedColumnName = "gender_id")
+	@IndexedEmbedded
 	private Gender studentGender;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -92,51 +97,46 @@ public class ScholarshipSpecification {
 	@IndexedEmbedded
 	private FormOfParticipation formOfParticipation;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@PrimaryKeyJoinColumn
-	@IndexedEmbedded
-	private Scholarship scholarship;
-
 	// many to many
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_academic_level_detail", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "academic_level_detail_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<AcademicLevelDetail> scholarshipAcademicLevelDetail;
+	private Set<AcademicLevelDetail> scholarshipAcademicLevelDetail;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_family_policy", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "family_policy_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<FamilyPolicy> studentFamilyPolicies;
+	private Set<FamilyPolicy> studentFamilyPolicies;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_disability", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "disability_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<Disability> studentDisabilities;
+	private Set<Disability> studentDisabilities;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_terminal_ill", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "terminal_ill_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<TerminalIll> studentTerminalIllnesses;
+	private Set<TerminalIll> studentTerminalIllnesses;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_sponsor", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "sponsor_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<Sponsor> sponsors;
+	private Set<Sponsor> sponsors;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_major", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "major_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<Major> scholarshipMajors;
+	private Set<Major> scholarshipMajors;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_talent", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "talent_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<Talent> studentTalents;
+	private Set<Talent> studentTalents;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "scholarship_student_residence", catalog = "scholarshipdatabase", joinColumns = { @JoinColumn(name = "scholarship_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "province_id", nullable = false, updatable = false) })
 	@IndexedEmbedded
-	private List<Province> studentResidences;
+	private Set<Province> studentResidences;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -270,70 +270,70 @@ public class ScholarshipSpecification {
 		this.scholarship = scholarship;
 	}
 
-	public List<AcademicLevelDetail> getScholarshipAcademicLevelDetail() {
+	public Set<AcademicLevelDetail> getScholarshipAcademicLevelDetail() {
 		return scholarshipAcademicLevelDetail;
 	}
 
 	public void setScholarshipAcademicLevelDetail(
-			List<AcademicLevelDetail> scholarshipAcademicLevelDetail) {
+			Set<AcademicLevelDetail> scholarshipAcademicLevelDetail) {
 		this.scholarshipAcademicLevelDetail = scholarshipAcademicLevelDetail;
 	}
 
-	public List<FamilyPolicy> getStudentFamilyPolicies() {
+	public Set<FamilyPolicy> getStudentFamilyPolicies() {
 		return studentFamilyPolicies;
 	}
 
 	public void setStudentFamilyPolicies(
-			List<FamilyPolicy> studentFamilyPolicies) {
+			Set<FamilyPolicy> studentFamilyPolicies) {
 		this.studentFamilyPolicies = studentFamilyPolicies;
 	}
 
-	public List<Disability> getStudentDisabilities() {
+	public Set<Disability> getStudentDisabilities() {
 		return studentDisabilities;
 	}
 
-	public void setStudentDisabilities(List<Disability> studentDisabilities) {
+	public void setStudentDisabilities(Set<Disability> studentDisabilities) {
 		this.studentDisabilities = studentDisabilities;
 	}
 
-	public List<TerminalIll> getStudentTerminalIllnesses() {
+	public Set<TerminalIll> getStudentTerminalIllnesses() {
 		return studentTerminalIllnesses;
 	}
 
 	public void setStudentTerminalIllnesses(
-			List<TerminalIll> studentTerminalIllnesses) {
+			Set<TerminalIll> studentTerminalIllnesses) {
 		this.studentTerminalIllnesses = studentTerminalIllnesses;
 	}
 
-	public List<Sponsor> getSponsors() {
+	public Set<Sponsor> getSponsors() {
 		return sponsors;
 	}
 
-	public void setSponsors(List<Sponsor> sponsors) {
+	public void setSponsors(Set<Sponsor> sponsors) {
 		this.sponsors = sponsors;
 	}
 
-	public List<Major> getScholarshipMajors() {
+	public Set<Major> getScholarshipMajors() {
 		return scholarshipMajors;
 	}
 
-	public void setScholarshipMajors(List<Major> scholarshipMajors) {
+	public void setScholarshipMajors(Set<Major> scholarshipMajors) {
 		this.scholarshipMajors = scholarshipMajors;
 	}
 
-	public List<Talent> getStudentTalents() {
+	public Set<Talent> getStudentTalents() {
 		return studentTalents;
 	}
 
-	public void setStudentTalents(List<Talent> studentTalents) {
+	public void setStudentTalents(Set<Talent> studentTalents) {
 		this.studentTalents = studentTalents;
 	}
 
-	public List<Province> getStudentResidences() {
+	public Set<Province> getStudentResidences() {
 		return studentResidences;
 	}
 
-	public void setStudentResidences(List<Province> studentResidences) {
+	public void setStudentResidences(Set<Province> studentResidences) {
 		this.studentResidences = studentResidences;
 	}
 

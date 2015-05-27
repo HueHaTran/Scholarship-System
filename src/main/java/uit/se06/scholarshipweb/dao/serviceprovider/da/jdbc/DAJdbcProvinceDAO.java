@@ -1,6 +1,7 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
@@ -51,14 +52,14 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 	}
 
 	@Override
-	public List<Province> listByCountry(int countryId) {
+	public Set<Province> listByCountry(int countryId) {
 		return listBy(COL_COUNTRY_ID, String.valueOf(countryId));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Province> listBasicInfoByCountry(int countryId) {
-		List<Province> resultList = null;
+	public Set<Province> listBasicInfoByCountry(int countryId) {
+		Set<Province> resultSet = null;
 		StringBuilder builder = new StringBuilder();
 
 		try {
@@ -71,14 +72,14 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 			SQLQuery query = getSession().createSQLQuery(builder.toString());
 			query.setParameter("paramId", countryId);
 
-			resultList = query.list();
+			resultSet = new HashSet<Province>(query.list());
 		} catch (Exception ex) {
 			getLogger().error("Query '" + builder.toString() + "' in listBy()");
 		} finally {
 			closeSession();
 		}
 
-		return resultList;
+		return resultSet;
 
 	}
 	// ============================================================

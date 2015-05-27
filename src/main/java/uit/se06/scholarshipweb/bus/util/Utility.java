@@ -6,8 +6,10 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,7 +95,7 @@ public class Utility {
 		}
 	}
 
-	public String getNamesString(List<? extends ISimpleModel> models) {
+	public String getNamesString(Set<? extends ISimpleModel> models) {
 		if (models != null && !models.isEmpty()) {
 			StringBuilder builder = new StringBuilder();
 			String prefix = "";
@@ -107,7 +109,11 @@ public class Utility {
 		return Contants.TAG_NO_ANSWER;
 	}
 
-	public List<String> getNameList(List<? extends ISimpleModel> models) {
+	public String getNamesString(List<? extends ISimpleModel> models) {
+		return getNamesString(new HashSet<ISimpleModel>(models));
+	}
+
+	public List<String> getNameList(Set<? extends ISimpleModel> models) {
 		List<String> result = new ArrayList<String>();
 		if (models != null && !models.isEmpty()) {
 			for (ISimpleModel s : models) {
@@ -115,6 +121,10 @@ public class Utility {
 			}
 		}
 		return result;
+	}
+
+	public List<String> getNameList(List<? extends ISimpleModel> models) {
+		return getNameList(new HashSet<ISimpleModel>(models));
 	}
 
 	public String getFormatNumberString(int value) {

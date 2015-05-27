@@ -11,7 +11,7 @@ import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.model.Religion;
 import uit.se06.scholarshipweb.model.TerminalIll;
 
-public class FilterPersonalInfo {
+public class ListFilterPersonalInfo {
 
 	// ============================================================
 	// VARIABLES
@@ -29,7 +29,7 @@ public class FilterPersonalInfo {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public FilterPersonalInfo() {
+	public ListFilterPersonalInfo() {
 		genders = new ArrayList<Gender>();
 		religion = new ArrayList<Religion>();
 		countries = new ArrayList<Country>();

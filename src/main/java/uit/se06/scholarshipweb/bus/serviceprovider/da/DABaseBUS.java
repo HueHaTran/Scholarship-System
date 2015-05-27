@@ -1,5 +1,6 @@
 package uit.se06.scholarshipweb.bus.serviceprovider.da;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,10 +35,11 @@ public abstract class DABaseBUS<T> {
 	}
 
 	public List<T> list() {
-		List<T> result = getDAO().list();
+		List<T> result = new ArrayList<T>(getDAO().list());
 		if (result == null || (result != null && result.isEmpty())) {
 			getLogger().info("Warning: " + "list()" + " return null or empty.");
 		}
+ 
 		return result;
 	}
 
@@ -52,4 +54,9 @@ public abstract class DABaseBUS<T> {
 	protected abstract IDAO<T> getDAO();
 
 	protected abstract Logger getLogger();
+
+	// ============================================================
+	// OTHER METHODS
+	// ============================================================
+ 
 }

@@ -1,6 +1,6 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ public class DAJdbcAcademicLevelDetailDAO extends
 	}
  
 	@Override
-	public List<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId) {
+	public Set<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId) {
 		return listBy(COL_ACADEMIC_LEVEL_ID, String.valueOf(academicLevelId));
 	}
 

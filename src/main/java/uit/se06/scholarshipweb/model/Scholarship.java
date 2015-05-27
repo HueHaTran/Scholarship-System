@@ -55,11 +55,11 @@ public class Scholarship implements ISimpleModel {
 	private int valueMax;
 
 	@Column(name = "active", unique = false, nullable = false)
-	private boolean isActive;
+	private boolean isActive = true;
 
-	//
+	// specification
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "scholarship", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "scholarship", cascade = CascadeType.ALL)
 	private ScholarshipSpecification scholarshipSpecification;
 
 	// ============================================================

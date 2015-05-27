@@ -1,21 +1,64 @@
 package uit.se06.scholarshipweb.bus.util;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
+import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
+import uit.se06.scholarshipweb.bus.factory.IDisabilityBUS;
 import uit.se06.scholarshipweb.bus.factory.IGenderBUS;
-import uit.se06.scholarshipweb.model.Gender;
+import uit.se06.scholarshipweb.bus.factory.IScholarshipBUS;
+import uit.se06.scholarshipweb.model.Disability;
+import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 
 public class InitialDatabase {
 
 	IGenderBUS busGender = BUSAbstractFactory.INS.getGenderBUS();
+	IScholarshipBUS busScholarship = BUSAbstractFactory.INS.getScholarshipBUS();
+	IDisabilityBUS busDisability = BUSAbstractFactory.INS.getDisabilityBUS();
+	ICountryBUS busCountry = BUSAbstractFactory.INS.getCountryBUS();
 
-	public void addEntity() {
-		Gender gender = new Gender();
-		gender.setName("nam");
+	public void populateData() {
+		// Gender gender = new Gender();
+		// gender.setName("nam");
+		//
+		// busGender.insert(gender);
+		//
+		// gender.setName("nữ");
+		// busGender.insert(gender);
+		//
+		// Disability dis = new Disability();
+		// dis.setName("Liệt 1 chân");
+		//
+		// busDisability.insert(dis);
+		//
+		// dis.setName("Liệt 2 chân");
+		// busDisability.insert(dis);
+		//
+		// Country country = new Country();
+		// country.setName("Việt Nam Country test");
+		// busCountry.insert(country);
 
-		busGender.insert(gender);
+		Scholarship scholarship = new Scholarship();
+		ScholarshipSpecification spec = new ScholarshipSpecification();
 
-		gender.setName("nữ");
-		busGender.insert(gender);
+		scholarship.setName("Tài năng test3");
+		spec.setStudentGender(busGender.findById(2));
+		spec.setStudentCitizenship(busCountry.findById(1));
+		spec.setApplicationDescription("ứng viên phải nộp 2 bản sao cmnd, học bạ");
+		spec.setApplicationDescription("nó đó lalala Dance");
+
+		Set<Disability> listDis = new HashSet<Disability>(
+				Arrays.asList(busDisability.findById(1)));
+		spec.setStudentDisabilities(listDis);
+
+		scholarship.setScholarshipSpecification(spec);
+
+		spec.setScholarship(scholarship);
+
+		busScholarship.insert(scholarship);
 
 	}
 }

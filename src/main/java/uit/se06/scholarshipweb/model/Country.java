@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,11 +39,11 @@ public class Country implements ISimpleModel {
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
-	private List<Province> provinces;
+	private Set<Province> provinces;
 
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentCitizenship")
-	private List<ScholarshipSpecification> scholarshipsWithStudentCitizenship;
+	private Set<ScholarshipSpecification> scholarshipsWithStudentCitizenship;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -77,20 +77,20 @@ public class Country implements ISimpleModel {
 		this.countryName = countryName;
 	}
 
-	public List<Province> getProvinces() {
+	public Set<Province> getProvinces() {
 		return provinces;
 	}
 
-	public void setProvinces(List<Province> provinces) {
+	public void setProvinces(Set<Province> provinces) {
 		this.provinces = provinces;
 	}
 
-	public List<ScholarshipSpecification> getScholarshipsWithStudentCitizenship() {
+	public Set<ScholarshipSpecification> getScholarshipsWithStudentCitizenship() {
 		return scholarshipsWithStudentCitizenship;
 	}
 
 	public void setScholarshipsWithStudentCitizenship(
-			List<ScholarshipSpecification> scholarshipsWithStudentCitizenship) {
+			Set<ScholarshipSpecification> scholarshipsWithStudentCitizenship) {
 		this.scholarshipsWithStudentCitizenship = scholarshipsWithStudentCitizenship;
 	}
 }

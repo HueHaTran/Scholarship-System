@@ -2,13 +2,17 @@ package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
+import uit.se06.scholarshipweb.dao.util.HibernateUtil;
 import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 
 public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		IScholarshipDAO {
@@ -106,8 +110,66 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		}
 
 	}
+
+	@Override
+	public void insert(Scholarship entity) {
+		SessionFactory sessionfactory = HibernateUtil
+				.getSessionAnnotationFactory();
+		Session session = sessionfactory.openSession();
+
+		Transaction transaction = null;
+		ScholarshipSpecification spec = entity.getScholarshipSpecification();
+
+		try {
+			transaction = session.beginTransaction();
+
+			// remove mapping between scholarship and specification
+			entity.setScholarshipSpecification(null);
+
+			session.save(entity);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			getLogger().error("opps!");
+
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return;
+		} finally {
+			session.close();
+		}
+
+		// add specification
+		int id = entity.getId();
+
+		spec.setScholarship(entity);
+		spec.setScholarshipId(id);
+		insertSpec(spec);
+	}
+
 	// ============================================================
 	// OTHER METHODS
 	// ============================================================
+
+	private void insertSpec(ScholarshipSpecification entity) {
+		SessionFactory sessionfactory = HibernateUtil
+				.getSessionAnnotationFactory();
+		Session session = sessionfactory.openSession();
+
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.save(entity);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 
 }

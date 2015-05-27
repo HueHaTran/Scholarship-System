@@ -1,6 +1,7 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -45,8 +46,8 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<T> listBy(String name, String value) {
-		List<T> resultList = null;
+	protected Set<T> listBy(String name, String value) {
+		Set<T> resultSet = null;
 		StringBuilder builder = new StringBuilder();
 
 		try {
@@ -57,7 +58,7 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 			Query query = getSession().createQuery(builder.toString())
 					.setParameter("param1", value);
 
-			resultList = query.list();
+			resultSet = new HashSet<T>(query.list());
 
 		} catch (Exception ex) {
 			getLogger().error("Query '" + builder.toString() + "' in listBy()");
@@ -65,27 +66,28 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 			closeSession();
 		}
 
-		return resultList;
+		return resultSet;
 	}
 
 	protected T findBy(String name, String value) {
-		List<T> list = listBy(name, value);
+		Set<T> list = listBy(name, value);
 		if (list != null && !list.isEmpty()) {
-			return list.get(0);
+			return list.iterator().next();
 		} else {
 			return null;
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> list() {
-		List<T> result = null;
+	public Set<T> list() {
+		Set<T> result = null;
 		String queryString = "FROM " + modelClass.getSimpleName();
 
 		try {
-			result = (List<T>) getSession().createQuery(queryString).list();
+			result = new HashSet<T>(getSession().createQuery(queryString)
+					.list());
 		} catch (Exception ex) {
-			getLogger().error("Query '" + queryString + "' in getAll()");
+			getLogger().error("Query '" + queryString + "' in list()");
 		} finally {
 			closeSession();
 		}
@@ -108,8 +110,6 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 			}
 			e.printStackTrace();
 		} finally {
-			session.flush();
-			session.refresh(entity);
 			session.close();
 		}
 	}

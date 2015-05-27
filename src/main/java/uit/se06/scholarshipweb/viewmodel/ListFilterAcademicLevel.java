@@ -6,7 +6,7 @@ import java.util.List;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Major;
 
-public class FilterAcademicLevel {
+public class ListFilterAcademicLevel {
 
 	// ============================================================
 	// VARIABLES
@@ -19,7 +19,7 @@ public class FilterAcademicLevel {
 	// CONSTRUCTORS
 	// ============================================================
 
-	public FilterAcademicLevel() {
+	public ListFilterAcademicLevel() {
 		setAcademicLevels(new ArrayList<AcademicLevel>());
 		setMajors(new ArrayList<Major>());
 	}

@@ -2,7 +2,7 @@ package uit.se06.scholarshipweb.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +41,7 @@ public class AcademicLevel implements ISimpleModel {
 	// "mappedBy"'s value is property'name, not column'name
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "academicLevel")
 	@IndexedEmbedded
-	private List<AcademicLevelDetail> academicLevelDetails;
+	private Set<AcademicLevelDetail> academicLevelDetails;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -75,12 +75,12 @@ public class AcademicLevel implements ISimpleModel {
 		this.academicLevelName = academicLevelName;
 	}
 
-	public List<AcademicLevelDetail> getAcademicLevelDetails() {
+	public Set<AcademicLevelDetail> getAcademicLevelDetails() {
 		return academicLevelDetails;
 	}
 
 	public void setAcademicLevelDetails(
-			List<AcademicLevelDetail> academicLevelDetails) {
+			Set<AcademicLevelDetail> academicLevelDetails) {
 		this.academicLevelDetails = academicLevelDetails;
 	}
 }

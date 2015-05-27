@@ -1,5 +1,6 @@
 package uit.se06.scholarshipweb.controller;
 
+import java.nio.file.DirectoryStream.Filter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -19,9 +20,11 @@ import uit.se06.scholarshipweb.bus.FilterBUS;
 import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DACountryBUS;
 import uit.se06.scholarshipweb.model.Province;
-import uit.se06.scholarshipweb.viewmodel.FilterAcademicLevel;
-import uit.se06.scholarshipweb.viewmodel.FilterPersonalInfo;
-import uit.se06.scholarshipweb.viewmodel.FilterScholarshipType;
+import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
+import uit.se06.scholarshipweb.viewmodel.ListFilterAcademicLevel;
+import uit.se06.scholarshipweb.viewmodel.ListFilterPersonalInfo;
+import uit.se06.scholarshipweb.viewmodel.ListFilterScholarshipType;
 
 /**
  * Handles requests for the application home page.
@@ -58,9 +61,9 @@ public class FilterController extends BaseController {
 				+ "! The client locale is {}.", locale);
 
 		ModelAndView data = new ModelAndView("filter");
-		FilterPersonalInfo entity = bus.getPersonalInfo();
-		FilterAcademicLevel entity2 = bus.getAcademicLevelInfo();
-		FilterScholarshipType entity3 = bus.getScholarshipTypeInfo();
+		ListFilterPersonalInfo entity = bus.getPersonalInfo();
+		ListFilterAcademicLevel entity2 = bus.getAcademicLevelInfo();
+		ListFilterScholarshipType entity3 = bus.getScholarshipTypeInfo();
 
 		data.addObject("meta_data_gender", entity.getGenders());
 		data.addObject("meta_data_country", entity.getCountries());
@@ -95,5 +98,13 @@ public class FilterController extends BaseController {
 
 		List<Province> result = busCountry.listProvinceByCountry(id);
 		return result;
+	}
+
+	@RequestMapping(value = "/getFilterResult", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
+	public @ResponseBody List<Scholarship> getFilterResult(
+			HttpServletRequest request, @RequestBody FilterViewModel data) {
+		logger.error("Enter getFilterResult() in Filter Controller");
+
+		return new ArrayList<Scholarship>();
 	}
 }

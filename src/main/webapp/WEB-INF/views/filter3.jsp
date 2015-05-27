@@ -26,7 +26,7 @@
 					</div>
 					<div class="answer">
 						<label class="label_listbox"> <select
-							name="combobox_scholarship_type">
+							id="combobox_scholarship_type">
 								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
 								<c:forEach items="${meta_data_scholarship_type}"
 									var="scholarship_type">
@@ -57,9 +57,7 @@
 
 
 		</div>
-
-
-
+ 
 		<div class="div-space"></div>
 
 		<div style="clear: both;">
@@ -67,7 +65,7 @@
 				class="filter-previous action-button" value="Previous"
 				onclick="clickPrevFilter('filter3', 'filter2', 2)" /> <input
 				type="button" name="next" class="filter-next action-button"
-				value="Sumit" onclick="clickNextFilter('filter3', 'filter4', 4)" />
+				value="Sumit" onclick="clickSubmitFilter('filter3')" />
 		</div>
 	</fieldset>
 
