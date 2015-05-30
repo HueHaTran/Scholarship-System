@@ -3,7 +3,7 @@
 	;
 
 /*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type ) {
+#msform fieldset:not(:first-of-type) {
 	/*no space bar between 'field....type)'*/
 	display: none;
 }

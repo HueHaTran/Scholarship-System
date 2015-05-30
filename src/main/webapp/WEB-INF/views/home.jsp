@@ -8,7 +8,7 @@
 <link href="<c:url value="/resources/css/homepage.css" />"
 	rel="stylesheet">
 
-<%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
+<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bright future</title>
 </head>
@@ -16,9 +16,9 @@
 	<div id='nav-menu'>
 		<%@include file="search-box.jsp"%>
 		<ul class="nav-menu-ul">
-			<li class='active'><a href="<c:url value="/" />"><span><%=Contants.MENU_HOME%></span></a></li>
-			<li><a href="<c:url value="/search" />"><span><%=Contants.MENU_FILTER%></span></a></li>
-			<li><a href='#'><span><%=Contants.MENU_CONTACT%></span></a></li>
+			<li class='active'><a class="menu" href="<c:url value="/" />"><span><%=Constants.MENU_HOME%></span></a></li>
+			<li><a class="menu" href="<c:url value="filter" />"><span><%=Constants.MENU_FILTER%></span></a></li>
+			<li><a class="menu" href='#'><span><%=Constants.MENU_CONTACT%></span></a></li>
 		</ul>
 	</div>
 

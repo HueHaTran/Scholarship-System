@@ -3,13 +3,7 @@ package uit.se06.scholarshipweb.viewmodel;
 import java.util.ArrayList;
 import java.util.List;
 
-import uit.se06.scholarshipweb.model.Country;
-import uit.se06.scholarshipweb.model.Disability;
-import uit.se06.scholarshipweb.model.FamilyPolicy;
-import uit.se06.scholarshipweb.model.Gender;
-import uit.se06.scholarshipweb.model.Province;
-import uit.se06.scholarshipweb.model.Religion;
-import uit.se06.scholarshipweb.model.TerminalIll;
+import uit.se06.scholarshipweb.model.ISimpleModel;
 
 public class ListFilterPersonalInfo {
 
@@ -17,85 +11,86 @@ public class ListFilterPersonalInfo {
 	// VARIABLES
 	// ============================================================
 
-	private List<Gender> genders;
-	private List<Religion> religion;
-	private List<Country> countries;
-	private List<Province> provinces;
-	private List<Disability> disabilities;
-	private List<TerminalIll> terminalIllnesses;
-	private List<FamilyPolicy> familyPolicies;
+	private List<? extends ISimpleModel> genders;
+	private List<? extends ISimpleModel> religion;
+	private List<? extends ISimpleModel> countries;
+	private List<? extends ISimpleModel> provinces;
+	private List<? extends ISimpleModel> disabilities;
+	private List<? extends ISimpleModel> terminalIllnesses;
+	private List<? extends ISimpleModel> familyPolicies;
 
 	// ============================================================
 	// CONSTRUCTORS
 	// ============================================================
 
 	public ListFilterPersonalInfo() {
-		genders = new ArrayList<Gender>();
-		religion = new ArrayList<Religion>();
-		countries = new ArrayList<Country>();
-		provinces = new ArrayList<Province>();
-		disabilities = new ArrayList<Disability>();
-		terminalIllnesses = new ArrayList<TerminalIll>();
-		familyPolicies = new ArrayList<FamilyPolicy>();
+		genders = new ArrayList<ISimpleModel>();
+		religion = new ArrayList<ISimpleModel>();
+		countries = new ArrayList<ISimpleModel>();
+		provinces = new ArrayList<ISimpleModel>();
+		disabilities = new ArrayList<ISimpleModel>();
+		terminalIllnesses = new ArrayList<ISimpleModel>();
+		familyPolicies = new ArrayList<ISimpleModel>();
 	}
 
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 
-	public List<Gender> getGenders() {
+	public List<? extends ISimpleModel> getGenders() {
 		return genders;
 	}
 
-	public void setGenders(List<Gender> genders) {
+	public void setGenders(List<? extends ISimpleModel> genders) {
 		this.genders = genders;
 	}
 
-	public List<Religion> getReligion() {
+	public List<? extends ISimpleModel> getReligion() {
 		return religion;
 	}
 
-	public void setReligion(List<Religion> religion) {
+	public void setReligion(List<? extends ISimpleModel> religion) {
 		this.religion = religion;
 	}
 
-	public List<Country> getCountries() {
+	public List<? extends ISimpleModel> getCountries() {
 		return countries;
 	}
 
-	public void setCountries(List<Country> countries) {
+	public void setCountries(List<? extends ISimpleModel> countries) {
 		this.countries = countries;
 	}
 
-	public List<Province> getProvinces() {
+	public List<? extends ISimpleModel> getProvinces() {
 		return provinces;
 	}
 
-	public void setProvinces(List<Province> provinces) {
+	public void setProvinces(List<? extends ISimpleModel> provinces) {
 		this.provinces = provinces;
 	}
 
-	public List<Disability> getDisabilities() {
+	public List<? extends ISimpleModel> getDisabilities() {
 		return disabilities;
 	}
 
-	public void setDisabilities(List<Disability> disabilities) {
+	public void setDisabilities(List<? extends ISimpleModel> disabilities) {
 		this.disabilities = disabilities;
 	}
 
-	public List<TerminalIll> getTerminalIllnesses() {
+	public List<? extends ISimpleModel> getTerminalIllnesses() {
 		return terminalIllnesses;
 	}
 
-	public void setTerminalIllnesses(List<TerminalIll> terminalIllnesses) {
+	public void setTerminalIllnesses(
+			List<? extends ISimpleModel> terminalIllnesses) {
 		this.terminalIllnesses = terminalIllnesses;
 	}
 
-	public List<FamilyPolicy> getFamilyPolicies() {
+	public List<? extends ISimpleModel> getFamilyPolicies() {
 		return familyPolicies;
 	}
 
-	public void setFamilyPolicies(List<FamilyPolicy> familyPolicies) {
+	public void setFamilyPolicies(List<? extends ISimpleModel> familyPolicies) {
 		this.familyPolicies = familyPolicies;
 	}
 }

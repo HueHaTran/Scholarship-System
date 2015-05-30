@@ -39,12 +39,14 @@ public abstract class DABaseBUS<T> {
 		if (result == null || (result != null && result.isEmpty())) {
 			getLogger().info("Warning: " + "list()" + " return null or empty.");
 		}
- 
+
 		return result;
 	}
 
 	public void insert(T entity) {
-		getDAO().insert(entity);
+		if (entity != null) {
+			getDAO().insert(entity);
+		}
 	}
 
 	// ============================================================
@@ -58,5 +60,5 @@ public abstract class DABaseBUS<T> {
 	// ============================================================
 	// OTHER METHODS
 	// ============================================================
- 
+
 }

@@ -3,7 +3,7 @@ package uit.se06.scholarshipweb.dao.util;
 import org.hibernate.search.indexes.interceptor.EntityIndexingInterceptor;
 import org.hibernate.search.indexes.interceptor.IndexingOverride;
 
-import uit.se06.scholarshipweb.model.ScholarshipSpecification;
+import uit.se06.scholarshipweb.model.Scholarship;
 
 /**
  * Conditional indexing: to index or not based on entity state
@@ -12,14 +12,14 @@ import uit.se06.scholarshipweb.model.ScholarshipSpecification;
  *
  */
 public class IndexScholarshipInterceptor implements
-		EntityIndexingInterceptor<ScholarshipSpecification> {
+		EntityIndexingInterceptor<Scholarship> {
 
 	// ============================================================
 	// OVERRIDE METHODS
 	// ============================================================
 
 	@Override
-	public IndexingOverride onAdd(ScholarshipSpecification entity) {
+	public IndexingOverride onAdd(Scholarship entity) {
 		// only index scholarship when it is active
 		if (allowIndexing(entity)) {
 			return IndexingOverride.APPLY_DEFAULT;
@@ -28,17 +28,17 @@ public class IndexScholarshipInterceptor implements
 	}
 
 	@Override
-	public IndexingOverride onCollectionUpdate(ScholarshipSpecification entity) {
+	public IndexingOverride onCollectionUpdate(Scholarship entity) {
 		return onUpdate(entity);
 	}
 
 	@Override
-	public IndexingOverride onDelete(ScholarshipSpecification entity) {
+	public IndexingOverride onDelete(Scholarship entity) {
 		return IndexingOverride.APPLY_DEFAULT;
 	}
 
 	@Override
-	public IndexingOverride onUpdate(ScholarshipSpecification entity) {
+	public IndexingOverride onUpdate(Scholarship entity) {
 		if (allowIndexing(entity)) {
 			return IndexingOverride.UPDATE;
 		}
@@ -49,8 +49,8 @@ public class IndexScholarshipInterceptor implements
 	// CONDITIONS
 	// ============================================================
 
-	private boolean allowIndexing(ScholarshipSpecification entity) {
-		return entity.getScholarship().getIsActive() == true;
+	private boolean allowIndexing(Scholarship entity) {
+		return entity.getIsActive() == true;
 	}
 
 }

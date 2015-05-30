@@ -15,9 +15,11 @@ import uit.se06.scholarshipweb.dao.factory.IReligionDAO;
 import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
 import uit.se06.scholarshipweb.dao.factory.IScholarshipTypeDAO;
 import uit.se06.scholarshipweb.dao.factory.ISchoolDAO;
+import uit.se06.scholarshipweb.dao.factory.ISearchDAO;
 import uit.se06.scholarshipweb.dao.factory.ISponsorDAO;
 import uit.se06.scholarshipweb.dao.factory.ITalentDAO;
 import uit.se06.scholarshipweb.dao.factory.ITerminalIllDAO;
+import uit.se06.scholarshipweb.dao.serviceprovider.da.hibernatesearch.DASearchDAO;
 import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcAcademicLevelDAO;
 import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcAcademicLevelDetailDAO;
 import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcCountryDAO;
@@ -37,6 +39,11 @@ import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcTalentDAO;
 import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcTerminalIllDAO;
 
 public class DAJdbcDAOFactory extends DAOAbstractFactory {
+
+	@Override
+	public ISearchDAO getSearchDAO() {
+		return new DASearchDAO();
+	}
 
 	@Override
 	public IAcademicLevelDAO getAcademicLevelDAO() {

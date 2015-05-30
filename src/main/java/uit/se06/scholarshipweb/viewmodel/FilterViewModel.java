@@ -13,10 +13,12 @@ public class FilterViewModel {
 	public List<Integer> stuTerminalIllnesses = new ArrayList<Integer>();
 	public List<Integer> familyPolicy = new ArrayList<Integer>();
 
+	public int stuAca = 0;
 	public int stuAcaDetail = 0;
-	public List<Integer> scholarAcaDetails = new ArrayList<Integer>();
+	public int scholarAca = 0;
+	public int scholarAcaDetails = 0;
 	public List<Integer> scholarMajors = new ArrayList<Integer>();
 
 	public int scholarType = 0;
-	public List<Integer> talents = new ArrayList<Integer>();
+	public List<Integer> talents = new ArrayList<Integer>();	
 }

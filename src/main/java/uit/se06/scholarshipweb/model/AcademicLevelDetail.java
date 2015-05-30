@@ -40,7 +40,7 @@ public class AcademicLevelDetail implements ISimpleModel {
 	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String academicLevelDetailName;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "academic_level_id", referencedColumnName = "academic_level_id")
 	private AcademicLevel academicLevel;
 

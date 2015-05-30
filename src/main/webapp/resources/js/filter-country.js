@@ -8,6 +8,7 @@ function onChangeCountry(s, provinceElementId) {
 		data : countryId = dataString,
 		dataType : "text",
 		success : function(msg) { 
+			alert("enter");
 			data = JSON.parse(msg);
 			if (msg != "false") {
 				var sel = document

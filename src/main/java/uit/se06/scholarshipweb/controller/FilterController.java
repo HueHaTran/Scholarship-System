@@ -1,6 +1,5 @@
 package uit.se06.scholarshipweb.controller;
 
-import java.nio.file.DirectoryStream.Filter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -54,7 +53,7 @@ public class FilterController extends BaseController {
 	// REQUESTS
 	// ============================================================
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/filter", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale) {
 
 		logger.info("Welcome to " + this.getClass().getCanonicalName()
@@ -83,11 +82,11 @@ public class FilterController extends BaseController {
 		return data;
 	}
 
-	@RequestMapping(value = "/getProvincesFromCountry", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
+	@RequestMapping(value = "/getProvincesFromCountry", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody List<Province> getProvincesFromCountry(
 			HttpServletRequest request, @RequestBody String countryId) {
 		int id;
-		logger.info("Enter yeah");
+		logger.info("Enter getProvincesFromCountry() in Filter Controller");
 		try {
 			id = Integer.parseInt(countryId);
 		} catch (NumberFormatException e) {
@@ -97,13 +96,20 @@ public class FilterController extends BaseController {
 		}
 
 		List<Province> result = busCountry.listProvinceByCountry(id);
+
+		for (Province p : result) {
+			System.err.println("Size:ttt " + p);
+		}
+
+		System.err.println("Size:ttt " + result.size());
+
 		return result;
 	}
 
 	@RequestMapping(value = "/getFilterResult", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
 	public @ResponseBody List<Scholarship> getFilterResult(
 			HttpServletRequest request, @RequestBody FilterViewModel data) {
-		logger.error("Enter getFilterResult() in Filter Controller");
+		logger.info("Enter getFilterResult() in Filter Controller");
 
 		return new ArrayList<Scholarship>();
 	}

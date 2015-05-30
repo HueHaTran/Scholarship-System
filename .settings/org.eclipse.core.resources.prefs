@@ -1,7 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java/uit/se06/scholarshipweb/bus/factory/IScholarshipBUS.java=UTF-8
 encoding//src/main/java/uit/se06/scholarshipweb/bus/serviceprovider/da/DAScholarshipBUS.java=UTF-8
-encoding//src/main/java/uit/se06/scholarshipweb/bus/util/Contants.java=UTF-8
+encoding//src/main/java/uit/se06/scholarshipweb/bus/util/Constants.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/filter1.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/search.jsp=UTF-8
 encoding/<project>=UTF-8
 separateDerivedEncodings=true

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 
 import uit.se06.scholarshipweb.dao.factory.IDAO;
 import uit.se06.scholarshipweb.dao.util.HibernateUtil;
+import uit.se06.scholarshipweb.dao.util.ILoadingRelatedEntityListener;
 
 public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 
@@ -45,21 +46,30 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected Set<T> listBy(String name, String value) {
+		return listBy(name, value, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected Set<T> listBy(String name, String value,
+			ILoadingRelatedEntityListener<T> listener) {
 		Set<T> resultSet = null;
 		StringBuilder builder = new StringBuilder();
 
 		try {
 			// query
 			builder.append("FROM ").append(modelClass.getSimpleName());
-			builder.append("  WHERE ").append(name).append(" = :param1");
+			builder.append(" WHERE ").append(name).append(" = :param1");
 
 			Query query = getSession().createQuery(builder.toString())
 					.setParameter("param1", value);
 
 			resultSet = new HashSet<T>(query.list());
-
+			if (listener != null) {
+				for (T entity : resultSet) {
+					listener.load(entity);
+				}
+			}
 		} catch (Exception ex) {
 			getLogger().error("Query '" + builder.toString() + "' in listBy()");
 		} finally {
@@ -70,12 +80,38 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 	}
 
 	protected T findBy(String name, String value) {
-		Set<T> list = listBy(name, value);
-		if (list != null && !list.isEmpty()) {
-			return list.iterator().next();
-		} else {
-			return null;
+		return findBy(name, value, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected T findBy(String name, String value,
+			ILoadingRelatedEntityListener<T> listener) {
+		Set<T> resultSet = null;
+		StringBuilder builder = new StringBuilder();
+		T entity = null;
+
+		try {
+			// query
+			builder.append("FROM ").append(modelClass.getSimpleName());
+			builder.append("  WHERE ").append(name).append(" = :param1");
+
+			Query query = getSession().createQuery(builder.toString())
+					.setParameter("param1", value);
+
+			resultSet = new HashSet<T>(query.list());
+			if (resultSet != null && !resultSet.isEmpty()) {
+				entity = resultSet.iterator().next();
+				if (listener != null) {
+					listener.load(entity);
+				}
+			}
+		} catch (Exception ex) {
+			getLogger().error("Query '" + builder.toString() + "' in listBy()");
+		} finally {
+			closeSession();
 		}
+
+		return entity;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -115,4 +151,9 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 	}
 
 	protected abstract Logger getLogger();
+
+	// ============================================================
+	// UTILITIES
+	// ============================================================
+
 }

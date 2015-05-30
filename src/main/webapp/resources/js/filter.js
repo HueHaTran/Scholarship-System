@@ -63,45 +63,87 @@ function clickFilter(index, total) {
 }
 
 function clickSubmitFilter(currentElementId) {
+	var tempReligion = 0;
+	var tempStuAca, tempStuAcaDetail = 0;
+	var tempScholarAca, tempScholarAcaDetail = 0;
+
+	if (existInputName("meta_data_religion")) {
+		tempReligion = getCheckedRadioValue("meta_data_religion");
+	} else if (existDocumentId("combobox_religion")) {
+		tempReligion = getComboboxValue("combobox_religion");
+	}
+
+	tempStuAca = getCheckedRadioValue("meta_data_student_aca");
+	if (existDocumentId("combo_student_aca_" + tempStuAca)) {
+		tempStuAcaDetail = getComboboxValue("combo_student_aca_" + tempStuAca);
+	}
+
+	tempScholarAca = getCheckedRadioValue("meta_data_scholarship_aca");
+	if (existDocumentId("combo_scholarship_aca_" + tempScholarAca)) {
+		tempScholarAcaDetail = getComboboxValue("combo_scholarship_aca_"
+				+ tempScholarAca);
+	}
+
 	var data = {
 		stuGender : getCheckedRadioValue("meta_data_gender"),
+		stuCitizenship : getComboboxValue("combobox_citizenship"),
+		stuResidenceCity : getComboboxValue("combobox_residence_province"),
+		stuResidenceProvince : getComboboxValue("combobox_residence_province"),
+		stuReligion : tempReligion,
+		stuDisabilities : getSelectedOptions("combobox_disability"),
+		stuTerminalIllnesses : getSelectedOptions("combobox_terminal_ill"),
+		familyPolicy : getSelectedOptions("combobox_family_policy"),
+
+		stuAca : tempStuAca,
+		stuAcaDetail : tempStuAcaDetail,
+		scholarAca : tempScholarAca,
+		scholarAcaDetails : tempScholarAcaDetail,
+		scholarMajors : getSelectedOptions("combobox_major"),
+
 		scholarType : getComboboxValue("combobox_scholarship_type"),
-		stuDisabilities : getSelectedOptions("combobox_disability")
+		talents : getSelectedOptions("combobox_talent"),
 	}
 
-	$.ajax({
-		type : "POST",
-		contentType : "application/json",
-		url : "./getFilterResult",
-		data : JSON.stringify(data),
-		dataType : "text",
-		success : function(msg) {
-			data = JSON.parse(msg);
-			if (msg != "false") {
-				alert("oh enter");
-			}
-		},
-		error : function() {
-			alert("Error retrieving data!");
-		}
-	});
+	$
+			.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "./getFilterResult",
+				data : JSON.stringify(data),
+				dataType : "text",
+				success : function(msg) {
+					data = JSON.parse(msg);
+					if (msg != "false") {
 
-	// hide current field set
-	var currentFieldset = document.getElementById(currentElementId);
-	currentFieldset.style.display = "none";
+						// ============== user interface ======================
+						// hide current field set
+						var currentFieldset = document
+								.getElementById(currentElementId);
+						currentFieldset.style.display = "none";
 
-	// display final field set
-	var next = document.getElementById("filter4");
-	next.style.display = "block";
+						// display final field set
+						var next = document.getElementById("filter4");
+						next.style.display = "block";
 
-	// mark on progress bar
-	for (var i = 1; i <= 4; i++) {
-		var id = "progressbar" + i;
-		var step = document.getElementById(id);
-		if (step.className.indexOf("active") == -1) {// not contain word
-			step.className += ' active'; // note the space
-		}
-	}
+						// mark on progress bar
+						for (var i = 1; i <= 4; i++) {
+							var id = "progressbar" + i;
+							var step = document.getElementById(id);
+							if (step.className.indexOf("active") == -1) {// not
+								// contain
+								// word
+								step.className += ' active'; // note the
+								// space
+							}
+						}
+
+					}
+				},
+				error : function() {
+					alert("Error retrieving data!");
+				}
+			});
+
 }
 
 // ==================================================================

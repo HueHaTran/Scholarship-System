@@ -76,12 +76,19 @@ public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 	public List<Province> listProvinceByCountry(int countryId) {
 		List<Province> result = new ArrayList<Province>(
 				daoProvince.listBasicInfoByCountry(countryId));
+
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning: " + "listProvinceByCountry(" + countryId
 					+ ")" + " return null or empty.");
 		}
 
 		return result;
+	}
+
+	public void insertProvince(Province entity) {
+		if (entity != null) {
+			daoProvince.insert(entity);
+		}
 	}
 
 	@Override

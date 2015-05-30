@@ -1,13 +1,13 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.SQLQuery;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uit.se06.scholarshipweb.dao.factory.IProvinceDAO;
+import uit.se06.scholarshipweb.dao.util.ILoadingRelatedEntityListener;
 import uit.se06.scholarshipweb.model.Province;
 
 public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
@@ -23,6 +23,13 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 	public final String COL_ID = "province_id";
 	public final String COL_NAME = "province_name";
 	public final String COL_COUNTRY_ID = "country_id";
+
+	private ILoadingRelatedEntityListener<Province> loadinglistener = new ILoadingRelatedEntityListener<Province>() {
+		@Override
+		public void load(Province entity) {
+			Hibernate.initialize(entity.getCountry());
+		}
+	};
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -43,12 +50,12 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 
 	@Override
 	public Province findById(int id) {
-		return findBy(COL_ID, String.valueOf(id));
+		return findBy(COL_ID, String.valueOf(id), loadinglistener);
 	}
 
 	@Override
 	public Province findByName(String name) {
-		return findBy(COL_NAME, name);
+		return findBy(COL_NAME, name, loadinglistener);
 	}
 
 	@Override
@@ -56,31 +63,9 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 		return listBy(COL_COUNTRY_ID, String.valueOf(countryId));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Province> listBasicInfoByCountry(int countryId) {
-		Set<Province> resultSet = null;
-		StringBuilder builder = new StringBuilder();
-
-		try {
-			// query
-			builder.append("SELECT " + COL_ID + ", " + COL_NAME);
-			builder.append(" FROM ").append(Province.class.getSimpleName());
-			builder.append(" WHERE ").append(COL_COUNTRY_ID)
-					.append(" = :paramId");
-
-			SQLQuery query = getSession().createSQLQuery(builder.toString());
-			query.setParameter("paramId", countryId);
-
-			resultSet = new HashSet<Province>(query.list());
-		} catch (Exception ex) {
-			getLogger().error("Query '" + builder.toString() + "' in listBy()");
-		} finally {
-			closeSession();
-		}
-
-		return resultSet;
-
+		return listBy(COL_COUNTRY_ID, countryId + "");
 	}
 	// ============================================================
 	// OTHER METHODS

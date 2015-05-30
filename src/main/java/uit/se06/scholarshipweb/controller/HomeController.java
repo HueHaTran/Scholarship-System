@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import uit.se06.scholarshipweb.dao.serviceprovider.da.hibernatesearch.DASearchDAO;
-
 /**
  * Handles requests for the application home page.
  */
@@ -27,11 +25,16 @@ public class HomeController extends BaseController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		DASearchDAO dao = new DASearchDAO();
-		dao.getTopResult("lalala test2", 30);
 
-//		 InitialDatabase d=new InitialDatabase();
-//		 d.populateData();
+		// FilterViewModel model2 = new FilterViewModel();
+		// model2.stuGender = 0;
+		//
+		// DAJdbcScholarshipDAO testdao = new DAJdbcScholarshipDAO();
+		// List<Scholarship> a = testdao.listBy(model2, 0, 10);
+		//
+		// logger.info("Size: " + a.size());
+		// InitialDatabase d=new InitialDatabase();
+		// d.populateData();
 
 		logger.info("Welcome home! The client locale is {}.", locale);
 

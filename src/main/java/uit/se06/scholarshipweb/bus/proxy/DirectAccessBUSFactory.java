@@ -13,6 +13,7 @@ import uit.se06.scholarshipweb.bus.factory.IReligionBUS;
 import uit.se06.scholarshipweb.bus.factory.IScholarshipBUS;
 import uit.se06.scholarshipweb.bus.factory.IScholarshipTypeBUS;
 import uit.se06.scholarshipweb.bus.factory.ISchoolBUS;
+import uit.se06.scholarshipweb.bus.factory.ISearchBUS;
 import uit.se06.scholarshipweb.bus.factory.ISponsorBUS;
 import uit.se06.scholarshipweb.bus.factory.ITalentBUS;
 import uit.se06.scholarshipweb.bus.factory.ITerminalIllBUS;
@@ -28,11 +29,17 @@ import uit.se06.scholarshipweb.bus.serviceprovider.da.DAReligionBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DAScholarshipBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DAScholarshipTypeBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DASchoolBUS;
+import uit.se06.scholarshipweb.bus.serviceprovider.da.DASearchBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DASponsorBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DATalentBUS;
 import uit.se06.scholarshipweb.bus.serviceprovider.da.DATerminalIllBUS;
 
 public class DirectAccessBUSFactory extends BUSAbstractFactory {
+
+	@Override
+	public ISearchBUS getSearchBUS() {
+		return new DASearchBUS();
+	}
 
 	@Override
 	public IAcademicLevelBUS getAcademicLevelBUS() {
@@ -108,4 +115,5 @@ public class DirectAccessBUSFactory extends BUSAbstractFactory {
 	public ITerminalIllBUS getTerminalIllBUS() {
 		return new DATerminalIllBUS();
 	}
+
 }

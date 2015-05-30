@@ -16,8 +16,8 @@ public class DAJdbcCountryDAO extends DAJdbcBaseDAO<Country> implements
 	private static final Logger logger = LoggerFactory
 			.getLogger(DAJdbcCountryDAO.class);
 
-	public final String COL_ID = "country_id";
-	public final String COL_NAME = "country_name";
+	public final String COL_ID = "countryId";
+	public final String COL_NAME = "countryName";
 
 	// ============================================================
 	// CONSTRUCTORS

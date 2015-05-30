@@ -49,17 +49,17 @@ public class Scholarship implements ISimpleModel {
 	private Date dateEndRegister;
 
 	@Column(name = "value_min", unique = false, nullable = false)
-	private int valueMin;
+	private int valueMin = 0;
 
 	@Column(name = "value_max", unique = false, nullable = false)
-	private int valueMax;
+	private int valueMax = 0;
 
 	@Column(name = "active", unique = false, nullable = false)
 	private boolean isActive = true;
 
 	// specification
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "scholarship", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "scholarship", cascade = CascadeType.ALL)
 	private ScholarshipSpecification scholarshipSpecification;
 
 	// ============================================================

@@ -44,7 +44,7 @@ public class Utility {
 	// ============================================================
 
 	private Utility() {
-		dateFormat = new SimpleDateFormat(Contants.CONF_DATE_FORMAT);
+		dateFormat = new SimpleDateFormat(Constants.CONF_DATE_FORMAT);
 	}
 
 	// ============================================================
@@ -55,7 +55,7 @@ public class Utility {
 		if (date != null) {
 			return dateFormat.format(date);
 		} else {
-			return Contants.TAG_NO_ANSWER;
+			return Constants.TAG_NO_ANSWER;
 		}
 	}
 
@@ -68,30 +68,30 @@ public class Utility {
 	public String getMoneyString(int min, int max) {
 		if (min <= 0) {// no min
 			if (max > 0) {
-				return "<= " + max + " " + Contants.TAG_MONEY_CURRENCY;
+				return "<= " + max + " " + Constants.TAG_MONEY_CURRENCY;
 			} else {
-				return Contants.TAG_NO_ANSWER;
+				return Constants.TAG_NO_ANSWER;
 			}
 		} else {
 			if (max <= 0) {// no max
-				return ">= " + min + " " + Contants.TAG_MONEY_CURRENCY;
+				return ">= " + min + " " + Constants.TAG_MONEY_CURRENCY;
 			}
 		}
-		return min + " -> " + max + " " + Contants.TAG_MONEY_CURRENCY;
+		return min + " -> " + max + " " + Constants.TAG_MONEY_CURRENCY;
 	}
 
 	public String getMoneyString(int value) {
 		if (value > 0) {
-			return value + " " + Contants.TAG_MONEY_CURRENCY;
+			return value + " " + Constants.TAG_MONEY_CURRENCY;
 		}
-		return Contants.TAG_NO_ANSWER;
+		return Constants.TAG_NO_ANSWER;
 	}
 
 	public String getNameString(ISimpleModel model) {
 		if (model != null) {
 			return model.getName().trim();
 		} else {
-			return Contants.TAG_NO_ANSWER;
+			return Constants.TAG_NO_ANSWER;
 		}
 	}
 
@@ -106,7 +106,7 @@ public class Utility {
 			}
 			return builder.toString();
 		}
-		return Contants.TAG_NO_ANSWER;
+		return Constants.TAG_NO_ANSWER;
 	}
 
 	public String getNamesString(List<? extends ISimpleModel> models) {
@@ -150,7 +150,7 @@ public class Utility {
 
 	public String getFormatString(String value) {
 		if (value == null) {
-			return Contants.TAG_NO_ANSWER;
+			return Constants.TAG_NO_ANSWER;
 		}
 		return value.trim();
 	}

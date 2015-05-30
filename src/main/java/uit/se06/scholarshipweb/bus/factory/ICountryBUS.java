@@ -9,4 +9,5 @@ public interface ICountryBUS extends IBUS<Country> {
 
 	List<Province> listProvinceByCountry(int countryId);
 
+	void insertProvince(Province entity);
 }

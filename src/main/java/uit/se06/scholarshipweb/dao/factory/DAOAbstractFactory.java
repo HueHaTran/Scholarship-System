@@ -19,6 +19,8 @@ public abstract class DAOAbstractFactory {
 	// METHODS
 	// ============================================================
 
+	public abstract ISearchDAO getSearchDAO();
+	
 	public abstract IAcademicLevelDAO getAcademicLevelDAO();
 
 	public abstract IAcademicLevelDetailDAO getAcademicLevelDetailDAO();
@@ -52,5 +54,6 @@ public abstract class DAOAbstractFactory {
 	public abstract ITalentDAO getTalentDAO();
 
 	public abstract ITerminalIllDAO getTerminalIllDAO();
+
 
 }

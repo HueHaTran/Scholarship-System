@@ -13,6 +13,21 @@ public class OverviewScholarshipViewModel {
 	private String value;
 
 	// ============================================================
+	// CONSTRUCTORS
+	// ============================================================
+	public OverviewScholarshipViewModel() {
+	}
+
+	public OverviewScholarshipViewModel(int id, String name, String schoolName,
+			String dateEndRegister, String value) {
+		this.id = id;
+		this.name = name;
+		this.schoolName = schoolName;
+		this.dateEndRegister = dateEndRegister;
+		this.value = value;
+	}
+
+	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================
 

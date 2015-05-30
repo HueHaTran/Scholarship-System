@@ -55,7 +55,7 @@ body {
 	text-align: center;
 }
 
-#nav-menu ul li a {
+#nav-menu ul li a.menu {
 	color: #c6d4e1; /* ' a ' in nav-bar */
 	text-decoration: none;
 	display: block;
@@ -72,15 +72,15 @@ body {
 	transition: color .25s;
 }
 
-#nav-menu ul li a:hover {
+#nav-menu ul li a.menu:hover {
 	color: #ffffff;
 }
 
-#nav-menu ul li a:hover:before {
+#nav-menu ul li a.menu:hover:before {
 	width: 100%;
 }
 
-#nav-menu ul li a:after { /*white dot between menu*/
+#nav-menu ul li a.menu:after { /*white dot between menu*/
 	content: "";
 	display: block;
 	position: absolute;
@@ -92,7 +92,7 @@ body {
 	opacity: .5;
 }
 
-#nav-menu ul li a:before {
+#nav-menu ul li a.menu:before {
 	content: "";
 	display: block;
 	position: absolute;
@@ -108,24 +108,24 @@ body {
 	transition: width .25s;
 }
 
-#nav-menu ul li.last>a:after, #nav-menu ul li:last-child>a:after {
+#nav-menu ul li.last>a.menu:after, #nav-menu ul li:last-child>a.menu:after {
 	display: none;
 }
 
-#nav-menu ul li.active a {
+#nav-menu ul li.active a.menu {
 	color: #ffffff;
 }
 
-#nav-menu ul li.active a:before {
+#nav-menu ul li.active a.menu:before {
 	width: 100%;
 }
 
-#nav-menu.align-right li.last>a:after, #nav-menu.align-right li:last-child>a:after
+#nav-menu.align-right li.last>a.menu:after, #nav-menu.align-right li:last-child>a.menu:after
 	{
 	display: block;
 }
 
-#nav-menu.align-right li:first-child a:after {
+#nav-menu.align-right li:first-child a.menu:after {
 	display: none;
 }
 
@@ -134,20 +134,20 @@ body {
 		float: none;
 		display: block;
 	}
-	#nav-menu ul li a {
+	#nav-menu ul li a.menu {
 		width: 100%;
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		border-bottom: 1px solid #c6d4e1;
 	}
-	#nav-menu ul li.last>a, #nav-menu ul li:last-child>a {
+	#nav-menu ul li.last>a.menu, #nav-menu ul li:last-child>a.menu {
 		border: 0;
 	}
-	#nav-menu ul li a:after {
+	#nav-menu ul li a.menu:after {
 		display: none;
 	}
-	#nav-menu ul li a:before {
+	#nav-menu ul li a.menu:before {
 		display: none;
 	}
 	#nav-menu div {

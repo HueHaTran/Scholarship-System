@@ -3,7 +3,7 @@ package uit.se06.scholarshipweb.dao.util;
 import org.hibernate.search.indexes.interceptor.EntityIndexingInterceptor;
 import org.hibernate.search.indexes.interceptor.IndexingOverride;
 
-import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 
 /**
  * Conditional indexing: to index or not based on entity state
@@ -12,14 +12,14 @@ import uit.se06.scholarshipweb.model.Scholarship;
  *
  */
 public class IndexScholarshipSpecInterceptor implements
-		EntityIndexingInterceptor<Scholarship> {
+		EntityIndexingInterceptor<ScholarshipSpecification> {
 
 	// ============================================================
 	// OVERRIDE METHODS
 	// ============================================================
 
 	@Override
-	public IndexingOverride onAdd(Scholarship entity) {
+	public IndexingOverride onAdd(ScholarshipSpecification entity) {
 		// only index scholarship when it is active
 		if (allowIndexing(entity)) {
 			return IndexingOverride.APPLY_DEFAULT;
@@ -28,17 +28,17 @@ public class IndexScholarshipSpecInterceptor implements
 	}
 
 	@Override
-	public IndexingOverride onCollectionUpdate(Scholarship entity) {
+	public IndexingOverride onCollectionUpdate(ScholarshipSpecification entity) {
 		return onUpdate(entity);
 	}
 
 	@Override
-	public IndexingOverride onDelete(Scholarship entity) {
+	public IndexingOverride onDelete(ScholarshipSpecification entity) {
 		return IndexingOverride.APPLY_DEFAULT;
 	}
 
 	@Override
-	public IndexingOverride onUpdate(Scholarship entity) {
+	public IndexingOverride onUpdate(ScholarshipSpecification entity) {
 		if (allowIndexing(entity)) {
 			return IndexingOverride.UPDATE;
 		}
@@ -49,8 +49,7 @@ public class IndexScholarshipSpecInterceptor implements
 	// CONDITIONS
 	// ============================================================
 
-	private boolean allowIndexing(Scholarship entity) {
-		return entity.getIsActive() == true;
+	private boolean allowIndexing(ScholarshipSpecification entity) {
+		return entity.getScholarship().getIsActive() == true;
 	}
-
 }

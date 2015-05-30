@@ -1,12 +1,13 @@
 package uit.se06.scholarshipweb.bus.util;
 
-public class Contants {
+public class Constants {
 
 	// ============================================================
 	// CONFIGURATION
 	// ============================================================
 
 	public static final String CONF_DATE_FORMAT = "MM-dd-yyyy";
+	public static final String CHARSET_FOR_URL_ENCODING = "UTF-8";
 
 	// ============================================================
 	// MENUS
@@ -32,7 +33,7 @@ public class Contants {
 	public static final String TITLE_FILTER4 = "Kết quả";
 
 	// ============================================================
-	// HEADLINES
+	// HEADLINES - FILTER
 	// ============================================================
 
 	public static final String HEAD_FILTER1_1 = "Thông tin cá nhân";
@@ -45,6 +46,15 @@ public class Contants {
 	public static final String HEAD_FILTER3_2 = "Ưu tiên";
 
 	public static final String HEAD_FILTER4_1 = "Danh sách kết quả";
+
+	// ============================================================
+	// HEADLINES - Name
+	// ============================================================
+
+	public static final String HEAD_RESULT_NAME = "Tên học bổng";
+	public static final String HEAD_RESULT_SCHOOL = "Trường/Tổ chức đào tạo";
+	public static final String HEAD_RESULT_VALUE = "Giá trị học bổng";
+	public static final String HEAD_RESULT_DATE_END = "Ngày hết hạn ứng tuyển";
 
 	// ============================================================
 	// PROPERTIES

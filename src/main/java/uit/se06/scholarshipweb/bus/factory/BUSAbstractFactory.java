@@ -20,8 +20,9 @@ public abstract class BUSAbstractFactory {
 	// METHODS
 	// ============================================================
 
-	public abstract IAcademicLevelBUS getAcademicLevelBUS();
+	public abstract ISearchBUS getSearchBUS();
 
+	public abstract IAcademicLevelBUS getAcademicLevelBUS();
 
 	public abstract ICountryBUS getCountryBUS();
 

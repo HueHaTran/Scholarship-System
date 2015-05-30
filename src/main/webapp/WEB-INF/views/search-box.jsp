@@ -6,20 +6,26 @@
 <link href="<c:url value="/resources/css/nav-wrap.css" />"
 	rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="<c:url value="/resources/js/search.js" />"></script>
 </head>
 <body>
+
+	<div id="temp-storage-search" style="display: none;"></div>
 	<div id='nav-wrap'>
 		<ul>
 			<li class='search'>
-				<form action="http://scholarship/all">
+				<form>
 					<div class="input-group">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="submit">
+
+							<button class="btn btn-default" type="submit"
+								onclick="clickSearch()">
 								<img class='glyphicon' src="resources/img/zoom.png" />
 							</button>
-						</span> <input class="form-control search-term" type="text"
-							placeholder="Tìm kiếm từ khóa" autocomplete="on" maxlength="60"
-							value="" name="q"></input>
+
+						</span> <input id="search-text" class="form-control search-term"
+							type="text" placeholder="Tìm kiếm từ khóa" autocomplete="on"
+							maxlength="60"></input>
 					</div>
 				</form>
 			</li>

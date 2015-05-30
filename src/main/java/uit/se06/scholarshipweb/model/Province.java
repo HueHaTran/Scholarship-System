@@ -40,7 +40,7 @@ public class Province implements ISimpleModel {
 	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	private String provinceName;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "country_id", referencedColumnName = "country_id")
 	private Country country;
 
@@ -104,4 +104,5 @@ public class Province implements ISimpleModel {
 			Set<ScholarshipSpecification> scholarshipsWithResidence) {
 		this.scholarshipsWithResidence = scholarshipsWithResidence;
 	}
+
 }

@@ -1,0 +1,77 @@
+package uit.se06.scholarshipweb.controller;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
+import uit.se06.scholarshipweb.bus.factory.ISearchBUS;
+import uit.se06.scholarshipweb.bus.util.Constants;
+import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
+
+@Controller
+public class SearchController {
+	private static final Logger logger = LoggerFactory
+			.getLogger(SearchController.class);
+
+	private ISearchBUS busSearch;
+
+	public SearchController() {
+		super();
+		busSearch = BUSAbstractFactory.INS.getSearchBUS();
+	}
+
+	private int pageSize = 10;
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("search");
+
+		String keyWord = "";
+		try {
+			keyWord = URLDecoder.decode(
+					new String(request.getParameter("keyWord").trim()
+							.getBytes("iso-8859-1")),
+					Constants.CHARSET_FOR_URL_ENCODING);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int pageNumber = 1;
+		try {
+			pageNumber = Integer.parseInt(request.getParameter("pageNum")
+					.trim());
+		} catch (NumberFormatException ex) {
+
+		}
+		if (keyWord != null && !keyWord.isEmpty()) {
+			List<OverviewScholarshipViewModel> list = busSearch.search(keyWord,
+					pageNumber, pageSize);
+
+			logger.error("size " + list.size());
+			model.addObject("results", list);
+		} else {
+			model.addObject("results", new ArrayList<Scholarship>());
+		}
+
+		int total = 0;
+		total = busSearch.getTopResultRowCount(keyWord);
+
+		model.addObject("keyWord", keyWord);
+		model.addObject("resultTotal", total);
+		model.addObject("pageNumber", pageNumber);
+		model.addObject("pageSize", pageSize);
+		return model;
+	}
+}
