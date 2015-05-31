@@ -22,26 +22,70 @@
 }
 
 .result-content {
-	border-bottom: 2px solid gray;
-	padding-bottom: 20px;
+	clear: both;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .detail-head {
 	font-weight: bold;
 	font-size: 18px;
+	width: 30%;
+	line-height: 25px;
+}
+
+.detail {
+	clear: both;
 }
 
 .detail-content {
+	color: #8A8A8A;
+	width: 70%;
 	font-size: 18px;
 	font-weight: normal;
+	width: 70%;
 }
 
 .title {
 	color: #44749d;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 22px;
 	clear: both;
 	text-transform: uppercase;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	color: #007FAE;
+}
+
+.title-link:hover {
+	color: #18B3D8;
+}
+
+.result-content a {
+	text-decoration: none;
+}
+
+/*detail scholarship*/
+.heading {
+	color: #44749d;
+	font-weight: bold;
+	font-size: 18px;
+	clear: both;
+	text-transform: uppercase;
+	border-bottom: 4px solid #44749d;
+}
+
+.detail-part {
+	clear: both;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+.title-detailpage {
+	clear: both;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 22px;
+	padding-bottom: 10px;
 }

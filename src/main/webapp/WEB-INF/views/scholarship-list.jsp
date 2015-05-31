@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bright future - Detail</title>
+<title>Bright future - Search</title>
 <link href="<c:url value="/resources/css/result-content.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
@@ -12,6 +12,7 @@
 </head>
 <body>
 	<div class="container">
+
 		<div id='nav-menu'>
 			<%@include file="search-box.jsp"%>
 			<ul class="nav-menu-ul">
@@ -22,31 +23,39 @@
 		</div>
 
 		<fieldset class="filter-fieldset" id="search-page1">
-			<h2>${result.getName()}</h2>
+			<h2>KẾT QUẢ TRA CỨU '${keyWord}'</h2>
+			<div class="start-list-result">Có ${resultTotal} kết quả</div>
 
-			<a href="all?id=${result.getId()}"><span class="title">${result.getName()}</span></a>
+			<c:forEach items="${results}" var="result">
+				<div class="result-content">
 
-			<div class="detail">
-				<div class="detail-head"><%=Constants.HEAD_RESULT_SCHOOL%>: <span
-						class="detail-content">${result.getSchoolName()}</span>
+					<a href="all?id=${result.getId()}"><span
+						class="title title-link">${result.getName()}</span></a>
+
+					<div class="detail">
+						<div class="detail-head"><%=Constants.HEAD_RESULT_SCHOOL%>:
+							<span class="detail-content">${result.getSchoolName()}</span>
+						</div>
+					</div>
+
+					<div class="detail">
+						<div class="detail-head"><%=Constants.HEAD_RESULT_VALUE%>: <span
+								class="detail-content">${result.getValue()}</span>
+						</div>
+					</div>
+
+					<div class="detail">
+						<div class="detail-head"><%=Constants.HEAD_RESULT_DATE_END%>:
+							<span class="detail-content">${result.getDateEndRegister()}</span>
+						</div>
+					</div>
 				</div>
-			</div>
 
-			<div class="detail">
-				<div class="detail-head"><%=Constants.HEAD_RESULT_VALUE%>: <span
-						class="detail-content">${result.getValue()}</span>
-				</div>
-			</div>
-
-			<div class="detail">
-				<div class="detail-head"><%=Constants.HEAD_RESULT_DATE_END%>:
-					<span class="detail-content">${result.getDateEndRegister()}</span>
-				</div>
-			</div>
-
+			</c:forEach>
 
 			<div class="paging"></div>
 
 		</fieldset>
+	</div>
 </body>
 </html>

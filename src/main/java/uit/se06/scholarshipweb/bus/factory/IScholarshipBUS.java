@@ -6,13 +6,12 @@ import uit.se06.scholarshipweb.viewmodel.ScholarshipViewModel;
 
 public interface IScholarshipBUS extends IBUS<Scholarship> {
 
-	ScholarshipViewModel findViewModelById(int id);
+	ScholarshipViewModel findViewModelById(int id, boolean allowEmptyString);
 
-	ScholarshipViewModel findViewModelByName(String name);
-
-	OverviewScholarshipViewModel findOverviewById(int id);
+	ScholarshipViewModel findViewModelByName(String name,
+			boolean allowEmptyString);
 
 	OverviewScholarshipViewModel convertToOverviewViewModel(
-			Scholarship scholarship);
+			Scholarship scholarship, boolean allowEmptyString);
 
 }

@@ -27,7 +27,7 @@ public class ScholarshipController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView search(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("search");
+		ModelAndView model = new ModelAndView("scholarship-detail");
 
 		String idStr = request.getParameter("id").trim();
 
@@ -39,9 +39,12 @@ public class ScholarshipController {
 			return model;
 		}
 
-		ScholarshipViewModel entity = busScholarship.findViewModelById(id);
+		ScholarshipViewModel entity = busScholarship.findViewModelById(id,
+				false);
 
-		model.addObject("entity", entity);
+		logger.error(entity.getName());
+
+		model.addObject("result", entity);
 		return model;
 	}
 }

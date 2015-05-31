@@ -68,11 +68,13 @@ public class DASearchBUS implements ISearchBUS {
 							.getName();
 				}
 				if (s.getDateEndRegister() != null) {
-					date = s.getDateEndRegister().toString();
+					date = Utility.getIns().getDateString(
+							s.getDateEndRegister(), false);
 				}
 				result.add(new OverviewScholarshipViewModel(s.getId(), s
-						.getName(), schoolNames, date, Utility.getIns()
-						.getMoneyString(s.getValueMin(), s.getValueMax())));
+						.getName(), schoolNames, date,
+						Utility.getIns().getMoneyString(s.getValueMin(),
+								s.getValueMax(), false)));
 			}
 			return result;
 		}

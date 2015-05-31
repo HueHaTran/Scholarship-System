@@ -39,25 +39,30 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 	// ============================================================
 
 	@Override
-	public ScholarshipViewModel findViewModelById(int id) {
+	public ScholarshipViewModel findViewModelById(int id,
+			boolean allowEmptyString) {
 		Scholarship scholarship = findById(id);
-		ScholarshipViewModel entity = convertToViewModel(scholarship);
+		ScholarshipViewModel entity = convertToViewModel(scholarship,
+				allowEmptyString);
 		return entity;
 	}
 
 	@Override
-	public ScholarshipViewModel findViewModelByName(String name) {
+	public ScholarshipViewModel findViewModelByName(String name,
+			boolean allowEmptyString) {
 		Scholarship scholarship = findByName(name);
 
-		ScholarshipViewModel entity = convertToViewModel(scholarship);
+		ScholarshipViewModel entity = convertToViewModel(scholarship,
+				allowEmptyString);
 		return entity;
 	}
 
-	@Override
-	public OverviewScholarshipViewModel findOverviewById(int id) {
-		Scholarship scholarship = dao.findShortInfoById(id);
-		return convertToOverviewViewModel(scholarship);
-	}
+	// @Override
+	// public OverviewScholarshipViewModel findOverviewById(int id,
+	// boolean allowEmptyString) {
+	// Scholarship scholarship = dao.findShortInfoById(id);
+	// return convertToOverviewViewModel(scholarship, allowEmptyString);
+	// }
 
 	@Override
 	protected IDAO<Scholarship> getDAO() {
@@ -75,7 +80,7 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 
 	@Override
 	public OverviewScholarshipViewModel convertToOverviewViewModel(
-			Scholarship scholarship) {
+			Scholarship scholarship, boolean allowEmptyString) {
 		if (scholarship == null) {
 			return null;
 		}
@@ -93,16 +98,20 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 
 		// set
 		entity.setId(scholarship.getId());
-		entity.setName(Utility.getIns().getNameString(scholarship));
+		entity.setName(Utility.getIns().getNameString(scholarship,
+				allowEmptyString));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
-				scholarship.getDateEndRegister()));
-		entity.setSchoolName(Utility.getIns().getNameString(school));
-		entity.setValue(Utility.getIns().getMoneyString(min, max));
+				scholarship.getDateEndRegister(), allowEmptyString));
+		entity.setSchoolName(Utility.getIns().getNameString(school,
+				allowEmptyString));
+		entity.setValue(Utility.getIns().getMoneyString(min, max,
+				allowEmptyString));
 
 		return entity;
 	}
 
-	private ScholarshipViewModel convertToViewModel(Scholarship scholarship) {
+	private ScholarshipViewModel convertToViewModel(Scholarship scholarship,
+			boolean allowEmptyString) {
 		if (scholarship == null) {
 			return null;
 		}
@@ -112,54 +121,58 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 
 		ScholarshipViewModel entity = new ScholarshipViewModel();
 		entity.setId(scholarship.getId());
-		entity.setName(Utility.getIns().getNameString(scholarship));
+		entity.setName(Utility.getIns().getNameString(scholarship,
+				allowEmptyString));
 		entity.setDescription(Utility.getIns().getFormatString(
-				specification.getDescription()));
+				specification.getDescription(), allowEmptyString));
 		entity.setOriginalLink(Utility.getIns().getFormatString(
-				specification.getOriginal_link()));
+				specification.getOriginal_link(), allowEmptyString));
 		entity.setApplicationDescription(Utility.getIns().getFormatString(
-				specification.getApplicationDescription()));
+				specification.getApplicationDescription(), allowEmptyString));
 		entity.setCount(Utility.getIns().getFormatNumberString(
-				specification.getCount()));
+				specification.getCount(), allowEmptyString));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
-				scholarship.getDateEndRegister()));
+				scholarship.getDateEndRegister(), allowEmptyString));
 		entity.setFormOfParticipation(Utility.getIns().getNameString(
-				specification.getFormOfParticipation()));
+				specification.getFormOfParticipation(), allowEmptyString));
 		entity.setScholarshipAcademicLevelDetail(Utility.getIns()
 				.getNamesString(
-						specification.getScholarshipAcademicLevelDetail()));
+						specification.getScholarshipAcademicLevelDetail(),
+						allowEmptyString));
 		entity.setScholarshipMajors(Utility.getIns().getNamesString(
-				specification.getScholarshipMajors()));
+				specification.getScholarshipMajors(), allowEmptyString));
 		entity.setScholarshipType(Utility.getIns().getNameString(
-				specification.getScholarshipType()));
+				specification.getScholarshipType(), allowEmptyString));
 		entity.setSchoolName(Utility.getIns().getNameString(
-				specification.getSchool()));
+				specification.getSchool(), allowEmptyString));
 		entity.setSponsorNames(Utility.getIns().getNamesString(
-				specification.getSponsors()));
-		entity.setStudentAcademicLevelDetail(Utility.getIns().getNameString(
-				specification.getStudentAcademicLevelDetail()));
+				specification.getSponsors(), allowEmptyString));
+		entity.setStudentAcademicLevelDetail(Utility.getIns()
+				.getNameString(specification.getStudentAcademicLevelDetail(),
+						allowEmptyString));
 		entity.setStudentCitizenship(Utility.getIns().getNameString(
-				specification.getStudentCitizenship()));
+				specification.getStudentCitizenship(), allowEmptyString));
 		entity.setStudentDisabilities(Utility.getIns().getNamesString(
-				specification.getStudentDisabilities()));
+				specification.getStudentDisabilities(), allowEmptyString));
 		entity.setStudentEthnic(Utility.getIns().getNameString(
-				specification.getStudentEthnic()));
+				specification.getStudentEthnic(), allowEmptyString));
 		entity.setStudentFamilyPolicies(Utility.getIns().getNamesString(
-				specification.getStudentFamilyPolicies()));
+				specification.getStudentFamilyPolicies(), allowEmptyString));
 		entity.setStudentGender(Utility.getIns().getNameString(
-				specification.getStudentGender()));
+				specification.getStudentGender(), allowEmptyString));
 		entity.setStudentReligion(Utility.getIns().getNameString(
-				specification.getStudentReligion()));
+				specification.getStudentReligion(), allowEmptyString));
 		entity.setStudentResidences(Utility.getIns().getNamesString(
-				specification.getStudentResidences()));
+				specification.getStudentResidences(), allowEmptyString));
 		entity.setStudentTalents(Utility.getIns().getNamesString(
-				specification.getStudentTalents()));
+				specification.getStudentTalents(), allowEmptyString));
 		entity.setStudentTerminalIllnesses(Utility.getIns().getNamesString(
-				specification.getStudentTerminalIllnesses()));
+				specification.getStudentTerminalIllnesses(), allowEmptyString));
 		entity.setSupportDescription(Utility.getIns().getFormatString(
-				specification.getSupportDescription()));
+				specification.getSupportDescription(), allowEmptyString));
 		entity.setValue(Utility.getIns().getMoneyString(
-				scholarship.getValueMin(), scholarship.getValueMax()));
+				scholarship.getValueMin(), scholarship.getValueMax(),
+				allowEmptyString));
 
 		return entity;
 	}

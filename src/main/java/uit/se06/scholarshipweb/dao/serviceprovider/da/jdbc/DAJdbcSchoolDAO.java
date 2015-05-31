@@ -16,13 +16,13 @@ public class DAJdbcSchoolDAO extends DAJdbcBaseDAO<School> implements
 	private static final Logger logger = LoggerFactory
 			.getLogger(DAJdbcSchoolDAO.class);
 
-	public final String COL_ID = "school_id";
-	public final String COL_NAME = "school_name";
-	public final String COL_PROVICE_ID = "province_id";
-	public final String COL_ADDRESS = "address";
-	public final String COL_PHONE = "phone";
-	public final String COL_WEBSITE = "website";
-	public final String COL_FAX = "fax";
+	public static final String COL_ID = "school_id";
+	public static  final String COL_NAME = "school_name";
+	public static  final String COL_PROVICE_ID = "province_id";
+	public static  final String COL_ADDRESS = "address";
+	public static  final String COL_PHONE = "phone";
+	public static  final String COL_WEBSITE = "website";
+	public static  final String COL_FAX = "fax";
 
 	// ============================================================
 	// CONSTRUCTORS

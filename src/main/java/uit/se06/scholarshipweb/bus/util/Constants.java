@@ -48,19 +48,42 @@ public class Constants {
 	public static final String HEAD_FILTER4_1 = "Danh sách kết quả";
 
 	// ============================================================
+	// HEADLINES - Detail
+	// ============================================================
+	public static final String HEAD_DETAIL = "Thông tin chi tiết";
+	public static final String HEAD_DETAIL_GENERAL = "Thông tin chung";
+	public static final String HEAD_DETAIL_STUDENT = "Đối tượng tham gia";
+	public static final String HEAD_DETAIL_ACADEMIC_LEVEL = "Trình độ học vấn";
+	public static final String HEAD_DETAIL_APPLICATION = "Hồ sơ đăng ký";
+
+	// ============================================================
 	// HEADLINES - Name
 	// ============================================================
 
-	public static final String HEAD_RESULT_NAME = "Tên học bổng";
 	public static final String HEAD_RESULT_SCHOOL = "Trường/Tổ chức đào tạo";
 	public static final String HEAD_RESULT_VALUE = "Giá trị học bổng";
 	public static final String HEAD_RESULT_DATE_END = "Ngày hết hạn ứng tuyển";
+
+	public static final String HEAD_RESULT_SPONSOR = "Nhà tài trợ";
+	public static final String HEAD_RESULT_ADDRESS = "Địa chỉ";
+	public static final String HEAD_RESULT_NAME = "Tên";
+	public static final String HEAD_RESULT_PHONE = "Điện thoại";
+	public static final String HEAD_RESULT_FAX = "Fax";
+	public static final String HEAD_RESULT_WEBSITE = "Website";
+
+	public static final String PROP_RESULT_LINK = "Nguồn";
+	public static final String PROP_RESULT_DESCRIPTION = "Giới thiệu";
+	public static final String PROP_RESULT_COUNT = "Số lượng trúng tuyển";
+	public static final String PROP_RESULT_DESCRIPTION_SUPPORT = "Hỗ trợ";
+	public static final String PROP_RESULT_DESCRIPTION_APPLICATION = "Hồ sơ";
+	public static final String PROP_RESULT_FORM_OF_APPLICATION = "Hình thức dự tuyển";
 
 	// ============================================================
 	// PROPERTIES
 	// ============================================================
 
 	public static final String PROP_GENDER = "Giới tính";
+	public static final String PROP_ETHNIC = "Dân tộc";
 	public static final String PROP_CITIZENSHIP = "Công dân";
 	public static final String PROP_RESIDENCE = "Nơi ở";
 	public static final String PROP_TERMINAL_ILL = "Tình trạng đặc biệt";

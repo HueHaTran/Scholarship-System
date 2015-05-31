@@ -36,7 +36,7 @@ public class SearchController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("search");
+		ModelAndView model = new ModelAndView("scholarship-list");
 
 		String keyWord = "";
 		try {

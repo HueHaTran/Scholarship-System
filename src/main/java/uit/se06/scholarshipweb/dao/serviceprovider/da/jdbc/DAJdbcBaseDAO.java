@@ -96,7 +96,7 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 			builder.append("  WHERE ").append(name).append(" = :param1");
 
 			Query query = getSession().createQuery(builder.toString())
-					.setParameter("param1", value);
+					.setParameter("param1", value).setMaxResults(1);
 
 			resultSet = new HashSet<T>(query.list());
 			if (resultSet != null && !resultSet.isEmpty()) {

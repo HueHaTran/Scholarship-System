@@ -51,11 +51,13 @@ public class Utility {
 	// METHODS
 	// ============================================================
 
-	public String getDateString(Date date) {
+	public String getDateString(Date date, boolean allowEmpty) {
 		if (date != null) {
 			return dateFormat.format(date);
-		} else {
+		} else if (!allowEmpty) {
 			return Constants.TAG_NO_ANSWER;
+		} else {
+			return "";
 		}
 	}
 
@@ -65,12 +67,16 @@ public class Utility {
 	 * @param max
 	 * @return min -> max (no min: <= max; no max: >=min)
 	 */
-	public String getMoneyString(int min, int max) {
+	public String getMoneyString(int min, int max, boolean allowEmpty) {
 		if (min <= 0) {// no min
 			if (max > 0) {
 				return "<= " + max + " " + Constants.TAG_MONEY_CURRENCY;
 			} else {
-				return Constants.TAG_NO_ANSWER;
+				if (!allowEmpty) {
+					return Constants.TAG_NO_ANSWER;
+				} else {
+					return "";
+				}
 			}
 		} else {
 			if (max <= 0) {// no max
@@ -80,22 +86,29 @@ public class Utility {
 		return min + " -> " + max + " " + Constants.TAG_MONEY_CURRENCY;
 	}
 
-	public String getMoneyString(int value) {
+	public String getMoneyString(int value, boolean allowEmpty) {
 		if (value > 0) {
 			return value + " " + Constants.TAG_MONEY_CURRENCY;
 		}
-		return Constants.TAG_NO_ANSWER;
-	}
-
-	public String getNameString(ISimpleModel model) {
-		if (model != null) {
-			return model.getName().trim();
-		} else {
+		if (!allowEmpty) {
 			return Constants.TAG_NO_ANSWER;
+		} else {
+			return "";
 		}
 	}
 
-	public String getNamesString(Set<? extends ISimpleModel> models) {
+	public String getNameString(ISimpleModel model, boolean allowEmpty) {
+		if (model != null) {
+			return model.getName().trim();
+		} else if (!allowEmpty) {
+			return Constants.TAG_NO_ANSWER;
+		} else {
+			return "";
+		}
+	}
+
+	public String getNamesString(Set<? extends ISimpleModel> models,
+			boolean allowEmpty) {
 		if (models != null && !models.isEmpty()) {
 			StringBuilder builder = new StringBuilder();
 			String prefix = "";
@@ -106,11 +119,16 @@ public class Utility {
 			}
 			return builder.toString();
 		}
-		return Constants.TAG_NO_ANSWER;
+		if (!allowEmpty) {
+			return Constants.TAG_NO_ANSWER;
+		} else {
+			return "";
+		}
 	}
 
-	public String getNamesString(List<? extends ISimpleModel> models) {
-		return getNamesString(new HashSet<ISimpleModel>(models));
+	public String getNamesString(List<? extends ISimpleModel> models,
+			boolean allowEmpty) {
+		return getNamesString(new HashSet<ISimpleModel>(models), allowEmpty);
 	}
 
 	public List<String> getNameList(Set<? extends ISimpleModel> models) {
@@ -127,7 +145,7 @@ public class Utility {
 		return getNameList(new HashSet<ISimpleModel>(models));
 	}
 
-	public String getFormatNumberString(int value) {
+	public String getFormatNumberString(int value, boolean allowEmpty) {
 		NumberFormat anotherFormat = NumberFormat
 				.getNumberInstance(Locale.GERMAN);
 		try {
@@ -145,12 +163,23 @@ public class Utility {
 			logger.error("Exception in " + this.getClass().getCanonicalName()
 					+ "(getFormatNumberString()): " + ex);
 		}
+		if (value == 0) {
+			if (allowEmpty) {
+				return "";
+			} else {
+				return Constants.TAG_NO_ANSWER;
+			}
+		}
 		return String.valueOf(value);
 	}
 
-	public String getFormatString(String value) {
+	public String getFormatString(String value, boolean allowEmpty) {
 		if (value == null) {
-			return Constants.TAG_NO_ANSWER;
+			if (!allowEmpty) {
+				return Constants.TAG_NO_ANSWER;
+			} else {
+				return "";
+			}
 		}
 		return value.trim();
 	}

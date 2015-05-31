@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -32,15 +33,14 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 	private static final Logger logger = LoggerFactory
 			.getLogger(DAJdbcScholarshipDAO.class);
 
-	public final String COL_ID = "scholarshipId";
-	public final String COL_NAME = "scholarshipName";
+	public final String COL_ID = "scholarship_id";
+	public final String COL_NAME = "scholarship_name";
 	// public final String COL_DESCIPTION = "description";
 	// public final String COL_ORIGINAL_LINK = "original_link";
 	// public final String COL_COUNT = "count";
-	public final String COL_DATE_END_REGISTER = "dateEndRegister";
-	public final String COL_VALUE_MIN = "valueMin";
-	public final String COL_VALUE_MAX = "valueMax";
-	public final String COL_SPEC = "scholarshipSpecification";
+	public final String COL_DATE_END_REGISTER = "date_end_register";
+	public final String COL_VALUE_MIN = "value_min";
+	public final String COL_VALUE_MAX = "value_max"; 
 
 	// public final String COL_STUDENT_GENDER = "student_gender_id";
 	// public final String COL_STUDENT_CITIZENSHIP = "student_citizenship_id";
@@ -49,7 +49,7 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 	// public final String COL_STUDENT_ACADEMIC_LEVEL_DETAIL =
 	// "student_academic_level_detail_id";
 	// public final String COL_SCHOLARSHIP_TYPE = "scholarship_type_id";
-	// public final String COL_SCHOOL = "school_id";
+ public final String COL_SCHOOL = "school_id";
 	// public final String COL_FORM_OF_PARTICIPATION =
 	// "form_of_participation_id";
 	// public final String COL_APPLICATION_DESCRIPTION =
@@ -121,63 +121,7 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 	public Scholarship findByName(String name) {
 		return findBy(COL_NAME, name, scholarshipLoadinglistener);
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	/**
-	 * not done
-	 */
-	public Scholarship findShortInfoById(int id) {
-		List<Scholarship> resultList = null;
-
-		StringBuilder builder = new StringBuilder();
-
-		try {
-			ProjectionList projections = Projections
-					.projectionList()
-					.add(Projections.property(COL_NAME), COL_NAME)
-					.add(Projections.property(COL_ID), COL_ID)
-					.add(Projections.property(COL_VALUE_MIN), COL_VALUE_MIN)
-					.add(Projections.property(COL_VALUE_MAX), COL_VALUE_MAX)
-					.add(Projections.property(COL_DATE_END_REGISTER),
-							COL_DATE_END_REGISTER);
-
-			Criteria query = getSession().createCriteria(Scholarship.class)
-					.setProjection(projections)
-					.add(Restrictions.like("COL_ID", id));
-
-			//
-			// // query
-			// builder.append("SELECT ").append(COL_NAME);
-			// builder.append(", ").append(COL_VALUE_MIN);
-			// builder.append(", ").append(COL_VALUE_MAX);
-			// builder.append(", ").append(COL_DATE_END_REGISTER);
-			//
-			// builder.append(" FROM ").append(Scholarship.class.getSimpleName());
-			// builder.append("  where ").append(COL_ID).append(" = :paramId");
-			//
-			// Query query = getSession().createQuery(builder.toString()).;
-			// query.setParameter("paramId", id);
-
-			resultList = query.list();
-
-		} catch (Exception ex) {
-			logger.error("Query '" + builder.toString()
-					+ "' in findShortInfoById()");
-		} finally {
-			closeSession();
-		}
-
-		if (resultList != null && !resultList.isEmpty()) {
-			Scholarship result = resultList.get(0);
-			System.err
-					.println("Error in DAJdbcScholarDAOOOOOOOOOOOOOOOOOOO Can't use projection");
-			return result;
-		} else {
-			return null;
-		}
-
-	}
+ 
 
 	@Override
 	public void insert(Scholarship entity) {
@@ -244,27 +188,37 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 	@Override
 	public List<Scholarship> listBy(FilterViewModel data, int pageNumber,
 			int pageSize) {
-		List<Scholarship> resultList = null;
-		
-		
-		
-		
-		try {
-			ProjectionList projections = Projections
-					.projectionList()
-					.add(Projections.property(COL_NAME), COL_NAME)
-					.add(Projections.property(COL_ID), COL_ID)
-					.add(Projections.property(COL_VALUE_MIN), COL_VALUE_MIN)
-					.add(Projections.property(COL_VALUE_MAX), COL_VALUE_MAX)
-					.add(Projections.property(COL_DATE_END_REGISTER),
-							COL_DATE_END_REGISTER);
+		List<Scholarship> resultList = new ArrayList<Scholarship>();
 
-			List<SimpleExpression> expressions = new ArrayList<SimpleExpression>();
+		StringBuilder sb =new StringBuilder();
+		String nameScholar = "scho";
+		String nameSpec = "spec";
+		String nameSchool = "school";
+		
+		sb.append("SELECT ");
+		sb.append(nameScholar+"."+COL_NAME).append(", ").append(nameScholar+"."+COL_ID).append(", ");
+		sb.append(nameScholar+"."+COL_VALUE_MIN).append(", ").append(nameScholar+"."+COL_VALUE_MAX).append(", ");
+		sb.append(nameScholar+"."+ COL_DATE_END_REGISTER).append(", ");
+		
+		
 
-			if (data.stuGender != 0) {
-				expressions.add(Restrictions.eq("gender.genderId",
-						data.stuGender+""));
-			}
+
+//		try {
+//			ProjectionList projections = Projections
+//					.projectionList()
+//					.add(Projections.property(COL_NAME), COL_NAME)
+//					.add(Projections.property(COL_ID), COL_ID)
+//					.add(Projections.property(COL_VALUE_MIN), COL_VALUE_MIN)
+//					.add(Projections.property(COL_VALUE_MAX), COL_VALUE_MAX)
+//					.add(Projections.property(COL_DATE_END_REGISTER),
+//							COL_DATE_END_REGISTER);
+//
+//			List<SimpleExpression> expressions = new ArrayList<SimpleExpression>();
+//
+//			if (data.stuGender != 0) {
+//				expressions.add(Restrictions.eq("gender.genderId",
+//						data.stuGender+""));
+//			}
 //			if (data.stuCitizenship != 0) {
 //				expressions.add(Restrictions.eq(COL_STUDENT_CITIZENSHIP,
 //						data.stuCitizenship));
@@ -282,27 +236,27 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 //							data.stuResidenceProvince));
 //				}
 //			}
-
-			String aliasScholar = "scholar";
-			String aliasSpec = "spec";
-			Criteria query = getSession()
-					.createCriteria(Scholarship.class, aliasScholar)
-					.createAlias(aliasScholar + "." + COL_SPEC, aliasSpec,
-							Criteria.LEFT_JOIN)
-					.createAlias(aliasSpec + "." + "studentGender", "gender",
-							Criteria.LEFT_JOIN);
-
-			for (SimpleExpression expresssion : expressions) {
-				query.add(expresssion);
-			}
-
-			resultList = query.list();
-
-		} catch (Exception ex) {
-			logger.error("Error in listBy(FilterViewModel): " + ex.toString());
-		} finally {
-			closeSession();
-		}
+//
+//			String aliasScholar = "scholar";
+//			String aliasSpec = "spec";
+//			Criteria query = getSession()
+//					.createCriteria(Scholarship.class, aliasScholar)
+//					.createAlias(aliasScholar + "." + COL_SPEC, aliasSpec,
+//							Criteria.LEFT_JOIN)
+//					.createAlias(aliasSpec + "." + "studentGender", "gender",
+//							Criteria.LEFT_JOIN);
+//
+//			for (SimpleExpression expresssion : expressions) {
+//				query.add(expresssion);
+//			}
+//
+//			resultList = query.list();
+//
+//		} catch (Exception ex) {
+//			logger.error("Error in listBy(FilterViewModel): " + ex.toString());
+//		} finally {
+//			closeSession();
+//		}
 
 		return resultList;
 	}

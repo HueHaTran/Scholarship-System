@@ -18,7 +18,7 @@ body {
 .heading {
 	color: #44749d;
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 20px;
 	clear: both;
 	text-transform: uppercase;
 	border-bottom: 4px solid #44749d;
@@ -43,7 +43,7 @@ body {
 
 .question {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .answer {
