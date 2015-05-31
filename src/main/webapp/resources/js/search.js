@@ -20,3 +20,5 @@ function clickSearch() {
 		window.open(link);
 	}
 }
+
+

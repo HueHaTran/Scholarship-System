@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +8,9 @@
 <link href="<c:url value="/resources/css/result-content.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
+<script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.query-object.js" />"></script>
+<script src="<c:url value="/resources/js/paging.js" />"></script>
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
@@ -53,7 +56,26 @@
 
 			</c:forEach>
 
-			<div class="paging"></div>
+			<div class="paging">
+
+				<%--For displaying Page numbers--%>
+				<c:forEach var="i" begin="1" end="${noOfPages}">
+					<c:choose>
+						<c:when test="${pageNumber== i}">
+							<div class="page-box page-box-current"
+								onclick="searchPaging(this)">
+								<c:out value="${i}" />
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="page-box" onclick="searchPaging(this)">
+								<c:out value="${i}" />
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+			</div>
 
 		</fieldset>
 	</div>

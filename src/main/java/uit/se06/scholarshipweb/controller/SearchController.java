@@ -32,7 +32,7 @@ public class SearchController {
 		busSearch = BUSAbstractFactory.INS.getSearchBUS();
 	}
 
-	private int pageSize = 10;
+	private int pageSize = 1;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(HttpServletRequest request) {
@@ -40,18 +40,21 @@ public class SearchController {
 
 		String keyWord = "";
 		try {
-			keyWord = URLDecoder.decode(
-					new String(request.getParameter("keyWord").trim()
-							.getBytes("iso-8859-1")),
-					Constants.CHARSET_FOR_URL_ENCODING);
+			if (request.getParameter("keyWord") != null) {
+				keyWord = URLDecoder.decode(
+						new String(request.getParameter("keyWord").trim()
+								.getBytes("iso-8859-1")),
+						Constants.CHARSET_FOR_URL_ENCODING);
+			}
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int pageNumber = 1;
 		try {
-			pageNumber = Integer.parseInt(request.getParameter("pageNum")
-					.trim());
+			if (request.getParameter("pageNum") != null) {
+				pageNumber = Integer.parseInt(request.getParameter("pageNum")
+						.trim());
+			}
 		} catch (NumberFormatException ex) {
 
 		}
@@ -65,13 +68,15 @@ public class SearchController {
 			model.addObject("results", new ArrayList<Scholarship>());
 		}
 
-		int total = 0;
-		total = busSearch.getTopResultRowCount(keyWord);
+		int noOfRecords = 0;
+		noOfRecords = busSearch.getTopResultRowCount(keyWord);
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / pageSize);
 
 		model.addObject("keyWord", keyWord);
-		model.addObject("resultTotal", total);
-		model.addObject("pageNumber", pageNumber);
-		model.addObject("pageSize", pageSize);
+		model.addObject("noOfPages", noOfPages);// total page
+		model.addObject("resultTotal", noOfRecords);// total records
+		model.addObject("pageNumber", pageNumber);// current page
+		model.addObject("pageSize", pageSize);// number of records per page
 		return model;
 	}
 }
