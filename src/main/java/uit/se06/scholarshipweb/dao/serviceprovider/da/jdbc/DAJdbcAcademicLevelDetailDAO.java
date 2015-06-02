@@ -1,5 +1,8 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
@@ -61,6 +64,20 @@ public class DAJdbcAcademicLevelDetailDAO extends
 	@Override
 	public Set<AcademicLevelDetail> findByAcademicLevelId(int academicLevelId) {
 		return listBy(COL_ACADEMIC_LEVEL_ID, String.valueOf(academicLevelId));
+	}
+
+	@Override
+	public List<Integer> findIdListByAcademicLevelId(int academicLevelId) {
+		List<Integer> result = new ArrayList<Integer>();
+
+		Set<AcademicLevelDetail> set = findByAcademicLevelId(academicLevelId);
+		Iterator<AcademicLevelDetail> iter = set.iterator();
+
+		while (iter.hasNext()) {
+			result.add(((AcademicLevelDetail) iter.next()).getId());
+		}
+
+		return result;
 	}
 
 	// ============================================================

@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
 import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
 import uit.se06.scholarshipweb.dao.util.HibernateUtil;
 import uit.se06.scholarshipweb.dao.util.ILoadingRelatedEntityListener;
@@ -215,8 +216,6 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		StringBuilder sb = new StringBuilder();
 		long result = 0;
 
-		String tempScholar = "s1";
-
 		// select
 		sb.append("SELECT COUNT(*)");
 
@@ -326,18 +325,30 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
 			sb.append(getWhereInQuery(COL_TALENT, data.talents));
 		}
-		if (data.scholarAcaDetails > 0) {
+		if (data.scholarAca != 0) {
 			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
-			sb.append(getWhereEqualQuery(COL_SCHOLAR_ACA, data.scholarAca));
+			if (data.scholarAcaDetails > 0) {// choose specify entity
+				sb.append(getWhereEqualQuery(COL_SCHOLAR_ACA, data.scholarAca));
+			} else {// choose all
+				sb.append(getWhereInQuery(COL_SCHOLAR_ACA,
+						DAOAbstractFactory.INS.getAcademicLevelDetailDAO()
+								.findIdListByAcademicLevelId(data.scholarAca)));
+			}
 		}
 		if (data.scholarType > 0) {
 			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
 			sb.append(getWhereEqualQuery(COL_SCHOLARSHIP_TYPE, data.scholarType));
 		}
-		if (data.stuAcaDetail > 0) {
+		if (data.stuAca != 0) {
 			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
-			sb.append(getWhereEqualQuery(COL_STUDENT_ACADEMIC_LEVEL_DETAIL,
-					data.stuAcaDetail));
+			if (data.stuAcaDetail > 0) {
+				sb.append(getWhereEqualQuery(COL_STUDENT_ACADEMIC_LEVEL_DETAIL,
+						data.stuAcaDetail));
+			} else {
+				sb.append(getWhereInQuery(COL_STUDENT_ACADEMIC_LEVEL_DETAIL,
+						DAOAbstractFactory.INS.getAcademicLevelDetailDAO()
+								.findIdListByAcademicLevelId(data.stuAca)));
+			}
 		}
 		if (data.stuCitizenship > 0) {
 			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");

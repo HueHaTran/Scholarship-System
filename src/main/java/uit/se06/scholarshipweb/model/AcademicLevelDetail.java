@@ -58,12 +58,6 @@ public class AcademicLevelDetail implements ISimpleModel {
 	public AcademicLevelDetail() {
 	}
 
-	public AcademicLevelDetail(int academicLevelDetailId,
-			String academicLevelDetailName) {
-		setId(academicLevelDetailId);
-		setName(academicLevelDetailName);
-	}
-
 	// ============================================================
 	// GETTERS & SETTERS
 	// ============================================================

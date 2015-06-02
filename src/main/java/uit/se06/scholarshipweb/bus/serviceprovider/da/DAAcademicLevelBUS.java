@@ -14,6 +14,7 @@ import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDAO;
 import uit.se06.scholarshipweb.dao.factory.IAcademicLevelDetailDAO;
 import uit.se06.scholarshipweb.dao.factory.IDAO;
 import uit.se06.scholarshipweb.model.AcademicLevel;
+import uit.se06.scholarshipweb.model.AcademicLevelDetail;
 
 public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
 		IAcademicLevelBUS {
@@ -94,6 +95,13 @@ public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
 	}
 
 	@Override
+	public void insertAcademicLevelDetail(AcademicLevelDetail entity) {
+		if (entity != null) {
+			daoDetail.insert(entity);
+		}
+	}
+
+	@Override
 	protected IDAO<AcademicLevel> getDAO() {
 		return dao;
 	}
@@ -112,4 +120,5 @@ public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
 			return entity1.getId() - entity2.getId();
 		}
 	};
+
 }

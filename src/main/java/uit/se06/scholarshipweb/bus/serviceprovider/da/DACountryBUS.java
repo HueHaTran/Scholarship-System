@@ -85,6 +85,7 @@ public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 		return result;
 	}
 
+	@Override
 	public void insertProvince(Province entity) {
 		if (entity != null) {
 			daoProvince.insert(entity);

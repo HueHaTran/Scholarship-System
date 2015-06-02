@@ -78,13 +78,6 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 		return dao.countRowsListBy(data);
 	}
 
-	// @Override
-	// public OverviewScholarshipViewModel findOverviewById(int id,
-	// boolean allowEmptyString) {
-	// Scholarship scholarship = dao.findShortInfoById(id);
-	// return convertToOverviewViewModel(scholarship, allowEmptyString);
-	// }
-
 	@Override
 	protected IDAO<Scholarship> getDAO() {
 		return dao;
