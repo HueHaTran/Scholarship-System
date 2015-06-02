@@ -1,13 +1,12 @@
 package uit.se06.scholarshipweb.util;
 
-import javax.management.relation.Relation;
-
 import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
 import uit.se06.scholarshipweb.bus.factory.IAcademicLevelBUS;
 import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
 import uit.se06.scholarshipweb.bus.factory.IEthnicBUS;
 import uit.se06.scholarshipweb.bus.factory.IFormOfParticipationBUS;
 import uit.se06.scholarshipweb.bus.factory.IGenderBUS;
+import uit.se06.scholarshipweb.bus.factory.IMajorBUS;
 import uit.se06.scholarshipweb.bus.factory.IReligionBUS;
 import uit.se06.scholarshipweb.bus.factory.IScholarshipTypeBUS;
 import uit.se06.scholarshipweb.model.AcademicLevel;
@@ -16,6 +15,7 @@ import uit.se06.scholarshipweb.model.Country;
 import uit.se06.scholarshipweb.model.Ethnic;
 import uit.se06.scholarshipweb.model.FormOfParticipation;
 import uit.se06.scholarshipweb.model.Gender;
+import uit.se06.scholarshipweb.model.Major;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.model.Religion;
 import uit.se06.scholarshipweb.model.ScholarshipType;
@@ -34,6 +34,7 @@ public class DataGenerator {
 		addEthnic(factory);
 		addFormOfPart(factory);
 		addScholarType(factory);
+		addMajor(factory);
 	}
 
 	private static void addGender(BUSAbstractFactory factory) {
@@ -240,6 +241,36 @@ public class DataGenerator {
 
 		for (int i = 0; i < array.length; i++) {
 			ScholarshipType e = new ScholarshipType();
+			e.setName(array[i]);
+			bus.insert(e);
+		}
+	}
+
+	private static void addMajor(BUSAbstractFactory factory) {
+		IMajorBUS bus = factory.getMajorBUS();
+		String[] array = new String[] { "Kinh tế", "Quản trị kinh doanh",
+				"Marketing", "Quản trị kinh doanh du lịch và lữ hành",
+				"Kế toán", "Tài chính ngân hàng", "Luật kinh tế",
+				"Kỹ thuật cơ khí", "Kỹ thuật cơ - Điện tử",
+				"Kỹ thuật điện - điện tử",
+				"Kỹ thuật điều khiển và tự động hóa",
+				"Kỹ thuật điện tử truyền thông", "Kỹ thuật máy tính",
+				"Kỹ thuật môi trường", "Sư phạm kỹ thuật công nghiệp",
+				"Kỹ thuật công trình xây dựng", "Quản lý công nghiệp",
+				"Kinh tế công nghiệp", "Sư phạm", "Y đa khoa", "Điều dưỡng",
+				"Dược học", "Y dược dự phòng", "Răng Hàm Mặt", "Toán học",
+				"Toán học ứng dụng", "Công nghệ sinh học",
+				"Khoa học môi trường", "Quản lý tài nguyên và môi trường",
+				"Báo chí - truyền thông", "Công tác xã hội", "Luật",
+				"Công nghệ thông tin", "Hệ thống thông tin",
+				"Kỹ thuật phần phềm", "Khoa học máy tính",
+				"Công nghệ kỹ thuật điện tử - truyền thông",
+				"Mạng máy tính và truyền thông", "Truyền thông đa phương tiện",
+				"Quản trí văn phòng", "Kinh doanh quốc tế", "Nông nghiệp",
+				"Công nghệ dệt may", "Kỹ thuật mỏ", "Công nghệ thực phẩm" };
+
+		for (int i = 0; i < array.length; i++) {
+			Major e = new Major();
 			e.setName(array[i]);
 			bus.insert(e);
 		}
