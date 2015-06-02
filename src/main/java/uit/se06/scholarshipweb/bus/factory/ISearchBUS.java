@@ -14,4 +14,5 @@ public interface ISearchBUS {
 			int pageSize);
 
 	int getTopResultRowCount(String keyWord);
+
 }

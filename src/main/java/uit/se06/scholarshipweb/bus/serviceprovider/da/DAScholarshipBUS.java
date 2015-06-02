@@ -1,5 +1,8 @@
 package uit.se06.scholarshipweb.bus.serviceprovider.da;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +14,7 @@ import uit.se06.scholarshipweb.dao.factory.IScholarshipDAO;
 import uit.se06.scholarshipweb.model.Scholarship;
 import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 import uit.se06.scholarshipweb.model.School;
+import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
 import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
 import uit.se06.scholarshipweb.viewmodel.ScholarshipViewModel;
 
@@ -55,6 +59,23 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 		ScholarshipViewModel entity = convertToViewModel(scholarship,
 				allowEmptyString);
 		return entity;
+	}
+
+	@Override
+	public List<OverviewScholarshipViewModel> filter(FilterViewModel data,
+			int pageNumber, int pageSize, boolean allowEmptyString) {
+		List<OverviewScholarshipViewModel> result = new ArrayList<OverviewScholarshipViewModel>();
+
+		List<Scholarship> list = dao.listBy(data, pageNumber, pageSize);
+		for (Scholarship scholarship : list) {
+			result.add(convertToOverviewViewModel(scholarship, allowEmptyString));
+		}
+		return result;
+	}
+
+	@Override
+	public long countRowsListBy(FilterViewModel data) {
+		return dao.countRowsListBy(data);
 	}
 
 	// @Override

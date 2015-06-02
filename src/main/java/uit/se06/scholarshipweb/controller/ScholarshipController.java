@@ -42,8 +42,6 @@ public class ScholarshipController {
 		ScholarshipViewModel entity = busScholarship.findViewModelById(id,
 				false);
 
-		logger.error(entity.getName());
-
 		model.addObject("result", entity);
 		return model;
 	}

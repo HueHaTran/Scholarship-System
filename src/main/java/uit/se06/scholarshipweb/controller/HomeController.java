@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcScholarshipDAO;
+import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
+
 /**
  * Handles requests for the application home page.
  */
@@ -35,6 +38,12 @@ public class HomeController extends BaseController {
 		// logger.info("Size: " + a.size());
 		// InitialDatabase d=new InitialDatabase();
 		// d.populateData();
+
+		DAJdbcScholarshipDAO dao = new DAJdbcScholarshipDAO();
+		FilterViewModel data = new FilterViewModel();
+		data.stuGender = 2;
+		data.familyPolicy.add(1);
+		dao.listBy(data, 1, 1);
 
 		logger.info("Welcome home! The client locale is {}.", locale);
 

@@ -283,8 +283,7 @@ public class ScholarshipSpecification {
 		return studentFamilyPolicies;
 	}
 
-	public void setStudentFamilyPolicies(
-			Set<FamilyPolicy> studentFamilyPolicies) {
+	public void setStudentFamilyPolicies(Set<FamilyPolicy> studentFamilyPolicies) {
 		this.studentFamilyPolicies = studentFamilyPolicies;
 	}
 

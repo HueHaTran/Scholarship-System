@@ -37,8 +37,7 @@
 			<!-- fieldsets -->
 			<%@include file="filter1.jsp"%>
 			<%@include file="filter2.jsp"%>
-			<%@include file="filter3.jsp"%>
-			<%@include file="filter4.jsp"%>
+			<%@include file="filter3.jsp"%> 
 		</form>
 	</div>
 </body>

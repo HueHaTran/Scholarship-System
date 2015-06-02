@@ -7,12 +7,10 @@ function onChangeCountry(s, provinceElementId) {
 		url : "./getProvincesFromCountry",
 		data : countryId = dataString,
 		dataType : "text",
-		success : function(msg) { 
-			alert("enter");
-			data = JSON.parse(msg);
+		success : function(msg) {
+			var data = JSON.parse(msg);
 			if (msg != "false") {
-				var sel = document
-						.getElementById(provinceElementId);
+				var sel = document.getElementById(provinceElementId);
 
 				var len = data.length;
 				if (len == 0) {
@@ -22,7 +20,7 @@ function onChangeCountry(s, provinceElementId) {
 				}
 
 				for (var i = 0; i < len; ++i) {
-					createOption(sel, data[i][0], data[i][1]);
+					createOption(sel, data[i].id, data[i].name);
 				}
 			}
 		},

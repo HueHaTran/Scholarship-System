@@ -25,10 +25,8 @@
 			</ul>
 		</div>
 
-		<div style="display: none;" id="tempDiv_result_total">${resultTotal}</div>
-
 		<fieldset class="filter-fieldset" id="search-page1">
-			<h2>KẾT QUẢ TRA CỨU '${keyWord}'</h2>
+			<h2>KẾT QUẢ</h2>
 			<div class="start-list-result">Có ${resultTotal} kết quả</div>
 
 			<c:forEach items="${results}" var="result">
@@ -65,12 +63,12 @@
 					<c:choose>
 						<c:when test="${pageNumber== i}">
 							<div class="page-box page-box-current"
-								onclick="searchPaging(this)">
+								onclick="filterPaging(this)">
 								<c:out value="${i}" />
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="page-box" onclick="searchPaging(this)">
+							<div class="page-box" onclick="filterPaging(this)">
 								<c:out value="${i}" />
 							</div>
 						</c:otherwise>

@@ -9,5 +9,5 @@ public interface IScholarshipDAO extends IDAO<Scholarship> {
 
 	List<Scholarship> listBy(FilterViewModel data, int pageNumber, int pageSize);
 
-	int countRowsListBy(FilterViewModel data);
+	long countRowsListBy(FilterViewModel data);
 }

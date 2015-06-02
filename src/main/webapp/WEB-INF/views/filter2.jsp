@@ -129,7 +129,9 @@
 		<div style="clear: both;">
 			<input type="button" name="previous"
 				class="filter-previous action-button" value="Previous"
-				onclick="clickPrevFilter('filter2', 'filter1', 1)" /> <input
+				onclick="clickPrevFilter('filter2', 'filter1', 1)" /><input
+				type="button" name="next" class="filter-next action-button"
+				value="Sumit" onclick="clickSubmitFilter()" /> <input
 				type="button" name="next" class="filter-next action-button"
 				value="Next" onclick="clickNextFilter('filter2', 'filter3', 3)" />
 		</div>

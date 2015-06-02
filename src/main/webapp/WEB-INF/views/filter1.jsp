@@ -179,10 +179,11 @@
 		</div>
 
 		<div class="div-space"></div>
-
 		<div style="clear: both;">
 			<input type="button" name="next" class="filter-next action-button"
-				value="Next" onclick="clickNextFilter('filter1', 'filter2', 2)" />
+				value="Sumit" onclick="clickSubmitFilter()" /> <input type="button"
+				name="next" class="filter-next action-button" value="Next"
+				onclick="clickNextFilter('filter1', 'filter2', 2)" />
 		</div>
 	</fieldset>
 

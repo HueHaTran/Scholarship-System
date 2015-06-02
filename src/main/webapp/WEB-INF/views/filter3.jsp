@@ -65,7 +65,7 @@
 				class="filter-previous action-button" value="Previous"
 				onclick="clickPrevFilter('filter3', 'filter2', 2)" /> <input
 				type="button" name="next" class="filter-next action-button"
-				value="Sumit" onclick="clickSubmitFilter('filter3')" />
+				value="Sumit" onclick="clickSubmitFilter()" />
 		</div>
 	</fieldset>
 

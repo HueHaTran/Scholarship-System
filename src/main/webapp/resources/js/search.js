@@ -16,9 +16,8 @@ function clickSearch() {
 			}
 		}
 
-		var link = prefix + "/search?keyWord=" + text + "&pageNum=1";
+		var link = prefix + "/search?keyWord=" + text + "&pageNum=1"
+				+ "&resultTotal=0";
 		window.open(link);
 	}
 }
-
-

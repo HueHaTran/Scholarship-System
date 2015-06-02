@@ -46,7 +46,7 @@ public class Scholarship implements ISimpleModel {
 	@Column(name = "date_end_register", unique = false, nullable = true)
 	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	@DateBridge(resolution = Resolution.DAY)
-	private Date dateEndRegister;
+	private Date dateEndRegister=null;
 
 	@Column(name = "value_min", unique = false, nullable = false)
 	private int valueMin = 0;

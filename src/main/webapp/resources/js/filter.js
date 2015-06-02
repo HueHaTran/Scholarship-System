@@ -33,6 +33,11 @@ function clickPrevFilter(currentElementId, prevElementId, prevIndex) {
 }
 
 function clickFilter(index, total) {
+	if (index == total) {// result
+		clickSubmitFilter();
+		return;
+	}
+
 	// field set
 	for (var i = 1, len = total; i <= len; i++) {
 		var currentFieldset = document.getElementById("filter" + i);
@@ -62,7 +67,7 @@ function clickFilter(index, total) {
 	}
 }
 
-function clickSubmitFilter(currentElementId) {
+function clickSubmitFilter() {
 	var tempReligion = 0;
 	var tempStuAca, tempStuAcaDetail = 0;
 	var tempScholarAca, tempScholarAcaDetail = 0;
@@ -85,65 +90,61 @@ function clickSubmitFilter(currentElementId) {
 	}
 
 	var data = {
-		stuGender : getCheckedRadioValue("meta_data_gender"),
-		stuCitizenship : getComboboxValue("combobox_citizenship"),
-		stuResidenceCity : getComboboxValue("combobox_residence_province"),
-		stuResidenceProvince : getComboboxValue("combobox_residence_province"),
-		stuReligion : tempReligion,
-		stuDisabilities : getSelectedOptions("combobox_disability"),
-		stuTerminalIllnesses : getSelectedOptions("combobox_terminal_ill"),
-		familyPolicy : getSelectedOptions("combobox_family_policy"),
+		stuGender : getCheckedRadioValue("meta_data_gender"),// p1
+		stuCitizenship : getComboboxValue("combobox_citizenship"),// p2
+		stuResidenceCity : getComboboxValue("combobox_residence_province"),// p3
+		stuResidenceProvince : getComboboxValue("combobox_residence_province"),// p4
+		stuReligion : tempReligion,// p5
+		stuDisabilities : getSelectedOptions("combobox_disability"),// p6
+		stuTerminalIllnesses : getSelectedOptions("combobox_terminal_ill"),// p7
+		familyPolicy : getSelectedOptions("combobox_family_policy"),// p8
 
-		stuAca : tempStuAca,
-		stuAcaDetail : tempStuAcaDetail,
-		scholarAca : tempScholarAca,
-		scholarAcaDetails : tempScholarAcaDetail,
-		scholarMajors : getSelectedOptions("combobox_major"),
+		stuAca : tempStuAca,// p9
+		stuAcaDetail : tempStuAcaDetail,// p10
+		scholarAca : tempScholarAca,// p11
+		scholarAcaDetails : tempScholarAcaDetail,// p12
+		scholarMajors : getSelectedOptions("combobox_major"),// p13
 
-		scholarType : getComboboxValue("combobox_scholarship_type"),
-		talents : getSelectedOptions("combobox_talent"),
+		scholarType : getComboboxValue("combobox_scholarship_type"),// p14
+		talents : getSelectedOptions("combobox_talent"),// p15
 	}
 
-	$
-			.ajax({
-				type : "POST",
-				contentType : "application/json",
-				url : "./getFilterResult",
-				data : JSON.stringify(data),
-				dataType : "text",
-				success : function(msg) {
-					data = JSON.parse(msg);
-					if (msg != "false") {
+	// get link
+	var prefix = location.protocol + "//" + location.host;
 
-						// ============== user interface ======================
-						// hide current field set
-						var currentFieldset = document
-								.getElementById(currentElementId);
-						currentFieldset.style.display = "none";
+	if (prefix.indexOf("scholar") == -1) {
+		var pathArray = location.pathname.split('/');
 
-						// display final field set
-						var next = document.getElementById("filter4");
-						next.style.display = "block";
+		for (var i = 0; i < pathArray.length; i++) {
+			if (pathArray[i].indexOf("scholar") != -1) {
+				prefix = prefix + "/" + pathArray[i];
+				break;
+			}
+		}
+	}
 
-						// mark on progress bar
-						for (var i = 1; i <= 4; i++) {
-							var id = "progressbar" + i;
-							var step = document.getElementById(id);
-							if (step.className.indexOf("active") == -1) {// not
-								// contain
-								// word
-								step.className += ' active'; // note the
-								// space
-							}
-						}
+	var link = prefix + "/filterResult?";// p1=" + text + "&pageNum=1";
 
-					}
-				},
-				error : function() {
-					alert("Error retrieving data!");
-				}
-			});
+	// set parameters
+	link = link + "p1=" + data.stuGender;
+	link = link + "&p2=" + data.stuCitizenship;
+	link = link + "&p3=" + data.stuResidenceCity;
+	link = link + "&p4=" + data.stuResidenceProvince;
+	link = link + "&p5=" + data.stuReligion;
+	link = link + "&p6=" + getListStr(data.stuDisabilities);
+	link = link + "&p7=" + getListStr(data.stuTerminalIllnesses);
+	link = link + "&p8=" + getListStr(data.familyPolicy);
+	link = link + "&p9=" + data.stuAca;
+	link = link + "&p10=" + data.stuAcaDetail;
+	link = link + "&p11=" + data.scholarAca;
+	link = link + "&p12=" + data.scholarAcaDetails;
+	link = link + "&p13=" + getListStr(data.scholarMajors);
+	link = link + "&p14=" + data.scholarType;
+	link = link + "&p15=" + getListStr(data.talents);
 
+	link = link + "&pageNum=1" + "&resultTotal=0";
+
+	window.open(link);
 }
 
 // ==================================================================
@@ -198,4 +199,28 @@ function existInputName(name) {
 	} else {
 		return true;
 	}
+}
+
+function createOption(selector, id, value) {
+	var a = document.createElement('a');
+
+	a.setAttribute('class', 'signature');
+	a.setAttribute('href', 'showSignature(xyz)');
+
+	selector.appendChild(opt);
+}
+
+function getListStr(list) {
+	if (list.length == 0) {
+		return 0;
+	}
+
+	var result = list[0];
+
+	// loop through options in select list
+	for (var i = 1, len = list.length; i < len; i++) {
+		alert(list[i]);
+		result = result + "_" + list[i];
+	}
+	return result;
 }

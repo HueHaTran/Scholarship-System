@@ -3,16 +3,11 @@ package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.SimpleExpression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,28 +28,45 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 	private static final Logger logger = LoggerFactory
 			.getLogger(DAJdbcScholarshipDAO.class);
 
-	public final String COL_ID = "scholarship_id";
-	public final String COL_NAME = "scholarship_name";
-	// public final String COL_DESCIPTION = "description";
-	// public final String COL_ORIGINAL_LINK = "original_link";
-	// public final String COL_COUNT = "count";
-	public final String COL_DATE_END_REGISTER = "date_end_register";
-	public final String COL_VALUE_MIN = "value_min";
-	public final String COL_VALUE_MAX = "value_max"; 
+	public static final String COL_ID = "scholarship_id";
+	public static final String COL_NAME = "scholarship_name";
+	public static final String COL_DESCIPTION = "description";
+	public static final String COL_ORIGINAL_LINK = "original_link";
+	public static final String COL_COUNT = "count";
+	public static final String COL_DATE_END_REGISTER = "date_end_register";
+	public static final String COL_VALUE_MIN = "value_min";
+	public static final String COL_VALUE_MAX = "value_max";
+	public static final String COL_ACTIVE = "active";
 
-	// public final String COL_STUDENT_GENDER = "student_gender_id";
-	// public final String COL_STUDENT_CITIZENSHIP = "student_citizenship_id";
-	// public final String COL_STUDENT_RESIDENCE = "student_residence_id";
-	// public final String COL_STUDENT_RELIGION = "student_religion_id";
-	// public final String COL_STUDENT_ACADEMIC_LEVEL_DETAIL =
-	// "student_academic_level_detail_id";
-	// public final String COL_SCHOLARSHIP_TYPE = "scholarship_type_id";
- public final String COL_SCHOOL = "school_id";
-	// public final String COL_FORM_OF_PARTICIPATION =
-	// "form_of_participation_id";
-	// public final String COL_APPLICATION_DESCRIPTION =
-	// "application_description";
-	// public final String COL_SUPPORT_DESCRIPTION = "support_description";
+	public static final String COL_STUDENT_GENDER = "student_gender_id";
+	public static final String COL_STUDENT_CITIZENSHIP = "student_citizenship_id";
+	public static final String COL_STUDENT_RELIGION = "student_religion_id";
+	public static final String COL_STUDENT_ACADEMIC_LEVEL_DETAIL = "student_academic_level_detail_id";
+	public static final String COL_SCHOLARSHIP_TYPE = "scholarship_type_id";
+	public static final String COL_SCHOOL = "school_id";
+	public static final String COL_FORM_OF_PARTICIPATION = "form_of_participation_id";
+	public static final String COL_APPLICATION_DESCRIPTION = "application_description";
+	public static final String COL_SUPPORT_DESCRIPTION = "support_description";
+
+	public static final String COL_FAMILY_POLICY = "family_policy_id";
+	public static final String COL_DISABILITY = "disability_id";
+	public static final String COL_TERMINAL_ILL = "terminal_ill_id";
+	public static final String COL_MAJOR = "major_id";
+	public static final String COL_TALENT = "talent_id";
+	public static final String COL_SCHOLAR_ACA = "academic_level_detail_id";
+	public static final String COL_RESIDENCE_PROVINCE = "province_id";
+
+	public static final String TABLE_SCHOLARSHIP = "scholarship";
+	public static final String TABLE_SCHOLARSHIP_SPEC = "scholarship_specification";
+	public static final String TABLE_SCHOLARSHIP_ACA = "scholarship_academic_level_detail";
+	public static final String TABLE_FAMILY_POLICY = "scholarship_family_policy";
+	public static final String TABLE_DISABILITY = "scholarship_disability";
+	public static final String TABLE_TERMINAL_ILL = "scholarship_terminal_ill";
+	public static final String TABLE_SPONSOR = "scholarship_sponsor";
+	public static final String TABLE_MAJOR = "scholarship_major";
+
+	public static final String TABLE_TALENT = "scholarship_talent";
+	public static final String TABLE_RESIDENCE_PROVINCE = "scholarship_student_residence";
 
 	private ILoadingRelatedEntityListener<Scholarship> scholarshipLoadinglistener = new ILoadingRelatedEntityListener<Scholarship>() {
 		@Override
@@ -121,7 +133,6 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 	public Scholarship findByName(String name) {
 		return findBy(COL_NAME, name, scholarshipLoadinglistener);
 	}
- 
 
 	@Override
 	public void insert(Scholarship entity) {
@@ -141,8 +152,6 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 			session.save(entity);
 			session.getTransaction().commit();
 		} catch (RuntimeException e) {
-			getLogger().error("opps!");
-
 			if (transaction != null) {
 				transaction.rollback();
 			}
@@ -158,6 +167,74 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		spec.setScholarship(entity);
 		spec.setScholarshipId(id);
 		insertSpec(spec);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Scholarship> listBy(FilterViewModel data, int pageNumber,
+			int pageSize) {
+		List<Scholarship> resultList = new ArrayList<Scholarship>();
+
+		StringBuilder sb = new StringBuilder();
+		String tempScholar = "s1";
+		String tempSpec = "s2";
+
+		// select
+		sb.append("SELECT ");
+		sb.append(tempScholar + "." + COL_NAME).append(", ");
+		sb.append(tempScholar + "." + COL_ID).append(", ");
+		sb.append(tempScholar + "." + COL_VALUE_MIN).append(", ");
+		sb.append(tempScholar + "." + COL_VALUE_MAX).append(", ");
+		sb.append(tempScholar + "." + COL_DATE_END_REGISTER).append(", ");
+		sb.append(tempScholar + "." + COL_ACTIVE).append(", ");
+		sb.append(tempSpec + "." + COL_SCHOOL).append(" ");
+
+		sb = getFromWhereQuery(sb, data);
+
+		try {
+			Query query = getSession().createSQLQuery(sb.toString())
+					.addEntity(tempScholar, Scholarship.class)
+					.setFirstResult((pageNumber - 1) * pageSize)
+					.setMaxResults(pageSize);
+
+			resultList = (query.list());
+
+		} catch (Exception ex) {
+			getLogger().error(
+					"Query '" + sb.toString()
+							+ "' in listBy(FilterViewModel): " + ex.toString());
+		} finally {
+			closeSession();
+		}
+
+		return resultList;
+	}
+
+	@Override
+	public long countRowsListBy(FilterViewModel data) {
+		StringBuilder sb = new StringBuilder();
+		long result = 0;
+
+		String tempScholar = "s1";
+
+		// select
+		sb.append("SELECT COUNT(*)");
+
+		sb = getFromWhereQuery(sb, data);
+
+		try {
+			result = ((Number) getSession().createSQLQuery(sb.toString())
+					.uniqueResult()).longValue();
+
+		} catch (Exception ex) {
+			getLogger().error(
+					"Query '" + sb.toString()
+							+ "' in listBy(FilterViewModel): " + ex.toString());
+		} finally {
+			closeSession();
+		}
+
+		return result;
 	}
 
 	// ============================================================
@@ -184,87 +261,160 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		}
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Override
-	public List<Scholarship> listBy(FilterViewModel data, int pageNumber,
-			int pageSize) {
-		List<Scholarship> resultList = new ArrayList<Scholarship>();
+	private StringBuilder getFromWhereQuery(StringBuilder sb,
+			FilterViewModel data) {
+		// variables
+		String tempScholar = "s1";
+		String tempSpec = "s2";
+		String tempFam = "s3";
+		String tempMajor = "s4";
+		String tempDisability = "s5";
+		String tempTalent = "s6";
+		String tempScholarAca = "s7";
+		String tempTerminalIll = "s8";
 
-		StringBuilder sb =new StringBuilder();
-		String nameScholar = "scho";
-		String nameSpec = "spec";
-		String nameSchool = "school";
-		
-		sb.append("SELECT ");
-		sb.append(nameScholar+"."+COL_NAME).append(", ").append(nameScholar+"."+COL_ID).append(", ");
-		sb.append(nameScholar+"."+COL_VALUE_MIN).append(", ").append(nameScholar+"."+COL_VALUE_MAX).append(", ");
-		sb.append(nameScholar+"."+ COL_DATE_END_REGISTER).append(", ");
-		
-		
+		// from
+		sb.append("FROM ");
+		sb.append(TABLE_SCHOLARSHIP).append(" ").append(tempScholar);
+		sb.append(getJoinQuery(TABLE_SCHOLARSHIP_SPEC, tempScholar, tempSpec,
+				COL_ID, COL_ID));
+		if (!isNullOrEmpty(data.familyPolicy)) {
+			sb.append(getJoinQuery(TABLE_FAMILY_POLICY, tempSpec, tempFam,
+					COL_ID, COL_ID));
+		}
+		if (!isNullOrEmpty(data.scholarMajors)) {
+			sb.append(getJoinQuery(TABLE_MAJOR, tempSpec, tempMajor, COL_ID,
+					COL_ID));
+		}
+		if (!isNullOrEmpty(data.stuDisabilities)) {
+			sb.append(getJoinQuery(TABLE_DISABILITY, tempSpec, tempDisability,
+					COL_ID, COL_ID));
+		}
+		if (!isNullOrEmpty(data.stuTerminalIllnesses)) {
+			sb.append(getJoinQuery(TABLE_TERMINAL_ILL, tempSpec,
+					tempTerminalIll, COL_ID, COL_ID));
+		}
+		if (!isNullOrEmpty(data.talents)) {
+			sb.append(getJoinQuery(TABLE_TALENT, tempSpec, tempTalent, COL_ID,
+					COL_ID));
+		}
+		if (data.scholarAca != 0) {// user select to filter
+			sb.append(getJoinQuery(TABLE_SCHOLARSHIP_ACA, tempSpec,
+					tempScholarAca, COL_ID, COL_ID));
+		}
 
-
-//		try {
-//			ProjectionList projections = Projections
-//					.projectionList()
-//					.add(Projections.property(COL_NAME), COL_NAME)
-//					.add(Projections.property(COL_ID), COL_ID)
-//					.add(Projections.property(COL_VALUE_MIN), COL_VALUE_MIN)
-//					.add(Projections.property(COL_VALUE_MAX), COL_VALUE_MAX)
-//					.add(Projections.property(COL_DATE_END_REGISTER),
-//							COL_DATE_END_REGISTER);
-//
-//			List<SimpleExpression> expressions = new ArrayList<SimpleExpression>();
-//
-//			if (data.stuGender != 0) {
-//				expressions.add(Restrictions.eq("gender.genderId",
-//						data.stuGender+""));
-//			}
-//			if (data.stuCitizenship != 0) {
-//				expressions.add(Restrictions.eq(COL_STUDENT_CITIZENSHIP,
-//						data.stuCitizenship));
-//			}
-//			if (data.stuReligion != 0) {
-//				expressions.add(Restrictions.eq(COL_STUDENT_RELIGION,
-//						data.stuReligion));
-//			}
-//			if (data.stuResidenceCity != 0) {
-//				if (data.stuResidenceProvince == 0) {// get all provinces in
-//														// this city
-//
-//				} else {
-//					expressions.add(Restrictions.eq(COL_STUDENT_RESIDENCE,
-//							data.stuResidenceProvince));
-//				}
-//			}
-//
-//			String aliasScholar = "scholar";
-//			String aliasSpec = "spec";
-//			Criteria query = getSession()
-//					.createCriteria(Scholarship.class, aliasScholar)
-//					.createAlias(aliasScholar + "." + COL_SPEC, aliasSpec,
-//							Criteria.LEFT_JOIN)
-//					.createAlias(aliasSpec + "." + "studentGender", "gender",
-//							Criteria.LEFT_JOIN);
-//
-//			for (SimpleExpression expresssion : expressions) {
-//				query.add(expresssion);
-//			}
-//
-//			resultList = query.list();
-//
-//		} catch (Exception ex) {
-//			logger.error("Error in listBy(FilterViewModel): " + ex.toString());
-//		} finally {
-//			closeSession();
-//		}
-
-		return resultList;
+		// where, check the impossible clause first to eliminate result
+		boolean flagFirstClause = true;
+		if (!isNullOrEmpty(data.familyPolicy)) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereInQuery(COL_FAMILY_POLICY, data.familyPolicy));
+		}
+		if (!isNullOrEmpty(data.scholarMajors)) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereInQuery(COL_MAJOR, data.scholarMajors));
+		}
+		if (!isNullOrEmpty(data.stuDisabilities)) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereInQuery(COL_DISABILITY, data.stuDisabilities));
+		}
+		if (!isNullOrEmpty(data.stuTerminalIllnesses)) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereInQuery(COL_TERMINAL_ILL,
+					data.stuTerminalIllnesses));
+		}
+		if (!isNullOrEmpty(data.talents)) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereInQuery(COL_TALENT, data.talents));
+		}
+		if (data.scholarAcaDetails > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_SCHOLAR_ACA, data.scholarAca));
+		}
+		if (data.scholarType > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_SCHOLARSHIP_TYPE, data.scholarType));
+		}
+		if (data.stuAcaDetail > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_STUDENT_ACADEMIC_LEVEL_DETAIL,
+					data.stuAcaDetail));
+		}
+		if (data.stuCitizenship > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_STUDENT_CITIZENSHIP,
+					data.stuCitizenship));
+		}
+		if (data.stuGender > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_STUDENT_GENDER, data.stuGender));
+		}
+		if (data.stuReligion > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_STUDENT_RELIGION, data.stuReligion));
+		}
+		if (data.stuResidenceProvince > 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			sb.append(getWhereEqualQuery(COL_RESIDENCE_PROVINCE,
+					data.stuResidenceProvince));
+		}
+		return sb;
 	}
 
-	@Override
-	public int countRowsListBy(FilterViewModel data) {
-		// TODO Auto-generated method stub
-		return 0;
+	private String getJoinQuery(String table2, String table1Alias,
+			String table2Alias, String columnRelate1, String columnRelate2) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(" INNER JOIN ").append(table2).append(" ")
+				.append(table2Alias);
+
+		sb.append(" ON ");
+
+		sb.append(table1Alias).append(".").append(columnRelate1);
+		sb.append(" = ");
+		sb.append(table2Alias).append(".").append(columnRelate2);
+
+		return sb.toString();
 	}
 
+	private String getWhereEqualQuery(String columnName, int value) {
+		return columnName + " = " + value;
+	}
+
+	private String getWhereInQuery(String columnName, List<Integer> listId) {
+		if (isNullOrEmpty(listId)) {
+			return "";
+		}
+
+		if (listId.size() == 1) {
+			return getWhereEqualQuery(columnName, listId.get(0));
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(columnName).append(" IN (");
+
+		for (int i = 0; i < listId.size(); i++) {
+			sb.append(listId.get(i));
+			if (i == listId.size() - 1) {// the last one
+				sb.append(")");// close clause
+			} else {
+				sb.append(", ");
+			}
+		}
+
+		return sb.toString();
+	}
+
+	private boolean isNullOrEmpty(List<Integer> list) {
+		return !(list != null && !list.isEmpty());
+	}
+
+	private boolean updateElementPrefix(boolean flagFirstClause,
+			StringBuilder sb, String addedPrefix) {
+		if (!flagFirstClause) {
+			sb.append(addedPrefix);
+		} else {
+			sb.append(" WHERE ");
+			flagFirstClause = false;
+		}
+		return flagFirstClause;
+	}
 }

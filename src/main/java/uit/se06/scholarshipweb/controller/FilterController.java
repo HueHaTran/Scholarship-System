@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import uit.se06.scholarshipweb.bus.FilterBUS;
+import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
 import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
-import uit.se06.scholarshipweb.bus.serviceprovider.da.DACountryBUS;
+import uit.se06.scholarshipweb.bus.factory.IScholarshipBUS;
 import uit.se06.scholarshipweb.model.Province;
-import uit.se06.scholarshipweb.model.Scholarship;
 import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
 import uit.se06.scholarshipweb.viewmodel.ListFilterAcademicLevel;
 import uit.se06.scholarshipweb.viewmodel.ListFilterPersonalInfo;
 import uit.se06.scholarshipweb.viewmodel.ListFilterScholarshipType;
+import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
 
 /**
  * Handles requests for the application home page.
@@ -36,6 +37,9 @@ public class FilterController extends BaseController {
 
 	private FilterBUS bus;
 	private ICountryBUS busCountry;
+	private IScholarshipBUS busScholarship;
+
+	private int pageSize = 10;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -43,10 +47,10 @@ public class FilterController extends BaseController {
 
 	public FilterController() {
 		super();
-		logger.info("Enter Filter's controller");// test
 
 		bus = new FilterBUS();
-		busCountry = new DACountryBUS();
+		busCountry = BUSAbstractFactory.INS.getCountryBUS();
+		busScholarship = BUSAbstractFactory.INS.getScholarshipBUS();
 	}
 
 	// ============================================================
@@ -97,20 +101,90 @@ public class FilterController extends BaseController {
 
 		List<Province> result = busCountry.listProvinceByCountry(id);
 
-		for (Province p : result) {
-			System.err.println("Size:ttt " + p);
+		ArrayList<Province> r2 = new ArrayList<Province>();
+		for (Province province : result) {
+			Province p = new Province();
+			p.setId(province.getId());
+			p.setName(province.getName());
+			r2.add(p);
 		}
 
-		System.err.println("Size:ttt " + result.size());
+		return r2;
+	}
 
+	@RequestMapping(value = "/filterResult", method = RequestMethod.GET)
+	public ModelAndView filterResult(HttpServletRequest request) {
+
+		ModelAndView model = new ModelAndView("filter-result");
+
+		FilterViewModel filterModel = new FilterViewModel();
+		filterModel.stuGender = getInt(request.getParameter("p1"));
+		filterModel.stuCitizenship = getInt(request.getParameter("p2"));
+		filterModel.stuResidenceCity = getInt(request.getParameter("p3"));
+		filterModel.stuResidenceProvince = getInt(request.getParameter("p4"));
+		filterModel.stuReligion = getInt(request.getParameter("p5"));
+		filterModel.stuDisabilities = getListInt(request.getParameter("p6"));
+		filterModel.stuTerminalIllnesses = getListInt(request
+				.getParameter("p7"));
+		filterModel.familyPolicy = getListInt(request.getParameter("p8"));
+		filterModel.stuAca = getInt(request.getParameter("p9"));
+		filterModel.stuAcaDetail = getInt(request.getParameter("p10"));
+		filterModel.scholarAca = getInt(request.getParameter("p11"));
+		filterModel.scholarAcaDetails = getInt(request.getParameter("p12"));
+		filterModel.scholarMajors = getListInt(request.getParameter("p13"));
+		filterModel.scholarType = getInt(request.getParameter("p14"));
+		filterModel.talents = getListInt(request.getParameter("p15"));
+
+		int pageNumber = getInt(request.getParameter("pageNum"));
+
+		List<OverviewScholarshipViewModel> result = busScholarship.filter(
+				filterModel, pageNumber, pageSize, false);
+
+		long noOfRecords = 0;
+		String noOfRecordStr = request.getParameter("resultTotal");
+		if (noOfRecordStr != null) {
+			try {
+				noOfRecords = Long.parseLong(noOfRecordStr);
+			} catch (Exception ex) {
+			}
+			if (noOfRecords == 0) {
+				noOfRecords = busScholarship.countRowsListBy(filterModel);
+			}
+		}
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / pageSize);
+
+		model.addObject("noOfPages", noOfPages);// total page
+		model.addObject("resultTotal", noOfRecords);// total records
+		model.addObject("pageNumber", pageNumber);// current page
+		model.addObject("pageSize", pageSize);// number of records per page
+		model.addObject("results", result);
+
+		return model;
+	}
+
+	private int getInt(String str) {
+		int result = 0;
+
+		str = str.trim();
+
+		try {
+			result = Integer.parseInt(str);
+		} catch (Exception ex) {
+			logger.error("Can't convert " + str + " to an integer!");
+
+		}
 		return result;
 	}
 
-	@RequestMapping(value = "/getFilterResult", method = RequestMethod.POST, produces = "application/json; MediaType.APPLICATION_JSON_VALUE")
-	public @ResponseBody List<Scholarship> getFilterResult(
-			HttpServletRequest request, @RequestBody FilterViewModel data) {
-		logger.info("Enter getFilterResult() in Filter Controller");
-
-		return new ArrayList<Scholarship>();
+	private List<Integer> getListInt(String str) {
+		List<Integer> result = new ArrayList<Integer>();
+		String[] params = str.split("_");
+		for (String string : params) {
+			int value = getInt(string);
+			if (value > 0) {
+				result.add(value);
+			}
+		}
+		return result;
 	}
 }

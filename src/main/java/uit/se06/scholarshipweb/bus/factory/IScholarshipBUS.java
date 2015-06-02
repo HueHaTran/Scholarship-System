@@ -1,6 +1,9 @@
 package uit.se06.scholarshipweb.bus.factory;
 
+import java.util.List;
+
 import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
 import uit.se06.scholarshipweb.viewmodel.OverviewScholarshipViewModel;
 import uit.se06.scholarshipweb.viewmodel.ScholarshipViewModel;
 
@@ -14,4 +17,8 @@ public interface IScholarshipBUS extends IBUS<Scholarship> {
 	OverviewScholarshipViewModel convertToOverviewViewModel(
 			Scholarship scholarship, boolean allowEmptyString);
 
+	List<OverviewScholarshipViewModel> filter(FilterViewModel data,
+			int pageNumber, int pageSize, boolean allowEmptyString);
+
+	long countRowsListBy(FilterViewModel data);
 }

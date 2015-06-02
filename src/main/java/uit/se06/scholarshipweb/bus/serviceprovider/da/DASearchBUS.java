@@ -85,5 +85,4 @@ public class DASearchBUS implements ISearchBUS {
 	public int getTopResultRowCount(String keyWord) {
 		return dao.getTopResultRowCount(keyWord);
 	}
-
 }

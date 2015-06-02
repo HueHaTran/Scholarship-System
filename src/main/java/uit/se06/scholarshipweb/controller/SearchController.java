@@ -32,7 +32,7 @@ public class SearchController {
 		busSearch = BUSAbstractFactory.INS.getSearchBUS();
 	}
 
-	private int pageSize = 1;
+	private int pageSize = 10;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(HttpServletRequest request) {
@@ -69,7 +69,16 @@ public class SearchController {
 		}
 
 		int noOfRecords = 0;
-		noOfRecords = busSearch.getTopResultRowCount(keyWord);
+		String noOfRecordStr = request.getParameter("resultTotal");
+		if (noOfRecordStr != null) {
+			try {
+				noOfRecords = Integer.parseInt(noOfRecordStr);
+			} catch (Exception ex) {
+			}
+			if (noOfRecords == 0) {
+				noOfRecords = busSearch.getTopResultRowCount(keyWord);
+			}
+		}
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / pageSize);
 
 		model.addObject("keyWord", keyWord);
