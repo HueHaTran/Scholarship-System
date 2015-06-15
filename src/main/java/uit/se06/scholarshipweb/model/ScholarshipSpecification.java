@@ -55,6 +55,7 @@ public class ScholarshipSpecification {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "scholarship_id", referencedColumnName = "scholarship_id")
+	@IndexedEmbedded
 	private Scholarship scholarship;
 
 	@ManyToOne(fetch = FetchType.LAZY)

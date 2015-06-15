@@ -11,24 +11,24 @@
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
+<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
 	<fieldset class="filter-fieldset" id="filter1">
-		<h2 class="fs-title"><%=Contants.TITLE_FILTER1%></h2>
-		<h3 class="fs-subtitle"><%=Contants.SUBTITLE_FILTER1%></h3>
+		<h2 class="fs-title"><%=Constants.TITLE_FILTER1%></h2>
+		<h3 class="fs-subtitle"><%=Constants.SUBTITLE_FILTER1%></h3>
 
 		<div class="filter-info">
-			<div class="heading"><%=Contants.HEAD_FILTER1_1%></div>
+			<div class="heading"><%=Constants.HEAD_FILTER1_1%></div>
 
 			<div class="left">
 				<!-- Content -->
 				<div class="content">
-					<div class="question"><%=Contants.PROP_GENDER%>:
+					<div class="question"><%=Constants.PROP_GENDER%>:
 					</div>
 					<div class="answer">
 						<label class="label_radio"> <input name="meta_data_gender"
-							checked="checked" id="0" value="0" type="radio" /><%=Contants.TAG_ALL%>
+							checked="checked" id="0" value="0" type="radio" /><%=Constants.TAG_ALL%>
 						</label>
 						<c:forEach items="${meta_data_gender}" var="gender">
 							<label class="label_radio"> <input
@@ -41,12 +41,12 @@
 
 				<!-- Content -->
 				<div class="content">
-					<div class="question"><%=Contants.PROP_CITIZENSHIP%>:
+					<div class="question"><%=Constants.PROP_CITIZENSHIP%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox"> <select
 							name="combobox_citizenship">
-								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+								<option id="0" value="0" selected><%=Constants.TAG_ALL%></option>
 								<c:forEach items="${meta_data_country}" var="citizenship">
 									<option value="${citizenship.getId()}">${citizenship.getName()}</option>
 								</c:forEach>
@@ -57,25 +57,25 @@
 
 				<!-- Content -->
 				<div class="content">
-					<div class="question"><%=Contants.PROP_RESIDENCE%>:
+					<div class="question"><%=Constants.PROP_RESIDENCE%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox"> <select
 							name="combobox_residence_city" onchange="onChangeCountry(this,'combobox_residence_province')">
-								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+								<option id="0" value="0" selected><%=Constants.TAG_ALL%></option>
 								<c:forEach items="${meta_data_country}" var="residence_city">
 									<option value="${residence_city.getId()}">${residence_city.getName()}</option>
 								</c:forEach>
 						</select>
 						</label>
 						<div class="subtext">
-							<i>Chọn <%=Contants.PROP_PROVINCE%>:
+							<i>Chọn <%=Constants.PROP_PROVINCE%>:
 							</i>
 						</div>
 						<label class="label_listbox"> <select disabled="disabled"
 							name="combobox_residence_province"
 							id="combobox_residence_province">
-								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+								<option id="0" value="0" selected><%=Constants.TAG_ALL%></option>
 						</select>
 						</label>
 					</div>
@@ -83,7 +83,7 @@
 
 				<!-- Content -->
 				<div class="content">
-					<div class="question"><%=Contants.PROP_RELIGION%>:
+					<div class="question"><%=Constants.PROP_RELIGION%>:
 					</div>
 					<div class="answer">
 						<c:choose>
@@ -91,7 +91,7 @@
 								<!-- size < 4 -->
 								<label class="label_radio"> <input
 									name="meta_data_religion" checked="checked" id="0" value="0"
-									type="radio" /><%=Contants.TAG_ALL%>
+									type="radio" /><%=Constants.TAG_ALL%>
 								</label>
 								<c:forEach items="${meta_data_religion}" var="religion">
 									<label class="label_radio"> <input
@@ -105,7 +105,7 @@
 								<!-- size >=4 -->
 								<div class="label_listbox">
 									<select name="combobox_religion">
-										<option value="0" selected><%=Contants.TAG_NOTHING%></option>
+										<option value="0" selected><%=Constants.TAG_NOTHING%></option>
 										<c:forEach items="${meta_data_religion}" var="religion">
 											<option value="${religion.getId()}">${religion.getName()}</option>
 										</c:forEach>
@@ -121,7 +121,7 @@
 			<div class="right">
 				<!-- Content -->
 				<div class="content">
-					<div class="question"><%=Contants.PROP_DISABILITY%>:
+					<div class="question"><%=Constants.PROP_DISABILITY%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox_mutiple"> <select
@@ -137,7 +137,7 @@
 
 				<!-- Content -->
 				<div class="content">
-					<div class="question"><%=Contants.PROP_TERMINAL_ILL%>:
+					<div class="question"><%=Constants.PROP_TERMINAL_ILL%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox_mutiple"> <select
@@ -156,11 +156,11 @@
 		<div class="div-space"></div>
 
 		<div class="filter-info">
-			<div class="heading"><%=Contants.HEAD_FILTER1_2%></div>
+			<div class="heading"><%=Constants.HEAD_FILTER1_2%></div>
 
 			<div class="left">
 				<div class="content">
-					<div class="question"><%=Contants.PROP_FAMILY_POLICY%>:
+					<div class="question"><%=Constants.PROP_FAMILY_POLICY%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox_mutiple"> <select

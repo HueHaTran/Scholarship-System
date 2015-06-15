@@ -198,7 +198,15 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 					.setFirstResult((pageNumber - 1) * pageSize)
 					.setMaxResults(pageSize);
 
+			query.setFirstResult((pageNumber - 1) * pageSize);
+			query.setMaxResults(pageSize);
+
 			resultList = (query.list());
+
+			for (Scholarship scholarship : resultList) {
+				Hibernate.initialize(scholarship.getScholarshipSpecification()
+						.getSchool());
+			}
 
 		} catch (Exception ex) {
 			getLogger().error(
@@ -217,7 +225,7 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		long result = 0;
 
 		// select
-		sb.append("SELECT COUNT(*)");
+		sb.append("SELECT COUNT(*) ");
 
 		sb = getFromWhereQuery(sb, data);
 
@@ -271,6 +279,7 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		String tempTalent = "s6";
 		String tempScholarAca = "s7";
 		String tempTerminalIll = "s8";
+		String tempResidenceProvince = "s9";
 
 		// from
 		sb.append("FROM ");
@@ -300,6 +309,10 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		if (data.scholarAca != 0) {// user select to filter
 			sb.append(getJoinQuery(TABLE_SCHOLARSHIP_ACA, tempSpec,
 					tempScholarAca, COL_ID, COL_ID));
+		}
+		if (data.stuResidenceCity != 0) {// user select to filter
+			sb.append(getJoinQuery(TABLE_RESIDENCE_PROVINCE, tempSpec,
+					tempResidenceProvince, COL_ID, COL_ID));
 		}
 
 		// where, check the impossible clause first to eliminate result
@@ -367,6 +380,17 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
 			sb.append(getWhereEqualQuery(COL_RESIDENCE_PROVINCE,
 					data.stuResidenceProvince));
+		}
+		if (data.stuResidenceCity != 0) {
+			flagFirstClause = updateElementPrefix(flagFirstClause, sb, " && ");
+			if (data.stuResidenceProvince > 0) {
+				sb.append(getWhereEqualQuery(COL_RESIDENCE_PROVINCE,
+						data.stuResidenceProvince));
+			} else {
+				sb.append(getWhereInQuery(COL_RESIDENCE_PROVINCE,
+						DAOAbstractFactory.INS.getProvinceDAO()
+								.findIdListByCountryId(data.stuResidenceCity)));
+			}
 		}
 		return sb;
 	}

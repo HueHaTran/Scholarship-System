@@ -19,6 +19,7 @@ import uit.se06.scholarshipweb.bus.FilterBUS;
 import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
 import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
 import uit.se06.scholarshipweb.bus.factory.IScholarshipBUS;
+import uit.se06.scholarshipweb.bus.util.Constants;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
 import uit.se06.scholarshipweb.viewmodel.ListFilterAcademicLevel;
@@ -38,8 +39,6 @@ public class FilterController extends BaseController {
 	private FilterBUS bus;
 	private ICountryBUS busCountry;
 	private IScholarshipBUS busScholarship;
-
-	private int pageSize = 10;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -90,7 +89,6 @@ public class FilterController extends BaseController {
 	public @ResponseBody List<Province> getProvincesFromCountry(
 			HttpServletRequest request, @RequestBody String countryId) {
 		int id;
-		logger.info("Enter getProvincesFromCountry() in Filter Controller");
 		try {
 			id = Integer.parseInt(countryId);
 		} catch (NumberFormatException e) {
@@ -138,7 +136,8 @@ public class FilterController extends BaseController {
 		int pageNumber = getInt(request.getParameter("pageNum"));
 
 		List<OverviewScholarshipViewModel> result = busScholarship.filter(
-				filterModel, pageNumber, pageSize, false);
+				filterModel, pageNumber, Constants.pageSize, false,
+				Constants.maxResult);
 
 		long noOfRecords = 0;
 		String noOfRecordStr = request.getParameter("resultTotal");
@@ -151,12 +150,15 @@ public class FilterController extends BaseController {
 				noOfRecords = busScholarship.countRowsListBy(filterModel);
 			}
 		}
-		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / pageSize);
+		int noOfPages = (int) Math
+				.ceil((noOfRecords < Constants.maxResult ? noOfRecords
+						: Constants.maxResult) * 1.0 / Constants.pageSize);
 
 		model.addObject("noOfPages", noOfPages);// total page
 		model.addObject("resultTotal", noOfRecords);// total records
 		model.addObject("pageNumber", pageNumber);// current page
-		model.addObject("pageSize", pageSize);// number of records per page
+		model.addObject("pageSize", Constants.pageSize);// number of records per
+														// page
 		model.addObject("results", result);
 
 		return model;
@@ -165,8 +167,11 @@ public class FilterController extends BaseController {
 	private int getInt(String str) {
 		int result = 0;
 
-		str = str.trim();
-
+		if (str != null && !str.isEmpty()) {
+			str = str.trim();
+		} else {
+			return result;
+		}
 		try {
 			result = Integer.parseInt(str);
 		} catch (Exception ex) {

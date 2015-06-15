@@ -95,6 +95,12 @@ public class DAAcademicLevelBUS extends DABaseBUS<AcademicLevel> implements
 	}
 
 	@Override
+	public AcademicLevelDetail findAcademicLevelDetailById(
+			int academicLevelDetailId) {
+		return daoDetail.findById(academicLevelDetailId);
+	}
+
+	@Override
 	public void insertAcademicLevelDetail(AcademicLevelDetail entity) {
 		if (entity != null) {
 			daoDetail.insert(entity);

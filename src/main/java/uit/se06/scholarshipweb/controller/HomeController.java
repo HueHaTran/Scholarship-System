@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc.DAJdbcScholarshipDAO;
+import uit.se06.scholarshipweb.util.DataGenerator;
 import uit.se06.scholarshipweb.viewmodel.FilterViewModel;
 
 /**
@@ -29,6 +30,8 @@ public class HomeController extends BaseController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
+		DataGenerator.main();
+		
 		// FilterViewModel model2 = new FilterViewModel();
 		// model2.stuGender = 0;
 		//

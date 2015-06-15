@@ -15,6 +15,7 @@
 #nav-wrap>ul>li {
 	padding: 0px;
 	vertical-align: top;
+	list-style-type: none;
 }
 
 .input-group { /*ex: search button+ input text box*/

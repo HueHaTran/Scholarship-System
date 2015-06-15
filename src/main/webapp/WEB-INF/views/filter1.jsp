@@ -8,6 +8,9 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
+<link href="resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
 <script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
@@ -15,9 +18,10 @@
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
-	<fieldset class="filter-fieldset" id="filter1">
+	<div class="filter-fieldset" id="filter1">
 		<h2 class="fs-title"><%=Constants.TITLE_FILTER1%></h2>
 		<h3 class="fs-subtitle"><%=Constants.SUBTITLE_FILTER1%></h3>
+		<hr class="star-primary">
 
 		<div class="filter-info">
 			<div class="heading"><%=Constants.HEAD_FILTER1_1%></div>
@@ -181,11 +185,11 @@
 		<div class="div-space"></div>
 		<div style="clear: both;">
 			<input type="button" name="next" class="filter-next action-button"
-				value="Sumit" onclick="clickSubmitFilter()" /> <input type="button"
-				name="next" class="filter-next action-button" value="Next"
-				onclick="clickNextFilter('filter1', 'filter2', 2)" />
+				value="<%=Constants.BUTTON_RESULT%>" onclick="clickSubmitFilter()" />
+			<input type="button" name="next" class="filter-next action-button"
+				value="<%=Constants.BUTTON_NEXT%>" onclick="clickNextFilter(2)" />
 		</div>
-	</fieldset>
+	</div>
 
 </body>
 </html>

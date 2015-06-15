@@ -1,40 +1,301 @@
 package uit.se06.scholarshipweb.util;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import uit.se06.scholarshipweb.bus.factory.BUSAbstractFactory;
 import uit.se06.scholarshipweb.bus.factory.IAcademicLevelBUS;
 import uit.se06.scholarshipweb.bus.factory.ICountryBUS;
+import uit.se06.scholarshipweb.bus.factory.IDisabilityBUS;
 import uit.se06.scholarshipweb.bus.factory.IEthnicBUS;
+import uit.se06.scholarshipweb.bus.factory.IFamilyPolicyBUS;
 import uit.se06.scholarshipweb.bus.factory.IFormOfParticipationBUS;
 import uit.se06.scholarshipweb.bus.factory.IGenderBUS;
 import uit.se06.scholarshipweb.bus.factory.IMajorBUS;
 import uit.se06.scholarshipweb.bus.factory.IReligionBUS;
+import uit.se06.scholarshipweb.bus.factory.IScholarshipBUS;
 import uit.se06.scholarshipweb.bus.factory.IScholarshipTypeBUS;
+import uit.se06.scholarshipweb.bus.factory.ISchoolBUS;
+import uit.se06.scholarshipweb.bus.factory.ISponsorBUS;
+import uit.se06.scholarshipweb.bus.factory.ITalentBUS;
+import uit.se06.scholarshipweb.bus.factory.ITerminalIllBUS;
+import uit.se06.scholarshipweb.bus.serviceprovider.da.DACountryBUS;
 import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.AcademicLevelDetail;
 import uit.se06.scholarshipweb.model.Country;
+import uit.se06.scholarshipweb.model.Disability;
 import uit.se06.scholarshipweb.model.Ethnic;
+import uit.se06.scholarshipweb.model.FamilyPolicy;
 import uit.se06.scholarshipweb.model.FormOfParticipation;
 import uit.se06.scholarshipweb.model.Gender;
 import uit.se06.scholarshipweb.model.Major;
 import uit.se06.scholarshipweb.model.Province;
 import uit.se06.scholarshipweb.model.Religion;
+import uit.se06.scholarshipweb.model.Scholarship;
+import uit.se06.scholarshipweb.model.ScholarshipSpecification;
 import uit.se06.scholarshipweb.model.ScholarshipType;
+import uit.se06.scholarshipweb.model.School;
+import uit.se06.scholarshipweb.model.Sponsor;
+import uit.se06.scholarshipweb.model.Talent;
+import uit.se06.scholarshipweb.model.TerminalIll;
 
 public class DataGenerator {
 
-	public static void main(String[] args) {
-		BUSAbstractFactory factory = BUSAbstractFactory.INS;
+	public static void main() {
+		System.out.println("Start generating...");
 
-		addGender(factory);
-		addAcademicLevel(factory);
-		addAcademicLevelDetail(factory);
-		addReligion(factory);
-		addCountry(factory);
-		addProvince(factory);
-		addEthnic(factory);
-		addFormOfPart(factory);
-		addScholarType(factory);
-		addMajor(factory);
+		BUSAbstractFactory factory = BUSAbstractFactory.INS;
+		//
+		// addDisability(factory);
+		// addGender(factory);
+		// addAcademicLevel(factory);
+		// addAcademicLevelDetail(factory);
+		// addReligion(factory);
+		// addCountry(factory);
+		// addProvince(factory);
+		// addEthnic(factory);
+		// addFormOfPart(factory);
+		// addScholarType(factory);
+		// addMajor(factory);
+		// addTalent(factory);
+		// addTerminalIll(factory);
+		// addFamilyPolicy(factory);
+		// addSponsor(factory);
+		// addSchool(factory);
+		//
+		//addScholarship(factory);
+
+		System.out.println("Finish generating!");
+	}
+
+	private static void addScholarship(BUSAbstractFactory factory) {
+		IScholarshipBUS busScholar = factory.getScholarshipBUS();
+		ICountryBUS busCountry = factory.getCountryBUS();
+		IAcademicLevelBUS busAca = factory.getAcademicLevelBUS();
+		IFamilyPolicyBUS busFam = factory.getFamilyPolicyBUS();
+		IEthnicBUS busEthnic = factory.getEthnicBUS();
+		ISponsorBUS busSponsor = factory.getSponsorBUS();
+		IFormOfParticipationBUS busForm = factory.getFormOfParticipationBUS();
+		IMajorBUS busMajor = factory.getMajorBUS();
+		ITalentBUS busTalent = factory.getTalentBUS();
+		IDisabilityBUS busDis = factory.getDisabilityBUS();
+		ITerminalIllBUS busTerminalIll = factory.getTerminalIllBUS();
+		ISchoolBUS busSchool = factory.getSchoolBUS();
+		IScholarshipTypeBUS busType = factory.getScholarshipTypeBUS();
+		IGenderBUS busGender = factory.getGenderBUS();
+		IReligionBUS busReligion = factory.getReligionBUS();
+
+		for (int i = 50; i < 50; i++) {
+			Scholarship s = new Scholarship();
+			ScholarshipSpecification spec = new ScholarshipSpecification();
+
+			s.setName("Học bổng " + i);
+
+			s.setDateEndRegister(getRandomDate());
+			s.setValueMax(getRandom(2000000, 5000000));
+			s.setValueMin(getRandom(6000000, 7000000));
+
+			if (random()) {
+				spec.setApplicationDescription(getRandomApplicationDescription());
+			}
+			if (random()) {
+				spec.setCount(getRandom(1, 10));
+			}
+			if (random()) {
+				spec.setDescription(getRandomDescription());
+			}
+			if (random()) {
+				spec.setFormOfParticipation(busForm.findById(getRandom(1, 3)));
+			}
+			if (random()) {
+				spec.setOriginal_link("www.google.com");
+			}
+
+			if (random()) {
+				Set<AcademicLevelDetail> set = new HashSet<AcademicLevelDetail>();
+				int randomStart = getRandom(1, 3);
+				int randomLen = getRandom(1, 5);
+				for (int i1 = randomStart; i1 < randomLen; i1++) {
+					set.add(busAca.findAcademicLevelDetailById(i1));
+				}
+				spec.setScholarshipAcademicLevelDetail(set);
+			}
+
+			if (random()) {
+				Set<Major> set = new HashSet<Major>();
+				int randomStart = getRandom(1, 3);
+				int randomLen = getRandom(1, 5);
+				for (int i1 = randomStart; i1 < randomLen; i1++) {
+					set.add(busMajor.findById(i1));
+				}
+				spec.setScholarshipMajors(set);
+			}
+			if (random()) {
+				spec.setScholarshipType(busType.findById(1));
+			}
+			if (random()) {
+				spec.setSchool(busSchool.findById(getRandom(1, 6)));
+			}
+			if (random()) {
+				Set<Sponsor> set = new HashSet<Sponsor>();
+				set.add(busSponsor.findById(1));
+				spec.setSponsors(set);
+			}
+			if (random()) {
+				spec.setStudentAcademicLevelDetail(busAca
+						.findAcademicLevelDetailById(getRandom(1, 5)));
+			}
+			if (random()) {
+				spec.setStudentCitizenship(busCountry.findById(getRandom(1, 5)));
+			}
+			if (random()) {
+				spec.setStudentGender(busGender.findById(getRandom(1, 3)));
+			}
+			if (random()) {
+				Set<Disability> set = new HashSet<Disability>();
+				int randomStart = getRandom(1, 2);
+				int randomLen = getRandom(1, 2);
+				for (int i1 = randomStart; i1 < randomLen; i1++) {
+					set.add(busDis.findById(i1));
+				}
+				spec.setStudentDisabilities(set);
+			}
+			if (random()) {
+				spec.setStudentEthnic(busEthnic.findById(getRandom(1, 4)));
+			}
+			if (random()) {
+				spec.setStudentReligion(busReligion.findById(getRandom(1, 3)));
+			}
+			if (random()) {
+				Set<Province> set = new HashSet<Province>();
+				int randomStart = getRandom(1, 3);
+				int randomLen = getRandom(1, 5);
+				for (int i1 = randomStart; i1 < randomLen; i1++) {
+					set.add(busCountry.findProvinceById(i1));
+				}
+				spec.setStudentResidences(set);
+			}
+			if (random()) {
+				Set<FamilyPolicy> set = new HashSet<FamilyPolicy>();
+				int randomStart = getRandom(1, 1);
+				int randomLen = getRandom(1, 2);
+				for (int i1 = randomStart; i1 < randomLen; i1++) {
+					set.add(busFam.findById(i1));
+				}
+				spec.setStudentFamilyPolicies(set);
+			}
+			if (random()) {
+				Set<Talent> set = new HashSet<Talent>();
+				int randomStart = getRandom(1, 1);
+				int randomLen = getRandom(1, 2);
+				for (int i1 = randomStart; i1 < randomLen; i1++) {
+					set.add(busTalent.findById(i1));
+				}
+				spec.setStudentTalents(set);
+			}
+			if (random()) {
+				Set<TerminalIll> set = new HashSet<TerminalIll>();
+				set.add(busTerminalIll.findById(1));
+				spec.setStudentTerminalIllnesses(set);
+			}
+			if (random()) {
+				spec.setSupportDescription(getRandomSupportDescription());
+			}
+			s.setScholarshipSpecification(spec);
+			spec.setScholarship(s);
+
+			busScholar.insert(s);
+		}
+
+	}
+
+	private static Date getRandomDate() {
+		int randYear = getRandom(2013 - 1900, 2020 - 1900);
+		int randMonth = getRandom(0, 11);
+		int randDay = getRandom(1, 28);
+
+		return new Date(randYear, randMonth, randDay);
+	}
+
+	private static String getRandomApplicationDescription() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Ứng viên gửi hồ sơ bao gồm:");
+		if (random()) {
+			sb.append("\n- Giới thiệu bản thân.");
+		}
+		if (random()) {
+			sb.append("\n- Trình bày nguyện vọng và lý do để được chọn nhận học bổng.");
+		}
+		if (random()) {
+			sb.append("\n- 3 tấm ảnh 3x4.");
+		}
+		if (random()) {
+			sb.append("\n- Photocopy các giấy chứng nhận liên quan.");
+		}
+		return sb.toString();
+	}
+
+	private static String getRandomDescription() {
+		int rand = getRandom(0, 5);
+		if (rand == 0) {
+			return "Chương trình đào tạo lớn nhất quốc gia, được các chuyên gia đánh giá cao.";
+		} else if (rand == 1) {
+			return "Hỗ trợ kinh tế lớn dành cho các ứng viên hiếu học";
+		} else if (rand == 2) {
+			return "Học bổng toàn phần lớn nhất trong năm.";
+		} else if (rand == 3) {
+			return "Hỗ trợ kinh tế lớn dành cho các ứng viên hiếu học";
+		} else if (rand == 4) {
+			return "Học bổng thu hút nhiều nhà tài trợ lớn.";
+		} else {
+			return "Học bổng chắp cánh ước mơ";
+		}
+	}
+
+	private static String getRandomSupportDescription() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Vui lòng liên hệ để biết thêm chi tiết:");
+		int rand = getRandom(0, 5);
+		if (rand == 0) {
+			sb.append("\n- SĐT (Ms Nhàn): 0123 221 6482");
+		} else if (rand == 1) {
+			sb.append("\n- SĐT (Ms Hiền): 091 326 6536");
+		} else if (rand == 2) {
+			sb.append("\n- SĐT (Mr Minh): 0122 531 9485");
+		} else if (rand == 3) {
+			sb.append("\n- SĐT (Mr Hiếu): 0122 221 3280");
+		} else if (rand == 4) {
+			sb.append("\n- SĐT (Ms Ngọc): 0122 4232 2483");
+		} else {
+			sb.append("\n- SĐT (Ms Bích): 091 623 143t");
+		}
+		return sb.toString();
+	}
+
+	private static void addSchool(BUSAbstractFactory factory) {
+		ISchoolBUS bus = factory.getSchoolBUS();
+		ICountryBUS busCountry = factory.getCountryBUS();
+
+		String[] array = new String[] { "National University of Singapore (NUS)" };
+
+		for (int i = 0; i < array.length; i++) {
+			School e = new School();
+			e.setName(array[i]);
+			e.setProvince(busCountry.findProvinceById(19));
+			bus.insert(e);
+		}
+
+		array = new String[] { "Đại học công nghệ thông tin",
+				"Đại học khoa học tự nhiên", "Đại học Y Phạm Ngọc Thạch",
+				"Đại học Y Dược", "Đại học Kinh tế" };
+
+		for (int i = 0; i < array.length; i++) {
+			School e = new School();
+			e.setName(array[i]);
+			e.setProvince(busCountry.findProvinceById(1));
+			bus.insert(e);
+		}
 	}
 
 	private static void addGender(BUSAbstractFactory factory) {
@@ -49,13 +310,25 @@ public class DataGenerator {
 		}
 	}
 
+	private static void addDisability(BUSAbstractFactory factory) {
+		IDisabilityBUS bus = factory.getDisabilityBUS();
+
+		String[] array = new String[] { "1 chân", "2 chân", "1 tay", "2 tay" };
+
+		for (int i = 0; i < array.length; i++) {
+			Disability e = new Disability();
+			e.setName(array[i]);
+			bus.insert(e);
+		}
+	}
+
 	private static void addAcademicLevel(BUSAbstractFactory factory) {
 		IAcademicLevelBUS bus = factory.getAcademicLevelBUS();
 
-		String[] array = new String[] { "tiểu học", "trung học cơ sở",
-				"trung học phổ thông", "trung tâm giáo dục thường xuyên",
-				"trường giáo dưỡng", "dự bị đại học", "trung cấp, dạy nghề",
-				"cao đẳng", "đại học", "cao học", "nghiên cứu sinh" };
+		String[] array = new String[] { "Tiểu học", "Trung học cơ sở",
+				"Trung học phổ thông", "Trung tâm giáo dục thường xuyên",
+				"Trường giáo dưỡng", "Dự bị đại học", "Trung cấp, dạy nghề",
+				"Cao đẳng", "Đại học", "Cao học", "Nghiên cứu sinh" };
 
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevel e = new AcademicLevel();
@@ -92,7 +365,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "trung tâm giáo dục thường xuyên" };
+		array = new String[] { "Trung tâm giáo dục thường xuyên" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -100,7 +373,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "trường giáo dưỡng" };
+		array = new String[] { "Trường giáo dưỡng" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -108,7 +381,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "năm 1" };
+		array = new String[] { "Năm 1" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -116,7 +389,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "năm 1", "năm 2" };// day nghe
+		array = new String[] { "Năm 1", "Năm 2" };// day nghe
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -124,7 +397,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "năm 1", "năm 2", "năm 3" };
+		array = new String[] { "Năm 1", "Năm 2", "Năm 3" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -132,8 +405,8 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "năm 1", "năm 2", "năm 3", "năm 4", "năm 5",
-				"năm 6" };
+		array = new String[] { "Năm 1", "Năm 2", "Năm 3", "Năm 4", "Năm 5",
+				"Năm 6" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -141,7 +414,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "năm 1", "năm 2", "năm 3" };
+		array = new String[] { "Năm 1", "Năm 2", "Năm 3" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -149,7 +422,7 @@ public class DataGenerator {
 			bus.insertAcademicLevelDetail(e);
 		}
 
-		array = new String[] { "năm 1" };
+		array = new String[] { "Năm 1" };
 		for (int i = 0; i < array.length; i++) {
 			AcademicLevelDetail e = new AcademicLevelDetail();
 			e.setName(array[i]);
@@ -188,8 +461,17 @@ public class DataGenerator {
 	private static void addProvince(BUSAbstractFactory factory) {
 		ICountryBUS bus = factory.getCountryBUS();
 
-		String[] array = new String[] { "Hồ Chí Minh", "Đà Nẵng", "Hà Nội",
-				"Vũng Tàu", "Đà Lạt", "Nha Trang", "Cà Mau" };
+		String[] array = new String[] { "Singapore" };
+
+		for (int i = 0; i < array.length; i++) {
+			Province e = new Province();
+			e.setName(array[i]);
+			e.setCountry(bus.findById(5));
+			bus.insertProvince(e);
+		}
+
+		array = new String[] { "Hồ Chí Minh", "Đà Nẵng", "Hà Nội", "Vũng Tàu",
+				"Đà Lạt", "Nha Trang", "Cà Mau" };
 
 		for (int i = 0; i < array.length; i++) {
 			Province e = new Province();
@@ -274,6 +556,69 @@ public class DataGenerator {
 			e.setName(array[i]);
 			bus.insert(e);
 		}
+	}
+
+	private static void addTalent(BUSAbstractFactory factory) {
+		ITalentBUS bus = factory.getTalentBUS();
+		String[] array = new String[] { "Ca hát", "Hội họa", "Thể thao" };
+
+		for (int i = 0; i < array.length; i++) {
+			Talent e = new Talent();
+			e.setName(array[i]);
+			bus.insert(e);
+		}
+	}
+
+	private static void addFamilyPolicy(BUSAbstractFactory factory) {
+		IFamilyPolicyBUS bus = factory.getFamilyPolicyBUS();
+
+		String[] array = new String[] { "Xóa đói giảm nghèo",
+				"Có công với cách mạng" };
+
+		for (int i = 0; i < array.length; i++) {
+			FamilyPolicy e = new FamilyPolicy();
+			e.setName(array[i]);
+			bus.insert(e);
+		}
+	}
+
+	private static void addTerminalIll(BUSAbstractFactory factory) {
+		ITerminalIllBUS bus = factory.getTerminalIllBUS();
+
+		String[] array = new String[] { "Ung thư" };
+
+		for (int i = 0; i < array.length; i++) {
+			TerminalIll e = new TerminalIll();
+			e.setName(array[i]);
+			bus.insert(e);
+		}
+	}
+
+	private static void addSponsor(BUSAbstractFactory factory) {
+		ISponsorBUS bus = factory.getSponsorBUS();
+		ICountryBUS busCountry = new DACountryBUS();
+
+		String[] array = new String[] { "Uniliver" };
+
+		for (int i = 0; i < array.length; i++) {
+			Sponsor e = new Sponsor();
+			e.setName(array[i]);
+			e.setProvince(busCountry.listProvinceByCountry(1).get(0));
+			bus.insert(e);
+		}
+	}
+
+	private static boolean random() {
+		int rand = getRandom(0, 1);
+		if (rand == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static int getRandom(int min, int max) {
+		return (int) (java.lang.Math.random() * (max - min + 1) + min);
 	}
 
 }

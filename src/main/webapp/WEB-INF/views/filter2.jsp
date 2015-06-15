@@ -7,6 +7,9 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
+<link href="resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
 <script src="<c:url value="/resources/js/onValueChanged.js" />"></script>
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
@@ -14,9 +17,10 @@
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
-	<fieldset class="filter-fieldset" id="filter2">
+	<div class="filter-fieldset" id="filter2">
 		<h2 class="fs-title"><%=Constants.TITLE_FILTER2%></h2>
 		<h3 class="fs-subtitle"><%=Constants.SUBTITLE_FILTER2%></h3>
+		<hr class="star-primary">
 
 		<div class="filter-info">
 			<div class="heading"><%=Constants.HEAD_FILTER2_1%></div>
@@ -36,7 +40,8 @@
 								style="float: left; clear: both; height: 40px;"> <input
 								name="meta_data_student_aca"
 								id="${student_academic_level.getId()}"
-								value="${student_academic_level.getId()}" type="radio" />
+								value="${student_academic_level.getId()}" type="radio"
+								onchange="onAcademicLevelChanged('meta_data_student_aca','combo_student_aca_')" />
 								${student_academic_level.getName()}
 							</label>
 							<c:choose>
@@ -44,6 +49,7 @@
 									test="${fn:length(student_academic_level.getAcademicLevelDetails()) > 0}">
 
 									<label class="label_listbox right"> <select
+										disabled="disabled"
 										id="combo_student_aca_${student_academic_level.getId()}">
 											<option value="0" selected><%=Constants.TAG_ALL%></option>
 											<c:forEach
@@ -89,6 +95,7 @@
 								<c:when
 									test="${fn:length(scholarship_academic_level.getAcademicLevelDetails()) > 0}">
 									<label class="label_listbox right"> <select
+										disabled="disabled"
 										id="combo_scholarship_aca_${scholarship_academic_level.getId()}">
 											<option value="0" selected><%=Constants.TAG_ALL%></option>
 											<c:forEach
@@ -128,14 +135,14 @@
 
 		<div style="clear: both;">
 			<input type="button" name="previous"
-				class="filter-previous action-button" value="Previous"
-				onclick="clickPrevFilter('filter2', 'filter1', 1)" /><input
+				class="filter-previous action-button"
+				value="<%=Constants.BUTTON_PREVIOUS%>" onclick="clickPrevFilter(1)" /><input
 				type="button" name="next" class="filter-next action-button"
-				value="Sumit" onclick="clickSubmitFilter()" /> <input
-				type="button" name="next" class="filter-next action-button"
-				value="Next" onclick="clickNextFilter('filter2', 'filter3', 3)" />
+				value="<%=Constants.BUTTON_RESULT%>" onclick="clickSubmitFilter()" />
+			<input type="button" name="next" class="filter-next action-button"
+				value="<%=Constants.BUTTON_NEXT%>" onclick="clickNextFilter(3)" />
 		</div>
-	</fieldset>
+	</div>
 
 </body>
 </html>

@@ -1,6 +1,8 @@
 package uit.se06.scholarshipweb.bus.serviceprovider.da;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -12,7 +14,9 @@ import uit.se06.scholarshipweb.dao.factory.DAOAbstractFactory;
 import uit.se06.scholarshipweb.dao.factory.ICountryDAO;
 import uit.se06.scholarshipweb.dao.factory.IDAO;
 import uit.se06.scholarshipweb.dao.factory.IProvinceDAO;
+import uit.se06.scholarshipweb.model.AcademicLevel;
 import uit.se06.scholarshipweb.model.Country;
+import uit.se06.scholarshipweb.model.ISimpleModel;
 import uit.se06.scholarshipweb.model.Province;
 
 public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
@@ -80,8 +84,9 @@ public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 		if (result == null || (result != null && result.isEmpty())) {
 			logger.info("Warning: " + "listProvinceByCountry(" + countryId
 					+ ")" + " return null or empty.");
+		} else {
+			Collections.sort(result, COMPARATOR);
 		}
-
 		return result;
 	}
 
@@ -101,4 +106,14 @@ public class DACountryBUS extends DABaseBUS<Country> implements ICountryBUS {
 	protected Logger getLogger() {
 		return logger;
 	}
+
+	@Override
+	public Province findProvinceById(int provinceId) {
+		return daoProvince.findById(provinceId);
+	}
+
+	// ============================================================
+	// OTHER METHODS
+	// ============================================================
+
 }

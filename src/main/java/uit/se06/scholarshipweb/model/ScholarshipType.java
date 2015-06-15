@@ -19,12 +19,10 @@ import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
 
-import uit.se06.scholarshipweb.dao.util.IndexScholarshipSpecInterceptor;
-
 @Entity
 @Table(name = "scholarship_type", catalog = "scholarshipdatabase", uniqueConstraints = { @UniqueConstraint(columnNames = "scholarship_type_name"), })
 // index exception class
-@Indexed(interceptor = IndexScholarshipSpecInterceptor.class)
+@Indexed
 public class ScholarshipType implements ISimpleModel {
 
 	// ============================================================

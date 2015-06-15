@@ -14,6 +14,30 @@ body {
 	padding: 0;
 }
 
+section.colorstyle1 {
+	color: #FFF;
+	background: linear-gradient(rgba(0, 100, 200, 0.1),
+		rgba(0, 100, 200, 0.1)) repeat scroll 0% 0%, url("../img/gs.png")
+		repeat scroll 0% 0% transparent;
+}
+
+section.colorstyle2 {
+	color: #FFF;
+	background: #FF9966 none repeat scroll 0% 0%;
+}
+
+section.colorstyle3 {
+	color: #FFF;
+	background: #3399FF none repeat scroll 0% 0%;
+}
+
+section.colorstyle1 hr.star-light:after {
+    color: #fff;
+	background: linear-gradient(rgba(0, 100, 200, 0.1),
+		rgba(0, 100, 200, 0.1)) repeat scroll 0% 0%, url("../img/gs.png")
+		repeat scroll 0% 0% transparent;
+}
+
 #nav-menu {
 	background: #44749d;
 	width: auto;
@@ -108,7 +132,8 @@ body {
 	transition: width .25s;
 }
 
-#nav-menu ul li.last>a.menu:after, #nav-menu ul li:last-child>a.menu:after {
+#nav-menu ul li.last>a.menu:after, #nav-menu ul li:last-child>a.menu:after
+	{
 	display: none;
 }
 

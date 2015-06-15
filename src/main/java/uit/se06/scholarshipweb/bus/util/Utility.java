@@ -181,6 +181,6 @@ public class Utility {
 				return "";
 			}
 		}
-		return value.trim();
+		return value.trim().replace("\n", "<br>");
 	}
 }

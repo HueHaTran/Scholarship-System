@@ -18,7 +18,7 @@ public class SearchColumnConstant {
 
 	// scholarship
 
-	public final String TAG_NAME = "scholarshipName";
+	public final String TAG_NAME = "scholarship.scholarshipName";
 
 	// specification
 

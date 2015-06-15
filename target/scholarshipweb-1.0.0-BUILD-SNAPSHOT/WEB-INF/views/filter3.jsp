@@ -10,24 +10,24 @@
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
+<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
 	<fieldset class="filter-fieldset" id="filter3">
-		<h2 class="fs-title"><%=Contants.TITLE_FILTER3%></h2>
-		<h3 class="fs-subtitle"><%=Contants.SUBTITLE_FILTER3%></h3>
+		<h2 class="fs-title"><%=Constants.TITLE_FILTER3%></h2>
+		<h3 class="fs-subtitle"><%=Constants.SUBTITLE_FILTER3%></h3>
 
 		<div class="filter-info">
-			<div class="heading"><%=Contants.HEAD_FILTER3_1%></div>
+			<div class="heading"><%=Constants.HEAD_FILTER3_1%></div>
 
 			<div class="left">
 				<div class="content">
-					<div class="question"><%=Contants.PROP_SCHOLARSHIP_TYPE%>:
+					<div class="question"><%=Constants.PROP_SCHOLARSHIP_TYPE%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox"> <select
 							name="combobox_scholarship_type">
-								<option id="0" value="0" selected><%=Contants.TAG_ALL%></option>
+								<option id="0" value="0" selected><%=Constants.TAG_ALL%></option>
 								<c:forEach items="${meta_data_scholarship_type}"
 									var="scholarship_type">
 									<option value="${scholarship_type.getId()}">${scholarship_type.getName()}</option>
@@ -40,7 +40,7 @@
 
 			<div class="right">
 				<div class="content">
-					<div class="question"><%=Contants.PROP_TALENT%>:
+					<div class="question"><%=Constants.PROP_TALENT%>:
 					</div>
 					<div class="answer">
 						<label class="label_listbox_mutiple"> <select

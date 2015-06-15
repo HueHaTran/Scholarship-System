@@ -21,3 +21,27 @@ function clickSearch() {
 		window.open(link);
 	}
 }
+
+function clickSearchSchoolName() {
+	var text = document.getElementById('search-text-school').value;
+	if (text != "") {
+
+		// get link
+		var prefix = location.protocol + "//" + location.host;
+
+		if (prefix.indexOf("scholar") == -1) {
+			var pathArray = location.pathname.split('/');
+
+			for (var i = 0; i < pathArray.length; i++) {
+				if (pathArray[i].indexOf("scholar") != -1) {
+					prefix = prefix + "/" + pathArray[i];
+					break;
+				}
+			}
+		}
+
+		var link = prefix + "/search?school=" + text + "&pageNum=1"
+				+ "&resultTotal=0";
+		window.open(link);
+	}
+}

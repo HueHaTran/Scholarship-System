@@ -1,11 +1,12 @@
-function clickNextFilter(currentElementId, nextElementId, nextIndex) {
-	// hide current field set
-	var currentFieldset = document.getElementById(currentElementId);
-	currentFieldset.style.display = "none";
+var offset = 20;
 
-	// display next field set
-	var next = document.getElementById(nextElementId);
-	next.style.display = "block";
+function clickNextFilter(nextIndex) { 
+	var section = "#filter-section" + nextIndex;
+
+	
+	$('html, body').animate({
+		scrollTop : $(section).offset().top + offset
+	}, 1000);
 
 	// mark on progress bar
 	var id = "progressbar" + nextIndex;
@@ -15,14 +16,12 @@ function clickNextFilter(currentElementId, nextElementId, nextIndex) {
 	}
 }
 
-function clickPrevFilter(currentElementId, prevElementId, prevIndex) {
-	// hide current field set
-	var currentFieldset = document.getElementById(currentElementId);
-	currentFieldset.style.display = "none";
+function clickPrevFilter(prevIndex) { 
+	var section = "#filter-section" + prevIndex;
 
-	// display previous field set
-	var prev = document.getElementById(prevElementId);
-	prev.style.display = "block";
+	$('html, body').animate({
+		scrollTop : $(section).offset().top + offset
+	}, 1000);
 
 	// mark on progress bar
 	var id = "progressbar" + (prevIndex + 1);
@@ -33,23 +32,11 @@ function clickPrevFilter(currentElementId, prevElementId, prevIndex) {
 }
 
 function clickFilter(index, total) {
-	if (index == total) {// result
-		clickSubmitFilter();
-		return;
-	}
+	var section = "#filter-section" + index;
 
-	// field set
-	for (var i = 1, len = total; i <= len; i++) {
-		var currentFieldset = document.getElementById("filter" + i);
-		if (i != index) {
-			// hide all
-			currentFieldset.style.display = "none";
-		} else {
-			// except from the chosen one
-			currentFieldset.style.display = "block";
-		}
-	}
-
+	$('html, body').animate({
+		scrollTop : $(section).offset().top + offset
+	}, 1000);
 	// progress bar
 	// display all 'li' from index '0' to 'current one'
 	for (var i = 1, len = index; i <= len; i++) {
@@ -219,7 +206,6 @@ function getListStr(list) {
 
 	// loop through options in select list
 	for (var i = 1, len = list.length; i < len; i++) {
-		alert(list[i]);
 		result = result + "_" + list[i];
 	}
 	return result;

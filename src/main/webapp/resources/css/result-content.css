@@ -1,8 +1,8 @@
 .start-list-result {
-	color: #44749d;
+	color: #FFF;
 	font-size: 18px;
 	clear: both;
-	border-bottom: 4px solid #44749d;
+	text-align: center;
 	margin-bottom: 10px;
 }
 
@@ -15,10 +15,8 @@
 	box-sizing: border-box;
 	width: 80%;
 	margin: 0 10%;
-	/*stacking fieldsets above each other*/
-	position: absolute;
 	min-width: 700px;
-	margin-top: 30px;
+	color: black;
 }
 
 .result-content {
@@ -88,6 +86,8 @@
 	text-transform: uppercase;
 	font-size: 22px;
 	padding-bottom: 10px;
+	color: #007FAE;
+	text-align: center;
 }
 
 .page-box {

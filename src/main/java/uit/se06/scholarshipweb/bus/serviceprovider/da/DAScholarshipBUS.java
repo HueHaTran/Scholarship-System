@@ -63,14 +63,22 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 
 	@Override
 	public List<OverviewScholarshipViewModel> filter(FilterViewModel data,
-			int pageNumber, int pageSize, boolean allowEmptyString) {
-		List<OverviewScholarshipViewModel> result = new ArrayList<OverviewScholarshipViewModel>();
+			int pageNumber, int pageSize, boolean allowEmptyString,
+			int maxResult) {
+		if (pageNumber <= 0) {
+			System.err.println(this.getClass().getCanonicalName()
+					+ "pageNumber can't be smaller than 0");
+		} else if (pageNumber * pageSize < maxResult) {
+			List<OverviewScholarshipViewModel> result = new ArrayList<OverviewScholarshipViewModel>();
 
-		List<Scholarship> list = dao.listBy(data, pageNumber, pageSize);
-		for (Scholarship scholarship : list) {
-			result.add(convertToOverviewViewModel(scholarship, allowEmptyString));
+			List<Scholarship> list = dao.listBy(data, pageNumber, pageSize);
+			for (Scholarship scholarship : list) {
+				result.add(convertToOverviewViewModel(scholarship,
+						allowEmptyString));
+			}
+			return result;
 		}
-		return result;
+		return new ArrayList<OverviewScholarshipViewModel>();
 	}
 
 	@Override
@@ -116,8 +124,10 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 				allowEmptyString));
 		entity.setDateEndRegister(Utility.getIns().getDateString(
 				scholarship.getDateEndRegister(), allowEmptyString));
-		entity.setSchoolName(Utility.getIns().getNameString(school,
-				allowEmptyString));
+		if (school != null) {
+			entity.setSchoolName(Utility.getIns().getNameString(school,
+					allowEmptyString));
+		}
 		entity.setValue(Utility.getIns().getMoneyString(min, max,
 				allowEmptyString));
 

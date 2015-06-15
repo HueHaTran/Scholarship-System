@@ -1,23 +1,17 @@
+body {
+	font-weight: normal;
+}
+
 @import
 	url(http://fonts.googleapis.com/css?family=Open+Sans:700&subset=latin,vietnamese)
 	;
 
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-	/*no space bar between 'field....type)'*/
-	display: none;
-}
-
 /*form styles*/
-#msform {
-	width: auto;
+.filter-fieldset {
 	margin: 10px auto;
-	text-align: center;
-	position: relative; 
-}
-
-#msform fieldset {
+	text-align: center; 
 	background: white;
+	color: black;
 	border: 0 none;
 	border-radius: 3px;
 	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -25,13 +19,11 @@
 	box-sizing: border-box;
 	width: 80%;
 	margin: 0 10%;
-	/*stacking fieldsets above each other*/
-	position: absolute;
-	min-width: 700px; 
+	min-width: 700px;
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+.filter-fieldset input, .filter-fieldset textarea {
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -44,7 +36,7 @@
 }
 
 /*buttons*/
-#msform .action-button {
+.filter-fieldset .action-button {
 	width: 100px;
 	background: #27AE60;
 	font-weight: bold;
@@ -56,7 +48,8 @@
 	margin: 10px 5px;
 }
 
-#msform .action-button:hover, #msform .action-button:focus {
+.filter-fieldset .action-button:hover, .filter-fieldset .action-button:focus
+	{
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 /*headings*/
@@ -72,6 +65,7 @@
 	font-weight: normal;
 	font-size: 18px;
 	color: #666;
+	margin: 0px;
 	margin-bottom: 18px;
 }
 
@@ -82,17 +76,18 @@
 	overflow: hidden;
 	/*CSS counters to number the steps*/
 	counter-reset: step;
-	margin-bottom: 30px;
 }
 
 #progressbar li {
 	list-style-type: none;
-	color: white;
+	color: #0f8a43;
+	text-align: center;
 	text-transform: uppercase;
 	font-size: 15px;
 	width: 25%;
 	float: left;
 	position: relative;
+	text-transform: uppercase;
 }
 
 #progressbar li:before {

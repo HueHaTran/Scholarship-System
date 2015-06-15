@@ -1,7 +1,6 @@
 package uit.se06.scholarshipweb.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +31,6 @@ public class SearchController {
 		busSearch = BUSAbstractFactory.INS.getSearchBUS();
 	}
 
-	private int pageSize = 10;
-
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("scholarship-list");
@@ -41,10 +38,9 @@ public class SearchController {
 		String keyWord = "";
 		try {
 			if (request.getParameter("keyWord") != null) {
-				keyWord = URLDecoder.decode(
-						new String(request.getParameter("keyWord").trim()
-								.getBytes("iso-8859-1")),
-						Constants.CHARSET_FOR_URL_ENCODING);
+				keyWord = new String(request.getParameter("keyWord").trim()
+						.getBytes("iso-8859-1"), "UTF-8");
+				logger.info("Searching " + keyWord + "...");
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -60,9 +56,7 @@ public class SearchController {
 		}
 		if (keyWord != null && !keyWord.isEmpty()) {
 			List<OverviewScholarshipViewModel> list = busSearch.search(keyWord,
-					pageNumber, pageSize);
-
-			logger.error("size " + list.size());
+					pageNumber, Constants.pageSize, Constants.maxResult);
 			model.addObject("results", list);
 		} else {
 			model.addObject("results", new ArrayList<Scholarship>());
@@ -79,13 +73,18 @@ public class SearchController {
 				noOfRecords = busSearch.getTopResultRowCount(keyWord);
 			}
 		}
-		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / pageSize);
+		int noOfPages = (int) Math
+				.ceil((noOfRecords < Constants.maxResult ? noOfRecords
+						: Constants.maxResult) * 1.0 / Constants.pageSize);
 
+		System.err.println("Test noOfPage "+noOfPages+" max "+Constants.maxResult+" pagesze "+Constants.pageSize);
+		
 		model.addObject("keyWord", keyWord);
 		model.addObject("noOfPages", noOfPages);// total page
 		model.addObject("resultTotal", noOfRecords);// total records
 		model.addObject("pageNumber", pageNumber);// current page
-		model.addObject("pageSize", pageSize);// number of records per page
+		model.addObject("pageSize", Constants.pageSize);// number of records per
+														// page
 		return model;
 	}
 }

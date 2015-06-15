@@ -14,6 +14,8 @@ public interface IAcademicLevelBUS extends IBUS<AcademicLevel> {
 	 */
 	List<AcademicLevel> listWithDetails();
 
+	AcademicLevelDetail findAcademicLevelDetailById(int academicLevelDetailId);
+
 	void insertAcademicLevelDetail(AcademicLevelDetail entity);
 
 }

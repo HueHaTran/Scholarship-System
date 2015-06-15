@@ -7,15 +7,19 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
+<link href="resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
-	<fieldset class="filter-fieldset" id="filter3">
+	<div class="filter-fieldset" id="filter3">
 		<h2 class="fs-title"><%=Constants.TITLE_FILTER3%></h2>
 		<h3 class="fs-subtitle"><%=Constants.SUBTITLE_FILTER3%></h3>
+		<hr class="star-primary">
 
 		<div class="filter-info">
 			<div class="heading"><%=Constants.HEAD_FILTER3_1%></div>
@@ -57,17 +61,17 @@
 
 
 		</div>
- 
+
 		<div class="div-space"></div>
 
 		<div style="clear: both;">
 			<input type="button" name="previous"
-				class="filter-previous action-button" value="Previous"
-				onclick="clickPrevFilter('filter3', 'filter2', 2)" /> <input
-				type="button" name="next" class="filter-next action-button"
-				value="Sumit" onclick="clickSubmitFilter()" />
+				class="filter-previous action-button"
+				value="<%=Constants.BUTTON_PREVIOUS%>" onclick="clickPrevFilter(2)" />
+			<input type="button" name="next" class="filter-next action-button"
+				value="<%=Constants.BUTTON_RESULT%>" onclick="clickSubmitFilter()" />
 		</div>
-	</fieldset>
+	</div>
 
 </body>
 </html>

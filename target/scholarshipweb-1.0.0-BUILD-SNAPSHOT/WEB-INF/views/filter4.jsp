@@ -11,15 +11,15 @@
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
+<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
 	<fieldset class="filter-fieldset" id="filter4">
-		<h2 class="fs-title"><%=Contants.TITLE_FILTER4%></h2>
+		<h2 class="fs-title"><%=Constants.TITLE_FILTER4%></h2>
 		<h3 class="fs-subtitle">Có n kết quả</h3>
 
 		<div class="filter-info">
-			<div class="heading"><%=Contants.HEAD_FILTER4_1%></div>
+			<div class="heading"><%=Constants.HEAD_FILTER4_1%></div>
 
 		</div>
 

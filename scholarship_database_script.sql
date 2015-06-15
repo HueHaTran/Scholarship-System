@@ -5,7 +5,7 @@ USE `ScholarshipDatabase`;
 CREATE TABLE `disability`
 (
 	`disability_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `disability_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `disability_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`disability_id`)
 );
@@ -13,7 +13,7 @@ CREATE TABLE `disability`
 CREATE TABLE `terminal_ill`
 (
 	`terminal_ill_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `terminal_ill_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `terminal_ill_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`terminal_ill_id`)
 );
@@ -21,7 +21,7 @@ CREATE TABLE `terminal_ill`
 CREATE TABLE `academic_level`
 (
 	`academic_level_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `academic_level_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `academic_level_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`academic_level_id`)
 );
@@ -29,7 +29,7 @@ CREATE TABLE `academic_level`
 CREATE TABLE `academic_level_detail`
 (
 	`academic_level_detail_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `academic_level_detail_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `academic_level_detail_name` NVARCHAR(50) NOT NULL,
     `academic_level_id` INT(11) NOT NULL,
 
     PRIMARY KEY (`academic_level_detail_id`),
@@ -40,7 +40,7 @@ CREATE TABLE `academic_level_detail`
 CREATE TABLE `family_policy`
 (
 	`family_policy_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `family_policy_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `family_policy_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`family_policy_id`)
 );
@@ -48,7 +48,7 @@ CREATE TABLE `family_policy`
 CREATE TABLE `form_of_participation`
 (
 	`form_of_participation_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `form_of_participation_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `form_of_participation_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`form_of_participation_id`)
 );
@@ -56,7 +56,7 @@ CREATE TABLE `form_of_participation`
 CREATE TABLE `major`
 (
 	`major_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `major_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `major_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`major_id`)
 );
@@ -64,7 +64,7 @@ CREATE TABLE `major`
 CREATE TABLE `scholarship_type`
 (
 	`scholarship_type_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `scholarship_type_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `scholarship_type_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`scholarship_type_id`)
 );
@@ -72,7 +72,7 @@ CREATE TABLE `scholarship_type`
 CREATE TABLE `religion`
 (
 	`religion_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `religion_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `religion_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`religion_id`)
 );
@@ -80,7 +80,7 @@ CREATE TABLE `religion`
 CREATE TABLE `ethnic`
 (
 	`ethnic_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `ethnic_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `ethnic_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`ethnic_id`)
 );
@@ -88,7 +88,7 @@ CREATE TABLE `ethnic`
 CREATE TABLE `country`
 (
 	`country_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `country_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `country_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`country_id`)
 );
@@ -96,7 +96,7 @@ CREATE TABLE `country`
 CREATE TABLE `province`
 (
 	`province_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `province_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `province_name` NVARCHAR(50) NOT NULL,
 	`country_id` INT NOT NULL,
 
     PRIMARY KEY (`province_id`),
@@ -107,7 +107,7 @@ CREATE TABLE `province`
 CREATE TABLE `school`
 (
 	`school_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `school_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `school_name` NVARCHAR(128) NOT NULL UNIQUE,
 	`province_id` INT DEFAULT NULL,
     `address` NVARCHAR(255) DEFAULT NULL,
     `phone` VARCHAR(64) DEFAULT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE `school`
 CREATE TABLE `sponsor`
 (
 	`sponsor_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `sponsor_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `sponsor_name` NVARCHAR(128) NOT NULL UNIQUE,
 	`province_id` INT DEFAULT NULL,
     `address` NVARCHAR(255) DEFAULT NULL,
     `phone` VARCHAR(64) DEFAULT NULL,
@@ -145,7 +145,7 @@ CREATE TABLE `gender`
 CREATE TABLE `talent`
 (
 	`talent_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `talent_name` NVARCHAR(30) NOT NULL UNIQUE,
+    `talent_name` NVARCHAR(50) NOT NULL UNIQUE,
 
     PRIMARY KEY (`talent_id`)
 );
@@ -153,7 +153,7 @@ CREATE TABLE `talent`
 CREATE TABLE `scholarship`
 (
 	`scholarship_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `scholarship_name` NVARCHAR(64) NOT NULL,
+    `scholarship_name` NVARCHAR(128) NOT NULL,
 	`date_end_register` DATE,
 	`value_min` INT(11)default -1,
     `value_max` INT(11)default -1,

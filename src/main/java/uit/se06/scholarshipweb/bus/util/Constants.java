@@ -7,15 +7,68 @@ public class Constants {
 	// ============================================================
 
 	public static final String CONF_DATE_FORMAT = "MM-dd-yyyy";
-	public static final String CHARSET_FOR_URL_ENCODING = "UTF-8";
+	public static final int maxResult = 100;
+	public static final int pageSize = 10;
 
 	// ============================================================
 	// MENUS
 	// ============================================================
 
+	public static final String WEB_NAME = "Bright Future";
+
 	public static final String MENU_HOME = "Trang chủ";
-	public static final String MENU_FILTER = "Tra cứu";
+	public static final String MENU_FILTER = "Tìm kiếm";
 	public static final String MENU_CONTACT = "Liên hệ";
+
+	public static final String MENU_SEARCH_SCHOLAR_NAME = "Tra cứu";
+	public static final String MENU_INTRO = "Giới thiệu";
+
+	public static final String MENU_DETAIL = "Chi tiết";
+
+	// ============================================================
+	// BUTTONS
+	// ============================================================
+
+	public static final String BUTTON_PREVIOUS = "Trước";
+	public static final String BUTTON_NEXT = "Tiếp theo";
+	public static final String BUTTON_RESULT = "Kết quả";
+
+	public static final String BUTTON_FILTER_SCHOLARSHIP = "Tìm kiếm học bổng";
+	public static final String BUTTON_SEND = "Gửi";
+	public static final String BUTTON_START = "Bắt đầu";
+
+	// ============================================================
+	// FOOTER
+	// ============================================================
+
+	public static final String INFO_TITLE_CONTACT = "Liên hệ";
+	public static final String INFO_CONTACT = "Email: BrightFutureVN@gmail.com";
+
+	public static final String INFO_TITLE_AUTHOR = "Thông tin nhà phát triển";
+	public static final String INFO_AUTHOR = "SE06@UIT VN";
+
+	// ============================================================
+	// MESSAGES
+	// ============================================================
+
+	public static final String MESSAGE_ENTER_NAME = "Vui lòng nhập tên!";
+	public static final String MESSAGE_ENTER_MAIL = "Vui lòng nhập email!";
+	public static final String MESSAGE_ENTER_MESSAGE = "Vui lòng nhập lời nhắn!";
+
+	// ============================================================
+	// USER
+	// ============================================================
+
+	public static final String USER_NAME = "Họ tên";
+	public static final String USER_MESSAGE = "Lời nhắn";
+	public static final String USER_EMAIL = "Email";
+
+	// ============================================================
+	// HIDDEN INPUT HELP
+	// ============================================================
+
+	public static final String HIDDEN_SEARCH_ALL = "Tìm kiếm từ khóa";
+	public static final String HIDDEN_SEARCH_SCHOOL_NAME = "Tìm theo từ tên trường";
 
 	// ============================================================
 	// TITLES
@@ -31,6 +84,12 @@ public class Constants {
 	public static final String SUBTITLE_FILTER3 = "Thông tin chi tiết khác của học bổng";
 
 	public static final String TITLE_FILTER4 = "Kết quả";
+
+	public static final String TITLE_SEARCH = "Kết quả tra cứu từ khóa";
+
+	public static final String HELP_FILTER = "Tìm kiếm theo ngành học, trình độ học vấn và bất cứ thông tin nào tùy bạn!";
+	public static final String SUBTITLE_INTRO1 = "Hệ thống thông tin học bổng trong nước và quốc tế hỗ trợ tra cứu và tìm kiếm thông tin học bổng";
+	public static final String SUBTITLE_INTRO2 = "Tương lai tươi sáng đang chờ đón bạn!";
 
 	// ============================================================
 	// HEADLINES - FILTER
@@ -104,6 +163,7 @@ public class Constants {
 	// TAGS
 	// ============================================================
 
+	public static final String TAG_PAGE = "Trang";
 	public static final String TAG_NO_ANSWER = "N/A";
 	public static final String TAG_MONEY_CURRENCY = "VNĐ";
 	public static final String TAG_ALL = "Tất cả";

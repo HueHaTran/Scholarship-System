@@ -1,4 +1,4 @@
-function searchPaging(s) {
+function searchPaging(s) { 
 	var link;
 
 	var currentPage = s.innerHTML;
@@ -12,7 +12,7 @@ function getParam(name) {
 		return decodeURIComponent(name[1]);
 }
 
-function filterPaging(s) {
+function filterPaging(s) { 
 	var link;
 
 	var currentPage = s.innerHTML;

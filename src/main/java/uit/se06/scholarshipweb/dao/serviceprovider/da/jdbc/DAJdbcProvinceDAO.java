@@ -1,5 +1,8 @@
 package uit.se06.scholarshipweb.dao.serviceprovider.da.jdbc;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
@@ -70,5 +73,19 @@ public class DAJdbcProvinceDAO extends DAJdbcBaseDAO<Province> implements
 	// ============================================================
 	// OTHER METHODS
 	// ============================================================
+
+	@Override
+	public List<Integer> findIdListByCountryId(int countryId) {
+		List<Integer> result = new ArrayList<Integer>();
+
+		Set<Province> set = listByCountry(countryId);
+		Iterator<Province> iter = set.iterator();
+
+		while (iter.hasNext()) {
+			result.add(((Province) iter.next()).getId());
+		}
+
+		return result;
+	}
 
 }

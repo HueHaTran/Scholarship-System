@@ -11,24 +11,24 @@
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="uit.se06.scholarshipweb.bus.util.Contants"%>
+<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 </head>
 <body>
 	<fieldset class="filter-fieldset" id="filter2">
-		<h2 class="fs-title"><%=Contants.TITLE_FILTER2%></h2>
-		<h3 class="fs-subtitle"><%=Contants.SUBTITLE_FILTER2%></h3>
+		<h2 class="fs-title"><%=Constants.TITLE_FILTER2%></h2>
+		<h3 class="fs-subtitle"><%=Constants.SUBTITLE_FILTER2%></h3>
 
 		<div class="filter-info">
-			<div class="heading"><%=Contants.HEAD_FILTER2_1%></div>
+			<div class="heading"><%=Constants.HEAD_FILTER2_1%></div>
 			<div class="full">
 				<div class="content">
-					<div class="question"><%=Contants.PROP_STUDENT_ACADEMIC_LEVEL_DETAIL%>:
+					<div class="question"><%=Constants.PROP_STUDENT_ACADEMIC_LEVEL_DETAIL%>:
 					</div>
 					<div class="answer">
 						<label class="label_radio"
 							style="float: left; clear: both; height: 50px;"> <input
 							name="meta_data_student_aca" checked="checked" id="0" value="0"
-							type="radio" /><%=Contants.TAG_ALL%>
+							type="radio" /><%=Constants.TAG_ALL%>
 						</label>
 						<c:set var="aca_id_count" value="${0}" scope="page" />
 						<c:forEach items="${meta_data_academic_level}"
@@ -49,7 +49,7 @@
 									<label class="label_listbox right"> <select
 										name="combo_student_aca_${aca_id_count}"
 										id="combo_student_aca_${aca_id_count}">
-											<option value="0" selected><%=Contants.TAG_ALL%></option>
+											<option value="0" selected><%=Constants.TAG_ALL%></option>
 											<c:forEach
 												items="${student_academic_level.getAcademicLevelDetails()}"
 												var="student_academic_detail">
@@ -67,17 +67,17 @@
 
 		<div class="div-space"></div>
 		<div class="filter-info">
-			<div class="heading"><%=Contants.HEAD_FILTER2_2%></div>
+			<div class="heading"><%=Constants.HEAD_FILTER2_2%></div>
 
 			<div class="full">
 				<div class="content">
-					<div class="question"><%=Contants.PROP_SCHOLARSHIP_ACADEMIC_LEVEL_DETAIL%>:
+					<div class="question"><%=Constants.PROP_SCHOLARSHIP_ACADEMIC_LEVEL_DETAIL%>:
 					</div>
 					<div class="answer">
 						<label class="label_radio"
 							style="float: left; clear: both; height: 40px;"> <input
 							name="meta_data_scholarship_aca" checked="checked" id="0"
-							value="0" type="radio" /><%=Contants.TAG_ALL%>
+							value="0" type="radio" /><%=Constants.TAG_ALL%>
 						</label>
 						<c:set var="aca_id_count2" value="${0}" scope="page" />
 						<c:forEach items="${meta_data_academic_level}"
@@ -97,7 +97,7 @@
 									<label class="label_listbox right"> <select
 										name="combo_scholarship_aca_${aca_id_count2}"
 										id="combo_scholarship_aca_${aca_id_count2}">
-											<option value="0" selected><%=Contants.TAG_ALL%></option>
+											<option value="0" selected><%=Constants.TAG_ALL%></option>
 											<c:forEach
 												items="${scholarship_academic_level.getAcademicLevelDetails()}"
 												var="scholarship_academic_detail">
@@ -115,7 +115,7 @@
 			<div class="full">
 				<div class="left">
 					<div class="content">
-						<div class="question"><%=Contants.PROP_SCHOLARSHIP_MAJOR%>:
+						<div class="question"><%=Constants.PROP_SCHOLARSHIP_MAJOR%>:
 						</div>
 						<div class="answer">
 							<label class="label_listbox_mutiple"> <select
