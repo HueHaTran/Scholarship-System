@@ -183,6 +183,9 @@ public class FilterController extends BaseController {
 
 	private List<Integer> getListInt(String str) {
 		List<Integer> result = new ArrayList<Integer>();
+		if(str==null){
+			return result;
+		}
 		String[] params = str.split("_");
 		for (String string : params) {
 			int value = getInt(string);

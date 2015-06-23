@@ -3,8 +3,7 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-body {
-	overflow-x: hidden;
+body { 
 }
 
 p {
@@ -17,7 +16,7 @@ p.small {
 
 a, a:hover, a:focus, a:active, a.active {
 	outline: 0;
-	color: #18bc9c;
+	color: #00cad8;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,7 +30,7 @@ hr.star-light, hr.star-primary {
 	padding: 0;
 	max-width: 250px;
 	border: 0;
-	border-top: solid 5px;
+	border-top: solid 3px;
 	text-align: center;
 }
 
@@ -51,7 +50,7 @@ hr.star-light {
 
 hr.star-light:after {
 	color: #fff;
-	background-color: #18bc9c;
+	background-color: transparent;
 }
 
 hr.star-primary {
@@ -70,7 +69,7 @@ hr.star-primary:after {
 header {
 	text-align: center;
 	color: #fff;
-	background: #18bc9c;
+	background: #00cad8;
 }
 
 header .container {
@@ -111,13 +110,14 @@ header .intro-text .skills {
 
 @media ( min-width :768px) {
 	.navbar-fixed-top {
-		padding: 25px 0;
-		-webkit-transition: padding .3s;
+		padding: 3px 0;
+		margin-bottom: 0px; -webkit-transition : padding .3s;
 		-moz-transition: padding .3s;
 		transition: padding .3s;
+		-webkit-transition: padding .3s;
 	}
 	.navbar-fixed-top .navbar-brand {
-		font-size: 2em;
+		font-size: 1.5em;
 		-webkit-transition: all .3s;
 		-moz-transition: all .3s;
 		transition: all .3s;
@@ -163,7 +163,7 @@ section h2 {
 
 section.success {
 	color: #fff;
-	background: #18bc9c;
+	background: #00cad8;
 }
 
 section.success a, section.success a:hover, section.success a:focus,
@@ -241,7 +241,8 @@ section.success a, section.success a:hover, section.success a:focus,
 
 .btn-outline {
 	margin-top: 15px;
-	width: auto !important; border : solid 2px #fff !important;
+	width: auto !important;
+	border: solid 2px #fff !important;
 	font-size: 20px;
 	color: #fff;
 	background: 0 0;
@@ -252,7 +253,7 @@ section.success a, section.success a:hover, section.success a:focus,
 .btn-outline:hover, .btn-outline:focus, .btn-outline:active,
 	.btn-outline.active {
 	border: solid 2px #fff;
-	color: #18bc9c;
+	color: #00cad8;
 	background: #fff;
 }
 
@@ -293,18 +294,43 @@ section.success a, section.success a:hover, section.success a:focus,
 	transition: top .3s ease, opacity .3s ease;
 }
 
-.floating-label-form-group::not (:first-child ) {
-	padding-left: 14px;
-	border-left: 1px solid #eee;
-}
+.floating-label-form-group
+:
+:not
+ 
+(
+:first-child
+ 
+)
+{
+padding-left
+:
+ 
+14
+px
+;
 
+	
+border-left
+:
+ 
+1
+px
+ 
+solid
+ 
+#eee
+;
+
+
+}
 .floating-label-form-group-with-value label {
 	top: 0;
 	opacity: 1;
 }
 
 .floating-label-form-group-with-focus label {
-	color: #18bc9c;
+	color: #00cad8;
 }
 
 form .row:first-child .floating-label-form-group {

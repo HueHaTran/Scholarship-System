@@ -15,17 +15,10 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top" style="margin: 0px">
 		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header page-scroll">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#page-top"><%=Constants.WEB_NAME%></a>
+				<a class="navbar-brand" href="<c:url value="/" />"><%=Constants.WEB_NAME%></a>
 				<div class="navbar-header page-scroll">
 					<%@include file="search-box.jsp"%>
 				</div>
@@ -44,9 +37,9 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	<section class="colorstyle1" id="filter-section1"
-		style="padding-top: 150px;">
-		<div class="row">
+	<br>
+	<div class="content-section" id="filter-intro">
+		<div class="row" style="margin: 0">
 			<div class="filter-fieldset">
 				<h3 style="padding: 0; margin: 0; text-align: center;"><%=Constants.HEAD_DETAIL%></h3>
 				<div class="title-detailpage">${result.getName()}</div>
@@ -282,21 +275,10 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
+	</div>
 
 	<!-- Footer -->
-	<footer class="text-center">
-		<%@include file="footer.jsp"%>
-	</footer>
-
-	<!-- jQuery -->
-	<script src="resources/js/jquery.js"></script>
-
-	<!-- Plugin JavaScript -->
-	<script src="resources/js/jquery.easing.min.js"></script>
-	<script src="resources/js/classie.js"></script>
-	<script src="resources/js/cbpAnimatedHeader.js"></script>
+	<%@include file="footer.jsp"%>
 
 </body>
 </html>

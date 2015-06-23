@@ -76,9 +76,7 @@ public class SearchController {
 		int noOfPages = (int) Math
 				.ceil((noOfRecords < Constants.maxResult ? noOfRecords
 						: Constants.maxResult) * 1.0 / Constants.pageSize);
-
-		System.err.println("Test noOfPage "+noOfPages+" max "+Constants.maxResult+" pagesze "+Constants.pageSize);
-		
+ 
 		model.addObject("keyWord", keyWord);
 		model.addObject("noOfPages", noOfPages);// total page
 		model.addObject("resultTotal", noOfRecords);// total records

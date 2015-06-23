@@ -130,10 +130,8 @@ public abstract class DAJdbcBaseDAO<T> implements IDAO<T> {
 		return result;
 	}
 
-	public void insert(T entity) {
-		SessionFactory sessionfactory = HibernateUtil
-				.getSessionAnnotationFactory();
-		Session session = sessionfactory.openSession();
+	public void insert(T entity) { 
+		Session session = getSession();
 
 		Transaction transaction = null;
 		try {

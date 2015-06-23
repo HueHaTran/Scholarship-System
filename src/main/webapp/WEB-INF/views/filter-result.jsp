@@ -22,98 +22,73 @@
 <script src="<c:url value="/resources/js/paging.js" />"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header page-scroll">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#page-top"><%=Constants.WEB_NAME%></a>
-				<div class="navbar-header page-scroll">
+	<div id="viewport">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<a class="navbar-brand" href="<c:url value="/" />"><%=Constants.WEB_NAME%></a>
 					<%@include file="search-box.jsp"%>
 				</div>
-			</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="hidden"><a href="#page-top"></a></li>
-					<li class="page-scroll"><a href="<c:url value="/" />"><%=Constants.MENU_HOME%></a></li>
-					<li class="page-scroll active"><a
-						href="<c:url value="/filter" />"><%=Constants.MENU_FILTER%></a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
 
-	<section class="success" id="filter-intro"
-		style="padding-top: 200px; padding-bottom: 100px">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h2><%=Constants.TITLE_FILTER4%></h2>
-				<hr class="star-light">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="page-scroll"><a href="<c:url value="/" />"><%=Constants.MENU_HOME%></a></li>
+						<li class="page-scroll active"><a
+							href="<c:url value="/filter" />"><%=Constants.MENU_FILTER%></a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
 			</div>
-		</div>
-		<div class="row">
-			<div class="start-list-result">Có ${resultTotal} kết quả</div>
-		</div>
-		<c:if test="${resultTotal!=0}">
+			<!-- /.container-fluid -->
+		</nav>
+
+		<div class="content-section" id="filter-intro">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 text-center page-scroll">
-					<a href="#filter-result" class="btn btn-lg btn-outline"> <i
-						class="fa fa-flag"></i> <%=Constants.TAG_PAGE%> ${pageNumber}
-					</a>
+				<div class="col-lg-12 text-center">
+					<h2><%=Constants.TITLE_FILTER4%></h2>
+					<hr class="star-light">
 				</div>
 			</div>
-		</c:if>
-	</section>
-	<c:if test="${resultTotal!=0}">
-		<section class="colorstyle1" id="filter-result"
-			style="padding-bottom: 100px">
 			<div class="row">
-				<div class="filter-fieldset">
-					<%@include file="list-partition.jsp"%>
-					<div class="paging">
-						<%--For displaying Page numbers--%>
-						<c:forEach var="i" begin="1" end="${noOfPages}">
-							<c:choose>
-								<c:when test="${pageNumber== i}">
-									<div class="page-box page-box-current"
-										onclick="filterPaging(this)">
-										<c:out value="${i}" />
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="page-box" onclick="filterPaging(this)">
-										<c:out value="${i}" />
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+				<div class="start-list-result">Có ${resultTotal} kết quả</div>
+			</div>
+			<br>
+
+			<c:if test="${resultTotal!=0}">
+				<div class="row">
+					<div class="filter-fieldset">
+						<%@include file="list-partition.jsp"%>
+						<div class="paging">
+							<%--For displaying Page numbers--%>
+							<c:forEach var="i" begin="1" end="${noOfPages}">
+								<c:choose>
+									<c:when test="${pageNumber== i}">
+										<div class="page-box page-box-current"
+											onclick="filterPaging(this)">
+											<c:out value="${i}" />
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="page-box" onclick="filterPaging(this)">
+											<c:out value="${i}" />
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</c:if>
+		</div>
 
-	</c:if>
-
-	<!-- Footer -->
-	<footer class="text-center">
+		<!-- Footer -->
 		<%@include file="footer.jsp"%>
-	</footer>
-
-	<!-- Plugin JavaScript -->
-	<script src="resources/js/jquery.easing.min.js"></script>
-	<script src="resources/js/classie.js"></script>
-	<script src="resources/js/cbpAnimatedHeader.js"></script>
+	</div>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="resources/js/freelancer.js"></script>

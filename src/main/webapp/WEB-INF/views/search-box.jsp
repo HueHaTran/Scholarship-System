@@ -10,12 +10,10 @@
 <script src="<c:url value="/resources/js/search.js" />"></script>
 </head>
 <body>
-
-	<div id="temp-storage-search" style="display: none;"></div>
 	<div id='nav-wrap'>
 		<ul style="padding: 0px">
 			<li class='search'>
-				<form>
+				<form style="margin: 0; padding: 0">
 					<div class="input-group">
 						<span class="input-group-btn">
 
@@ -24,8 +22,8 @@
 							</button>
 
 						</span> <input id="search-text" class="form-control search-term"
-							type="text" placeholder="<%=Constants.HIDDEN_SEARCH_ALL%>" autocomplete="on"
-							maxlength="60"></input>
+							type="text" placeholder="<%=Constants.HIDDEN_SEARCH_ALL%>"
+							autocomplete="on" maxlength="60"></input>
 					</div>
 				</form>
 			</li>

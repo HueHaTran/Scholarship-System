@@ -19,7 +19,6 @@ import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Resolution;
 import org.hibernate.search.annotations.Store;
 
@@ -47,7 +46,7 @@ public class Scholarship implements ISimpleModel {
 	@Column(name = "date_end_register", unique = false, nullable = true)
 	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	@DateBridge(resolution = Resolution.DAY)
-	private Date dateEndRegister=null;
+	private Date dateEndRegister = null;
 
 	@Column(name = "value_min", unique = false, nullable = false)
 	private int valueMin = 0;

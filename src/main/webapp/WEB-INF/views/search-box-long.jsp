@@ -10,22 +10,21 @@
 <script src="<c:url value="/resources/js/search.js" />"></script>
 </head>
 <body>
-
-	<div id="temp-storage-search" style="display: none;"></div>
 	<div id='nav-wrap'>
-		<ul>
+		<ul style="padding: 0px">
 			<li class='search'>
 				<form>
-					<div class="input-group">
-						<span class="input-group-btn">
+					<div class="input-group" style="left: -80%">
+						<input id="search-text" class="form-control search-term"
+							style="width: 500px" type="text"
+							placeholder="<%=Constants.HIDDEN_SEARCH_ALL%>" autocomplete="on"
+							maxlength="60"></input> <span class="input-group-btn">
 
-							<button class="btn btn-default" onclick="clickSearchSchoolName()">
+							<button class="btn btn-default" onclick="clickSearch()">
 								<img class='glyphicon' src="resources/img/zoom.png" />
 							</button>
 
-						</span> <input id="search-text-school" class="form-control search-term"
-							type="text" placeholder="<%=Constants.HIDDEN_SEARCH_SCHOOL_NAME%>" autocomplete="on"
-							maxlength="60"></input>
+						</span>
 					</div>
 				</form>
 			</li>

@@ -1,4 +1,4 @@
-var offset = 20;
+var offset = -100;
 
 function clickNextFilter(nextIndex) { 
 	var section = "#filter-section" + nextIndex;

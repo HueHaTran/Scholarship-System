@@ -27,6 +27,10 @@ public class ScholarshipController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView search(HttpServletRequest request) {
+		if (request.getParameter("id") == null) {
+			return null;
+		}
+
 		ModelAndView model = new ModelAndView("scholarship-detail");
 
 		String idStr = request.getParameter("id").trim();
