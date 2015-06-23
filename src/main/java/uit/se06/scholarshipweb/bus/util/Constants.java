@@ -14,7 +14,7 @@ public class Constants {
 	// MENUS
 	// ============================================================
 
-	public static final String WEB_NAME = "Bright Future";
+	public static final String WEB_NAME = "Đèn Đom Đóm";
 
 	public static final String MENU_HOME = "Trang chủ";
 	public static final String MENU_FILTER = "Tìm kiếm";

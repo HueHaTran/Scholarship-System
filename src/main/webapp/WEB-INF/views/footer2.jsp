@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="footer" style="position: absolute;">
-		<span class="fsl">2015</span> <span class="fsr">Copyright
+		<span class="fsl">Stappie Group</span> <span class="fsr">Copyright
 			&copy; <%=Constants.WEB_NAME%> 2015
 		</span>
 	</div>

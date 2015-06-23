@@ -14,7 +14,7 @@
 		<ul style="padding: 0px">
 			<li class='search'>
 				<form>
-					<div class="input-group" style="left: -80%">
+					<div class="input-group" style="left: -65%">
 						<input id="search-text" class="form-control search-term"
 							style="width: 500px" type="text"
 							placeholder="<%=Constants.HIDDEN_SEARCH_ALL%>" autocomplete="on"

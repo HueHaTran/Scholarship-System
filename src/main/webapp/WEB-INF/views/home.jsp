@@ -44,8 +44,8 @@
 		<div class="home-page" style="display: inline-block; width: 100%">
 			<div style="float: left; position: relative; left: 50%">
 				<div style="float: left; position: relative; left: -50%">
-					<img class="img-responsive" style="margin-top: 50px" src="resources/img/home-intro.png"
-						alt="">
+					<img class="img-responsive" style="margin-top: 60px"
+						src="resources/img/home-intro.png" alt="">
 					<div class="intro-text">
 						<p
 							style="font-size: 50px; text-align: center; width: 100%; color: #FFF; text-shadow: 0px 2px 0px rgba(20, 20, 20, 0.3), 0px 0px 10px rgba(20, 20, 20, 0.35);"><%=Constants.WEB_NAME%></p>
