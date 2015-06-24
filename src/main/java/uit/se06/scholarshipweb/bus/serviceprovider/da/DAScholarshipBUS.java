@@ -68,7 +68,7 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 		if (pageNumber <= 0) {
 			System.err.println(this.getClass().getCanonicalName()
 					+ "pageNumber can't be smaller than 0");
-		} else if (pageNumber * pageSize < maxResult) {
+		} else if (pageNumber * pageSize <= maxResult) {
 			List<OverviewScholarshipViewModel> result = new ArrayList<OverviewScholarshipViewModel>();
 
 			List<Scholarship> list = dao.listBy(data, pageNumber, pageSize);
@@ -128,7 +128,9 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 			entity.setSchoolName(Utility.getIns().getNameString(school,
 					allowEmptyString));
 		}
-		entity.setValue(Utility.getIns().getMoneyString(min, max,
+		entity.setValueMin(Utility.getIns().getMoneyString(min,
+				allowEmptyString));
+		entity.setValueMax(Utility.getIns().getMoneyString(max,
 				allowEmptyString));
 
 		return entity;

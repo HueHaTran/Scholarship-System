@@ -6,9 +6,8 @@ public class Constants {
 	// CONFIGURATION
 	// ============================================================
 
-	public static final String CONF_DATE_FORMAT = "MM-dd-yyyy";
-	public static final int maxResult = 100;
-	public static final int pageSize = 10;
+	public static final String CONF_DATE_FORMAT = "yyyy-MM-dd";
+	public static final int MAX_RESULT = 100; 
 
 	// ============================================================
 	// MENUS
@@ -28,11 +27,7 @@ public class Constants {
 	// ============================================================
 	// BUTTONS
 	// ============================================================
-
-	public static final String BUTTON_PREVIOUS = "Trước";
-	public static final String BUTTON_NEXT = "Tiếp theo";
-	public static final String BUTTON_RESULT = "Kết quả";
-
+ 
 	public static final String BUTTON_FILTER_SCHOLARSHIP = "Tìm kiếm học bổng";
 	public static final String BUTTON_SEND = "Gửi";
 	public static final String BUTTON_START = "Bắt đầu";
@@ -54,6 +49,9 @@ public class Constants {
 	public static final String MESSAGE_ENTER_NAME = "Vui lòng nhập tên!";
 	public static final String MESSAGE_ENTER_MAIL = "Vui lòng nhập email!";
 	public static final String MESSAGE_ENTER_MESSAGE = "Vui lòng nhập lời nhắn!";
+	public static final String MESSAGE_LOADING = "Vui lòng chờ trong giây lát...";
+
+	public static final String INPUT_SEARCH_IN_TABLE = "Tìm";
 
 	// ============================================================
 	// USER
@@ -120,7 +118,8 @@ public class Constants {
 	// ============================================================
 
 	public static final String HEAD_RESULT_SCHOOL = "Trường/Tổ chức đào tạo";
-	public static final String HEAD_RESULT_VALUE = "Giá trị học bổng";
+	public static final String HEAD_RESULT_VALUE_MIN = "Giá trị học bổng (min)";
+	public static final String HEAD_RESULT_VALUE_MAX = "Giá trị học bổng (max)";
 	public static final String HEAD_RESULT_DATE_END = "Ngày hết hạn ứng tuyển";
 
 	public static final String HEAD_RESULT_SPONSOR = "Nhà tài trợ";
@@ -164,7 +163,7 @@ public class Constants {
 	// ============================================================
 
 	public static final String TAG_PAGE = "Trang";
-	public static final String TAG_NO_ANSWER = "N/A";
+	public static final String TAG_NO_ANSWER = "--";
 	public static final String TAG_MONEY_CURRENCY = "VNĐ";
 	public static final String TAG_ALL = "Tất cả";
 	public static final String TAG_NOTHING = "Không có";

@@ -35,6 +35,7 @@ public class FilterController extends BaseController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(FilterController.class);
+	private static final String SPERATOR = "v";
 
 	private FilterBUS bus;
 	private ICountryBUS busCountry;
@@ -133,35 +134,92 @@ public class FilterController extends BaseController {
 		filterModel.scholarType = getInt(request.getParameter("p14"));
 		filterModel.talents = getListInt(request.getParameter("p15"));
 
-		int pageNumber = getInt(request.getParameter("pageNum"));
+		long noOfRecords = busScholarship.countRowsListBy(filterModel);
 
-		List<OverviewScholarshipViewModel> result = busScholarship.filter(
-				filterModel, pageNumber, Constants.pageSize, false,
-				Constants.maxResult);
-
-		long noOfRecords = 0;
-		String noOfRecordStr = request.getParameter("resultTotal");
-		if (noOfRecordStr != null) {
-			try {
-				noOfRecords = Long.parseLong(noOfRecordStr);
-			} catch (Exception ex) {
-			}
-			if (noOfRecords == 0) {
-				noOfRecords = busScholarship.countRowsListBy(filterModel);
-			}
-		}
-		int noOfPages = (int) Math
-				.ceil((noOfRecords < Constants.maxResult ? noOfRecords
-						: Constants.maxResult) * 1.0 / Constants.pageSize);
-
-		model.addObject("noOfPages", noOfPages);// total page
+		model.addObject("filterModel", serialize(filterModel));// total records
 		model.addObject("resultTotal", noOfRecords);// total records
-		model.addObject("pageNumber", pageNumber);// current page
-		model.addObject("pageSize", Constants.pageSize);// number of records per
-														// page
-		model.addObject("results", result);
 
 		return model;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/filterSubView", produces = "application/json")
+	public ModelAndView getSubView(@RequestBody String data) {
+		ModelAndView model = new ModelAndView("list-partition");
+
+		FilterViewModel filterModel = deserial(data);
+
+		List<OverviewScholarshipViewModel> list = busScholarship.filter(
+				filterModel, 1, Constants.MAX_RESULT, false,
+				Constants.MAX_RESULT); 
+		
+		model.addObject("results", list);
+
+		return model;
+	}
+
+	private String serialize(FilterViewModel filterModel) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(filterModel.stuGender).append(SPERATOR);// 1
+		sb.append(filterModel.stuCitizenship).append(SPERATOR);
+		sb.append(filterModel.stuResidenceCity).append(SPERATOR);
+		sb.append(filterModel.stuResidenceProvince).append(SPERATOR);
+		sb.append(filterModel.stuReligion).append(SPERATOR);// 5
+		sb.append(
+				filterModel.stuDisabilities.isEmpty() ? 0
+						: serializeList(filterModel.stuDisabilities)).append(
+				SPERATOR);
+		sb.append(
+				filterModel.stuTerminalIllnesses.isEmpty() ? 0
+						: serializeList(filterModel.stuTerminalIllnesses))
+				.append(SPERATOR);
+		sb.append(
+				filterModel.familyPolicy.isEmpty() ? 0
+						: serializeList(filterModel.familyPolicy)).append(
+				SPERATOR);
+		sb.append(filterModel.stuAca).append(SPERATOR);
+		sb.append(filterModel.stuAcaDetail).append(SPERATOR);// 10
+		sb.append(filterModel.scholarAca).append(SPERATOR);
+		sb.append(filterModel.scholarAcaDetails).append(SPERATOR);
+		sb.append(
+				filterModel.scholarMajors.isEmpty() ? 0
+						: serializeList(filterModel.scholarMajors)).append(
+				SPERATOR);
+		sb.append(filterModel.scholarType).append(SPERATOR);
+		sb.append(filterModel.talents.isEmpty() ? 0
+				: serializeList(filterModel.talents));// 15
+
+		return sb.toString();
+	}
+
+	private FilterViewModel deserial(String str) {
+		if (str != null && !str.isEmpty()) {
+			str = str.replace("\'", ""); 
+			
+			String[] params = str.split(SPERATOR);
+
+			FilterViewModel filterModel = new FilterViewModel();
+
+			filterModel.stuGender = getInt(params[0]);// 1
+			filterModel.stuCitizenship = getInt(params[1]);// 2
+			filterModel.stuResidenceCity = getInt(params[2]);// 3
+			filterModel.stuResidenceProvince = getInt(params[3]);// 4
+			filterModel.stuReligion = getInt(params[4]);// 5
+			filterModel.stuDisabilities = getListInt(params[5]);// 6
+			filterModel.stuTerminalIllnesses = getListInt(params[6]);// 7
+			filterModel.familyPolicy = getListInt(params[7]);// 8
+			filterModel.stuAca = getInt(params[8]);// 9
+			filterModel.stuAcaDetail = getInt(params[9]);// 10
+			filterModel.scholarAca = getInt(params[10]);// 11
+			filterModel.scholarAcaDetails = getInt(params[11]);// 12
+			filterModel.scholarMajors = getListInt(params[12]);// 13
+			filterModel.scholarType = getInt(params[13]);// 14
+			filterModel.talents = getListInt(params[14]);// 15
+ 
+			return filterModel;
+		} else {
+			return null;
+		}
 	}
 
 	private int getInt(String str) {
@@ -183,7 +241,7 @@ public class FilterController extends BaseController {
 
 	private List<Integer> getListInt(String str) {
 		List<Integer> result = new ArrayList<Integer>();
-		if(str==null){
+		if (str == null) {
 			return result;
 		}
 		String[] params = str.split("_");
@@ -194,5 +252,18 @@ public class FilterController extends BaseController {
 			}
 		}
 		return result;
+	}
+
+	private String serializeList(List<Integer> list) {
+		if (list != null && !list.isEmpty()) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(list.get(0));
+			for (int i = 0; i < list.size(); i++) {
+				sb.append("_").append(list.get(i));
+			}
+			return sb.toString();
+		} else {
+			return "";
+		}
 	}
 }

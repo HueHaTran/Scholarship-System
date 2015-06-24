@@ -1,0 +1,231 @@
+.table-bordered {
+	border-width: 1px 1px 1px 0px;
+	border-style: solid solid solid none;
+	border-color: #DDD #DDD #DDD -moz-use-text-color;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	border-collapse: separate;
+	border-radius: 4px;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+table {
+	max-width: 100%;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+.table-bordered {
+	border-collapse: separate;
+}
+
+.table-bordered thead:first-child tr:first-child>th:first-child,
+	.table-bordered tbody:first-child tr:first-child>td:first-child,
+	.table-bordered tbody:first-child tr:first-child>th:first-child {
+	border-top-left-radius: 4px;
+}
+
+.table-bordered caption+thead tr:first-child th, .table-bordered caption+tbody tr:first-child th,
+	.table-bordered caption+tbody tr:first-child td, .table-bordered colgroup+thead tr:first-child th,
+	.table-bordered colgroup+tbody tr:first-child th, .table-bordered colgroup+tbody tr:first-child td,
+	.table-bordered thead:first-child tr:first-child th, .table-bordered tbody:first-child tr:first-child th,
+	.table-bordered tbody:first-child tr:first-child td {
+	border-top: 0px none;
+}
+
+.table-bordered th, .table-bordered td {
+	border-left: 1px solid #DDD;
+}
+
+.table caption+thead tr:first-child th, .table caption+thead tr:first-child td,
+	.table colgroup+thead tr:first-child th, .table colgroup+thead tr:first-child td,
+	.table thead:first-child tr:first-child th, .table thead:first-child tr:first-child td
+	{
+	border-top: 0px none;
+}
+
+.table thead th {
+	vertical-align: bottom;
+}
+
+.table-bordered th, .table-bordered td {
+	border-left: 1px solid #DDD;
+}
+
+.table th {
+	font-weight: bold;
+}
+
+.table th, .table td {
+	padding: 8px;
+	line-height: 20px;
+	text-align: left;
+	vertical-align: top;
+	border-top: 1px solid #DDD;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+	border-bottom-width: 1px;
+}
+
+.pagination ul {
+	display: inline-block;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+	padding-top: 8px;
+}
+
+ul, ol {
+	padding: 0px;
+	margin: 0px 0px 10px 25px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 25px;
+}
+
+.pagination ul>li>a:hover, .pagination ul>li>a:focus, .pagination ul>.active>a,
+	.pagination ul>.active>span {
+	background-color: #F5F5F5;
+}
+
+.pagination ul>li>a, .pagination ul>li>span {
+	float: left;
+	padding: 4px 12px;
+	line-height: 20px;
+	text-decoration: none;
+	background-color: #FFF;
+	border-width: 1px 1px 1px 0px;
+	border-style: solid;
+	border-color: #DDD;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+}
+
+a:hover, a:focus {
+	color: #005580;
+	text-decoration: underline;
+}
+
+a:hover, a:active {
+	outline: 0px none;
+}
+
+a {
+	color: #08C;
+	text-decoration: none;
+}
+
+li {
+	line-height: 20px;
+}
+
+.pagination {
+	margin-bottom: 100px;
+}
+
+.pagination ul>li {
+	display: inline;
+}
+
+.pagination ul>li:first-child>a, .pagination ul>li:first-child>span {
+	border-left-width: 1px;
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+
+.pagination ul>li:last-child>a, .pagination ul>li:last-child>span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+/*search*/
+.form-search input, .form-inline input, .form-horizontal input,
+	.form-search textarea, .form-inline textarea, .form-horizontal textarea,
+	.form-search select, .form-inline select, .form-horizontal select,
+	.form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline,
+	.form-search .uneditable-input, .form-inline .uneditable-input,
+	.form-horizontal .uneditable-input, .form-search .input-prepend,
+	.form-inline .input-prepend, .form-horizontal .input-prepend,
+	.form-search .input-append, .form-inline .input-append,
+	.form-horizontal .input-append {
+	display: inline-block;
+	margin-bottom: 0px;
+	vertical-align: middle;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"],
+	input[type="datetime-local"], input[type="date"], input[type="month"],
+	input[type="time"], input[type="week"], input[type="number"], input[type="email"],
+	input[type="url"], input[type="search"], input[type="tel"], input[type="color"],
+	.uneditable-input {
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"],
+	input[type="datetime-local"], input[type="date"], input[type="month"],
+	input[type="time"], input[type="week"], input[type="number"], input[type="email"],
+	input[type="url"], input[type="search"], input[type="tel"], input[type="color"],
+	.uneditable-input {
+	display: inline-block;
+	padding: 4px 6px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555;
+	vertical-align: middle;
+	border-radius: 4px;
+}
+
+input[type="search"] {
+	box-sizing: content-box;
+}
+
+input, textarea, .uneditable-input {
+	margin-left: 0px;
+}
+
+input, textarea, .uneditable-input {
+	width: 206px;
+}
+
+input, button, select, textarea {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+label, input, button, select, textarea {
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+}
+
+button, input {
+	line-height: normal;
+}
+
+button, input, select, textarea {
+	margin: 0px;
+	font-size: 100%;
+	vertical-align: middle;
+}
+
+label, select, button, input[type="button"], input[type="reset"], input[type="submit"],
+	input[type="radio"], input[type="checkbox"] {
+	cursor: pointer;
+}

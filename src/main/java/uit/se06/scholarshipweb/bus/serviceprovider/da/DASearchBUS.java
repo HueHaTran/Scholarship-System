@@ -51,7 +51,7 @@ public class DASearchBUS implements ISearchBUS {
 		if (pageNumber <= 0) {
 			System.err.println(this.getClass().getCanonicalName()
 					+ "pageNumber can't be smaller than 0");
-		} else if (pageNumber * pageSize < maxResult) {
+		} else if (pageNumber * pageSize <= maxResult) {
 			List<Scholarship> listParent = dao.getTopResult(keyWord,
 					pageNumber, pageSize);
 
@@ -69,10 +69,12 @@ public class DASearchBUS implements ISearchBUS {
 					date = Utility.getIns().getDateString(
 							s.getDateEndRegister(), false);
 				}
+				String min = Utility.getIns().getMoneyString(s.getValueMin(),
+						false);
+				String max = Utility.getIns().getMoneyString(s.getValueMax(),
+						false);
 				result.add(new OverviewScholarshipViewModel(s.getId(), s
-						.getName(), schoolNames, date,
-						Utility.getIns().getMoneyString(s.getValueMin(),
-								s.getValueMax(), false)));
+						.getName(), schoolNames, date, min, max));
 			}
 			return result;
 		}

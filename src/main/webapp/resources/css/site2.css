@@ -3,14 +3,14 @@ body, html {
 	margin: 0px;
 	height: 100%;
 	min-width: 720px;
-}
-
-.home-page {
 	background: url("../img/gs2.jpg");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+.home-page {
 	margin: 0;
 	padding: 0;
 	height: auto;

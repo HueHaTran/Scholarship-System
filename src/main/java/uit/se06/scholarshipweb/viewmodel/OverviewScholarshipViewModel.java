@@ -10,7 +10,8 @@ public class OverviewScholarshipViewModel {
 	private String name;
 	private String schoolName;
 	private String dateEndRegister;
-	private String value;
+	private String valueMin;
+	private String valueMax;
 
 	// ============================================================
 	// CONSTRUCTORS
@@ -19,12 +20,13 @@ public class OverviewScholarshipViewModel {
 	}
 
 	public OverviewScholarshipViewModel(int id, String name, String schoolName,
-			String dateEndRegister, String value) {
+			String dateEndRegister, String valueMin, String valueMax) {
 		this.id = id;
 		this.name = name;
 		this.schoolName = schoolName;
 		this.dateEndRegister = dateEndRegister;
-		this.value = value;
+		this.valueMin = valueMin;
+		this.valueMax = valueMax;
 	}
 
 	// ============================================================
@@ -63,11 +65,19 @@ public class OverviewScholarshipViewModel {
 		this.dateEndRegister = dateEndRegister;
 	}
 
-	public String getValue() {
-		return value;
+	public String getValueMin() {
+		return valueMin;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setValueMin(String value) {
+		this.valueMin = value;
+	}
+
+	public String getValueMax() {
+		return valueMax;
+	}
+
+	public void setValueMax(String value) {
+		this.valueMax = value;
 	}
 }

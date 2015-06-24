@@ -18,10 +18,38 @@
 	rel="stylesheet" type="text/css">
 
 <script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.query-object.js" />"></script>
-<script src="<c:url value="/resources/js/paging.js" />"></script>
+
+<!-- data table -->
+<script src="<c:url value="/resources/js/jquery.dataTables.js" />"></script>
+<script src="<c:url value="/resources/js/DT_bootstrap.js" />"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+
+<script type="text/javascript">
+	$(function() {
+		doAjaxPost()
+	});
+
+	function doAjaxPost() {
+		var dataString = document.getElementById("filter-model").innerHTML; 
+		
+		$.ajax({
+			type : "POST",
+			data : keyWord = dataString,
+			contentType : "application/json",
+			dataType : "text",
+			url : "filterSubView",
+			success : function(response) { 
+				document.getElementById('load-data').style.display = 'none';
+				$("#subViewDiv").html(response);
+				$('#myTable').dataTable();
+			}
+		});
+	}
+</script>
+
 </head>
 <body>
+	<div id="filter-model">'${filterModel}'</div>
 	<div id="viewport">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -62,25 +90,9 @@
 			<c:if test="${resultTotal!=0}">
 				<div class="row">
 					<div class="filter-fieldset">
-						<%@include file="list-partition.jsp"%>
-						<div class="paging">
-							<%--For displaying Page numbers--%>
-							<c:forEach var="i" begin="1" end="${noOfPages}">
-								<c:choose>
-									<c:when test="${pageNumber== i}">
-										<div class="page-box page-box-current"
-											onclick="filterPaging(this)">
-											<c:out value="${i}" />
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="page-box" onclick="filterPaging(this)">
-											<c:out value="${i}" />
-										</div>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</div>
+						<p id="load-data"><%=Constants.MESSAGE_LOADING%></p>
+
+						<div id="subViewDiv"></div>
 					</div>
 				</div>
 			</c:if>

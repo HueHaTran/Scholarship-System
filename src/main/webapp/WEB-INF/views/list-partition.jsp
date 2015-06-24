@@ -8,35 +8,49 @@
 <head>
 <link href="<c:url value="/resources/css/filter-content.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/resources/css/DT_bootstrap.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.2.3.2.css" />"
+	rel="stylesheet">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
+
+<style type="text/css">
+.search_filter:focus {
+	border-color: #66AFE9;
+	outline: 0px none;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px
+		rgba(102, 175, 233, 0.6);
+}
+</style>
 </head>
 <body>
-	<c:forEach items="${results}" var="result">
-		<div class="result-content">
+	<table class="table table-striped table-bordered dataTable no-footer"
+		id="myTable">
+		<thead>
+			<tr>
+				<th><%=Constants.HEAD_RESULT_NAME%></th>
+				<th><%=Constants.HEAD_RESULT_SCHOOL%></th>
+				<th><%=Constants.HEAD_RESULT_VALUE_MIN%></th>
+				<th><%=Constants.HEAD_RESULT_VALUE_MAX%></th>
+				<th><%=Constants.HEAD_RESULT_DATE_END%></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${results}" var="result">
+				<tr>
+					<td>${result.getName()}</td>
+					<td>${result.getSchoolName()}</td>
+					<td>${result.getValueMin()}</td>
+					<td>${result.getValueMax()}</td>
+					<td>${result.getDateEndRegister()}</td>
+				</tr>
+			</c:forEach>
 
-			<a href="all?id=${result.getId()}"><span class="title title-link">${result.getName()}</span></a>
-
-			<div class="detail">
-				<div class="detail-head"><%=Constants.HEAD_RESULT_SCHOOL%>: <span
-						class="detail-content">${result.getSchoolName()}</span>
-				</div>
-			</div>
-
-			<div class="detail">
-				<div class="detail-head"><%=Constants.HEAD_RESULT_VALUE%>: <span
-						class="detail-content">${result.getValue()}</span>
-				</div>
-			</div>
-
-			<div class="detail">
-				<div class="detail-head"><%=Constants.HEAD_RESULT_DATE_END%>:
-					<span class="detail-content">${result.getDateEndRegister()}</span>
-				</div>
-			</div>
-		</div>
-
-	</c:forEach>
-
+		</tbody>
+	</table>
 </body>
+
 </html>

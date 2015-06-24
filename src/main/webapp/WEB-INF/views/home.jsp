@@ -66,7 +66,7 @@
 		</div>
 
 		<!-- Footer -->
-		<%@include file="footer2.jsp"%>
+		<%@include file="footer.jsp"%>
 	</div>
 
 </body>
