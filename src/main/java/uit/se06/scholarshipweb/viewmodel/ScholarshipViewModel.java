@@ -11,7 +11,8 @@ public class ScholarshipViewModel {
 	private String sponsorNames;
 	private String schoolName;
 	private String dateEndRegister;
-	private String value;
+	private String valueMin;
+	private String valueMax;
 	private String description;
 	private String count;
 	private String originalLink;
@@ -66,14 +67,6 @@ public class ScholarshipViewModel {
 
 	public void setDateEndRegister(String dateEndRegister) {
 		this.dateEndRegister = dateEndRegister;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
 	}
 
 	public String getSchoolName() {
@@ -235,5 +228,21 @@ public class ScholarshipViewModel {
 
 	public void setStudentTalents(String studentTalents) {
 		this.studentTalents = studentTalents;
+	}
+
+	public String getValueMin() {
+		return valueMin;
+	}
+
+	public void setValueMin(String valueMin) {
+		this.valueMin = valueMin;
+	}
+
+	public String getValueMax() {
+		return valueMax;
+	}
+
+	public void setValueMax(String valueMax) {
+		this.valueMax = valueMax;
 	}
 }

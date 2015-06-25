@@ -117,7 +117,7 @@ ul, ol {
 
 a:hover, a:focus {
 	color: #005580;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 a:hover, a:active {
@@ -228,4 +228,4 @@ button, input, select, textarea {
 label, select, button, input[type="button"], input[type="reset"], input[type="submit"],
 	input[type="radio"], input[type="checkbox"] {
 	cursor: pointer;
-}
+} 

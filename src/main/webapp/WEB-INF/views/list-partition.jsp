@@ -41,7 +41,8 @@
 		<tbody>
 			<c:forEach items="${results}" var="result">
 				<tr>
-					<td>${result.getName()}</td>
+					<td style="width: 25%; text-decoration: none;"><a
+						class="title-link" href="all?id=${result.getId()}">${result.getName()}</a></td>
 					<td>${result.getSchoolName()}</td>
 					<td>${result.getValueMin()}</td>
 					<td>${result.getValueMax()}</td>

@@ -29,25 +29,8 @@ public class HomeController extends BaseController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-
-		DataGenerator.main();
+//		DataGenerator.main();
 		
-		// FilterViewModel model2 = new FilterViewModel();
-		// model2.stuGender = 0;
-		//
-		// DAJdbcScholarshipDAO testdao = new DAJdbcScholarshipDAO();
-		// List<Scholarship> a = testdao.listBy(model2, 0, 10);
-		//
-		// logger.info("Size: " + a.size());
-		// InitialDatabase d=new InitialDatabase();
-		// d.populateData();
-
-		DAJdbcScholarshipDAO dao = new DAJdbcScholarshipDAO();
-		FilterViewModel data = new FilterViewModel();
-		data.stuGender = 2;
-		data.familyPolicy.add(1);
-		dao.listBy(data, 1, 1);
-
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();

@@ -196,9 +196,10 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 				specification.getStudentTerminalIllnesses(), allowEmptyString));
 		entity.setSupportDescription(Utility.getIns().getFormatString(
 				specification.getSupportDescription(), allowEmptyString));
-		entity.setValue(Utility.getIns().getMoneyString(
-				scholarship.getValueMin(), scholarship.getValueMax(),
-				allowEmptyString));
+		entity.setValueMin(Utility.getIns().getMoneyString(
+				scholarship.getValueMin(), allowEmptyString));
+		entity.setValueMax(Utility.getIns().getMoneyString(
+				scholarship.getValueMax(), allowEmptyString));
 
 		return entity;
 	}

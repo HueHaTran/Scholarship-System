@@ -64,7 +64,7 @@ public class DataGenerator {
 		// addSponsor(factory);
 		// addSchool(factory);
 		//
-		//addScholarship(factory);
+		// addScholarship(factory);
 
 		System.out.println("Finish generating!");
 	}
@@ -90,11 +90,13 @@ public class DataGenerator {
 			Scholarship s = new Scholarship();
 			ScholarshipSpecification spec = new ScholarshipSpecification();
 
-			s.setName("Học bổng " + i);
+			s.setName((i % 4 == 0 ? "A " : (i % 5 == 0 ? "G "
+					: (i % 6 == 0 ? "C " : (i % 6 == 0 ? "E " : ""))))
+					+ "Học bổng " + i);
 
 			s.setDateEndRegister(getRandomDate());
-			s.setValueMax(getRandom(2000000, 5000000));
-			s.setValueMin(getRandom(6000000, 7000000));
+			s.setValueMax(getRandom(2, 5) * 1000000);
+			s.setValueMin(getRandom(6, 7) * 1000000);
 
 			if (random()) {
 				spec.setApplicationDescription(getRandomApplicationDescription());
@@ -313,7 +315,8 @@ public class DataGenerator {
 	private static void addDisability(BUSAbstractFactory factory) {
 		IDisabilityBUS bus = factory.getDisabilityBUS();
 
-		String[] array = new String[] { "1 chân", "2 chân", "1 tay", "2 tay" };
+		String[] array = new String[] { "Khuyết tật tay", "Khuyết tật chân",
+				"Khiếm thính", "Khiếm thị" };
 
 		for (int i = 0; i < array.length; i++) {
 			Disability e = new Disability();

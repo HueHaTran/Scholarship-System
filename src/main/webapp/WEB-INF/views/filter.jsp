@@ -13,7 +13,7 @@
 
 <style type="text/css">
 .row-filter {
-	padding-bottom: 80px;
+	padding-bottom: 60px;
 }
 </style>
 
@@ -62,8 +62,7 @@
 
 		<div>
 			<!-- fieldsets -->
-			<div class="content-section" id="filter-intro"
-				style="padding-bottom: 0">
+			<div class="content-section" id="filter-intro">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12 text-center">
@@ -83,7 +82,7 @@
 					<%@include file="filter2.jsp"%>
 				</div>
 
-				<div class="row row-filter" id="filter-section3">
+				<div class="row row-filter" id="filter-section3" style="padding-bottom: 0">
 					<%@include file="filter3.jsp"%>
 				</div>
 			</div>
