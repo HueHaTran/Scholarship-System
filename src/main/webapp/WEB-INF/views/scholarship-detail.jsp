@@ -56,8 +56,13 @@
 				<div class="detail-part">
 					<div class="heading"><%=Constants.HEAD_DETAIL_GENERAL%></div>
 					<div class="detail">
-						<div class="detail-head"><%=Constants.HEAD_RESULT_VALUE%>: <span
-								class="detail-content">${result.getValue()}</span>
+						<div class="detail-head"><%=Constants.HEAD_RESULT_VALUE_MIN%>: <span
+								class="detail-content">${result.getValueMin()}</span>
+						</div>
+					</div>
+					<div class="detail">
+						<div class="detail-head"><%=Constants.HEAD_RESULT_VALUE_MAX%>: <span
+								class="detail-content">${result.getValueMax()}</span>
 						</div>
 					</div>
 					<div class="detail">

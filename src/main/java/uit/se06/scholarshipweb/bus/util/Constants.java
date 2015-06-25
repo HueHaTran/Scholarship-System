@@ -7,7 +7,7 @@ public class Constants {
 	// ============================================================
 
 	public static final String CONF_DATE_FORMAT = "yyyy-MM-dd";
-	public static final int MAX_RESULT = 100; 
+	public static final int MAX_RESULT = 100;
 
 	// ============================================================
 	// MENUS
@@ -27,10 +27,13 @@ public class Constants {
 	// ============================================================
 	// BUTTONS
 	// ============================================================
- 
+
 	public static final String BUTTON_FILTER_SCHOLARSHIP = "Tìm kiếm học bổng";
 	public static final String BUTTON_SEND = "Gửi";
 	public static final String BUTTON_START = "Bắt đầu";
+	public static final String BUTTON_PREVIOUS = "Trước";
+	public static final String BUTTON_NEXT = "Tiếp theo";
+	public static final String BUTTON_RESULT = "Kết quả";
 
 	// ============================================================
 	// FOOTER
