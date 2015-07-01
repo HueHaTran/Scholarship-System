@@ -1,47 +1,16 @@
-function clickSearch() {
-	var text = document.getElementById('search-text').value;
+function clickSearch(idTextbox) {
+	var text = document.getElementById(idTextbox).value;
 	if (text != "") {
-
-		// get link
-		var prefix = location.protocol + "//" + location.host;
-
-		if (prefix.indexOf("scholar") == -1) {
-			var pathArray = location.pathname.split('/');
-
-			for (var i = 0; i < pathArray.length; i++) {
-				if (pathArray[i].indexOf("scholar") != -1) {
-					prefix = prefix + "/" + pathArray[i];
-					break;
-				}
-			}
+		alert(text);
+		text = text.replace(" ", "+");
+		if (urlContainKey(null, "search?")) {
+			var link = null;
+			link = updateQueryString("keyWord", text, link);
+			location.replace(link);
+		} else {
+			var link = "search?";
+			link = updateQueryString("keyWord", text, link);
+			location.replace(link);
 		}
-
-		var link = prefix + "/search?keyWord=" + text + "&pageNum=1"
-				+ "&resultTotal=0";
-		window.open(link);
-	}
-}
-
-function clickSearchSchoolName() {
-	var text = document.getElementById('search-text-school').value;
-	if (text != "") {
-
-		// get link
-		var prefix = location.protocol + "//" + location.host;
-
-		if (prefix.indexOf("scholar") == -1) {
-			var pathArray = location.pathname.split('/');
-
-			for (var i = 0; i < pathArray.length; i++) {
-				if (pathArray[i].indexOf("scholar") != -1) {
-					prefix = prefix + "/" + pathArray[i];
-					break;
-				}
-			}
-		}
-
-		var link = prefix + "/search?school=" + text + "&pageNum=1"
-				+ "&resultTotal=0";
-		window.open(link);
 	}
 }

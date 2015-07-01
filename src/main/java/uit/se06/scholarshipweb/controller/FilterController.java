@@ -136,7 +136,7 @@ public class FilterController extends BaseController {
 
 		long noOfRecords = busScholarship.countRowsListBy(filterModel);
 
-		model.addObject("filterModel", serialize(filterModel));// total records
+		model.addObject("filterModel", serialize(filterModel));
 		model.addObject("resultTotal", noOfRecords);// total records
 
 		return model;
@@ -258,7 +258,7 @@ public class FilterController extends BaseController {
 		if (list != null && !list.isEmpty()) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(list.get(0));
-			for (int i = 0; i < list.size(); i++) {
+			for (int i = 1; i < list.size(); i++) {
 				sb.append("_").append(list.get(i));
 			}
 			return sb.toString();

@@ -411,7 +411,7 @@ function(window, document, undefined) {
 					 */
 					if (!lang.sEmptyTable
 							&& zeroRecords
-							&& defaults.sEmptyTable === "No data available in table") {
+							&& defaults.sEmptyTable === "Không có kết quả phù hợp") {
 						_fnMap(lang, lang, 'sZeroRecords', 'sEmptyTable');
 					}
 
@@ -11537,7 +11537,7 @@ function(window, document, undefined) {
 						 *          $('#example').dataTable( { "language": {
 						 *          "emptyTable": "No data available in table" } } ); } );
 						 */
-						"sEmptyTable" : "No data available in table",
+						"sEmptyTable" : "Không có kết quả phù hợp",
 
 						/**
 						 * This string gives information to the end user about

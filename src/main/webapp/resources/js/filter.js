@@ -1,9 +1,8 @@
 var offset = -100;
 
-function clickNextFilter(nextIndex) { 
+function clickNextFilter(nextIndex) {
 	var section = "#filter-section" + nextIndex;
 
-	
 	$('html, body').animate({
 		scrollTop : $(section).offset().top + offset
 	}, 1000);
@@ -16,7 +15,7 @@ function clickNextFilter(nextIndex) {
 	}
 }
 
-function clickPrevFilter(prevIndex) { 
+function clickPrevFilter(prevIndex) {
 	var section = "#filter-section" + prevIndex;
 
 	$('html, body').animate({
@@ -186,15 +185,6 @@ function existInputName(name) {
 	} else {
 		return true;
 	}
-}
-
-function createOption(selector, id, value) {
-	var a = document.createElement('a');
-
-	a.setAttribute('class', 'signature');
-	a.setAttribute('href', 'showSignature(xyz)');
-
-	selector.appendChild(opt);
 }
 
 function getListStr(list) {

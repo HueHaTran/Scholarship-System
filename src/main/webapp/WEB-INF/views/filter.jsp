@@ -10,7 +10,7 @@
 <link href="resources/css/freelancer.css" rel="stylesheet">
 <link href="resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-
+ 
 <style type="text/css">
 .row-filter {
 	padding-bottom: 60px;

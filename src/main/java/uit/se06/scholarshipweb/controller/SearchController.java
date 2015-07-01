@@ -39,14 +39,22 @@ public class SearchController {
 			if (request.getParameter("keyWord") != null) {
 				keyWord = new String(request.getParameter("keyWord").trim()
 						.getBytes("iso-8859-1"), "UTF-8");
+				keyWord = keyWord.replace("+", " ");
+				
 				logger.info("Searching " + keyWord + "...");
+			} else {
+				logger.info("Searching null!!!");
+				return model;
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 
-		int noOfRecords = busSearch.getTopResultRowCount(keyWord);
-
+		int noOfRecords = 0;
+		if (keyWord != "") {
+			noOfRecords = busSearch.getTopResultRowCount(keyWord);
+		}
+		
 		model.addObject("keyWord", keyWord);
 		model.addObject("resultTotal", noOfRecords);// total records
 													// page
@@ -57,10 +65,12 @@ public class SearchController {
 	public ModelAndView getSubView(@RequestBody String keyWord) {
 		ModelAndView model = new ModelAndView("list-partition");
 
-		List<OverviewScholarshipViewModel> list = busSearch.search(keyWord, 1,
-				Constants.MAX_RESULT, Constants.MAX_RESULT);
-
-		model.addObject("results", list);
+		if (keyWord != "") {
+			System.err.println("Error here: "+keyWord);
+			List<OverviewScholarshipViewModel> list = busSearch.search(keyWord,
+					1, Constants.MAX_RESULT, Constants.MAX_RESULT);
+			model.addObject("results", list);
+		}
 
 		return model;
 	}

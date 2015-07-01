@@ -8,24 +8,25 @@
 	rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="<c:url value="/resources/js/search.js" />"></script>
+<script src="<c:url value="/resources/js/updateHTTPRequest.js" />"></script>
 </head>
 <body>
 	<div id='nav-wrap'>
 		<ul style="padding: 0px">
 			<li class='search'>
-				<form style="margin: 0; padding: 0">
-					<div class="input-group">
-						<span class="input-group-btn">
+				<div class="input-group">
+					<span class="input-group-btn">
 
-							<button class="btn btn-default" onclick="clickSearch()">
-								<img class='glyphicon' src="resources/img/zoom.png" />
-							</button>
+						<button class="btn btn-default"
+							onclick="clickSearch('search-text2')" id="btnSearch2">
+							<img class='glyphicon' src="resources/img/zoom.png" />
+						</button>
 
-						</span> <input id="search-text" class="form-control search-term"
-							type="text" placeholder="<%=Constants.HIDDEN_SEARCH_ALL%>"
-							autocomplete="on" maxlength="60"></input>
-					</div>
-				</form>
+					</span> <input id="search-text2" class="form-control search-term"
+						onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch2').click()"
+						type="text" placeholder="<%=Constants.HIDDEN_SEARCH_ALL%>"
+						autocomplete="on" maxlength="60"></input>
+				</div>
 			</li>
 		</ul>
 	</div>

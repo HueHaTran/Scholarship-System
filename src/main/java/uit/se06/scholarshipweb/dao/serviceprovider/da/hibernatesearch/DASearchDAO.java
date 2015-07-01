@@ -142,7 +142,7 @@ public class DASearchDAO implements ISearchDAO {
 	}
 
 	private FullTextQuery getSearchNewWordQuery(String keyWord,
-			FullTextSession fullTextSession) {
+			FullTextSession fullTextSession) { 
 		SearchColumnConstant constants = SearchColumnConstant.getIns();
 
 		// builder 1
