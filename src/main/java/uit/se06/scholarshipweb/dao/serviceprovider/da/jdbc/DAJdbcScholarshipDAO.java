@@ -452,4 +452,51 @@ public class DAJdbcScholarshipDAO extends DAJdbcBaseDAO<Scholarship> implements
 		}
 		return flagFirstClause;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Scholarship> findScholarshipWithKeyword(String nameKeyword,
+			int size) {
+		List<Scholarship> resultList = null;
+		StringBuilder builder = new StringBuilder();
+
+		try {
+			String[] params = nameKeyword.split(" ");
+			String pCol = "LOWER(" + COL_NAME + ")";
+			String pOper = "LIKE";
+
+			// query
+			builder.append("FROM ").append(Scholarship.class.getSimpleName());
+
+			for (int i = 0; i < params.length; i++) {
+				if (i == 0) {
+					builder.append(" WHERE");
+				} else {
+					builder.append(" AND");
+				}
+				builder.append(" ").append(pCol).append(" ").append(pOper)
+						.append(" ");
+				builder.append("'%").append(params[i]).append("%'");
+			}
+
+			Query query = getSession().createQuery(builder.toString());
+			if (size > 0) {
+				query.setFirstResult(0);
+				query.setMaxResults(size);
+			}
+			resultList = query.list();
+		} catch (Exception ex) {
+			System.err
+					.println("Exception in "
+							+ this.getClass().getCanonicalName() + ": Query '"
+							+ builder.toString()
+							+ "' in findProductsWithNameKeyword()");
+			System.err.println("Exception: " + ex.toString());
+			closeSession();
+			return null;
+		} finally {
+			closeSession();
+		}
+		return resultList;
+	}
 }

@@ -10,4 +10,7 @@ public interface IScholarshipDAO extends IDAO<Scholarship> {
 	List<Scholarship> listBy(FilterViewModel data, int pageNumber, int pageSize);
 
 	long countRowsListBy(FilterViewModel data);
+
+	List<Scholarship> findScholarshipWithKeyword(String nameKeyword, int size);
+
 }

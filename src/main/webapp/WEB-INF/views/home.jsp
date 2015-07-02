@@ -19,6 +19,13 @@
 <link href="resources/css/freelancer.css" rel="stylesheet">
 <link href="resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
+
+
+<!-- auto complete -->
+<script src="<c:url value="/resources/js/jquery-1.10.2.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-ui-1.11.4.js" />"></script>
+<!-- end -->
+
 </head>
 
 <body id="page-top" class="index">

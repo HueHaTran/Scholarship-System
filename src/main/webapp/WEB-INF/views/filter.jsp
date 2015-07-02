@@ -3,6 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+
+
+<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><%=Constants.WEB_NAME%> - <%=Constants.MENU_FILTER%></title>
+ 
 <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/filter-form.css" />"
 	rel="stylesheet">
@@ -11,22 +17,26 @@
 <link href="resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
+
+<script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/filter.js" />"></script>
+
+
+<!-- auto complete -->
+<script src="<c:url value="/resources/js/jquery-1.10.2.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-ui-1.11.4.js" />"></script>
+<!-- end -->
+
+
 <style type="text/css">
 .row-filter {
 	padding-bottom: 60px;
 }
 </style>
 
-<script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
-<script src="<c:url value="/resources/js/filter.js" />"></script>
-
-<%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><%=Constants.WEB_NAME%> - <%=Constants.MENU_FILTER%></title>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
 		$(window).scroll(function() {
 			if (isElementVisisble('#filter3')) {
 				clickFilter(3, 3);

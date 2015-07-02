@@ -18,7 +18,10 @@ public interface IScholarshipBUS extends IBUS<Scholarship> {
 			Scholarship scholarship, boolean allowEmptyString);
 
 	List<OverviewScholarshipViewModel> filter(FilterViewModel data,
-			int pageNumber, int pageSize, boolean allowEmptyString, int maxResult);
+			int pageNumber, int pageSize, boolean allowEmptyString,
+			int maxResult);
 
 	long countRowsListBy(FilterViewModel data);
+
+	List<String> findScholarshipNameWithKeyword(String keyword, int size);
 }

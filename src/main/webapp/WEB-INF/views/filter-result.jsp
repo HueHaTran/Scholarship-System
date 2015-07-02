@@ -19,26 +19,31 @@
 
 <script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
 
+<!-- auto complete -->
+<script src="<c:url value="/resources/js/jquery-1.10.2.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-ui-1.11.4.js" />"></script>
+<!-- end -->
+ 
 <!-- data table -->
 <script src="<c:url value="/resources/js/jquery.dataTables.js" />"></script>
 <script src="<c:url value="/resources/js/DT_bootstrap.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-
+ 
 <script type="text/javascript">
 	$(function() {
 		doAjaxPost()
 	});
 
 	function doAjaxPost() {
-		var dataString = document.getElementById("filter-model").innerHTML; 
-		
+		var dataString = document.getElementById("filter-model").innerHTML;
+
 		$.ajax({
 			type : "POST",
 			data : keyWord = dataString,
 			contentType : "application/json",
 			dataType : "text",
 			url : "filterSubView",
-			success : function(response) { 
+			success : function(response) {
 				document.getElementById('load-data').style.display = 'none';
 				$("#subViewDiv").html(response);
 				$('#myTable').dataTable();

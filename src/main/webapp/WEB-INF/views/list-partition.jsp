@@ -41,9 +41,9 @@
 		<tbody>
 			<c:forEach items="${results}" var="result">
 				<tr>
-					<td style="width: 25%; text-decoration: none;"><a
+					<td style="width: 25%; text-decoration: none; font-weight: bold;"><a
 						class="title-link" href="all?id=${result.getId()}">${result.getName()}</a></td>
-					<td>${result.getSchoolName()}</td>
+					<td style="font-weight: bold;">${result.getSchoolName()}</td>
 					<td>${result.getValueMin()}</td>
 					<td>${result.getValueMax()}</td>
 					<td>${result.getDateEndRegister()}</td>

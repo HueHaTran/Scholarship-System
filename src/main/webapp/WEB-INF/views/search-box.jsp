@@ -6,9 +6,20 @@
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 <link href="<c:url value="/resources/css/nav-wrap.css" />"
 	rel="stylesheet">
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link href="resources/css/autocomplete.css" rel="stylesheet"
+	type="text/css" />
 <script src="<c:url value="/resources/js/search.js" />"></script>
 <script src="<c:url value="/resources/js/updateHTTPRequest.js" />"></script>
+
+<!-- auto complete (add following to parent) 
+<script src="<c:url value="/resources/js/jquery-1.10.2.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-ui-1.11.4.js" />"></script>
+ end -->
+ 
 </head>
 <body>
 	<div id='nav-wrap'>

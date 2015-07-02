@@ -10,8 +10,7 @@
 	rel="stylesheet">
 <link href="resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-
-<script src="<c:url value="/resources/js/jquery-1.9.1.min.js" />"></script>
+ 
 <script src="<c:url value="/resources/js/filter-country.js" />"></script>
 <script src="<c:url value="/resources/js/input-check.js" />"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

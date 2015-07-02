@@ -87,6 +87,21 @@ public class DAScholarshipBUS extends DABaseBUS<Scholarship> implements
 	}
 
 	@Override
+	public List<String> findScholarshipNameWithKeyword(String keyword, int size) {
+		List<Scholarship> resultEntity = dao.findScholarshipWithKeyword(
+				keyword, size);
+		List<String> result = new ArrayList<String>();
+		if (resultEntity != null) {
+			for (Scholarship s : resultEntity) {
+				if (!result.contains(s.getName())) {
+					result.add(s.getName());
+				}
+			}
+		}
+		return result;
+	}
+
+	@Override
 	protected IDAO<Scholarship> getDAO() {
 		return dao;
 	}
