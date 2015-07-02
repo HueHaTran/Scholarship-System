@@ -1,3 +1,23 @@
+function isElementVisisble(elem) {
+	var $elem = $(elem);
+	var $window = $(window);
+
+	var docViewTop = $window.scrollTop();
+	var docViewBottom = docViewTop + $window.height();
+
+	var elemTop = $elem.offset().top;
+	var elemBottom = elemTop + $elem.height();
+
+	// var inside = (docViewTop <= elemTop) && (docViewBottom <= elemBottom);
+	var outsideBottom = elemTop >= docViewBottom;
+	var outsideTop = elemBottom <= docViewTop;
+
+	if (outsideTop || outsideBottom) {
+		return false;
+	}
+	return true;
+}
+
 var offset = -100;
 
 function clickNextFilter(nextIndex) {
@@ -31,11 +51,6 @@ function clickPrevFilter(prevIndex) {
 }
 
 function clickFilter(index, total) {
-	var section = "#filter-section" + index;
-
-	$('html, body').animate({
-		scrollTop : $(section).offset().top + offset
-	}, 1000);
 	// progress bar
 	// display all 'li' from index '0' to 'current one'
 	for (var i = 1, len = index; i <= len; i++) {
@@ -51,6 +66,16 @@ function clickFilter(index, total) {
 			currentStep.className = currentStep.className.replace("active", "");
 		}
 	}
+}
+
+function clickFilterAndScroll(index, total) {
+	var section = "#filter-section" + index;
+
+	$('html, body').animate({
+		scrollTop : $(section).offset().top + offset
+	}, 1000);
+
+	clickFilter(index, total);
 }
 
 function clickSubmitFilter() {

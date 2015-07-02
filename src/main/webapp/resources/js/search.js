@@ -1,7 +1,6 @@
 function clickSearch(idTextbox) {
 	var text = document.getElementById(idTextbox).value;
 	if (text != "") {
-		alert(text);
 		text = text.replace(" ", "+");
 		if (urlContainKey(null, "search?")) {
 			var link = null;

@@ -10,7 +10,7 @@
 <link href="resources/css/freelancer.css" rel="stylesheet">
 <link href="resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
- 
+
 <style type="text/css">
 .row-filter {
 	padding-bottom: 60px;
@@ -23,6 +23,43 @@
 <%@ page import="uit.se06.scholarshipweb.bus.util.Constants"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><%=Constants.WEB_NAME%> - <%=Constants.MENU_FILTER%></title>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$(window).scroll(function() {
+			if (isElementVisisble('#filter3')) {
+				clickFilter(3, 3);
+			}
+			if (isElementVisisble('#filter2')) {
+				clickFilter(2, 3);
+			}
+			if (isElementVisisble('#filter1')) {
+				clickFilter(1, 3);
+			}
+		});
+
+	});
+
+	window.onmousedown = function(e) {
+		var el = e.target;
+		if (el.tagName.toLowerCase() == 'option'
+				&& el.parentNode.hasAttribute('multiple')) {
+			e.preventDefault();
+
+			// toggle selection
+			if (el.hasAttribute('selected'))
+				el.removeAttribute('selected');
+			else
+				el.setAttribute('selected', '');
+
+			// hack to correct buggy behavior
+			var select = el.parentNode.cloneNode(true);
+			el.parentNode.parentNode.replaceChild(select, el.parentNode);
+		}
+	}
+</script>
+
 </head>
 <body>
 	<div id="viewport">
@@ -38,9 +75,10 @@
 				<div class="navbar-header">
 					<!-- progressbar -->
 					<ul id="progressbar">
-						<li id="progressbar1" class="active" onclick="clickFilter(1,3)"><%=Constants.TITLE_FILTER1%></li>
-						<li id="progressbar2" onclick="clickFilter(2,3)"><%=Constants.TITLE_FILTER2%></li>
-						<li id="progressbar3" onclick="clickFilter(3,3)"><%=Constants.TITLE_FILTER3%></li>
+						<li id="progressbar1" class="active"
+							onclick="clickFilterAndScroll(1,3)"><%=Constants.TITLE_FILTER1%></li>
+						<li id="progressbar2" onclick="clickFilterAndScroll(2,3)"><%=Constants.TITLE_FILTER2%></li>
+						<li id="progressbar3" onclick="clickFilterAndScroll(3,3)"><%=Constants.TITLE_FILTER3%></li>
 						<li id="progressbar4" onclick="clickSubmitFilter()"><%=Constants.TITLE_FILTER4%></li>
 					</ul>
 				</div>
@@ -82,7 +120,8 @@
 					<%@include file="filter2.jsp"%>
 				</div>
 
-				<div class="row row-filter" id="filter-section3" style="padding-bottom: 0">
+				<div class="row row-filter" id="filter-section3"
+					style="padding-bottom: 0">
 					<%@include file="filter3.jsp"%>
 				</div>
 			</div>
